@@ -388,7 +388,7 @@ function getComments(bNum){
 	commBox.appendChild(write);
 	pnode.appendChild(commBox);
 	
-	// 댓글이 없을시 wrap을 하나 만들어준다 
+	// 댓글이 없을 경우를 대비해 wrap을 하나 만들어준다 (없으면 댓글 0개일시 댓글 감소,증가가 안됨) 
 	let wrap = document.createElement('div');
 	wrap.classList.add('comments-wrap');
 	pnode.appendChild(wrap);
@@ -516,17 +516,9 @@ function insertComment(bNum){
 			  	 	let showBtn = pnode.parentNode.firstElementChild
 			   		console.log(showBtn.lastElementChild.lastElementChild);
 			   		let count = showBtn.lastElementChild.lastElementChild;
- 					//let calc = "+";
- 					// changeCount(calc, count); 
- 					  afterCount = count.innerText.split('(');
- 				       console.log(afterCount)
- 				       afterCount = afterCount[1].split('개');
- 				       afterCount = afterCount[0];
- 				       console.log(afterCount)
- 				       afterCount = Number(afterCount);
- 				      afterCount = afterCount+1;
- 				       console.log(afterCount)
- 				       count.innerText = "댓글("+afterCount+"개)";  
+ 					let calc = "+";
+ 					changeCount(calc, count); 
+ 				
 			}
 			
 			
