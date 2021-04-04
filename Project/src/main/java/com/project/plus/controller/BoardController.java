@@ -10,10 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.BoardVO;
 import com.project.plus.service.BoardService;
 import com.project.plus.service.CommentsService;
@@ -53,7 +57,7 @@ public class BoardController {
 //	}
 	   //게시판 메인화면 접속 
 	   @RequestMapping("getCommunity")
-	   public String getCommunity(Model model,@RequestParam("clubNum") int clubNum) {
+	   public String getCommunity(Model model,@RequestParam("clubNum") int clubNum, HttpSession session) {
 		   
 			List<BoardVO> list = boardService.getBoardList(clubNum);
 			
@@ -66,9 +70,31 @@ public class BoardController {
 	      model.addAttribute("boards", list);
 
 	      return "community.comm";
-	            
+	   }
+	   
+	   
+	   @RequestMapping(value="getMoreContents", produces="application/text;charset=UTF-8", method=RequestMethod.POST)
+	   @ResponseBody
+	   public String getMoreContents(@RequestBody Map<String, String> param) throws JsonProcessingException{
+		   
+		   Map<String, Integer> more = new HashMap<String, Integer>();
+		   
+		   int startIndex = Integer.valueOf(param.get("startIndex").toString());
+		   int clubNum = Integer.valueOf(param.get("clubNum").toString());
+		   
+		   more.put("startIndex", startIndex);
+		   more.put("clubNum", clubNum);
+		   
+		   List<BoardVO> newContent = boardService.getMoreContents(more);
+		   
+		// java object -> json
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonString = mapper.writeValueAsString(newContent);
+			return jsonString;
 
 	   }
+	   
+	   
 	   @GetMapping("/insertBoardForm")
 	   public String insertBoardForm() {
 	      return "boardForm.board";

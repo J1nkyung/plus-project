@@ -259,6 +259,8 @@ color:white;
 	<div class="communityContainer">
 		<input type="button" name="boardForm" id="boardForm"
 			onclick="location.href='${path}/insertBoardForm'" value="글쓰기">
+<div id="repeatBox">
+
 		<c:forEach items="${boards}" var="board">
 			<div class="inlineContent">
 				<!-- 게시글 -->
@@ -344,14 +346,94 @@ color:white;
 						<img id="commImg" src="${path}/resources/img/message.png" />
 						<div id="commList" onclick="getComments(${board.boardNum})">댓글(${board.commentsCount}개)</div>
 					</div>
-				</div>
 				<!-- 댓글 가져오기  -->
-			</div>
+				</div><!--contentBox  -->
+			</div><!-- inline content 끝 -->
 		</c:forEach>
-	</div>
-	<!--communityContainer end-->
+		<div class="newContent">
+		
+		</div>
+		<button type="button" class="moreBtn" id="moreContentBtn">더보기</button>
+	</div><!-- repeatBox -->
+	</div>	<!--communityContainer end-->
 </body>
 <script>
+
+let contentCnt = '${contentCount}'
+	console.log(contentCnt)
+
+	$(function(){
+		 if(contentCnt<=5){
+			 console.log("콘텐츠 카운트 체크")
+			 $('#moreContentBtn').css("display","none");
+		 }
+		 
+		 //개수제한
+		 let startIndex = 0;
+		 // 더보기 버튼 클릭 시 보여줄 값
+		 let step = 5;
+		
+		 $('#getContentBtn').click(function(){
+			 startIndex += step;
+			 console.log(startIndex)
+			 getMoreContents(startIndex);
+		 });
+		 
+		 // 더보기
+		 function getMoreContents(startIndex){
+			 $.ajax({
+				 type: "post",
+				 async: "true",
+				 dataType : "json",
+				 data: JSON.stringify({
+					 clubNum:'${club.clubNum}',
+					 startIndex:startIndex
+				 }),
+				 contentType: "application/json",
+				 url: "getMoreContents", //controller주소
+				 success: function(data) {
+					 let newContentList = "";
+					 for(i = 0; i < data.length; i++){
+					 let newContent = '<div class="inlineContent">';
+					 newContent += '<div class="contentBox">';
+					 newContent += '<form role="form" name="updateForm" method="post">';
+					 newContent += '<div class="userInfo">';
+					 newContent += '<input type="hidden" name="boardNum" value="'+ data[i].boardNum +'">';
+					 newContent += '<img src="${path}/resources'+ data[i].memberPic +'" id="userPic" onerror="this.src='${path}/resources/img/default_pic.png'" />';
+					 newContent += '<p id="boardNickname">' + data[i].memberNickname + '</p>';
+					 newContent += '<div id="boardRegdate">' + data[i].boardRegDate '</div>';
+					 newContent += '<c:set var="writer" value="' + data[i].memberNum + '" />';
+					 newContent += '<c:if test="${writer eq user.memberNum}">';
+					 newContent += '<div class="dropdowns">';
+					 newContent += '<ul><li><button class="dropbtn"><img id="dropmenu" src="${path }/resources/img/menu.png"></button>';
+					 newContent += '<ul><button type="submit" id="btnUp"><a href="${path}/updateView?boardNum=${board.boardNum}">수정</a></button>';
+					 newContent += '<button type="submit" id="btnDel"><a href="${path}/deleteBoard?boardNum=${board.boardNum}">삭제</a></button>';
+					 newContent += '</ul></li></ul></div></c:if></div>';
+					 newContent += '<div class="certification"><div id="certificationPic">';
+					 newContent += '<img src="' + data[i].boardPic + '" onerror="this.style.display=' + '"none"' + ';" style="height: 70%;"></div>';
+					 newContent += '<p id="certificationContent">' + data[i].boardContent + '</p>';
+					 newContent += '</div></form>';
+					 newContent += '<div id="showCommBtn">';
+					 newContent += '<img id="commImg" src="${path}/resources/img/message.png" />';
+					 newContent += '<div id="commList" onclick="getComments('+ data[i].boardNum + ')">댓글(' + data[i].commentsCount + '개)</div></div></div></div>';
+					 newContent += newContent;
+					 
+					 }
+					 
+					 //부모태그에다가 작성한 html 태그를 append 시킨다
+					 $(newContentList).appendTo($(".newContent")).slideDown();
+					 
+					 if(startIndex + step > contentCnt){
+		        			$('#moreContentBtn').remove();
+		        		}
+				 }
+			 })
+		 }
+		
+	})
+	
+	
+	
 
 
 $(function(){
