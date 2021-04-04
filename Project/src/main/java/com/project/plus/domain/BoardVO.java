@@ -18,6 +18,7 @@ public class BoardVO {
 	private String memberPic;
 	private String memberNickname;
 	
+	// 깃테스트 
 
 	
 }
