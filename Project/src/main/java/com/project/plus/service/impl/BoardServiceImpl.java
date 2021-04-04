@@ -25,8 +25,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> getBoardList() {
-		return mapper.getBoardList();
+	public List<BoardVO> getBoardList(int clubNum) {
+		return mapper.getBoardList(clubNum);
 	}
 
 	@Override

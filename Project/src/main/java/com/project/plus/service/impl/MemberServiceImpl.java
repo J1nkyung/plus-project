@@ -106,6 +106,12 @@ public class MemberServiceImpl implements MemberService {
 	      return membermapper.selectMemberPointByNickname(vo);
 	   }
 
+	@Override
+	public void insertLocation(MemberVO vo) {
+	membermapper.insertLocation(vo);
+		
+	}
+
 
 
 

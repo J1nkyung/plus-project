@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,9 +22,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.ApplyVO;
-import com.project.plus.domain.ChatVO;
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.HeartVO;
+import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.ReviewVO;
 import com.project.plus.service.ClubService;
 import com.project.plus.service.HeartService;
@@ -81,12 +82,6 @@ public class ClubController {
 		return "redirect:main";
 	}
 
-	
-	// 컬럼에 저장된 해시태그 list 가져와서 model에 저장
-	@ModelAttribute("tags")
-	public List<String> getTags() {
-		return clubService.getClubHashtag();
-	}
 
 	
 	// json을 이용하여 더보기 리뷰 리스트 가져오기
@@ -94,13 +89,18 @@ public class ClubController {
 	@RequestMapping(value = "/getMoreReview", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
 	@ResponseBody
 	public String getMoreReviews(@RequestBody Map<String, String> param) throws JsonProcessingException {
+		
+		
 		Map<String, Integer> condition = new HashMap<String, Integer>();
 
 		// json string으로 들어온 파라미터 형변환
 		int startIndex = Integer.valueOf(param.get("startIndex").toString());
 		int clubNum = Integer.valueOf(param.get("clubNum").toString());
+		
+		
 		log.info("start index : " + startIndex);
 		log.info("리뷰 더 가져오기 : " + clubNum);
+		
 		condition.put("startIndex", startIndex);
 		condition.put("clubNum", clubNum);
 
@@ -115,11 +115,16 @@ public class ClubController {
 
 	// 모임 상세정보 
 	@RequestMapping("/getClub")
-	public String getClub(@RequestParam("clubNum") int clubNum,HeartVO hvo, Model model) {
+	public String getClub(@RequestParam("clubNum") int clubNum, HeartVO hvo, HttpSession session, Model model) {
 		
-		//정연 추가 
-		hvo.setClubNum(2);
-		hvo.setMemberNum(3);
+		//정연 추가 20210401 
+//		hvo.setClubNum(2); //20210401삭제
+//		hvo.setMemberNum(3); //20210401삭
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		if (user != null) {
+			hvo.setMemberNum(user.getMemberNum());
+		}
+		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
 		System.out.println("heart" + hvo.getClubNum() +" " +  hvo.getMemberNum());
 		int resultClub = heartService.selectHeartNum(hvo);
 		model.addAttribute("isThereHeart", resultClub);
@@ -199,5 +204,10 @@ public class ClubController {
 		}
 	}
 	
+	// 수정하기 폼 임시로 설정
+	@GetMapping("/myClubInfo")
+	public String getInfo() {
+		return "club/myClubInfo";
+	}
 	
 }

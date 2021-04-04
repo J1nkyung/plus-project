@@ -40,5 +40,7 @@ public interface MemberService {
 	   void deductMemberPoint(MemberVO vo);
 	   void updateClubLeaderPoint(MemberVO vo);
 
+	void insertLocation(MemberVO vo);
+
 
 }

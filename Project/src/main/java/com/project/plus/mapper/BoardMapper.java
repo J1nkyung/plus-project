@@ -9,7 +9,7 @@ import com.project.plus.domain.ReviewVO;
 public interface BoardMapper {
 	public int insertBoard(BoardVO board);
 	public BoardVO getBoard(int boardNum);
-	public List<BoardVO> getBoardList(); //clubNum int 받아야됨
+	public List<BoardVO> getBoardList(int clubNum); //clubNum int 받아야됨
 	public List<ReviewVO> getMoreContents(Map<String,Integer> map);
 	public void getContentCount(int BoardNum);
 	public void updateBoard(BoardVO board);

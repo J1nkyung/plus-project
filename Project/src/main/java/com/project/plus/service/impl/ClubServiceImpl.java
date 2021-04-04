@@ -24,8 +24,8 @@ public class ClubServiceImpl implements ClubService {
 		return mapper.getClub(clubNum);
 		
 	}
-	public List<String> getClubHashtag() {
-		return mapper.getClubHashtag();
+	public List<String> getClubHashtag(int clubNum) {
+		return mapper.getClubHashtag(clubNum);
 	}
 	public ClubVO getMyClubInfo(ClubVO vo) {
 		return mapper.getMyClubInfo(vo);
@@ -54,4 +54,17 @@ public class ClubServiceImpl implements ClubService {
 	public ClubVO selectClub(ClubVO vo) {
 		return mapper.selectClub(vo);
 	}
+	
+	//정연하단 추가 20210401
+	@Override
+	public void plusHeartCnt(ClubVO vo) {
+		mapper.plusHeartCnt(vo);	
+	}
+	@Override
+	public void minusHeartCnt(ClubVO vo) {
+		mapper.minusHeartCnt(vo);		
+	}
+	
+	
+	
 }

@@ -9,7 +9,7 @@ import com.project.plus.domain.ClubVO;
 public interface ClubMapper {
 	public void insertClub(ClubVO vo);
 	public ClubVO getClub(int clubNum);
-	public List<String> getClubHashtag();
+	public List<String> getClubHashtag(int clubNum);
 	public ClubVO getMyClubInfo(ClubVO vo);
 	public int updateClub(ClubVO vo);
 	public void deleteClub(ClubVO vo);
@@ -18,6 +18,8 @@ public interface ClubMapper {
 	public int plusCurnum(int clubNum);
 	
 	//정연하단 추가 20210326
-
 	public ClubVO selectClub(ClubVO vo);
+	//정연하단 추가 20210401
+	public void plusHeartCnt(ClubVO vo);
+	public void minusHeartCnt(ClubVO vo);
 }

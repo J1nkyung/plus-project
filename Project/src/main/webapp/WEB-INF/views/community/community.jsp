@@ -259,8 +259,8 @@ color:white;
 	<div class="communityContainer">
 		<input type="button" name="boardForm" id="boardForm"
 			onclick="location.href='${path}/insertBoardForm'" value="글쓰기">
-			<div class="inlineContent">
 		<c:forEach items="${boards}" var="board">
+			<div class="inlineContent">
 				<!-- 게시글 -->
 				<div class="contentBox">
 					<form role="form" name="updateForm" method="post">
@@ -340,30 +340,22 @@ color:white;
 								</div>
 							</c:if>
 						</c:forEach> --%>
-				<%-- 	<div id="showCommBtn">
+					<div id="showCommBtn">
 						<img id="commImg" src="${path}/resources/img/message.png" />
 						<div id="commList" onclick="getComments(${board.boardNum})">댓글(${board.commentsCount}개)</div>
-					</div> --%>
+					</div>
 				</div>
 				<!-- 댓글 가져오기  -->
+			</div>
 		</c:forEach>
-			</div><!-- inline content 끝 -->
-		
-		<div class="newContent">
-		
-		</div>
-		<button type="button" class="moreBtn" id="moreContentBtn">더보기</button>
-  </div>
+	</div>
 	<!--communityContainer end-->
 </body>
 <script>
 
 
 $(function(){
-	
-	$("#dropdown").click(function(){
-		
-	})
+
 
 });
 
@@ -372,6 +364,13 @@ let userNickname = '${user.memberNickname}';
 
 //댓글보기 클릭시 
 function getComments(bNum){
+	// 댓글 보기 접었다 펴기 
+	$("#showCommBtn").toggleClass('selected');
+	if(!$("#showCommBtn").hasClass('selected')){
+		$('.commentBox').remove();		
+		$('.comments-wrap').remove();		
+	} else{
+	
 	let pnode = event.target.parentNode.parentNode.parentNode;
 	// contentBox
 	console.log(pnode);
@@ -409,7 +408,7 @@ function getComments(bNum){
 		         	span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
 		         	span.innerHTML += '<div id="commentNickname">'+ data[i].memberNickname +'</div>';
 		         	span.innerHTML += '<div id="commRegdate">'+ data[i].commentsChangedRegdate +'</div>';
-		         	span.innerHTML += '<img src="${path}/resources/img/down.png" id="dropdown"/>';
+		         	/* span.innerHTML += '<img src="${path}/resources/img/down.png" id="dropdown"/>'; */
 		         	comment.appendChild(span);
 		         	comment.innerHTML += '<div id="commContent">'+ data[i].commentsContent +'</div></div>';
 		         	// 댓글쓴이와 로그인 유저가 같은 사람이면 수정,삭제가 보임 
@@ -425,7 +424,7 @@ function getComments(bNum){
 	        	  alert("댓글 불러오기 오류" + e);
 	        }
      });
-	
+	}
 	
 }
 
@@ -452,6 +451,7 @@ function insertComment(bNum){
 	console.log(pnode);	//comments-wrap
 	
 	let area = event.target.parentNode.getElementsByTagName('textArea')[0];
+	console.log(area)
 	let content = area.value;
 	area.value="";
 	console.log(content);
@@ -459,7 +459,9 @@ function insertComment(bNum){
 	let today = getTime();
     console.log(today);
     
- 
+    console.log(pnode.parentNode)
+    console.log(pnode.parentNode.children[2])	// 
+ 	
 			       //  return new Promise(function(resolve, reject){
 			       $.ajax({
 						type: "post",
@@ -486,7 +488,11 @@ function insertComment(bNum){
 			            	comment.innerHTML += '<div id="commContent">'+ data.commentsContent +'</div></div>';
 			            	comment.innerHTML += '<div id="editBtn"><div id="delComm" onclick="deleteComment('+data.commentsNum+')">삭제</div>'
 			            						+'<div id="updateComm" onclick="changeTag('+data.commentsNum+')">수정</div></div>';
-		                   	pnode.insertBefore(comment, pnode.firstChild);
+			            	
+			            //comments wrap에 가져온 comment 삽입 
+			            	pnode.parentNode(comment);
+			            // comments wrap을 inlineContent의 첫번째 노드로  삽입 
+			          	 	pnode.insertBefore(comment, pnode.parentNode.children[2]);
 		                   	console.log("댓글 등록 성공");
 		                   	alert("댓글이 등록되었습니다!");
 		               
@@ -497,8 +503,9 @@ function insertComment(bNum){
 			        });  
 		//    }); 
 			   		 // 댓글 개수 증가 
-			   		let showBtn = pnode.parentNode.firstElementChild.nextElementSibling.lastElementChild;
- 					let count = showBtn.lastElementChild;
+			   		let showBtn = pnode.parentNode
+			   		console.log(showBtn);
+ 					let count = showBtn
  					let calc = "+";
  					changeCount(calc, count);
  			
@@ -607,8 +614,8 @@ function updateComment(cNum){
 			            	console.log(data)
 			            	if(data){
 				            		console.log("댓글삭제완료");
-				            		pnode.innerHTML="";
 				            		alert("댓글이 삭제되었습니다!");
+				            		pnode.innerHTML="";
 				            		
 				            	} else {
 				            		console.log("댓글삭제실패");
@@ -623,10 +630,10 @@ function updateComment(cNum){
 	
 		// 댓글 개수 감소 
 		console.log(pnode)
-		let showBtn = pnode.parentNode.parentNode.firstElementChild.nextElementSibling.lastElementChild;
+		let showBtn = pnode.parentNode.parentNode.firstElementChild.lastElementChild;
 		console.log(showBtn)
 		let count = showBtn.lastElementChild;	// a태그 
-		console.log(count)
+		console.log(count.lastElementChild)
 		let calc = "-";
 		changeCount(calc, count); 
 	}

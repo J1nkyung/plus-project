@@ -42,7 +42,7 @@ public interface MemberMapper {
 	
 	public void updateClubLeaderPoint(MemberVO vo);
 	
-
+	void insertLocation(MemberVO vo);
 
 
 }
