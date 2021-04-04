@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CommentsVO {
+	// 커멘츠 vo
 	private int commentsNum;
 	private int memberNum;
 	private int boardNum;
