@@ -256,100 +256,106 @@ color:white;
 </style>
 </head>
 <body>
-	<div class="communityContainer">
-		<input type="button" name="boardForm" id="boardForm"
-			onclick="location.href='${path}/insertBoardForm'" value="글쓰기">
-		<c:forEach items="${boards}" var="board">
-			<div class="inlineContent">
-				<!-- 게시글 -->
-				<div class="contentBox">
-					<form role="form" name="updateForm" method="post">
-						<div class="userInfo">
-							<input type="hidden" name="boardNum" value="${board.boardNum }">
-							<img src="${path}/resources${board.memberPic}" id="userPic"
-								onerror="this.src='${path}/resources/img/default_pic.png'" />
-							<p id="boardNickname">${board.memberNickname}</p>
-							<div id="boardRegdate">${board.boardRegDate}</div>
+   <div class="communityContainer">
+      <input type="button" name="boardForm" id="boardForm"
+         onclick="location.href='${path}/insertBoardForm'" value="글쓰기">
+<div id="repeatBox">
 
-							<c:set var="writer" value="${board.memberNum }" />
-							<c:if test="${writer eq user.memberNum}">
+      <c:forEach items="${boards}" var="board">
+         <div class="inlineContent">
+            <!-- 게시글 -->
+            <div class="contentBox">
+               <form role="form" name="updateForm" method="post">
+                  <div class="userInfo">
+                     <input type="hidden" name="boardNum" value="${board.boardNum }">
+                     <img src="${path}/resources${board.memberPic}" id="userPic"
+                        onerror="this.src='${path}/resources/img/default_pic.png'" />
+                     <p id="boardNickname">${board.memberNickname}</p>
+                     <div id="boardRegdate">${board.boardRegDate}</div>
 
-								<div class="dropdowns">
-									<ul>
-										<li>
-											<button class="dropbtn">
-												<img id="dropmenu" src="${path }/resources/img/menu.png">
-											</button>
-											<ul>
-												<button type="submit" id="btnUp">
-													<a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>
-												</button>
-												<button type="submit" id="btnDel">
-													<a href="${path}/deleteBoard?boardNum=${board.boardNum}">삭제</a>
-												</button>
-											</ul>
-										</li>
-									</ul>
-								</div>
-							</c:if>
+                     <c:set var="writer" value="${board.memberNum }" />
+                     <c:if test="${writer eq user.memberNum}">
 
-						</div>
-						<div class="certification">
-							<div id="certificationPic">
-								<img src="${board.boardPic}"
-									onerror="this.style.display='none';" style="height: 70%;">
-							</div>
-							<p id="certificationContent">${board.boardContent}</p>
-						</div>
-					</form>
-					<!-- 댓글 쓰는 부분 -->
+                        <div class="dropdowns">
+                           <ul>
+                              <li>
+                                 <button class="dropbtn">
+                                    <img id="dropmenu" src="${path }/resources/img/menu.png">
+                                 </button>
+                                 <ul>
+                                    <button type="submit" id="btnUp">
+                                       <a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>
+                                    </button>
+                                    <button type="submit" id="btnDel">
+                                       <a href="${path}/deleteBoard?boardNum=${board.boardNum}">삭제</a>
+                                    </button>
+                                 </ul>
+                              </li>
+                           </ul>
+                        </div>
+                     </c:if>
+
+                  </div>
+                  <div class="certification">
+                     <div id="certificationPic">
+                        <img src="${board.boardPic}"
+                           onerror="this.style.display='none';" style="height: 70%;">
+                     </div>
+                     <p id="certificationContent">${board.boardContent}</p>
+                  </div>
+               </form>
+               <!-- 댓글 쓰는 부분 -->
 
 
-					<%-- <c:forEach items="${comments}" var="comment">
-							<c:if test="${board.boardNum == comment.boardNum}">
-							아래부터 시작해야 함 
-							<hr>
-							<div id="commentBox">
-								<div id="writeComment">
-									<textarea cols="80" rows="1" id="textArea"
-										placeholder="댓글을 입력해보세요!"></textarea>
-									<br> <input type="button" id="submitCommBtn" value="등록하기"
-										onclick="insertComment(${board.boardNum})" />
-								</div>
-							</div>
-								<div class="comments-wrap">
-									<div class="userComment">
-										<div class="userSpan">
-											<img src="${path}/resources${comment.memberPic}"
-												id="commentUserPic"
-												onerror="this.src='${path}/resources/img/default_pic.png'" />
-											<div id="commentNickname">${comment.memberNickname}</div>
-											<div id="commRegdate">${comment.commentsChangedRegdate}</div>
-										</div>
-										<div id="commContent">${comment.commentsContent}</div>
-										<div id="editBtn">
-											<a href="#" id="delComm"
-												onclick="deleteComment(${comment.commentsNum})">삭제</a> <a
-												id="updateComm" href="#"
-												onclick="changeTag(${comment.commentsNum})">수정</a>
-										</div>
-										<hr>
-									</div>
-								</div>
-							</c:if>
-						</c:forEach> --%>
-					<div id="showCommBtn">
-						<img id="commImg" src="${path}/resources/img/message.png" />
-						<div id="commList" onclick="getComments(${board.boardNum})">댓글(${board.commentsCount}개)</div>
-					</div>
-					
-				</div>
-				<!-- 댓글 가져오기  -->
-			</div>
-		</c:forEach>
-		
-	</div>
-	<!--communityContainer end-->
+
+
+               <%-- <c:forEach items="${comments}" var="comment">
+                     <c:if test="${board.boardNum == comment.boardNum}">
+                     아래부터 시작해야 함 
+                     <hr>
+                     <div id="commentBox">
+                        <div id="writeComment">
+                           <textarea cols="80" rows="1" id="textArea"
+                              placeholder="댓글을 입력해보세요!"></textarea>
+                           <br> <input type="button" id="submitCommBtn" value="등록하기"
+                              onclick="insertComment(${board.boardNum})" />
+                        </div>
+                     </div>
+                        <div class="comments-wrap">
+                           <div class="userComment">
+                              <div class="userSpan">
+                                 <img src="${path}/resources${comment.memberPic}"
+                                    id="commentUserPic"
+                                    onerror="this.src='${path}/resources/img/default_pic.png'" />
+                                 <div id="commentNickname">${comment.memberNickname}</div>
+                                 <div id="commRegdate">${comment.commentsChangedRegdate}</div>
+                              </div>
+                              <div id="commContent">${comment.commentsContent}</div>
+                              <div id="editBtn">
+                                 <a href="#" id="delComm"
+                                    onclick="deleteComment(${comment.commentsNum})">삭제</a> <a
+                                    id="updateComm" href="#"
+                                    onclick="changeTag(${comment.commentsNum})">수정</a>
+                              </div>
+                              <hr>
+                           </div>
+                        </div>
+                     </c:if>
+                  </c:forEach> --%>
+               <div id="showCommBtn">
+                  <img id="commImg" src="${path}/resources/img/message.png" />
+                  <div id="commList" onclick="getComments(${board.boardNum})">댓글(${board.commentsCount}개)</div>
+               </div>
+            <!-- 댓글 가져오기  -->
+            </div><!--contentBox  -->
+         </div><!-- inline content 끝 -->
+      </c:forEach>
+      <div class="newContent">
+      
+      </div>
+      <button type="button" class="moreBtn" id="moreContentBtn">더보기</button>
+   </div><!-- repeatBox -->
+   </div>   <!--communityContainer end-->
 </body>
 <script>
 
@@ -688,7 +694,7 @@ function updateComment(cNum){
 				   return new Promise(function(resolve, reject){
 			          	$.ajax({
 						type: "post",
-						url: "plusCurnum",
+						url: "plusCurnum", 
 						data: {
 						},
 			            success: function (data) {
