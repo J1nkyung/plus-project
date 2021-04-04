@@ -388,6 +388,11 @@ function getComments(bNum){
 	commBox.appendChild(write);
 	pnode.appendChild(commBox);
 	
+	// 댓글이 없을시 wrap을 하나 만들어준다 
+	let wrap = document.createElement('div');
+	wrap.classList.add('comments-wrap');
+	pnode.appendChild(wrap);
+	
 	 $.ajax({
 			type: "post",
 			url: "getComments",
@@ -478,7 +483,9 @@ function insertComment(bNum){
 			            	today = today.split(':');
 			            	
 			            	let comment = document.createElement('div');
+			            	let wrap = document.createElement('div');
 			            	comment.classList.add("userComment");
+			            	wrap.classList.add("comments-wrap");
 			            	let span = document.createElement('div');
 			            	span.classList.add("userSpan");
 			            	span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
@@ -490,12 +497,12 @@ function insertComment(bNum){
 			            						+'<div id="updateComm" onclick="changeTag('+data.commentsNum+')">수정</div></div>';
 			            	
 			            //comments wrap에 가져온 comment 삽입 
-			            	pnode.appendChild(comment);
-			            
+			            	wrap.appendChild(comment);
+			            	console.log(pnode);
 			            // comments wrap을 inlineContent의 첫번째 노드로  삽입 
-			            console.log(pnode.parentNode);	// inlineContent
-			            let inline = pnode.parentNode;
-			         	   inline.insertBefore(pnode, inline.firstElementChild);
+			            	console.log(pnode.parentNode);	// inlineContent
+			           		 let inline = pnode.parentNode;
+			         	  	 inline.insertBefore(wrap, inline.children[2]);
 		                   	console.log("댓글 등록 성공");
 		                   	alert("댓글이 등록되었습니다!"); 
 		               
