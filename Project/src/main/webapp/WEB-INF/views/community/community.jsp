@@ -305,8 +305,6 @@ color:white;
 					<!-- 댓글 쓰는 부분 -->
 
 
-
-
 					<%-- <c:forEach items="${comments}" var="comment">
 							<c:if test="${board.boardNum == comment.boardNum}">
 							아래부터 시작해야 함 
@@ -344,10 +342,12 @@ color:white;
 						<img id="commImg" src="${path}/resources/img/message.png" />
 						<div id="commList" onclick="getComments(${board.boardNum})">댓글(${board.commentsCount}개)</div>
 					</div>
+					
 				</div>
 				<!-- 댓글 가져오기  -->
 			</div>
 		</c:forEach>
+		
 	</div>
 	<!--communityContainer end-->
 </body>
@@ -388,6 +388,11 @@ function getComments(bNum){
 	commBox.appendChild(write);
 	pnode.appendChild(commBox);
 	
+	// 댓글이 없을 경우를 대비해 wrap을 하나 만들어준다 (없으면 댓글 0개일시 댓글 감소,증가가 안됨) 
+	let wrap = document.createElement('div');
+	wrap.classList.add('comments-wrap');
+	pnode.appendChild(wrap);
+	
 	 $.ajax({
 			type: "post",
 			url: "getComments",
@@ -416,6 +421,7 @@ function getComments(bNum){
 		         	comment.innerHTML += '<div id="editBtn"><div id="delComm" onclick="deleteComment('+data[i].commentsNum+')">삭제</div>'
 		         						+'<div id="updateComm" onclick="changeTag('+data[i].commentsNum+')">수정</div></div>';
 		         	} 
+		         	
 		         	commWrap.appendChild(comment);
 					pnode.appendChild(commWrap);
 				}
@@ -460,7 +466,6 @@ function insertComment(bNum){
     console.log(today);
     
     console.log(pnode.parentNode)
-    console.log(pnode.parentNode.children[2])	// 
  	
 			       //  return new Promise(function(resolve, reject){
 			       $.ajax({
@@ -478,7 +483,9 @@ function insertComment(bNum){
 			            	today = today.split(':');
 			            	
 			            	let comment = document.createElement('div');
+			            	let wrap = document.createElement('div');
 			            	comment.classList.add("userComment");
+			            	wrap.classList.add("comments-wrap");
 			            	let span = document.createElement('div');
 			            	span.classList.add("userSpan");
 			            	span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
@@ -490,11 +497,15 @@ function insertComment(bNum){
 			            						+'<div id="updateComm" onclick="changeTag('+data.commentsNum+')">수정</div></div>';
 			            	
 			            //comments wrap에 가져온 comment 삽입 
-			            	pnode.parentNode(comment);
+			            	wrap.appendChild(comment);
+			            	console.log(pnode);
+			            	
 			            // comments wrap을 inlineContent의 첫번째 노드로  삽입 
-			          	 	pnode.insertBefore(comment, pnode.parentNode.children[2]);
+			            	console.log(pnode.parentNode);	// inlineContent
+			           		 let inline = pnode.parentNode;
+			         	  	 inline.insertBefore(wrap, inline.children[2]);
 		                   	console.log("댓글 등록 성공");
-		                   	alert("댓글이 등록되었습니다!");
+		                   	alert("댓글이 등록되었습니다!"); 
 		               
 				        },
 				        error: function(e) {
@@ -503,12 +514,11 @@ function insertComment(bNum){
 			        });  
 		//    }); 
 			   		 // 댓글 개수 증가 
-			   		let showBtn = pnode.parentNode
-			   		console.log(showBtn);
- 					let count = showBtn
+			  	 	let showBtn = pnode.parentNode.firstElementChild
+			   		let count = showBtn.lastElementChild.lastElementChild;
  					let calc = "+";
- 					changeCount(calc, count);
- 			
+ 					changeCount(calc, count); 
+ 				
 			}
 			
 			
@@ -597,7 +607,7 @@ function updateComment(cNum){
 		
 }
 			
-
+//댓글 삭제 
 	function deleteComment(cNum){
 	let result = confirm("댓글을 삭제하시겠습니까?");
 	let pnode = event.target.parentNode.parentNode 		//comments-wrap
