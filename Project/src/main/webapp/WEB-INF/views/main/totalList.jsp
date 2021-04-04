@@ -33,51 +33,55 @@
 
 <body>
 
-<from role="form" method="get">
-
-	<!--------------상세검색 영역--------------->
+	<from role="form" method="get"> <!--------------상세검색 영역--------------->
 	<div class="jumbotron">
-	<div class="search">
+		<div class="search">
 			<h3>
 				<b>🔎 상세 검색 </b>
 			</h3>
 			<hr class="my-4">
-
-				<select name="searchType">
-						<option value="t"
-							<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>전체</option>
-						<option value="n"
-							<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>모임명</option>
-						<option value="l"
-							<c:out value="${scri.searchType eq 'l' ? 'selected' : ''}"/>>리더명</option>
-						<option value="c"
-							<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-						<option value="h"
-							<c:out value="${scri.searchType eq 'h' ? 'selected' : ''}"/>>해시태그</option>
-					</select> <input type="text" name="keyword" id="keywordInput" size="40"
-						value="${scri.keyword}" />
-					<button id="searchBtn" type="button">검색</button>
-					<script>
+</br>
+			<select name="searchType">
+				<option value="t"
+					<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>카테고리 선택</option>
+				<option value="w" type="hidden"
+					<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>운동</option>
 					
-
-      $(function(){
-        $('#searchBtn').click(function() {
-          self.location = "totalList" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-        });
-      });   
-    </script>	
-    </div>
-</div>
+						<option value="s" type="hidden"
+					<c:out value="${scri.searchType eq 's' ? 'selected' : ''}"/>>학습</option>
+					
+						<option value="ho" type="hidden"
+					<c:out value="${scri.searchType eq 'ho' ? 'selected' : ''}"/>>취미</option>
+						
+						<option value="ha" type="hidden"
+					<c:out value="${scri.searchType eq 'ha' ? 'selected' : ''}"/>>습관</option>
+				
+				
+			</select> <input type="text" name="keyword" id="keywordInput" size="40"
+				value="${scri.keyword}" />
+			<button id="searchBtn" type="button">검색</button>
+			<script>
+				$(function() {
+					$('#searchBtn').click(
+							function() {
+								self.location = "totalList"
+										+ '${pageMaker.makeQuery(1)}'
+										+ "&searchType="
+										+ $("select option:selected").val()
+										+ "&keyword="
+										+ encodeURIComponent($('#keywordInput')
+												.val());
+							});
+				});
+			</script>
+		</div>
+	</div>
 
 	<%-- <input type="hidden" name="userLatitude"
 		value='<c:out value="${pageMaker.cri.userLatitude}"/>'>
 	<input type="hidden" name="userLongitude"
 		value='<c:out value="${pageMaker.cri.userLongitude}"/>'>
-	</form> --%>
-
-
-
-	<!----------------더하기 리스트------------------>
+	</form> --%> <!----------------더하기 리스트------------------>
 	<section class="gallery-block ca
 		rds-gallery">
 		<div class="gallery-container">
@@ -139,25 +143,28 @@
 							</div>
 						</c:forEach>
 			</section>
-		<!-- -페이징 버튼-  -->
-			
-						 <div id="pageArea">
-						  <ul class="paging">
-						    	<li ><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}">◀</a></li>
-						
-						    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-						    	<li><a href="totalList${pageMaker.makeSearch(idx)}"><span class="span" >${idx}</span></a></li>
-						    </c:forEach>
-						
-						    	<li><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">▶</a></li>
-						  </ul>
-					 </div>
+			<!-- -페이징 버튼-  -->
+
+			<div id="pageArea">
+				<ul class="paging">
+					<li><a class="span"
+						href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}"><<</a></li>
+
+					<c:forEach begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}" var="idx">
+						<li><a href="totalList${pageMaker.makeSearch(idx)}"><span
+								class="span">${idx}</span></a></li>
+					</c:forEach>
+
+					<li><a class="span"
+						href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">>></a></li>
+				</ul>
+			</div>
 
 		</div>
-
+	<!-- 푸터와 공백을 위해 지정한 div -->
+	<div id="bottomarea"></div>
 		<script src="https://kit.fontawesome.com/831a4ab0db.js"
 			crossorigin="anonymous"></script>
-
-
 </body>
 </html>

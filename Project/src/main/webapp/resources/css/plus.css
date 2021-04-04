@@ -96,20 +96,20 @@
 .period {
 	font-size: 15px;
 	color: #303333;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .shutdown {
 	font-size: 15px;
 	color: #303333;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .person {
 	padding-top: 5px;
 	font-size: 15px;
 	color: #303333;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .person b {
@@ -134,15 +134,7 @@
 .lightbox img : hover {
 	transform: scale(1.05);
 }
-/*더하기 등록 버튼*/
-#addplus {
-	outline: 0;
-	border: 0;
-	background: transparent;
-	cursor: pointer;
-	position: absolute;
-	right: 3%;
-}
+
 
 .mainbanner img{
 	width:100%;
@@ -150,7 +142,7 @@
 }
 .bannercontent {
 	  position: absolute;
-     top:17%;
+     top:20%;
      left:60%;
      transform: translate(-40%, 0);                                                                   
      z-index: 1;
@@ -168,7 +160,7 @@
 }
 .bannercontent2 {
 	  position: absolute;
-     top:17%;
+     top:20%;
      left:60%;
      transform: translate(-40%, 0);                                                                   
      z-index: 1;
@@ -183,4 +175,20 @@
    font-size:20px;
 	color:#655E5B;
 }
-	
+	/* 더하기 등록 버튼 */
+.material-icons{
+	color: #999;
+	}
+
+ .material-icons:hover{
+    color: rgb(0, 30, 250);
+    
+} 
+ .buttonFixed {
+        position: fixed;
+        top: 85%;
+        right:2%;
+      }
+	   #bottomarea{
+	padding-bottom:200px;
+}
