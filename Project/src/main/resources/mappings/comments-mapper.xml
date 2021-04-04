@@ -35,7 +35,7 @@
 		SELECT member_nickname, member_num, member_pic, comments_num, board_num, comments_content, date_format(comments_regdate,'%Y.%c.%e %H:%i') as comments_changed_regdate 
 		FROM comments 
 		JOIN member USING (member_num) WHERE board_num = #{boardNum}
-		ORDER BY comments_regdate DESC LIMIT 5
+		ORDER BY comments_regdate DESC
 	</select>
 	
 	<select id="getCommentsCount" resultType="Integer">

@@ -499,6 +499,7 @@ function insertComment(bNum){
 			            //comments wrap에 가져온 comment 삽입 
 			            	wrap.appendChild(comment);
 			            	console.log(pnode);
+			            	
 			            // comments wrap을 inlineContent의 첫번째 노드로  삽입 
 			            	console.log(pnode.parentNode);	// inlineContent
 			           		 let inline = pnode.parentNode;
@@ -514,7 +515,6 @@ function insertComment(bNum){
 		//    }); 
 			   		 // 댓글 개수 증가 
 			  	 	let showBtn = pnode.parentNode.firstElementChild
-			   		console.log(showBtn.lastElementChild.lastElementChild);
 			   		let count = showBtn.lastElementChild.lastElementChild;
  					let calc = "+";
  					changeCount(calc, count); 
@@ -607,7 +607,7 @@ function updateComment(cNum){
 		
 }
 			
-
+//댓글 삭제 
 	function deleteComment(cNum){
 	let result = confirm("댓글을 삭제하시겠습니까?");
 	let pnode = event.target.parentNode.parentNode 		//comments-wrap
