@@ -107,19 +107,19 @@
 			onsubmit="return inputCheckMain()">
 			<input type="text" name="keyword" size="30"
 				placeholder=" 관심있는 더하기를 검색해보세요 🔍"> <input type="submit"
-				value="Search">
+				value="검색">
 		</form>
 	</div>
 
 	<!--검색 카테고리 -->
 	<div class="middle">
-		<a class="catagory-btn" href="totalLlist.do?category=운동"> <i class="fas fa-running"></i>
+		<a class="catagory-btn" href="totalList?page=1&perPageNum=20&searchType=w&keyword="> <i class="fas fa-running"></i>
 			<p>운동</p>
-		</a> <a class="catagory-btn" href="totalLlist.do?category=학습"> <i class="fas fa-book-reader"></i>
+		</a> <a class="catagory-btn" href="totalList?page=1&perPageNum=20&searchType=s&keyword="> <i class="fas fa-book-reader"></i>
 			<p>학습</p>
-		</a> <a class="catagory-btn" href="totalLlist.do?category=취미"> <i class="fas fa-cubes"></i>
+		</a> <a class="catagory-btn" href="totalList?page=1&perPageNum=20&searchType=ho&keyword="> <i class="fas fa-cubes"></i>
 			<p>취미</p>
-		</a> <a class="catagory-btn" href="totalLlist.do?category=습관"> <i class="far fa-grin-alt"></i>
+		</a> <a class="catagory-btn" href="totalList?page=1&perPageNum=20&searchType=ha&keyword="> <i class="far fa-grin-alt"></i>
 			<p>습관</p>
 		</a>
 	</div>
@@ -141,7 +141,7 @@
 						<div class="card border-0 transform-on-hover">
 
 							<a class="lightbox"
-									href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
+									href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"
@@ -157,7 +157,7 @@
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-											href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
+											href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
@@ -207,7 +207,7 @@
 						<div class="card border-0 transform-on-hover">
 
 							<a class="lightbox"
-								href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
+								href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
@@ -222,7 +222,7 @@
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-											href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
+											href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
@@ -383,5 +383,18 @@ add_circle
                return false;
             }
          };
+         
+         //더하기 등록 버튼 고정
+         $( document ).ready( function() {
+             var jbOffset = $( '.material-icons' ).offset();
+             $( window ).scroll( function() {
+               if ( $( document ).scrollTop() > 500) {
+                 $( '.material-icons' ).addClass( 'buttonFixed' );
+               }
+               else {
+                 $( '.material-icons' ).removeClass( 'buttonFixed' );
+               }
+             });
+           } );
     </script>
 </html>
