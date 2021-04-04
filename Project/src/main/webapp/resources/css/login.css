@@ -1,0 +1,251 @@
+        /* 전체 */
+        * {
+            margin: 0;
+            padding: 0;
+            color: #333;
+            font-family: 'NanumSquare', sans-serif !important;
+        }
+        
+       
+        
+        /* 본문영역 너비 조정 */
+        
+        #wrapper {
+            width: 1200px;
+            height: auto;
+            margin: 0 auto;
+        
+        }
+        
+        /* 바디부분 스타일 넣으면돼요 */
+        .main-container{
+            width:100%;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            margin-top: 15px;
+        }
+        .main-container .main-wrap{
+            width:500px;
+            /* border: #1e00ff 1px solid; */
+        
+        }
+        .main-container .main-wrap .logo-wrap{
+            padding-top:55px;
+        }
+        .main-container .main-wrap .logo-wrap img
+        {
+            width: auto;
+            height: 80px;
+            /* padding-bottom: 20px; */
+        }
+        
+        .main-container .main-wrap header .logo-wrap{
+            display:flex;	
+            flex-direction: column;
+            align-items: center;
+        }
+        .login-input-section-wrap{
+            padding-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* .login-input-wrap{
+            width: 465px;
+            height :48px;
+            /* border: solid 1px var(	--border-gray-color ); 
+            background: white;
+
+        } */
+
+        .login-input-wrap{
+            width: 380px;
+            /* margin-right: 40px; */
+        }
+        .password-wrap{
+            margin-top: 13px;
+        }
+        .login-input-wrap input{
+            width:350px;
+            margin-top: 10px;
+            font-size: 14px;
+            margin-left: 10px;
+            height:30px;
+            font-family: sans-serif !important;
+            /* border-radius: 10px; */
+        }
+       
+        
+        .login-button-wrap .loginbutton{
+            width: 350px;
+            height :40px;
+            font-size: 18px;
+            font-weight: 500;
+            background: #1e00ff;
+            color: white;
+            border:none;
+            border-radius: 10px;
+
+        }
+
+        .login-button-wrap .loginbutton:hover{
+            width: 350px;
+            height :40px;
+            font-size: 18px;
+            background: #1e00ff; opacity: 90%;
+            /* background-color: #ff005a; */
+            color: white;
+            border:none;
+            border-radius: 10px;
+        }
+
+        .login-stay-sign-in{
+            width: 465px;
+            height: 52px;
+            padding-bottom: 0px;
+            margin-right: 120px;
+            display: flex;
+            flex-direction: row-reverse;
+            font-size: 15px;
+            color: #4e4e4e;
+            align-items: center;
+            justify-content: flex-start;
+            border-bottom: solid 1px var(--border-gray-color);
+        }
+
+        .login-stay-sign-in input{
+            padding-left: 5px;
+            /* line-height: 25px; */
+            padding-bottom: 5px;
+
+        }
+
+        .login-stay-sign-in span{
+            padding-left: 5px;
+            position: relative;
+            bottom: 2px;
+            /* line-height: 25px; */
+
+        }
+        
+        .Easy-sign-in-wrap{
+        
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+        
+        }
+        .Easy-sign-in-wrap h2{
+            font-size: 20px;
+        }
+        .Easy-sign-in-wrap .sign-button-list
+        {
+            padding-top:25px;
+            list-style: none;
+            display: inherit;
+            /* width: 400px; */
+            /* display: inline;
+            flex-direction:row;
+            align-items: center; */
+
+        }
+        .Easy-sgin-in-wrap .sign-button-list li{
+            padding-bottom: 10px;
+            border:none;
+            /* margin-right: 5px; */
+
+        }
+        .Easy-sgin-in-wrap .sign-button-list li button{
+            width: 175px;
+            height: 35px;
+            text-align: center;
+            font-weight: 500;
+            border:none;
+            border-radius: 10px;
+            display: inline;
+            flex-direction:row;
+
+        }
+ 
+      .kakao-login{
+        /* background-color:#F7E600; */
+        /* background: url('../images/kakao.png'); */
+        margin-right: 5px;
+        border:none;
+      }
+
+      .naver-login{
+        /*background-color: none !importnat;*/
+        border:none;
+      }
+      .join-member{
+          background-color: #1e00ff;
+          color: white;
+      }
+
+      #find-id{
+          font-size: 14px;
+          text-decoration: none;
+          padding-top: 3px;
+          padding-bottom: 3px;
+      }
+
+      #find-id:hover{
+          text-decoration: none;
+      }
+
+      .Easy-sgin-in-wrap span{
+          margin-bottom: 5px;
+      }
+
+      .hr-1{
+        width: 300px;
+        border-bottom: 1px solid #d0d0d0;
+        margin-top: 20px;
+    }
+      
+      .hr-2{
+          width: 300px;
+          border-bottom: 1px solid #d0d0d0;
+          margin-top: 20px;
+          margin-bottom: 10px;
+      }
+
+        .Easy-sign-in-wrap .sign-button-list li button span{
+            /* padding-left: 20px; */
+            font-size: 18px;
+        }
+        .Easy-sign-in-wrap .joinMsg{
+            /* color:var(--font-color); */
+            font-size: 18px;
+            font-weight: 600;
+            padding-top: 10px;
+            text-decoration: none !important;
+        }
+        /* .joinMsg {
+            text-decoration: none;
+        } */
+        
+       .Easy-sign-in-wrap .joinMsg:hover{
+            /* color:var(--font-color); */
+     
+            text-decoration: underline;
+        }
+        
+        
+        .Easy-sign-in-wrap a:-webkit-any-link{
+            text-decoration: none;
+            font-weight: bold;
+
+        }
+        .Easy-sign-in-wrap a:-webkit-any-link:hover{
+            text-decoration: underline;
+            font-weight: bold;
+            color:#1e00ff;
+        }
+        
+     
+            

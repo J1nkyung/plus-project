@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+.reviewContainer{
+     margin: 0;
+     width: 1140px;
+ }
+
+ .reviewTab {
+     padding: 10px;    
+     background: #ffffff;}
+     
+ .btnReview{
+     text-decoration:none;
+ }
+
+ .tabBox{
+     display: flex;
+     border: 2px solid #eee;
+     margin-bottom: 20px;
+     box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
+ }
+
+ .clubPic{
+     width: 170px; 
+     height: 120px;  
+     border-radius: 5px 5px 5px 5px;
+     margin:20px 30px 20px 30px ;
+     box-shadow: 1px 1px 1px  #8299d879;
+     
+ }
+
+ .title_text{
+     width: 600px; 
+     margin:12px 25px 12px 25px ;
+     text-align: left;
+ }
+
+ .reviewBtn{
+     padding-top: 50px;
+
+ }
+
+ /* 탭 css */
+ section {
+     display: none;
+     padding: 20px 0 0;
+     border-top: 1px solid  #8299d82f;}
+
+ input {
+       display: none;}
+
+ label {
+     display: inline-block;
+     padding: 15px 25px;
+     font-weight: 600;
+     color:  #007bff;
+     border: 1px solid transparent;
+     font-size: 20px;
+     }
+
+ label:hover {
+     color: #2C2C96;
+     cursor: pointer;}
+
+
+ .tabs input:checked + label {
+       color: #555;
+       border: 1px solid #ddd;
+       border-top: 2px solid #2e9cdf;
+       border-bottom: 3px solid red;
+       }
+
+ .reviewTab #tab1:checked ~ #ReviewContent1,
+ .reviewTab #tab2:checked ~ #ReviewContent2 {
+     display: block;}
+
+
+ .reviewBtn button {
+     border-style: none;
+   }

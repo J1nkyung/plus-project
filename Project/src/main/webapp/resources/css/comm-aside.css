@@ -1,0 +1,62 @@
+
+*{
+       font-family:   'NanumSquare', sans-serif !important;
+   
+}
+
+.wrap {
+   width: 100%;
+   height: 2000px;
+   position: relative;
+   display:flex;
+}
+
+.sidebar {
+   position: sticky;
+   width: 400px;
+   height: 100vh;
+   background-color: #f5f4f4;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+.sidebarContent{
+      width: 300px;
+   margin-left:100px;
+   
+   
+}
+
+.clubMainpic{
+   margin:10px;
+   border-radius:5%;
+}
+
+.tr{
+   background-color:lightgrey;
+   text-align:center;
+   margin:0 10px 20px 10px;;
+   border:1px solid lightgrey;
+   border-radius:5%;
+}
+
+
+.clubName{
+   font-size:20pt;
+   font-weight:bold;
+}
+.th{
+   font-size:14pt;
+   font-weight:bold;
+}
+
+#currMem{
+   min-height:200px;
+}
+.memberThumb{
+   height:50px;
+   width:50px;
+   background-color:red;
+   border-radius:50%;
+}

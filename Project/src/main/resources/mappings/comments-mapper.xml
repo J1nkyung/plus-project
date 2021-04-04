@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.plus.mapper.CommentsMapper">
+	<insert id="insertComment">
+		INSERT INTO comments(member_num, board_num, comments_regdate, comments_content) 
+		VALUES (2,1,NOW(),"안녕하세요");
+	</insert>
+	
+</mapper> 

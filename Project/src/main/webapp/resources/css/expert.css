@@ -1,0 +1,186 @@
+
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        font-family: 'NanumSquare';
+    }
+
+    .gallery-container {
+        width: 1200px;
+        height: auto;
+        margin: auto;
+        padding-top: 100px;
+    }
+
+    .card-content {
+        position: relative;
+        padding: 10px 0 40px 3px;
+    }
+
+    .card-content b {
+        color: rgb(0, 0, 0);
+    }
+
+    #viewtotal {
+        position: relative;
+        left: 93%;
+        transform: translate(-50%, 0);
+        font-size: 15px;
+        color: slategrey;
+        font-family: 'NanumSquare';
+  
+    }
+
+    .gallery-container {
+	width: 1200px;
+	height: auto;
+	margin: auto;
+	padding-top: 100px;
+}
+
+.card-bodyarea {
+	padding: 20px 2px 50px 2px;
+}
+
+.card-content {
+	position: relative;
+	padding: 10px 0 20px 3px;
+}
+
+.card-content b {
+	color: rgb(0, 0, 0);
+}
+
+#viewtotal {
+	position: relative;
+	left: 94%;
+	transform: translate(-50%, 0);
+	font-size: 16px;
+	color: slategrey;
+	font-family: 'NanumSquare';
+	/* font-weight: 500; */
+	text-decoration: none;
+}
+
+/* 더하기 리스트*/
+.gallerytitle {
+	padding-bottom: 10px;
+}
+
+#onoff {
+	background-color: #00af91;
+}
+
+#freq {
+	background-color: #ffb26b;
+}
+
+.spanspace {
+	padding-bottom: 10px;
+}
+
+.clubtitle {
+	font-size: 19px;
+	font-weight: 600;
+	color: #303333;
+}
+
+.subtitle {
+	font-size: 14px;
+	font-weight: 300;
+	color: #9B9EA5;
+	padding: 3px 0px 15px 2px;
+}
+
+.period {
+	font-size: 15px;
+	color: #303333;
+	font-weight: 600;
+}
+
+.shutdown {
+	font-size: 15px;
+	color: #303333;
+	font-weight: 600;
+}
+
+.person {
+	padding-top: 5px;
+	font-size: 15px;
+	color: #303333;
+	font-weight: 600;
+}
+
+.person b {
+	font-size: 17px;
+	color: rgb(0, 30, 250);
+	font-weight: 900;
+}
+
+.lightbox img {
+	width: 100%;
+	height: 200px;
+	transition: .1s;
+}
+
+.lightboxbest img{
+	width: 100%;
+	height: 230px;
+	transition: .1s;
+}
+
+
+.lightbox img : hover {
+	transform: scale(1.05);
+}
+/*더하기 등록 버튼*/
+#addplus {
+	outline: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	position: absolute;
+	right: 3%;
+}
+
+.mainbanner img{
+	width:100%;
+	position:relative;
+}
+.bannercontent {
+	  position: absolute;
+     top:17%;
+     left:60%;
+     transform: translate(-40%, 0);                                                                   
+     z-index: 1;
+     text-align: left;
+}
+
+.bannercontent h1{
+	font-weight:900;
+	color:#303F9D;
+}
+.bannercontent h4{
+	font-weight:500;
+   font-size:20px;
+	color:#655E5B;
+}
+.bannercontent2 {
+	  position: absolute;
+     top:17%;
+     left:60%;
+     transform: translate(-40%, 0);                                                                   
+     z-index: 1;
+     text-align: left;
+}
+.bannercontent2 h1{
+	font-weight:900;
+	color:#FF6426;
+}
+.bannercontent2 h4{
+	font-weight:500;
+   font-size:20px;
+	color:#655E5B;
+}
+	
