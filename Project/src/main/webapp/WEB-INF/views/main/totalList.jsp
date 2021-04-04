@@ -40,7 +40,7 @@
 				<b>🔎 상세 검색 </b>
 			</h3>
 			<hr class="my-4">
-
+</br>
 			<select name="searchType">
 				<option value="t"
 					<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>카테고리 선택</option>
@@ -148,7 +148,7 @@
 			<div id="pageArea">
 				<ul class="paging">
 					<li><a class="span"
-						href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}">◀</a></li>
+						href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}"><<</a></li>
 
 					<c:forEach begin="${pageMaker.startPage}"
 						end="${pageMaker.endPage}" var="idx">
@@ -157,12 +157,13 @@
 					</c:forEach>
 
 					<li><a class="span"
-						href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">▶</a></li>
+						href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">>></a></li>
 				</ul>
 			</div>
 
 		</div>
-
+	<!-- 푸터와 공백을 위해 지정한 div -->
+	<div id="bottomarea"></div>
 		<script src="https://kit.fontawesome.com/831a4ab0db.js"
 			crossorigin="anonymous"></script>
 </body>

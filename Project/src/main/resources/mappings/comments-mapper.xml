@@ -55,4 +55,4 @@
 		SELECT member_nickname FROM member WHERE member_num = #{memberNum}
 	</select> -->
 	
-</mapper> 
+</mapper>

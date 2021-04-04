@@ -171,7 +171,9 @@
 add_circle
 </span></a>
 	</div> 
-	</div>
+
+	<!-- 푸터와 공백을 위해 지정한 div -->
+	<div id="bottomarea"></div>
 </body>
 
 <!--어썸폰트 아이콘 -->

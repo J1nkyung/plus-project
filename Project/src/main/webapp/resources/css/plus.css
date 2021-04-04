@@ -96,20 +96,20 @@
 .period {
 	font-size: 15px;
 	color: #303333;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .shutdown {
 	font-size: 15px;
 	color: #303333;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .person {
 	padding-top: 5px;
 	font-size: 15px;
 	color: #303333;
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .person b {
@@ -189,4 +189,6 @@
         top: 85%;
         right:2%;
       }
-	
+	   #bottomarea{
+	padding-bottom:200px;
+}
