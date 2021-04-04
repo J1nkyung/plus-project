@@ -25,12 +25,15 @@
 		<result property="clubFee" column="club_fee" />
 		<result property="clubCurnum" column="club_curnum" />
 		<result property="clubHashtag" column="club_hashtag" />
+		<result property="clubCurnum" column="club_curnum" />
+		<result property="clubHashtag" column="club_hashtag" />
+			<!-- 추가 -->
+		<result property="clubLatitude" column="club_latitude" />
+		<result property="clubLongitude" column="club_longitude" />
 	</resultMap>
 	
 	<resultMap id="applyResult" type="apply">
 		<id property="applyNum" column="apply_num" />
-		<result property="clubNum" column="club_num" />
-		<result property="memberNum" column="member_num" />
 		<result property="applyDate" column="apply_date" />
 	</resultMap>
 	
@@ -66,10 +69,10 @@
 	<![CDATA[
 		INSERT INTO club(club_name, club_leader, club_town, club_kind, club_category, club_main_pic, club_thumb_pic,
 		club_onoff, club_max, club_freq, club_content1, club_content1_pic, club_content2, club_content2_pic,
-		club_makedate, club_shutdate, club_startdate, club_enddate, club_fee, club_hashtag, club_curnum)
+		club_makedate, club_shutdate, club_startdate, club_enddate, club_fee, club_hashtag, club_curnum, club_heart, club_latitude, club_longitude)
 		VALUES(#{clubName}, '블루베리', '마포구', #{clubKind}, #{clubCategory}, #{clubMain_pic}, #{clubThumb_pic},
 		#{clubOnOff}, #{clubMax}, #{clubFreq}, #{clubContent1}, #{clubContent1_pic}, #{clubContent2}, #{clubContent2_pic},
-		NOW(), #{clubShutDate}, #{clubStartDate}, #{clubEndDate}, #{clubFee}, #{clubHashtag}, #{clubCurnum})
+		NOW(), #{clubShutDate}, #{clubStartDate}, #{clubEndDate}, #{clubFee}, #{clubHashtag}, #{clubCurnum}, 0, #{clubLatitude}, #{clubLongitude})
 	]]> 
 	</insert>
 	
@@ -77,7 +80,7 @@
 		UPDATE club SET club_town='마포구', club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, club_main_pic=#{clubMain_pic}, 
 		club_thumb_pic=#{clubThumb_pic}, club_content1=#{clubContent1},club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, 
 		club_content2_pic=#{clubContent2_pic}, club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, 
-		club_enddate=#{clubEndDate}, club_fee=#{clubFee}, club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}
+		club_enddate=#{clubEndDate}, club_fee=#{clubFee}, club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}, club_latitude=#{clubLatitude}, club_longitude=#{clubLongitude}
 		WHERE club_num = #{clubNum}
 	</update>
 	
@@ -104,7 +107,13 @@
 		SELECT club_curnum FROM club WHERE club_num = #{clubNum}
 	</select>
 	
-	
+<!-- 정연 추가 찜 갯수 증가 / 감소 -->
+	<update id="plusHeartCnt">
+		UPDATE club SET club_heart = club_heart+1 WHERE club_num = #{clubNum}
+	</update>
+	<update id="minusHeartCnt">
+		UPDATE club SET club_heart = club_heart-1 WHERE club_num = #{clubNum}
+	</update>
 <!-- 	
 	방장 x , 참여중인 모임 목록 가져오기
 <select id="getAttendClubList" resultMap="club">
