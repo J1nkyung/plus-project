@@ -35,22 +35,6 @@
      <put-attribute name="body" value="/WEB-INF/views/main/totalList.jsp" /> 
   </definition>
 
-	<!--  마이페이지  -->
-  <definition name="mypage.*" template="/WEB-INF/views/mypage/inc/layout.jsp">
-    <put-attribute name="title" value="마이 페이지" />
-    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
-    <put-attribute name="aside" value="/WEB-INF/views/mypage/aside.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
-  </definition>
-  
-  <!-- 관리자페이지 -->
-  <definition name="main.page" template="/WEB-INF/views/admin/inc/layout.jsp">
-    <put-attribute name="title" value="관리자 페이지" />
-    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
-    <put-attribute name="aside" value="/WEB-INF/views/admin/aside.jsp" />
-    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />
-  </definition>
-  
 <!-- 로그인 , 로그아웃-->
     <definition name="*.login" extends="base"> 
      <put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp" /> 
@@ -119,7 +103,6 @@
      <put-attribute name="body" value="/WEB-INF/views/mypage/reviews/{1}.jsp" /> 
   </definition>
   
-  
    <definition name="*.point" extends="mypage"> 
      <put-attribute name="body" value="/WEB-INF/views/mypage/point/paymentList.jsp" /> 
   </definition>
@@ -128,11 +111,33 @@
      <put-attribute name="body" value="/WEB-INF/views/mypage/heart/{1}.jsp" /> 
   </definition>
   
-    <!-- 관리자페이지 -->
-  <definition name="*.admin" extends="mypage">
+    <definition name="*.inqu" extends="mypage"> 
+     <put-attribute name="body" value="/WEB-INF/views/mypage/inquiry/{1}.jsp" /> 
+  </definition>
+  
+   <!-- 관리자페이지 -->
+<definition name="admin" template="/WEB-INF/views/include/mytemplate.jsp"> 
+   <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
+   <put-attribute name="aside" value="/WEB-INF/views/admin/inc/aside.jsp" />
+   <put-attribute name="body" value="" /> 
+   <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
+</definition>   
+
+  <definition name="*.adinqu" extends="admin">
+    <put-attribute name="body" value="/WEB-INF/views/admin/inquiry/{1}.jsp" /> 
+  </definition>
+  
+  <definition name="*.adch" extends="admin">
     <put-attribute name="body" value="/WEB-INF/views/admin/{1}.jsp" /> 
   </definition>
   
+ <definition name="*.ann" extends="base">
+ 	<put-attribute name="body" value="/WEB-INF/views/announce/{1}.jsp" />
+ </definition>
+  
+ <definition name="*.faq" extends="base">
+ 	<put-attribute name="body" value="/WEB-INF/views/faq/{1}.jsp" />
+ </definition>
  
 
 

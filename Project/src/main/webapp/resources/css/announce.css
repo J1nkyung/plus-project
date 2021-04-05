@@ -162,6 +162,7 @@ body {
     content: "\2212";
   }
   .panel {
+ 	margin-bottom:0px;
     background-color:#fff;
     max-height: 0;
     overflow: hidden;

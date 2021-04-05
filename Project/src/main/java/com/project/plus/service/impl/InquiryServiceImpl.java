@@ -26,10 +26,10 @@ public class InquiryServiceImpl implements InquiryService {
 		mapper.editInquiry(vo);
 	}
 	
-	@Override
-	public void answerInquiry(InquiryVO vo) {
-		mapper.answerInquiry(vo);
+	public InquiryVO editInquiryForm(InquiryVO vo) {
+		return mapper.editInquiryForm(vo);
 	}
+
 
 	@Override
 	public void deleteInquiry(InquiryVO vo) {
@@ -47,13 +47,8 @@ public class InquiryServiceImpl implements InquiryService {
 	}
 	
 	@Override
-	public List<InquiryVO> getInquiryPersonList(InquiryVO vo) {
-		return mapper.getInquiryPersonList(vo);
-	}
-
-	@Override
-	public List<InquiryVO> getInquiryTypeList(InquiryVO vo) {
-		return mapper.getInquiryTypeList(vo);
+	public void inquiryForm(InquiryVO vo) {
+		mapper.inquiryForm(vo);
 	}
 
 }

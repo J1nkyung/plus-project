@@ -10,34 +10,29 @@
 	</resultMap>
 
 	<insert id="insertAnnounce">
-		<![CDATA[
+		<!-- <![CDATA[
 			INSERT INTO ANNOUNCE(ANNOUNCE_NUM, ANNOUNCE_TITLE, ANNOUNCE_CONTENT, ANNOUNCE_REGDATE)
 			VALUES((SELECT NVL(MAX(SEQ), 0) + 1 FROM ANNOUNCE),
 			#{announceTitle},#{announceContent},#{announceRegDate})
-		]]>
+		]]> -->
+		insert into announce(announce_title, announce_content, announce_regdate) values (#{announceTitle},#{announceContent},now())
 	</insert>
 	
 	<update id="updateAnnounce">
-		<![CDATA[
 			UPDATE ANNOUNCE SET ANNOUNCE_TITLE=#{announceTitle}, ANNOUNCE_CONTENT=#{announceContent} 
 			WHERE ANNOUNCE_NUM=#{announceNum}
-		]]>
 	</update>
 	
 	<delete id="deleteAnnounce">
-		<![CDATA[
-			DELETE ANNOUNCE WHERE ANNOUNCE_NUM=#{announceNum}
-		]]>
+			DELETE FROM ANNOUNCE WHERE ANNOUNCE_NUM=#{announceNum}
 	</delete>
 	
 	<select id="getAnnounce" resultMap="announceResult">
-		<![CDATA[
 			SELECT * FROM ANNOUNCE WHERE ANNOUNCE_NUM=#{announceNum}
-		]]>
 	</select>
 	
 	<select id="getAnnounceList" resultMap="announceResult">
-		SELECT * FROM ANNOUNCE
+		SELECT * FROM ANNOUNCE ORDER BY ANNOUNCE_NUM DESC
 		<!-- WHERE 1=1
 		<if test="searchCondition == 'TITLE'">
 			AND TITLE LIKE '%'||#{searchKeyword}||'%'
@@ -48,6 +43,6 @@
 		<if test="searchCondition == 'WRITER'">
 			AND WRITER LIKE '%'||#{searchKeyword}||'%'
 		</if> -->
-		ORDER BY ANNOUNCE_NUM DESC;
+		
 	</select>
 </mapper>

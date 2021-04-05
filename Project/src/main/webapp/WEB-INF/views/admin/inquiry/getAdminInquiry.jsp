@@ -27,6 +27,7 @@ body {
 }
 .content-data {
 	padding:30px;
+	white-space:pre;
 }
 tr {
 	height:50;}
@@ -35,10 +36,11 @@ td {
 }
 </style>
 
+
 </head>
 <body>
 <div class="wrapper">
-<center>
+	<center>
 	<h2>문의 상세보기</h2>
 	<hr>
 
@@ -80,22 +82,45 @@ td {
 	
 	<hr>
 	
-	<form action="deleteAdminInquiry.do" method="post" style="display:inline-block;">
+<c:set var="inquiryAnswer" value="${adminInquiry.inquiryAnswer}" />
+
+<c:if test="${not empty inquiryAnswer}">
+	<h2>답변 출력</h2>
+	<table border="1" width="70%" height="auto">
+	<tr height="25">
+    <th><center>답변 날짜</center></th>
+    <fmt:parseDate var="parseRegDate" value="${adminInquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
+	<fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd" />
+	<td style="text-indent:20px;"><c:out value="${resultRegDt}"/></td>
+    </tr>
+    <tr height="50">
+ 	<th><center>답변 내용</center></th>
+    <td style="text-indent:20px"><c:out value="${adminInquiry.inquiryAnswer}"/></td>
+    </tr>
+    </table>
+    <hr>
+</c:if>
+<c:if test="${empty inquiryAnswer}">
+<form action="answerInquiryForm" method="post" style="display:inline-block;">
 	<input type="hidden" value="${adminInquiry.inquiryNum}" name="inquiryNum">
-	<a href="deleteAdminInquiry.do"><button type="submit" class="btn btn-danger" id="deleteBtn">삭제</button></a>
+	<input type="hidden" value="${adminInquiry.memberNum}" name="memberNum">
+	<input type="hidden" value="${adminInquiry.inquiryContent}" name="inquiryContent">
+	<input type="hidden" value="${adminInquiry.memberNickname}" name="memberNickname">
+	<a href="answerInquiryForm"><button type="submit" class="btn btn-primary" id="answerBtn">답변 작성</button></a>
 	</form>
-	<form action="answerInquiry.do" method="post" style="display:inline-block;">
+</c:if>&nbsp;
+	<form action="deleteAdminInquiry" method="post" style="display:inline-block;">
 	<input type="hidden" value="${adminInquiry.inquiryNum}" name="inquiryNum">
-	<a href="inquiryAnswerForm.jsp"><button type="submit" class="btn btn-primary" id="answerBtn">답변 작성</button></a>
+	<a href="deleteAdminInquiry">
+	<button type="submit" class="btn btn-danger" id="deleteBtn">삭제</button>
 	</form>
+	
 	<!-- <a href="inquiryEditForm.jsp"><button type="submit" class="btn btn-primary" id="editBtn">수정</button></a> -->
 	
-	<a href="adminInquiry.do"><button type="submit" class="btn btn-primary" id="listBtn">문의 목록</button></a>
-	
-	
+	<a href="adminInquiry"><button type="submit" class="btn btn-primary" id="listBtn">문의 목록</button></a>
 	
 
-</center>
+	</center>
 </div>
 
 <script>
@@ -104,6 +129,7 @@ td {
 				alert("문의가 정상적으로 삭제되었습니다");
 			});
 		});
+		
 </script>
 
 </body>

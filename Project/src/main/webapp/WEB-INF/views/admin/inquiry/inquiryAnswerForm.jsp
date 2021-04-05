@@ -48,6 +48,7 @@ textarea {
 	resize: none;
 	margin-bottom: 10px;
 	border: 1px solid #dddddd;
+	white-space:pre;
 }
 
 #answerBtn {
@@ -65,34 +66,42 @@ float:right;
 </style>
 </head>
 <body>
-	<form action="answerInquiry.do" method="post">
+	<form action="answerInquiry" method="post">
 		<div class="inquiry-wrap">
 			<h1>1:1 답변하기</h1>
 			<hr>
 			<div class="inquiry-category">
 				<label for="exampleFormControlSelect2">카테고리 선택</label>
 				<select	name="inquiryType" id="id_select" class="form-control">
-					<option value="회원문의" <c:if test="${admin.inquiryType == '회원문의'}">selected</c:if>>회원문의</option>
-					<option value="모임문의" <c:if test="${admin.inquiryType == '모임문의'}">selected</c:if>>모임문의</option>
-					<option value="결제문의" <c:if test="${admin.inquiryType == '결제문의'}">selected</c:if>>결제문의</option>
-					<option value="기타문의" <c:if test="${admin.inquiryType == '기타문의'}">selected</c:if>>기타문의</option>
+					<option value="회원문의" <c:if test="${answerInquiryForm.inquiryType == '회원문의'}">selected</c:if>>회원문의</option>
+					<option value="모임문의" <c:if test="${answerInquiryForm.inquiryType == '모임문의'}">selected</c:if>>모임문의</option>
+					<option value="결제문의" <c:if test="${answerInquiryForm.inquiryType == '결제문의'}">selected</c:if>>결제문의</option>
+					<option value="기타문의" <c:if test="${answerInquiryForm.inquiryType == '기타문의'}">selected</c:if>>기타문의</option>
 				</select>
 			</div>
-			<input type="hidden" value="${admin.inquiryAnswer}" name="inquiryAnswer">
-			<input type="hidden" value="${admin.inquiryNum}" name="inquiryNum">
-			<input type="text" class="form-control" id="answer-title" value="[RE]: 문의 답변입니다."
-				name="answerTitle" readonly>
-			<textarea name="answerContent">${admin.memberNickname}<br/>${admin.inquiryContent}</textarea>
-			<div class="submit"><a href="adminInquiry.do">글 목록 가기</a></div>
+			
+			<input type="text" class="form-control" id="answer-title" value="[RE]: 문의 답변입니다." readonly>
+				
+			<textarea name="inquiryAnswer">[문의 내용]${answerInquiryForm.inquiryContent} 안녕하세요  ${answerInquiryForm.memberNickname} 회원님</textarea>		
+			
+			<%-- <input type="hidden" value="${answerInquiryForm.inquiryAnswer}" name="inquiryAnswer"> --%>
+			<input type="hidden" value="${answerInquiryForm.inquiryNum}" name="inquiryNum">
+			<a href="answerInquiry"><button type="submit" class="btn btn-primary" id="answerBtn">답변 등록</button></a>
+			</form>
+			<div class="submit"><a href="adminInquiry">글 목록 가기</a></div>
 		<hr></div>
 	</form>
 <script>
 
 		$(document).ready(function(){
+
 			$("#answerBtn").on("click", function(){
 				alert("답변이 정상적으로 등록 되었습니다");
 			});
+			
 		});
+		
+		
 </script>
 </body>
 </html>

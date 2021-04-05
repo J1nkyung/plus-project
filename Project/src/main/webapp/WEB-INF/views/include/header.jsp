@@ -91,9 +91,11 @@
 	                        <c:choose>
 				                <c:when test = "${user.memberNum == 1 }">
 	                        <li class="dropli"><a href="memberListPage">회원관리</a></li>
+	                        <li class="dropli"><a href="adminInquiry">관리자</a></li>
 				               </c:when>
 				               <c:otherwise>
 	                        <li class="dropli"><a href="memberUpdate?memberNum=${user.memberNum }">My Page</a></li>
+	                        <li class="dropli"><a href="inquiry?memberNum=${user.memberNum}">회원1:1</a>
 				               </c:otherwise>
 			               </c:choose>
                         </form>

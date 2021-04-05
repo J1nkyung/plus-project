@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
     <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -38,27 +39,40 @@
                      <ul class="navbar-nav flex-column mt-4">
                         <!-- 회원 관리 -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link current">
+                            <a href="memberList" class="nav-link text-white p-3 mb-2 sidebar-link current">
                                 <i class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
                             </a>
                         </li>
                         <!-- 모임 관리 -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="adminClub" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-plus text-white fa-lg mr-3"></i>모임 관리
                             </a>
                         </li>
                        
                         <!-- 문의 관리 -->
                         <li class="nav-item">
-                            <a href="adminInquiry.do" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="adminInquiry" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-question-circle text-white fa-lg mr-3"></i>문의 관리
+                            </a>
+                        </li>
+                        <!-- 공지 관리 -->
+                        <li class="nav-item">
+                            <a href="announce" class="nav-link text-white p-3 mb-2 sidebar-link">
+                                <i class="fas fa-question-circle text-white fa-lg mr-3"></i>공지 관리
                             </a>
                         </li>
                         <!-- 결제내역 관리 -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="adminPay" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-coins text-white fa-lg mr-3"></i>결제내역 관리
+                            </a>
+                        </li>
+                        <!-- 관리자 차트 -->
+                        <li class="nav-item">
+                            <a href="adminChart" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            
+                                <i class="fas fa-question-circle text-white fa-lg mr-3"></i>차트 관리
                             </a>
                         </li>
                         
@@ -86,6 +100,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
    <!--  <script src="js/script.js"></script> -->
+    <script src="${path}/resources/js/script.js"></script>
 
 
 </body>

@@ -53,16 +53,15 @@ textarea {
 </style>
 </head>
 <body>
-	<form action="insertAnnounce.do" method="post">
+	<form action="insertAnnounce" method="post">
 		<div class="announce-wrap">
 			<h2>공지사항 등록</h2>
 			<hr>
-			<input type="text" class="form-control" id="announce-title"
-				placeholder="제목을 입력해주세요." name="">
-			<textarea></textarea>
+			<input type="text" class="form-control" name="announceTitle" placeholder="제목을 입력하세요">
+			<textarea name="announceContent" style="white-space:pre-line;"></textarea>
 			<button type="submit" id="announceBtn">등록하기</button>
 			<br>
-			<a class="back-to-list" href="announce.do">글 목록 가기</a>
+			<a class="back-to-list" href="announce">글 목록 가기</a>
 		</div>
 	</form>
 	<hr>
