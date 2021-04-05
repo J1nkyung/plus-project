@@ -733,6 +733,12 @@ function insertComment(bNum){
 			         	  	 inline.insertBefore(wrap, inline.children[2]);
 		                   	console.log("댓글 등록 성공");
 		                   	alert("댓글이 등록되었습니다!"); 
+		                   	
+		               	 // 댓글 개수 증가 
+					  	 	let showBtn = pnode.parentNode.firstElementChild
+					   		let count = showBtn.lastElementChild.lastElementChild;
+		 					let calc = "+";
+		 					changeCount(calc, count); 
 		               
 				        },
 				        error: function(e) {
@@ -740,12 +746,12 @@ function insertComment(bNum){
 				        }
 			        });  
 		//    }); 
-			   		 // 댓글 개수 증가 
+			   	/* 	 // 댓글 개수 증가 
 			  	 	let showBtn = pnode.parentNode.firstElementChild
 			   		let count = showBtn.lastElementChild.lastElementChild;
  					let calc = "+";
  					changeCount(calc, count); 
- 				
+ 				 */
 			}
 			
 			
@@ -869,6 +875,15 @@ function updateComment(cNum){
 				            		alert("댓글이 삭제되었습니다!");
 				            		pnode.innerHTML="";
 				            		
+				            		// 댓글 개수 감소 
+				            		console.log(pnode)
+				            		let showBtn = pnode.parentNode.parentNode.firstElementChild.lastElementChild;
+				            		console.log(showBtn)
+				            		let count = showBtn.lastElementChild;	// a태그 
+				            		console.log(count.lastElementChild)
+				            		let calc = "-";
+				            		changeCount(calc, count); 
+				            		
 				            	} else {
 				            		console.log("댓글삭제실패");
 					      		}
@@ -881,13 +896,13 @@ function updateComment(cNum){
 		}
 	
 		// 댓글 개수 감소 
-		console.log(pnode)
+	/* 	console.log(pnode)
 		let showBtn = pnode.parentNode.parentNode.firstElementChild.lastElementChild;
 		console.log(showBtn)
 		let count = showBtn.lastElementChild;	// a태그 
 		console.log(count.lastElementChild)
 		let calc = "-";
-		changeCount(calc, count); 
+		changeCount(calc, count);  */
 	}
 		
 	
