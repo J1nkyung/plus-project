@@ -57,8 +57,20 @@ public class CommentsController {
 		return commService.getCommentsCount(bNum);
 	}
 	
-	public String getMoreComments() {
-		return "";
+	
+	// 대댓글 목록 가져오기 
+	@RequestMapping("/getReComments")
+	@ResponseBody
+	public List<CommentsVO> getReComments(CommentsVO comments) {
+		return commService.getReComments(comments);
+	}
+	
+	@RequestMapping("/insertReComments")
+	@ResponseBody
+	public CommentsVO insertReComments(CommentsVO comments) {
+		commService.insertReComments(comments);
+		log.info("대댓글 번호 : " + comments.getCommentsNum());
+		return comments;
 	}
 	
 

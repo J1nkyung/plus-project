@@ -275,6 +275,15 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 }   
 
   <!------------지도 끝----------->
+  
+	//파일 선택시 파일이름 변경 
+	function getFileName(index) {
+		let fileNameSpan = document.getElementById('spanFileName[' + index
+				+ ']')
+		let name = $('input[type=file]')[index].files[0].name
+		fileNameSpan.innerText = ""
+		$(fileNameSpan).append(name);
+	}
 
 	//파일 삭제
 	function deleteFile(index) {
@@ -309,9 +318,9 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 		let date = document.querySelectorAll(".c-date");
 /*         let lat = document.getElementByid("club-lat")
         let lng = document.getElementByid("club-lng") */
-		/* 
-		 if(title && fee && max){
-		 console.log("존재 ") */
+		
+		/*  if(title && fee && max){
+		 console.log("존재 ")  */
 		if (title.value == "" || fee.value == "" || max.value == ""
 				|| date[0].value == "" || date[1].value == ""
 				|| date[2].value == "") {

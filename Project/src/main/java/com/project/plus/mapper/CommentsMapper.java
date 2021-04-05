@@ -11,4 +11,6 @@ public interface CommentsMapper {
 	public List<CommentsVO> getComments(CommentsVO comments);
 	public List<CommentsVO> getMoreComments(int boardNum);
 	public int getCommentsCount(int bNum);
+	public List<CommentsVO> getReComments(CommentsVO comments);
+	public int insertReComments(CommentsVO comments);
 }
