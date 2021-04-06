@@ -20,6 +20,7 @@
 		<typeAlias alias="chat" type="com.project.plus.domain.ChatVO"/>
 		<typeAlias alias="board" type="com.project.plus.domain.BoardVO"/>
 		<typeAlias alias="comments" type="com.project.plus.domain.CommentsVO"/>
+		<typeAlias alias="notify" type="com.project.plus.domain.NotificationVO"/>
 	
 </typeAliases>
 

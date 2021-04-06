@@ -380,7 +380,7 @@ color:white;
 <script>
 
 // 나중에 session 멤버 번호를 가져와야함 
-let mNum = "";
+let mNum = '${user.memberNum}';
 let userNickname = '${user.memberNickname}';
 let boardNum = 0;
 
@@ -409,6 +409,8 @@ $(function(){
 		let cNum = $(this).attr('name');
 		console.log("댓글번호 : " + cNum);
 		console.log("게시글번호 : " + boardNum); 
+		
+		
 		 
 		   	$.ajax({
 				type: "post",
@@ -671,29 +673,30 @@ function getTime() {
 
 // 댓글 등록 
 function insertComment(bNum){
-	console.log(bNum)
-	
-	
-	let pnode = event.target.parentNode.parentNode.nextElementSibling;
-	console.log(pnode);	//comments-wrap
-	
-	let area = event.target.parentNode.getElementsByTagName('textArea')[0];
-	console.log(area)
-	let content = area.value;
-	area.value="";
-	console.log(content);
-	if(content=="" || content==" "){
-		alert("내용을 입력해주세요!");
-		return;
-	}
-	
-	let today = getTime();
-    console.log(today);
-    
-    console.log(pnode.parentNode)
+	return new Promise(function(resolve, reject){
+		console.log(bNum)
+		
+		
+		let pnode = event.target.parentNode.parentNode.nextElementSibling;
+		console.log(pnode);	//comments-wrap
+		
+		let area = event.target.parentNode.getElementsByTagName('textArea')[0];
+		console.log(area)
+		let content = area.value;
+		area.value="";
+		console.log(content);
+		if(content=="" || content==" "){
+			alert("내용을 입력해주세요!");
+			return;
+		}
+		
+		let today = getTime();
+	    console.log(today);
+	    
+	    console.log(pnode.parentNode)
  	
-			       //  return new Promise(function(resolve, reject){
 			       $.ajax({
+			        
 						type: "post",
 						url: "insertComment",
 						data: {
@@ -703,7 +706,7 @@ function insertComment(bNum){
 							commentsRegdate:today,
 						},
 			            success: function (data) {
-			            	
+			            	let writer = data.boardWriter;
 			            	// 분까지만 나타내기 
 			            	today = today.split(':');
 			            	
@@ -733,20 +736,53 @@ function insertComment(bNum){
 			         	  	 inline.insertBefore(wrap, inline.children[2]);
 		                   	console.log("댓글 등록 성공");
 		                   	alert("댓글이 등록되었습니다!"); 
+		                   	
+		               	 // 성공하면 댓글 개수 증가 
+					  	 	let showBtn = pnode.parentNode.firstElementChild
+					   		let count = showBtn.lastElementChild.lastElementChild;
+		 					let calc = "+";
+		 					changeCount(calc, count); 
+		 					
+		 					// 게시글 작성자 보내기 
+		 					resolve(writer);
 		               
 				        },
 				        error: function(e) {
 				        	  alert("댓글 등록 오류" + e);
 				        }
 			        });  
-		//    }); 
-			   		 // 댓글 개수 증가 
-			  	 	let showBtn = pnode.parentNode.firstElementChild
-			   		let count = showBtn.lastElementChild.lastElementChild;
- 					let calc = "+";
- 					changeCount(calc, count); 
+			   }); 
+			   	
  				
 			}
+			
+	function saveNoti(writer){
+		return new Promise(function(resolve, reject){
+			  $.ajax({
+			        
+					type: "post",
+					url: "insertNoti",
+					data: {
+						// 알림이 갈 대상 
+						memberNum:writer,
+						boardNum:bNum,
+						notType:"댓글",
+						notMessage:"게시글에 댓글이 달렸습니다",
+						// 알림을 눌렀을 때 이동할 페이지 
+						notUrl:"${path}/getCommunity?clubNum=3"
+					
+					},
+		            success: function (data) {
+		            	
+		            	
+		            },
+		            error: function(e) {
+			        	  alert("알림 저장 오류" + e);
+			        }
+		        });  
+		});
+		
+	}
 			
 			
 
@@ -920,6 +956,14 @@ function updateComment(cNum){
 	}
 			
 
+	// 소켓 생성, 연결 
+	let sock;
+	function connect(clubNum){
+		sock = new SockJS("http://localhost:9999/plus/echo");
+		sock.onopen = onopen;
+		sock.onmessage = onMessage;
+		sock.onclose = onclose; 
+	}
 
 
 			// 내 게시글에 댓글이 달리면 알림 보내기 

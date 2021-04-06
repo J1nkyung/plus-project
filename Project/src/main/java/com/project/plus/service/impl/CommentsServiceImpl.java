@@ -56,6 +56,11 @@ public class CommentsServiceImpl implements CommentsService {
 		return mapper.insertReComments(comments);
 	}
 
+	@Override
+	public int getBoardWriter(int bNum) {
+		return mapper.getBoardWriter(bNum);
+	}
+
 
 
 	

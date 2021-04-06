@@ -118,7 +118,11 @@
     </div>
 </body>
 <script>
-
+$(function(){
+	
+	
+	
+})
 
 </script>
 </html>
