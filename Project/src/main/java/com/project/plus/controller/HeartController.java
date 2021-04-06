@@ -158,13 +158,15 @@ public class HeartController {
 	
 	@RequestMapping(value = "/insertHeart", produces = "application/text;charset=UTF-8")
 	@ResponseBody
-	public String insertHeart(HeartVO vo ,Model model , HttpServletRequest request) {
+	public String insertHeart(HeartVO vo ,ClubVO cvo,Model model , HttpServletRequest request) {
 		System.out.println("************************** insertHeart.do ****************************");
 		System.out.print(vo.getMemberNum()+ "  \"멤버 넘버\" ");
 		System.out.print(vo.getClubNum()+ "  \"클럽 넘버\" ");
 		System.out.print(vo.getClubName()+ "  \"클럽 이름\" ");
 		
 		heartService.insertHeart(vo);
+		System.out.println("iiiiiinnnnnnnnssssssseeeeeeeerrrrrrtttttttt!!!!!!");
+		clubService.plusHeartCnt(cvo);
 		System.out.println("찜목록추가완료.. view..");
 		return "찜하기 완료! 찜목록에서 확인해보세요❤";
 	}
@@ -190,11 +192,12 @@ public class HeartController {
 	//단일 찜목록 삭제 
 	@RequestMapping(value = "/deleteHeartOne", produces = "application/text;charset=UTF-8")
 	@ResponseBody
-	public String deleteHeartOne(HeartVO vo ,Model model , HttpServletRequest request) {
+	public String deleteHeartOne(HeartVO vo,ClubVO cvo ,Model model , HttpServletRequest request) {
 		System.out.println("************************** deleteHeartOne.do ****************************");
 		System.out.print(vo.getMemberNum()+ "  \"멤버 넘버\" ");
 		System.out.print(vo.getClubNum()+ "  \"클럽 넘버\" ");
 		heartService.deleteHeart(vo);
+		clubService.minusHeartCnt(cvo);
 		return "찜목록에서 삭제 되었습니다.💌";
 	}
 	
