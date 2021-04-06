@@ -156,11 +156,18 @@ ORDER BY member_num
       ]]>
    </select> 
    
-   <select id="selectMemberPointByNickname" resultType="Integer">
+   <select id="selectMemberPointByNickname" resultType="int">
       <![CDATA[
          SELECT member_point as memberPoint
          FROM member 
          WHERE member_nickname = #{memberNickname};
+      ]]>
+   </select>
+   <select id="selectMemberNumberByNickname" resultType="int">
+      <![CDATA[
+         SELECT member_num as memberNum
+         FROM member 
+         WHERE member_nickname = #{memberNickname}
       ]]>
    </select>
    
@@ -183,7 +190,12 @@ ORDER BY member_num
       UPDATE MEMBER SET member_point= #{memberPoint}
       WHERE member_nickname= #{memberNickname};
    </update>
-   
+      <!-- 20210403 정연 하단 추가 -->
+<!-- 포인트 환불금 돌려주기  -->
+ 	 <update id="refundFee">
+			UPDATE MEMBER SET member_point= #{memberPoint}
+			WHERE member_num = #{memberNum}
+	</update>
    
    
    

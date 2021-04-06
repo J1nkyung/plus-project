@@ -112,7 +112,16 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
+	//정연추가20210405
+	@Override
+	public void refundFee(MemberVO vo) {
+		membermapper.refundFee(vo);		
+	}
 
+	@Override
+	public int selectMemberNumberByNickname(MemberVO vo) {
+		return membermapper.selectMemberNumberByNickname(vo);
+	}
 
 
 
