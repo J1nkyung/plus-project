@@ -2,9 +2,7 @@ package com.project.plus.service;
 
 import java.util.List;
 
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import com.project.plus.domain.CriteriaAdmin;
 import com.project.plus.domain.InquiryVO;
 
 public interface InquiryService {
@@ -16,7 +14,9 @@ public interface InquiryService {
 	void deleteInquiry(InquiryVO vo);
 
 	InquiryVO getInquiry(InquiryVO vo);
-	List<InquiryVO> getInquiryList(InquiryVO vo);
+//	List<InquiryVO> getInquiryList(InquiryVO vo);
+	public List<InquiryVO> getInquiryList(CriteriaAdmin cri) throws Exception;
+	public int inquiryListCount(CriteriaAdmin cri) throws Exception;
 
 	
 }

@@ -1,26 +1,35 @@
 package com.project.plus.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.project.plus.domain.CriteriaAdmin;
 import com.project.plus.domain.InquiryVO;
 import com.project.plus.domain.MemberVO;
+import com.project.plus.domain.PageMakerAdmin;
 import com.project.plus.service.InquiryService;
 
-@Controller
-@SessionAttributes("inquiry")
-public class InquiryController {
+import lombok.extern.log4j.Log4j;
 
+@Log4j
+@Controller
+public class InquiryController {
+	
+	public static final Logger logger = LoggerFactory.getLogger(InquiryController.class);
+	
 	@Autowired
 	private InquiryService is;
-	
+
 	@RequestMapping(value = "/inquiryForm", method = RequestMethod.GET)
 	public String inquiryForm(InquiryVO vo, MemberVO mvo, HttpSession session) throws Exception {
 		MemberVO user = (MemberVO) session.getAttribute("user");
@@ -60,13 +69,36 @@ public class InquiryController {
 		return "getInquiry.inqu";
 	}
 
-	@RequestMapping("/inquiry")
-	public String getInquiryList(InquiryVO vo, Model model, HttpSession session) {
+//	// 1:1 문의 목록 조회
+//	@RequestMapping("/inquiry")
+//	public String getInquiryList(InquiryVO vo, Model model, HttpSession session) {
+//		MemberVO user = (MemberVO) session.getAttribute("user");
+//		vo.setMemberNum(user.getMemberNum());
+//		model.addAttribute("inquiryList", is.getInquiryList(vo));
+//		return "inquiry.inqu";
+//	}
+	
+	// 1:1 문의 목록 조회 페이징처리용
+	@RequestMapping(value="/inquiry", method=RequestMethod.GET)
+	public String getInquiryList(Model model, HttpSession session, CriteriaAdmin cri) throws Exception {
 		MemberVO user = (MemberVO) session.getAttribute("user");
-		vo.setMemberNum(user.getMemberNum());
-		model.addAttribute("inquiryList", is.getInquiryList(vo));
+		
+//		vo.setMemberNum(user.getMemberNum());
+//		System.out.println(vo);
+//		model.addAttribute("list", is.getInquiryList(vo));
+		
+		cri.setMemberNum(user.getMemberNum());
+		
+		List<InquiryVO> inquiryList = is.getInquiryList(cri);
+		System.out.println(inquiryList);
+		model.addAttribute("inquiryList", inquiryList);
+		
+		PageMakerAdmin pgmad = new PageMakerAdmin();
+		pgmad.setCri(cri);
+		pgmad.setTotalCount(is.inquiryListCount(cri));
+		model.addAttribute("pageMakerAdmin", pgmad);
+		
 		return "inquiry.inqu";
 	}
+
 }
-
-

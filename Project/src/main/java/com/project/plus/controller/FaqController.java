@@ -35,14 +35,12 @@ public class FaqController {
 	@RequestMapping("/editFaqForm")
 	public String editFaqForm(FaqVO vo, Model model) {
 		model.addAttribute("updateFaq", faqService.editFaqForm(vo));
-		System.out.println("editFaqForm" + vo.getFaqCategory());
 		return "editFaqForm.faq";
 	}
 
 	// 자주묻는질문 수정 메서드
 	@RequestMapping(value = "/updateFaq", method = RequestMethod.POST)
 	public String updateFaq(FaqVO vo) { // @ModelAttribute("faq")
-		System.out.println(vo);
 		faqService.updateFaq(vo);
 		return "redirect:faq";
 	}

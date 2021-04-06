@@ -2,6 +2,7 @@ package com.project.plus.mapper;
 
 import java.util.List;
 
+import com.project.plus.domain.CriteriaAdmin;
 import com.project.plus.domain.InquiryVO;
 
 public interface InquiryMapper{
@@ -12,5 +13,7 @@ public interface InquiryMapper{
 	InquiryVO editInquiryForm(InquiryVO vo);
 	void deleteInquiry(InquiryVO vo);
 	InquiryVO getInquiry(InquiryVO vo);
-	List<InquiryVO> getInquiryList(InquiryVO vo);
+//	List<InquiryVO> getInquiryList(InquiryVO vo);
+	public List<InquiryVO> getInquiryList(CriteriaAdmin cri) throws Exception;
+	public int inquiryListCount(CriteriaAdmin cri) throws Exception;
 }

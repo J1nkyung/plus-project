@@ -11,14 +11,12 @@ import com.project.plus.service.VisitCountService;
 
 @Component
 public class VisitSessionListener implements HttpSessionListener {
-// ë°©ë¬¸??ˆ˜ë¥? ê³„ì‚°?•˜?Š” ?´?˜?Š¤
+// ë°©ë¬¸?ï¿½ï¿½?ï¿½ï¿½ï¿½? ê³„ì‚°?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
 
 	@Override
 	public void sessionCreated(HttpSessionEvent sessionEve) {
-		System.out.println("?„¸?…˜ ?¬ë¦¬ì—?´?‹°?“œ ? ‘?†");
-		// ?„¸?…˜?´ ?ƒˆë¡? ?ƒ?„±?˜ë©? execute() ?‹¤?–‰?•œ?‹¤.
+	
 		if (sessionEve.getSession().isNew()) {
-			System.out.println("?„¸?…˜?‹¤?–‰?˜?‹ˆ?");
 			execute(sessionEve);
 		}
 	}
@@ -31,22 +29,20 @@ public class VisitSessionListener implements HttpSessionListener {
 
 	private void execute(HttpSessionEvent sessionEve) {
 		// VisitCountController cntr = VisitCountController.getInstance();
-		System.out.println("execute ?‹¤?–‰?˜?—ˆ?‹ˆ?");
-		total = vcs.getTotalCount();
-		today = vcs.getTodayCount();
+//		total = vcs.getTotalCount();
+//		today = vcs.getTodayCount();
 
 		try {
 
-			System.out.println(total);
-			System.out.println(today);
+//			System.out.println(total);
+//			System.out.println(today);
 			HttpSession session = sessionEve.getSession();
 
-//	            // ?„¸?…˜?— ë°©ë¬¸? ?ˆ˜ë¥? ?‹´?Š”?‹¤.
-			session.setAttribute("total", total);
-			session.setAttribute("today", today);
+
+//			session.setAttribute("total", total);
+//			session.setAttribute("today", today);
 
 		} catch (Exception e) {
-			System.out.println("===== ë°©ë¬¸? ì¹´ìš´?„° ?˜¤ë¥? =====\n");
 			e.printStackTrace();
 		}
 	}
