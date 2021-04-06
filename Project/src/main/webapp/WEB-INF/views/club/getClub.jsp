@@ -140,29 +140,7 @@
 	</aside>
 </section>
 </wrap>
-<!-- <script>
 
-/* /* $(function(){
-    
-   $('#heartBtn').on('click',function(){
-        로그인 검사 
-      if(!'${user.memberNum}'){
-         alert("로그인해주세요!");
-         return;
-      }
-   }) */
-
-//찜버튼
-
-   console.log("하트확인 전 ")
-    if(${isThereHeart == 0}){
-       state=0;
-    }else{
-       state=1;
-   }
- console.log("하트확인 후 " + state);
-
-</script> -->
 <!-- 카카오 link api -->
 <script>
   Kakao.init('c727ac6af8f4ea892e4524df5eed6359');

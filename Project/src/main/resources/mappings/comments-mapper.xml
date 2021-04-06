@@ -66,6 +66,10 @@
       </selectKey>
 	</insert>
 	
+	<select id="getBoardWriter">
+		SELECT member_num FROM board WHERE board_num = #{boardNum}
+	</select>
+	
 <!-- 멤버 테이블과 조인 쿼리 써야함 
 	<select id="getMemberNickname">
 		SELECT member_nickname FROM member WHERE member_num = #{memberNum}
