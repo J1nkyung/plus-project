@@ -31,78 +31,7 @@
 
 <title>더하기+ 같이해서 더 가치있는 모임</title>
 </head>
-<script>
-$( document ).ready( function() {
-    
-	var lat2;
-	var lng2;
-	 
-   
-    if (!!navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-        document.getElementById("current-location").innerHTML = "잠깐! 현재 위치를 찾고 있습니다.";
-    }
-    else {
-        alert("해당 브라우저는 위치추적을 지원하지 않습니다");
-    }
-    function successCallback(position) {
-        var lat = position.coords.latitude;          // 위도
-        var lng = position.coords.longitude;         // 경도
-        var latlng = new google.maps.LatLng(lat, lng);
-		console.log(lat, lng);  //현재 위치 위도 경도
-		
-		
-	       lat2 = lat;
-	       lng2 = lng;
-		console.log("2 출력 " + lat2, lng2);
-		
-		var locationData = {
-			"memberLatitude" : lat2,
-      		"memberLongitude" : lng2,
-		}
-		
-  	   	  $.ajax({
-  	        	 url :'main', 
-  	        	 type : 'post', 
-  	        	 data :locationData,
-  	        	success: function(data){ 
-  	            console.log("ajax 성공"); 
-  	        	  },
-  	         error:function(request,status,error){
-  	         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-  	         }
-  	         }); 
-		
-	console.log("ajax 이후"+  + lat2, lng2)
-     
 
-         <!----위도, 경도 주소로 변환하기---->
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-            if (status !== google.maps.GeocoderStatus.OK) {
-                alert(status);
-            }
-            // This is checking to see if the Geoeode Status is OK before proceeding
-            if (status == google.maps.GeocoderStatus.OK) {
-                // console.log(results);
-                var totaladdress = (results[3].formatted_address);  // 국가,시,구,동까지 나오는 주소
-                const arr = totaladdress.split(" ");                // address를 공백 기준으로 자름
-                var address=(arr[1] + " "+ arr[2] +" "+ arr[3]);      //대한민국 제외하고 담기
-                console.log(arr[1] + arr[2] + arr[3]);
-          
-            }
-            document.getElementById("current-location").innerHTML = "🚩 현재 위치 : " + address;
-           
-        });
-       
-    }
-    function errorCallback(error) {
-        alert(error.message);
-    }
-    
-
- } );
- </script>
 <body>
 
 	<main>
@@ -422,7 +351,78 @@ $( document ).ready( function() {
             }
          };
      
-       
+  
+         $( document ).ready( function() {
+             
+         	var lat2;
+         	var lng2;
+         	 
+            
+             if (!!navigator.geolocation) {
+                 navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+                 document.getElementById("current-location").innerHTML = "잠깐! 현재 위치를 찾고 있습니다.";
+             }
+             else {
+                 alert("해당 브라우저는 위치추적을 지원하지 않습니다");
+             }
+             function successCallback(position) {
+                 var lat = position.coords.latitude;          // 위도
+                 var lng = position.coords.longitude;         // 경도
+                 var latlng = new google.maps.LatLng(lat, lng);
+         		console.log(lat, lng);  //현재 위치 위도 경도
+         		
+         		
+         	       lat2 = lat;
+         	       lng2 = lng;
+         		console.log("2 출력 " + lat2, lng2);
+         		
+         		var locationData = {
+         			"memberLatitude" : lat2,
+               		"memberLongitude" : lng2,
+         		}
+         		
+           	   	  $.ajax({
+           	        	 url :'main', 
+           	        	 type : 'post', 
+           	        	 data :locationData,
+           	        	success: function(data){ 
+           	            console.log("ajax 성공"); 
+           	        	  },
+           	         error:function(request,status,error){
+           	         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+           	         }
+           	         }); 
+         		
+         	console.log("ajax 이후"+  + lat2, lng2)
+              
+
+                  <!----위도, 경도 주소로 변환하기---->
+                 var geocoder = new google.maps.Geocoder();
+                 geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+                     if (status !== google.maps.GeocoderStatus.OK) {
+                         alert(status);
+                     }
+                     // This is checking to see if the Geoeode Status is OK before proceeding
+                     if (status == google.maps.GeocoderStatus.OK) {
+                         // console.log(results);
+                         var totaladdress = (results[3].formatted_address);  // 국가,시,구,동까지 나오는 주소
+                         const arr = totaladdress.split(" ");                // address를 공백 기준으로 자름
+                         var address=(arr[1] + " "+ arr[2] +" "+ arr[3]);      //대한민국 제외하고 담기
+                         console.log(arr[1] + arr[2] + arr[3]);
+                   
+                     }
+                     document.getElementById("current-location").innerHTML = "🚩 현재 위치 : " + address;
+                    
+                 });
+                
+             }
+             function errorCallback(error) {
+                 alert(error.message);
+             }
+             
+
+          } );
+  
   
    
          

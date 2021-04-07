@@ -82,7 +82,3 @@ textarea {
 
 
 
-
-
-
->>>>>>> bf56ef1 (no message)
