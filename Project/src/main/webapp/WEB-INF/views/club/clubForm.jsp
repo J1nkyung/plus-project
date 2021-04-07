@@ -166,6 +166,7 @@
 	</div>
 <input type="hidden" name="clubLatitude" id="club-lat" value=""></input>
 <input type="hidden" name="clubLongitude" id="club-lng" value=""></input> 
+<input type="hidden" name="clubLeader" value="${user.memberNickname}"></input> 
 </form>
 </aside>
 <footer></footer>
