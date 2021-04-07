@@ -146,7 +146,6 @@
             </ul>    
         </nav>
         <div class="myToast">
-
         </div>
 </body>
 
