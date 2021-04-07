@@ -41,7 +41,7 @@
 
 .sidebar {
    position: sticky;
-   width: 400px;
+   width: 300px;
    height: 100vh;
    background-color: #f5f4f4;
    background-position: center;
