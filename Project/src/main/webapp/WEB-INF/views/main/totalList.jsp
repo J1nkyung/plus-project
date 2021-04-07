@@ -162,8 +162,7 @@
 			</div>
 
 		</div>
-	<!-- 푸터와 공백을 위해 지정한 div -->
-	<div id="bottomarea"></div>
+
 		<script src="https://kit.fontawesome.com/831a4ab0db.js"
 			crossorigin="anonymous"></script>
 </body>

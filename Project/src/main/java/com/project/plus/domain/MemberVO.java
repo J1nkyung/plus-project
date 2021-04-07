@@ -15,9 +15,10 @@ public class MemberVO {
 	private int memberPoint;
 	private Date memberJoindate;
 	private String memberMarketing;
-	private String memberLatitude;
-	private String memberLongitude;
+	private Float  memberLatitude;
+	private Float  memberLongitude;
 	
+	//조인을 위해 선언한 객체
 	
 	public int getMemberNum() {
 		return memberNum;
@@ -80,16 +81,16 @@ public class MemberVO {
 	public void setMemberMarketing(String memberMarketing) {
 		this.memberMarketing = memberMarketing;
 	}
-	public String getMemberLatitude() {
+	public Float getMemberLatitude() {
 		return memberLatitude;
 	}
-	public void setMemberLatitude(String memberLatitude) {
+	public void setMemberLatitude(Float memberLatitude) {
 		this.memberLatitude = memberLatitude;
 	}
-	public String getMemberLongitude() {
+	public Float getMemberLongitude() {
 		return memberLongitude;
 	}
-	public void setMemberLongitude(String memberLongitude) {
+	public void setMemberLongitude(Float memberLongitude) {
 		this.memberLongitude = memberLongitude;
 	}
 	

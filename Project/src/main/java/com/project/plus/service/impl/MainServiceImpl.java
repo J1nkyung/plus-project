@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.FaqVO;
+import com.project.plus.domain.MemberVO;
 import com.project.plus.mapper.FaqMapper;
 import com.project.plus.mapper.MainMapper;
 import com.project.plus.service.FaqService;
