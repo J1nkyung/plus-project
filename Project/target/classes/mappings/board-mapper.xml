@@ -5,14 +5,14 @@
 
 	<resultMap id="boardResult" type="board">
 		<id property="boardNum" column="board_num"/>
-		<result property="clubNum" column="club_num"/>
+		<result property="clubNum" column="club_num"/> 
 		<result property="memberNum" column="member_num"/>
 		<result property="memberNickname" column="member_nickname"/>
 		<result property="memberPic" column="member_pic"/>
 		<result property="boardContent" column="board_content"/>
 		<result property="boardPic" column="board_pic"/>
 		<result property="boardRegDate" column="board_regdate"/>
-	</resultMap>
+	</resultMap> 
 	
 	
 	<!--글작성  -->
@@ -39,7 +39,7 @@
 		FROM MEMBER 
 		NATURAL JOIN BOARD <!-- 공통컬럼 member_num으로 조인가능 -->
 		WHERE board.club_num = #{clubNum}
-		ORDER BY board.board_num desc LIMIT 5; 
+		ORDER BY  board.board_regdate desc LIMIT 0, 5
 	</select>
 	<!-- 
 	SELECT board.*, member_nickname, member_pic FROM board JOIN member USING (member_num) WHERE club_num = #{clubNum}

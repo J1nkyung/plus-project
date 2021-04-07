@@ -20,10 +20,13 @@ public interface MemberService {
 	public int memberPChk(String memberPhone);
 	// 닉네임 중복 검사
 	public int memberNChk(String memberNickname);
-	
+	// 이메일 중복 검사
+	public int memberEChk(String memberEmail);
 	
 	public void logout(HttpSession session);
 		
+	MemberVO findPw(MemberVO vo);
+	
 	void updateMember(MemberVO vo);
 	void deleteMember(int memberNum);
 	
@@ -33,12 +36,16 @@ public interface MemberService {
 	public List<MemberVO> memberList(SearchCriteriaMem scmem);
 	public int listCount(SearchCriteriaMem scmem);
 
-	   void updateMemberPoint (MemberVO vo);
-	   int selectMemberPoint (MemberVO vo);
-	   int selectMemberPointByNickname(MemberVO vo);
+	//정연 하단 추가 20210403 
+	void updateMemberPoint (MemberVO vo);
+	int selectMemberPoint (MemberVO vo);
+	int selectMemberPointByNickname(MemberVO vo);
 	//   int selectMemberPoint(PaymentVO vo);
-	   void deductMemberPoint(MemberVO vo);
-	   void updateClubLeaderPoint(MemberVO vo);
+	void deductMemberPoint(MemberVO vo);
+	void updateClubLeaderPoint(MemberVO vo);
+	void refundFee(MemberVO vo);
+	int selectMemberNumberByNickname(MemberVO vo);
+	//여기 위까지 20210403
 
 	void insertLocation(MemberVO vo);
 

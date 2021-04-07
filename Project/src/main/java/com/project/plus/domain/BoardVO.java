@@ -1,6 +1,9 @@
 package com.project.plus.domain;
 
-import java.sql.Date;
+
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +19,8 @@ public class BoardVO {
 	private String boardTitle;
 	private String boardContent;
 	private String boardPic;
+	
+	@JsonFormat(pattern="yyyy. MM. dd HH:mm:ss", timezone ="Asia/Seoul")
 	private Date boardRegDate;
 	
 	private String memberPic;

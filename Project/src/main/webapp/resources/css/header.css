@@ -117,7 +117,7 @@ nav li #selected {
 .icon:hover{
     padding-top: 2px;
 }
-#icon{
+.icons{
     width: 25px;
     height: 25px;
 }

@@ -139,5 +139,103 @@
 		    WHERE club_num = #{clubNum}
 	    ]]>
 	</select>
+	<!-- 20210403 정연 모임현황페이지  -->
+	<!--  캘린더 날짜 값 뽑아오기   -->
+	<select id="selectClubDate" resultType="com.project.plus.domain.ClubVO">
+		<![CDATA[
+		SELECT 
+			club.club_num as clubNum ,
+			apply.member_num as memberNum ,
+			club.club_name as clubName ,
+			club.club_startdate as clubStartDate ,
+			club.club_enddate as clubEndDate
+		FROM club , apply 
+		WHERE club.club_num = apply.club_num
+		AND apply.member_num = #{memberNum}
+		]]>
+	</select>
+	
+<!-- 20210329 클럽리스트 추출/개설한 모임이 종료된 모임인지 아닌지 확인   -->
+	<select id="selectCurClubList" resultType="com.project.plus.domain.ClubVO">
+		<![CDATA[
+		select club_num as clubNum , 
+					club_main_pic as clubMain_pic , 
+				    club_name as clubName , 
+				    club_startdate as clubStartDate, 
+				    club_enddate  as clubEndDate,
+				    club_fee as clubFee
+		from club 
+		where club_leader = #{clubLeader}
+		and club_enddate >= now()
+		]]>
+	</select>
+	
+<!-- 20210329 클럽 기간 연장 update문  -->
+
+    <update id="updateEndDate">
+    <![CDATA[
+		UPDATE club SET club_enddate = #{clubEndDate}
+		WHERE  club_num = #{clubNum};
+	]]>  
+    </update>
+    
+<!-- 20210329 참여중인 클럽 리스트  -->
+	<select id="selectAttendClubList" resultType="com.project.plus.domain.ClubVO">
+		<![CDATA[
+			select  club.club_num as clubNum ,
+					club_main_pic as clubMain_pic ,
+					club_name as clubName ,
+					club_startdate as clubStartDate,
+					club_enddate as clubEndDate,
+					club_fee as clubFee,
+					club_leader  as clubLeader
+			from club , apply
+			where club.club_num = apply.club_num 
+			and member_num = #{memberNum}
+			and club_enddate >= now();
+
+		]]>
+	</select>
+	
+	<!-- 20210329 참여중인 클럽 리스트  -->
+	<select id="clubOut" resultType="com.project.plus.domain.ClubVO">
+		<![CDATA[
+			select  club.club_num as clubNum ,
+					club_name as clubName ,
+					club_startdate as clubStartDate,
+					club_enddate as clubEndDate,
+					club_fee as clubFee,
+					club_curnum as clubCurnum
+			from club 
+			where club.club_num = #{clubNum}
+		]]>
+	</select>
+	
+	
+	<!-- 20210329 클럽 기간 연장 update문  -->
+	<update id="updateClubCurNum">
+	    <![CDATA[
+	    	 UPDATE club SET club_curnum = #{clubCurnum} 
+	    	 WHERE (club_num = #{clubNum});
+		]]>  
+    </update>
+    <!-- 무료 모임 나오기 -->
+	<delete id="deleteApplyClub">
+		<![CDATA[
+			DELETE FROM apply 
+			WHERE (member_num = #{memberNum} and club_num = #{clubNum} );
+		]]>
+	</delete>
+	<!-- 완료한 모임 cnt -->
+	<select id="clubCnt" resultType="int">
+		<![CDATA[
+			select count(*)
+			from apply , club
+			where member_num = #{memberNum} 
+			and apply.club_num = club.club_num
+			and club.club_enddate < now();
+		]]>
+	</select>	
+	<!-- 여기위까지 정연추가 20210403 /////////////-->
 	
 </mapper>

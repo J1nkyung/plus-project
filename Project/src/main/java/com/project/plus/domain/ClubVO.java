@@ -31,11 +31,16 @@ public class ClubVO {
 	private Date clubShutDate;
 	private int clubFee;
 	private String clubHashtag;
-
+	
 	private int clubCurnum;
 	private int clubHeart;
-	private Float clubLatitude;
-	private Float clubLongitude;
+	private String clubLatitude;
+	private String clubLongitude;
 
+	// 20210403 정연 추가 
+		private int memberNum;
+		private int progressBar;
+		private int weeks;
+	//20210403 여기 위까지 정연 추가 
 
 }

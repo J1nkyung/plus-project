@@ -70,7 +70,7 @@ public class MemberController {
    @RequestMapping(value = "memberPhoneCheck", method = RequestMethod.POST)
    @ResponseBody public String memberPChk(String memberPhone) throws Exception{ 
       int result = memberService.memberPChk(memberPhone); 
-      logger.info("결과값 = " + result); 
+      logger.info("모바일 결과값 = " + result); 
       if(result != 0) { 
          return "fail"; // 중복 폰번호 존재
          } else { 
@@ -83,12 +83,23 @@ public class MemberController {
    @RequestMapping(value = "memberNickCheck", method = RequestMethod.POST)
    @ResponseBody public String memberNickChk(String memberNickname) throws Exception{ 
       int result = memberService.memberNChk(memberNickname); 
-      logger.info("결과값 = " + result); 
+      logger.info("닉네임 결과값 = " + result); 
       if(result != 0) { 
          return "fail"; // 중복 닉네임이 존재 
          } else { 
             return "success"; // 중복 닉네임 x 
          }
+   }
+   //이메일 중복검사 메서드
+   @RequestMapping(value = "memberEmailCheck", method = RequestMethod.POST)
+   @ResponseBody public String memberEmailChk(String memberEmail) throws Exception{ 
+	   int result = memberService.memberEChk(memberEmail); 
+	   logger.info("이메일 결과값 = " + result); 
+	   if(result != 0) { 
+		   return "fail"; // 중복 닉네임이 존재 
+	   } else { 
+		   return "success"; // 중복 닉네임 x 
+	   }
    }
    
    
@@ -201,7 +212,7 @@ public class MemberController {
         String toMail = email;
         String title = "회원가입 인증 이메일 입니다.";
         String content = 
-                "홈페이지를 방문해주셔서 감사합니다." +
+                "더하기를 방문해주셔서 감사합니다." +
                 "<br><br>" + 
                 "인증 번호는 " + checkNum + "입니다." + 
                 "<br>" + 

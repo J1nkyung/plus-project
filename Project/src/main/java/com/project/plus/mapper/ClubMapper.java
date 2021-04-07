@@ -22,4 +22,14 @@ public interface ClubMapper {
 	//정연하단 추가 20210401
 	public void plusHeartCnt(ClubVO vo);
 	public void minusHeartCnt(ClubVO vo);
+	//정연하단 추가 20210403 현재모임현황페이지
+	public List<ClubVO> selectClubDate(ClubVO vo);//달력 날짜 출력
+	public List<ClubVO> selectCurClubList(ClubVO vo);// 클럽리스트 추출 
+	public void updateEndDate(ClubVO vo);
+	public List<ClubVO> selectAttendClubList(ClubVO vo);
+	public ClubVO clubOut(ClubVO vo);
+	public void deleteApplyClub(ClubVO vo);
+	public void updateClubCurNum(ClubVO vo);
+	public int clubCnt(ClubVO vo);
+	//정연여기 위까지 추가20210403
 }

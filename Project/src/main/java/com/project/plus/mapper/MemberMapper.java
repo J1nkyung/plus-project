@@ -20,7 +20,10 @@ public interface MemberMapper {
 	public int memberPChk(String memberPhone);
 	//닉네임 중복 검사
 	public int memberNChk(String memberNickname);
+	//이메일 중복 검사
+	public int memberEChk(String memberEmail);
 
+	public MemberVO findPw(MemberVO vo);
 	public void logout(HttpSession session);
 	
 	public MemberVO selectMember(MemberVO vo);
@@ -42,7 +45,11 @@ public interface MemberMapper {
 	
 	public void updateClubLeaderPoint(MemberVO vo);
 	
+	public int selectMemberNumberByNickname(MemberVO vo);
+	
 	void insertLocation(MemberVO vo);
+	//정연 하단 추가 20210403
+	public void refundFee(MemberVO vo);
 
 
 }
