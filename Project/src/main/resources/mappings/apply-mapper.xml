@@ -8,7 +8,11 @@
 		<result property="clubNum" column="club_num" />
 		<result property="memberNum" column="member_num" />
 		<result property="applyDate" column="apply_date" />
+		<result property="memberNickname" column="member_nickname" />
+		<result property="memberPic" column="member_pic" />
 	</resultMap>
+
+
 
 	<!-- 신청내역 insert  -->
 	<insert id="apply">
@@ -62,6 +66,14 @@
             	#{arr}
         	</foreach>
         	)
+	</select>
+	
+	<select id="applyMember" resultMap="applyResult">
+		SELECT apply.*, member_nickname, member_pic
+		FROM APPLY 
+		JOIN MEMBER
+		USING (member_num) 
+		WHERE club_num = #{clubNum}
 	</select>
 
 </mapper>

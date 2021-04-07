@@ -7,19 +7,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
     <!-- css코드삽입 -->
-      <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
-    <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-   <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-    <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+    <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <!-- 웹소켓 import -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script>
+    <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         		/*
         $(document).ready(
@@ -88,7 +82,8 @@
         });
     	 
      } */
-    
+     
+     
      
     </script>
 </head>
@@ -97,6 +92,7 @@
     <!-- 사실상 헤더가 없어요  -->
   
     <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
+
         <!-- navi bar가 사실상 저희 헤더입니다 -->
         <nav>
             <ul class="menu-left">
@@ -104,6 +100,7 @@
                 <li class="hovereffect nav-left"><a href="main.do">HOME</a></li>
                 <li class="hovereffect nav-left"><a href="normal.do">가치더하기</a></li>
                   <li class="hovereffect nav-left" id="expert"><a href="expert.do">도움더하기</a></li>
+ 
  
  <!-- 로그인정보 없을 때는 로그인버튼 보이게 , 로그인 후에는 채팅, 알람, 드롭다운 버튼 보이게 했습니다   -->
            <c:choose>
@@ -120,6 +117,7 @@
 				               </c:when>
 				               <c:otherwise>
 	                        <li class="dropli"><a href="memberUpdate?memberNum=${user.memberNum }">My Page</a></li>
+				<li class="dropli"><a href="inquiry?memberNum=${user.memberNum}">나의1:1문의(임시)</a>
 				               </c:otherwise>
 			               </c:choose>
                         </form>
@@ -131,65 +129,15 @@
                     </div>
                 </li>
               	 <li class="nav-right icon"><a href="chat.do?memberNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/chat.png" class="icons"></a></li>
-                <li class="nav-right icon"><a href="getNoti?mNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/bell1.png" class="icons" id="bell" ></a></li>
+                <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" class="icons" id="bell"></a></li>
              </c:when>
              <c:otherwise><!-- 로그인 정보가 없으면  -->
-                <li class="nav-right nav-left hovereffect login" id="login"><a href="login">로그인</a></li>
+                <li class="nav-right nav-left hovereffect login" id="login"><a href="login.do">로그인</a></li>
+             
              </c:otherwise>
           </c:choose>
-            </ul>    
+            </ul>          
         </nav>
-        <div class="myToast">
-
-        </div>
 </body>
 
-<script>
-
-// location으로 페이지 이동 
- 
-	
-$(function(){
-	// 세션 연결 
-	connect();
-	$(document).on('click','#bell',function(){
-		$('#bell').attr('src','${path}/resources/img/images/bell1.png');
-	});
-	
-	
-}); // function 끝 
-
-
-let sock;
-function connect(){
-	sock = new SockJS("http://localhost:9999/plus/echo");
-	sock.onopen = onopen;
-	sock.onmessage = onMessage;
-	console.log("세션 생성");
-}
-
-function onopen() {
-    console.log('info: connection opened');
-   }
- 
-function onMessage(msg) {
-	console.log(msg.data);
-	$('#bell').attr('src','${path}/resources/img/images/bell-ring.png');
-	
-	 let toast = '<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-header">';
-	 toast += '<img src="${path}/resources/img/images/bell.png" class="rounded mr-2" alt="..." id="toastImg">';
-	 toast += '<strong class="mr-auto">더하기 알림</strong><small>just now</small>';
-	 toast += '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">';
-	 toast += '<span aria-hidden="true">&times;</span></button> </div>';
-	 toast += '<div class="toast-body">'+ msg.data +'</div></div>';
-	 $('.myToast').append(toast);
-	 $(".toast").toast({"animation": true, "autohide": false});
-	 $('.toast').toast('show');  
-}
-
-
-
-
-
-</script>
 </html>

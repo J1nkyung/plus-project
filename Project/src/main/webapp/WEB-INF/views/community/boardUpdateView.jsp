@@ -51,6 +51,10 @@ outline: -webkit-focus-ring-color auto 0px;
 .submit a {
 float:right;
 }
+.removePic{
+width:75.9px;
+margin:1px;
+}
 </style>
 </head>
 <body>
@@ -70,6 +74,9 @@ float:right;
 			<input type="text" id="memberNickname" name="memberNickname" value="작성자 : ${update.memberNickname }" readonly/>
 			
 			<textarea name="boardContent" id="content">${update.boardContent}</textarea>
+            <input id="picFile" type="file" name="boardPhoto" value="${board.boardPic }" />
+            <button type="button" class="removePic" onclick="removePic();">파일삭제</button>
+            
 			<button type="submit" id="BtnUp">저장하기</button><br/>
 	<div class="submit"><a href="getCommunity">글 목록 가기</a></div>
 		<hr></div>
@@ -77,6 +84,13 @@ float:right;
 <script>
 CKEDITOR.replace("content", {height:300, resize_enabled:false});
 
+
+//등록한 사진 삭제하는 버튼
+removePic = function(){
+    $('.removePic').click(function(){
+	$("#picFile").val("");
+}
+    )}
 </script>
 </body>
 </html>
