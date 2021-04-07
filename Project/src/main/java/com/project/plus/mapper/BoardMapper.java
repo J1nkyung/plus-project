@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.plus.domain.BoardVO;
-import com.project.plus.domain.ReviewVO;
 
 public interface BoardMapper {
 	public int insertBoard(BoardVO board);

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //package com.project.plus.controller;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,6 @@
 ////	}
 //	
 //}
-=======
 //package com.project.plus.controller;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
@@ -76,4 +74,3 @@
 ////	}
 //	
 //}
->>>>>>> bf56ef1 (no message)
