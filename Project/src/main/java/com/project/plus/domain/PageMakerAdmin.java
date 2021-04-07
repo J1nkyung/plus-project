@@ -4,6 +4,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMakerAdmin {
+<<<<<<< HEAD
 	private CriteriaAdmin cri;
 	private int totalCount; // 총 게시글 수
 	private int startPage; // 화면에 보여질 첫번째 페이지 번호, 시작 페이지 번호
@@ -76,6 +77,8 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMakerAdmin {
+=======
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c
    private CriteriaAdmin cri;
    private int totalCount; // 총 게시글 수
    private int startPage; // 화면에 보여질 첫번째 페이지 번호, 시작 페이지 번호
@@ -141,4 +144,8 @@ public class PageMakerAdmin {
       return uriComponents.toUriString();
    }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c

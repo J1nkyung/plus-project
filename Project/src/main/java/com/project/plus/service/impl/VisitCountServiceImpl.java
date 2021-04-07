@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package com.project.plus.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class VisitCountServiceImpl implements VisitCountService {
 
 }
 =======
+=======
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c
 package com.project.plus.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +62,9 @@ public class VisitCountServiceImpl implements VisitCountService {
       return mapper.getTodayCount();
    }
 
+<<<<<<< HEAD
 }
 >>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
+=======
+}
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c

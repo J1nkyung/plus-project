@@ -112,12 +112,16 @@
 =======
   
     
-    <definition name="*.curClub" extends="mypage"> <!-- 나중에 mypage로 바꿔야함-->
+    <definition name="*.curClub" extends="mypage"> 
      <put-attribute name="body" value="/WEB-INF/views/mypage/currentClub/{1}.jsp" /> 
   </definition>
   
+<<<<<<< HEAD
   <definition name="*.reviews" extends="mypage">  <!-- 나중에 mypage로 바꿔야함-->
 >>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
+=======
+  <definition name="*.reviews" extends="mypage">  
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c
      <put-attribute name="body" value="/WEB-INF/views/mypage/reviews/{1}.jsp" /> 
   </definition>
   

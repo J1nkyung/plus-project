@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c
 package com.project.plus.domain;
 
 public class CriteriaAdmin {

@@ -4,6 +4,8 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ page import="com.project.plus.domain.InquiryVO"%>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +21,16 @@
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="${path}/resources/css/comm-aside.css">
+<<<<<<< HEAD
 
 <!-- themify icon -->
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/icon/themify-icons/themify-icons.css">
 <!-- fontawesome CSS -->
 <!--   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous"> -->
+=======
+<link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c
 <style>
 	
 *{

@@ -3,11 +3,14 @@
 .reviewContainer{
      margin: 0;
      width: 1140px;
+     margin-bottom : 30%;
  }
 
  .reviewTab {
      padding: 10px;    
-     background: #ffffff;}
+     background: #ffffff;
+     margin-bottom: 50%;
+     }
      
  .btnReview{
      text-decoration:none;
@@ -78,3 +81,13 @@
  .reviewBtn button {
      border-style: none;
    }
+   
+ #noReviewBox{
+ 	width: 100%;
+ 	height : 100%;
+    border: 2px solid #eee;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
+ 	padding: 5.9%;
+ 	font-size : 20px;
+ 	text-align : center;
+ }

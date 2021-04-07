@@ -73,6 +73,7 @@ public interface AdminMapper {
 
 	public int adminClubListCount(CriteriaAdmin cri) throws Exception;
 }
+<<<<<<< HEAD
 package com.project.plus.mapper;
 
 import java.util.List;
@@ -148,3 +149,5 @@ public interface AdminMapper {
 
 	public int adminClubListCount(CriteriaAdmin cri) throws Exception;
 }
+=======
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c

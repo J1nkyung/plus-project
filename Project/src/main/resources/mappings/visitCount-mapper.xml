@@ -1,4 +1,21 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.plus.mapper.VisitCountMapper">
+	
+	<resultMap id="visitResult" type="visit">
+		<id property="vDate" column="v_date"/>
+	</resultMap>
+	
+	<!--  총 방문자수를 증가시킨다  -->
+	<insert id="setTotalCount">
+		INSERT INTO VISIT (V_DATE) VALUES (now())
+	</insert>
+	
+	
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c
 =======
 <<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>

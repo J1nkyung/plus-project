@@ -20,6 +20,7 @@
     <title>Document</title>
     <script>
 	    function payment(amount) {
+	    	var memberNum = ${user.memberNum};
 	    	var IMP = window.IMP; // 생략가능
 	        IMP.init('imp60466849'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
@@ -28,8 +29,8 @@
 	            pay_method : 'card',
 	            merchant_uid : 'merchant_' + new Date().getTime(),
 	            name : '포인트 결제',
-	            /* amount : amount, */
-	            amount : 100,
+	            /* amount : amount,  */
+	             amount : 100, 
 	            //buyer_email : 'iamport@siot.do', 
 	            //buyer_name : '구매자이름',
 	            //buyer_tel : '010-1234-5678',
@@ -42,7 +43,9 @@
 	            		url : 'chargePoint',
 	            		type : 'post',
 	            		dataType : 'json',
-	            		data : {'payAmount' : rsp.paid_amount},
+	            		data : {'payAmount' : rsp.paid_amount,
+	            				'memberNum' : memberNum
+	            				},
 	            		success:function(result){
 	            			console.log('결제 완료');
 	            		}

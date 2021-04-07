@@ -11,6 +11,7 @@ import com.project.plus.service.VisitCountService;
 
 @Component
 public class VisitSessionListener implements HttpSessionListener {
+<<<<<<< HEAD
 // 방문?��?���? 계산?��?�� ?��?��?��
 
 	@Override
@@ -65,6 +66,8 @@ import com.project.plus.service.VisitCountService;
 
 @Component
 public class VisitSessionListener implements HttpSessionListener {
+=======
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c
 // 방문?  ?   ? 계산?  ?   ?  ?  ?  
 
    @Override
@@ -105,4 +108,8 @@ public class VisitSessionListener implements HttpSessionListener {
    public void sessionDestroyed(HttpSessionEvent arg0) {
    }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c
