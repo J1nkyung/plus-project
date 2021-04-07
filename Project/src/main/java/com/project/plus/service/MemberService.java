@@ -20,10 +20,13 @@ public interface MemberService {
 	public int memberPChk(String memberPhone);
 	// 닉네임 중복 검사
 	public int memberNChk(String memberNickname);
-	
+	// 이메일 중복 검사
+	public int memberEChk(String memberEmail);
 	
 	public void logout(HttpSession session);
 		
+	MemberVO findPw(MemberVO vo);
+	
 	void updateMember(MemberVO vo);
 	void deleteMember(int memberNum);
 	

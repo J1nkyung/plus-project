@@ -2,12 +2,17 @@ package com.project.plus.controller;
 
 
 
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +34,10 @@ public class LoginController {
 
     @Autowired
 	private MemberService memberService;
+    
+    @Autowired
+    private JavaMailSender mailSender;
+
 
     //로그인 페이지 접속했을 때 연결
 	@RequestMapping(value="login", method=RequestMethod.GET) 
@@ -180,11 +189,60 @@ public class LoginController {
 	}
 	
 	
+    //비밀번호 찾기 페이지 메서드
+	@RequestMapping(value="findPw", method=RequestMethod.GET) 
+	public String findPw() throws Exception {
+		return "findPw.login";
+	}
+	
+	@RequestMapping(value="getPw", method=RequestMethod.POST) 
+	public String getPw(MemberVO vo) throws IOException {
+		MemberVO user = memberService.findPw(vo);
+		String pw = user.getMemberPassword();
+		String name = user.getMemberName();
+		String email = user.getMemberEmail();
+		
+		System.out.println("확인해보자"+pw + name+email);
+		
 
+        
+		   String setFrom = "plusprojectofficial@gmail.com";
+	        String toMail = user.getMemberEmail();
+	        String title = name + "회원님의 비밀번호를 안내드립니다.";
+	        String content = 
+	                "안녕하세요. 더하기입니다." +
+	                "<br><br><strong>" + 
+	                name + "</strong> 회원님의 비밀번호는 <strong>" + 
+	                pw + "</strong> 입니다." + 
+	                "<br><br>" + 
+	                "더하기와 함께 더 가치있는 시간 보내시기 바랍니다.";
+
+	        try {
+	                  
+	                  MimeMessage message = mailSender.createMimeMessage();
+	                  MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+	                  helper.setFrom(setFrom);
+	                  helper.setTo(toMail);
+	                  helper.setSubject(title);
+	                  helper.setText(content,true);
+	                  mailSender.send(message);
+	                  
+	               String url = "redirect:login";   
+	          		return url;
+
+	                  
+	              }catch(Exception e) {
+	                  e.printStackTrace();
+	                  
+	                  return "redirect:login";
+	              }
+	        
+
+	}
+	
+	
 	
 
-
-	
 
 	
 }

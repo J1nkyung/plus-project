@@ -19,10 +19,16 @@ html {
     width:1200px;
 }
 
+.logo-wrap{
+    padding-top:55px;
+    align-items: center;
+}
+
 #logo {
     width: 200px;
     height: auto;
     cursor: pointer;
+    margin-left:140px;
 }
 
 #header {
@@ -38,6 +44,13 @@ html {
     left: 50%;
     transform: translate(-50%);*/
     margin-left:370px;
+    width: 460px;
+    display:block;
+    min-height:1000px;
+    
+}
+.findPw {
+    margin-left:400px;
     width: 460px;
     display:block;
     min-height:1000px;
@@ -266,8 +279,8 @@ h3 {
 .btn_area {
     padding: 30px 0 30px;
     margin: 50px;
-    item-align:center;
-}
+ align-items: center;
+ }
 
 #btnJoin {
 
@@ -301,4 +314,14 @@ margin-left:20px;
 }
 #btnUp {
 margin-left:80px;
+}
+
+#btnFind {
+height:35px;
+width:90px;
+border:none;
+background-color:#001EFF;
+color:white;
+border-radius:5px;
+margin-left:140px;
 }

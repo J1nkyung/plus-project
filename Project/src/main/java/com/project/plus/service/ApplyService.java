@@ -12,7 +12,8 @@ public interface ApplyService {
 	ApplyVO checkApplyClub(ApplyVO vo);
 	List<ApplyVO> checkApplyClubByMemberNum(ApplyVO vo);
 	List<ApplyVO> applyPayClubInfo(ApplyVO vo);
-	
+	public List<ApplyVO> applyMember(int clubNum);
+
 }
 
 //정연추가 20210326

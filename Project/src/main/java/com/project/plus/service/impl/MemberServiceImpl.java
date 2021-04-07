@@ -65,6 +65,12 @@ public class MemberServiceImpl implements MemberService {
 	public int memberNChk(String memberNickname) {
 		return membermapper.memberNChk(memberNickname);
 	}
+	public int memberEChk(String memberEmail) {
+		return membermapper.memberEChk(memberEmail);
+	}
+	public MemberVO findPw(MemberVO vo) {
+		return membermapper.findPw(vo);
+	}
 
 	public List<MemberVO> memberList(SearchCriteriaMem scmem) {
 		List<MemberVO> list = null;
