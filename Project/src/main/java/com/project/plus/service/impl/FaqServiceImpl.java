@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.project.plus.domain.FaqVO;
+import com.project.plus.domain.MemberVO;
 import com.project.plus.mapper.FaqMapper;
 import com.project.plus.service.FaqService;
 
@@ -32,6 +34,26 @@ public class FaqServiceImpl implements FaqService{
 
 	@Override
 	public List<FaqVO> getFaqList(FaqVO vo) {
+		return mapper.getFaqList(vo);
+	}
+
+	@Override
+	public FaqVO editFaqForm(FaqVO vo) {
+		return mapper.editFaqForm(vo);
+	}
+
+	@Override
+	public FaqVO getFaq(FaqVO vo) {
+		return mapper.getFaq(vo);
+	}
+
+	@Override
+	public FaqVO faqForm(FaqVO vo) {
+		return mapper.faqForm(vo);
+	}
+
+	@Override
+	public Object getFaqList(FaqVO vo, MemberVO user) {
 		return mapper.getFaqList(vo);
 	}
 }
