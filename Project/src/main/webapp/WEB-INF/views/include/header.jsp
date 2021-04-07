@@ -117,6 +117,7 @@
 				               </c:when>
 				               <c:otherwise>
 	                        <li class="dropli"><a href="memberUpdate?memberNum=${user.memberNum }">My Page</a></li>
+				<li class="dropli"><a href="inquiry?memberNum=${user.memberNum}">나의1:1문의(임시)</a>
 				               </c:otherwise>
 			               </c:choose>
                         </form>
