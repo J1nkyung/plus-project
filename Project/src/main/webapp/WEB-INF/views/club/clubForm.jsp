@@ -301,8 +301,8 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 		if (checkInput()) {
 			if (isNumber()) {
 				if (compareDate()) {
-		   $('.clubinfo-form').append('<input type="hidden" name="clubLatitude" value="' + lat2 + '"/>');
-			 $('.clubinfo-form').append('<input type="hidden" name="clubLongitude" value="' + lng2 + '"/>'); 
+	/* 	   $('.clubinfo-form').append('<input type="hidden" name="clubLatitude" value="' + lat2 + '"/>');
+			 $('.clubinfo-form').append('<input type="hidden" name="clubLongitude" value="' + lng2 + '"/>');  */
 					document.getElementById('frm').submit();
 					alert("모임 등록이 완료되었습니다!")
 					}

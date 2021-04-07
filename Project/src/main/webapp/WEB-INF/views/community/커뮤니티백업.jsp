@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
@@ -10,12 +9,12 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <title>커뮤니티</title>
 <style>
 body {
 	font-size: 16px !important;
-	background-color: #f5f4f0;
+	background-color: #f5f4f4;
 }
 
 .communityContainer {
@@ -30,7 +29,6 @@ body {
 	flex-direction: column;
 	border: 1px solid rgba(0, 0, 0, 0.171);
 	border-radius: 5px;
-	margin:10px;
 }
 
 .contentBox {
@@ -86,14 +84,10 @@ p {
         /*인증사진 위치 및 내용*/
         #certificationPic{
             /* text-align: center; */
-            height: auto;
-            width: 500px;
+            padding-left: 4%;
+            width: 70%;
+            height: 30%;
             overflow: hidden;
-        }
-        
-        #certificationPic img{
-        max-width:100%;
-        height:auto;
         }
 
         #certificationContent{
@@ -198,7 +192,7 @@ textarea {
 }
 
 #showCommBtn {
-	margin: 50px 0 0 4%;
+	margin: 50px 0 0 10px;
 	cursor: pointer;
 	display: inline;
 	display: flex;
@@ -234,7 +228,6 @@ textarea {
   padding: 30px 16px 5px 16px;
   font-size: 16px;
   border: none;
-  cursor:pointer;
 /*   clear:both;
    position:relative;
    left:300px; */
@@ -270,9 +263,6 @@ border-radius:5px;
 .dropdowns > ul > li:hover > ul {
   display: block;
 }
-.dropdowns > ul > li:active > ul {
-  display: block;
-}
 .dropdowns a{
 color:white;
 }
@@ -280,20 +270,6 @@ color:white;
 color:white;
 }
 
-.moreBtn{
-margin:20px 0 50px 10%;
-width:60%;
-border-radius:5px;
-border-style:none;
-box-shadow: 1px 1px 1px grey;
-background-color:#001eff;
-color:white !important;
-font-weight:bold;
-height:35px;
-}
-.moreBtn:focus{
-border:0;
-outline:0;
 .reComm-list {
     margin: 40px 0 0 40px;
 }
@@ -315,11 +291,7 @@ outline:0;
                      <img src="${path}/resources${board.memberPic}" id="userPic"
                         onerror="this.src='${path}/resources/img/default_pic.png'" />
                      <p id="boardNickname">${board.memberNickname}</p>
-                     <div id="boardRegdate">
-                     	<fmt:formatDate value="${board.boardRegDate}" var="changedDate"
-							pattern="yyyy. MM. dd HH:mm:ss" />
-						${changedDate}
-                     </div>
+                     <div id="boardRegdate">${board.boardRegDate}</div>
 
                      <c:set var="writer" value="${board.memberNum }" />
                      <c:if test="${writer eq user.memberNum}">
@@ -327,14 +299,10 @@ outline:0;
                         <div class="dropdowns">
                            <ul>
                               <li>
-                                 <div class="dropbtn">
+                                 <button class="dropbtn">
                                     <img id="dropmenu" src="${path }/resources/img/menu.png">
-                                 </div>
+                                 </button>
                                  <ul>
-                                    <button type="submit" id="btnUp"><a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>
-                                    </button>
-                                    <button type="submit" id="btnDel"><a href="${path}/deleteBoard?boardNum=${board.boardNum}">삭제</a>
-                                    </button>
                                <%--      <button type="submit" id="btnUp">
                                        <a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>
                                     </button>
@@ -350,8 +318,8 @@ outline:0;
                   </div>
                   <div class="certification">
                      <div id="certificationPic">
-                        <img src="${path}/resources${board.boardPic}"
-                           onerror="this.style.display='none';">
+                        <img src="${board.boardPic}"
+                           onerror="this.style.display='none';" style="height: 70%;">
                      </div>
                      <p id="certificationContent">${board.boardContent}</p>
                   </div>
@@ -411,136 +379,6 @@ outline:0;
 </body>
 <script>
 
-//수정, 삭제 시 확인 자바스크립트
-	/* $(document).ready(function(){
-			var formObj = $("form[name='updateForm']");
-			
-			$("#btnUp").on("click", function(){
-				formObj.attr("action", "updateView");
-				formObj.attr("method", "get");
-				formObj.submit();				
-			})
-			
-			$("#btnDel").on("click", function(){
-				formObj.attr("action", "deleteBoard");
-				formObj.attr("method", "post");
-				formObj.submit();
-			})
-					
-	}) */
-
-$(document).ready(function(){
-	var formObj = $("form[name='updateForm']");
-	
-})
-	 
-$(function(){
-	$(document).on('click','#btnUp',function(){
-		if(confirm("수정하시겠습니까?") == true){
-		formObj.attr("action", "updateView");
-		formObj.attr("method", "get");
-		}else{
-			return false;
-		}
-	})
-});
-	
-$(function(){
-	$(document).on('click','#btnDel',function(){
-		if(confirm("정말 삭제하시겠습니까?") == true){
-		formObj.attr("action", "deleteBoard");
-		formObj.attr("method", "post");
-		}else{
-			return false;
-		}
-	})
-});
-	
-	
-	
-	
-let contentCnt = '${contentCount}'
-	console.log('콘텐츠 개수'+contentCnt)
-
-	$(function(){
-		 if(contentCnt<=5){
-			 console.log("콘텐츠 카운트 체크")
-			 $('#moreContentBtn').css("display","none");
-		 }else{
-			 console.log("콘텐츠 5개 이상")
-		 }
-		 
-		 //개수제한
-		 let startIndex = 0;
-		 // 더보기 버튼 클릭 시 보여줄 값
-		 let step = 5;
-		
-		 $('#moreContentBtn').click(function(){
-			 startIndex += step;
-			 console.log('시작넘버'+startIndex);
-			 getMoreContents(startIndex); //밑에 있는 함수명
-		 });
-		 
-		 // 더보기
-		 function getMoreContents(startIndex){
-			 $.ajax({
-				 type: "post",
-				 async: "true",
-				 dataType : "json",
-				 data: JSON.stringify({
-					 clubNum:'${club.clubNum}',
-					 startIndex:startIndex
-				 }),
-				 contentType: "application/json",
-				 url: "getMoreContents", //controller주소
-				 success: function(data) {
-					let newContentList = "";
-					 
-					let compareUser = '${writer eq user.memberNum}';
-					let path = '${path}';
-					
-					 for(i = 0; i < data.length; i++){
-				 let newContent = '<div class="inlineContent">';
-					 newContent += '<div class="contentBox">';
-					 newContent += '<form role="form" name="updateForm" method="post">';
-					 newContent += '<div class="userInfo">';
-					 newContent += '<input type="hidden" name="boardNum" value="'+ data[i].boardNum +'">';
-					 newContent += '<img src="' + path +'/resources'+ data[i].memberPic +'" id="userPic" onerror="this.src=\'' + path +'/resources/img/default_pic.png\'" />';
-					 newContent += '<p id="boardNickname">' + data[i].memberNickname + '</p>';
-					 newContent += '<div id="boardRegdate">' + data[i].boardRegDate + '</div>';
-					 newContent += '<c:set var="writer" value="' + data[i].memberNum + '" />';
-					 newContent += '<c:if test="' + compareUser +'">';
-					 newContent += '<div class="dropdowns">';
-					 newContent += '<ul><li><button class="dropbtn"><img id="dropmenu" src="' + path +'/resources/img/menu.png"></button>';
-					 newContent += '<ul><button type="submit" id="btnUp"><a href="' + path +'/updateView?boardNum=' + data[i].boardNum + '">수정</a></button>';
-					 newContent += '<button type="submit" id="btnDel"><a href="' + path +'/deleteBoard?boardNum=' + data[i].boardNum + '">삭제</a></button>';
-					 newContent += '</ul></li></ul></div></c:if></div>';
-					 newContent += '<div class="certification"><div id="certificationPic">';
-					 newContent += '<img src="' + path + '/resources' + data[i].boardPic + '" onerror="this.style.display=\'none\';"></div>';
-					 newContent += '<p id="certificationContent">' + data[i].boardContent + '</p>';
-					 newContent += '</div></form>';
-					 newContent += '<div id="showCommBtn">';
-					 newContent += '<img id="commImg" src="' + path +'/resources/img/message.png" />';
-					 newContent += '<div id="commList" onclick="getComments('+ data[i].boardNum + ')">댓글(' + data[i].commentsCount + '개)</div></div></div></div>';
-					 newContentList += newContent;
-					 
-					 }
-					 
-					 //부모태그에다가 작성한 html 태그를 append 시킨다
-					 $(newContentList).appendTo($(".newContent")).slideDown();
-					 
-					 //더이상 볼 리뷰 없으면 더보기버튼 삭제
-					 if(startIndex + step > contentCnt){
-		        			$('#moreContentBtn').remove();
-		        		}
-				 }
-			 })
-		 }
-		
-	})
-	
-	
-	
 // 나중에 session 멤버 번호를 가져와야함 
 let mNum = '${user.memberNum}';
 let userNickname = '${user.memberNickname}';
@@ -617,7 +455,7 @@ $(function(){
 			}) 
 		
 	})
-});	// function 끝 
+});
 
 
 // 대댓글 삭제 
@@ -657,12 +495,12 @@ function showReComments(cNum){
 	// 대댓글 접었다 펴기 
 	$showReCommBtn = $(event.target);
 	$showReCommBtn.toggleClass('selected');
-	let target = $showReCommBtn.closest('.userComment').children('.reComm-wrap');
+	let target = $showReCommBtn.parent().parent().children('.reComm-wrap');
 		if(!$showReCommBtn.hasClass('selected')){
 			target.remove();	
 	} else{
 		console.log('댓글번호 : ' + cNum);
-		let userComm = event.target.closest('.userComment');
+		let userComm = event.target.parentNode.parentNode;
 		
 		// 대댓글 wrap 만들기 
 		let reCommWrap = document.createElement('div');
@@ -740,15 +578,16 @@ function getComments(bNum){
 	
 	$showCommBtn = $(event.target);
 	$showCommBtn.toggleClass('selected');
-	let inlineContent = $showCommBtn.closest('.inlineContent');
+	let inlineContent = $showCommBtn.parent().parent().parent();
 	if(!$showCommBtn.hasClass('selected')){
 		inlineContent.children('.commentBox').remove();
 		inlineContent.children('.comments-wrap').remove();
 
 	} else{
 	
-		//inlineContent 찾기 
-	let pnode = event.target.closest('.inlineContent');
+	let pnode = event.target.parentNode.parentNode.parentNode;
+	
+	// contentBox
 	console.log(pnode);
 	
 	// 댓글 입력 부분 
@@ -839,9 +678,7 @@ function insertComment(bNum){
 		
 		
 		
-		//let pnode = event.target.parentNode.parentNode.nextElementSibling;
-		let pnode = event.target.closest('.commentBox').nextElementSibling;
-		
+		let pnode = event.target.parentNode.parentNode.nextElementSibling;
 		console.log(pnode);	//comments-wrap
 		
 		let area = event.target.parentNode.getElementsByTagName('textArea')[0];
@@ -1073,13 +910,6 @@ function updateComment(cNum){
 				            		console.log("댓글삭제완료");
 				            		alert("댓글이 삭제되었습니다!");
 				            		pnode.innerHTML="";
-				            		// 댓글 개수 감소 
-				            		console.log(pnode)
-				            		let showBtn = pnode.parentNode.parentNode.firstElementChild.lastElementChild;
-				            		console.log(showBtn)
-				            		let count = showBtn.lastElementChild;	// a태그 
-				            		let calc = "-";
-				            		changeCount(calc, count); 
 				            		
 				            	} else {
 				            		console.log("댓글삭제실패");
@@ -1092,7 +922,14 @@ function updateComment(cNum){
 				
 		}
 	
-	
+		// 댓글 개수 감소 
+		console.log(pnode)
+		let showBtn = pnode.parentNode.parentNode.firstElementChild.lastElementChild;
+		console.log(showBtn)
+		let count = showBtn.lastElementChild;	// a태그 
+		console.log(count.lastElementChild)
+		let calc = "-";
+		changeCount(calc, count); 
 	}
 		
 	

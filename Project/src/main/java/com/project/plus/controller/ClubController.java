@@ -242,8 +242,6 @@ public class ClubController {
 		@RequestMapping("/getCurrentClubList")
 		public String getCurrentClubList(ClubVO vo, Model model, HttpSession session) {
 			System.out.println("컨트롤러 입성 ~! ");
-//			vo.setClubLeader("달나라에서온토끼"); 임시 
-
 			
 			MemberVO user = (MemberVO) session.getAttribute("user");
 			if (user != null) {
@@ -276,7 +274,6 @@ public class ClubController {
 			model.addAttribute("selectCurClubList", result);
 			
 			//참여중인 모임 
-//			vo.setMemberNum(5); 임시 값 넣음.
 			vo.setMemberNum(user.getMemberNum());
 			
 			int milli_seconds_per_days = 24 * 60 * 60 * 1000; // 하루 세기
@@ -332,13 +329,9 @@ public class ClubController {
 		@ResponseBody
 		public String outClub(ClubVO vo , MemberVO mvo, Model model, HttpSession session, HttpServletRequest request) {
 			String  chkmsg= "";
-//			int clubNum = Integer.parseInt(request.getParameter("clubNum"));
 			System.out.println("나가기 컨트롤러" + " / clubNum : " + vo.getClubNum() + " clubLeader  / " + vo.getClubLeader());
 			
 			ClubVO cvo = clubService.clubOut(vo);
-//			cvo.setMemberNum(5); mvo.setMemberNum(5);
-			
-			
 			MemberVO user = (MemberVO) session.getAttribute("user");
 			if (user != null) {
 				cvo.setMemberNum(user.getMemberNum());
@@ -416,9 +409,6 @@ public class ClubController {
 				System.out.println("없다 ");
 				ClubVO cvoSend = clubService.selectClub(cvo);
 				model.addAttribute("cvoSend", cvoSend);
-		//		model.addAttribute("clubNumArr", request.getParameter("clubNumArr"));
-		//		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(vo));
-//			}
 			return "club/payClub"; 
 		}
 		
@@ -437,7 +427,7 @@ public class ClubController {
 			Integer clubNumm = vo.getClubNum();
 			
 			if (clubNumm != null  ) {
-				if ((currentPoint == 0) && ((currentPoint - totalFee) < 0)) {
+				if ((currentPoint == 0) || ((currentPoint - totalFee) < 0)) {
 					System.out.println("포인트가 부족합니다.");
 					msg = "포인트가 부족합니다. 마이페이지에서 포인트 충전 가능합니다.";
 				} else {
