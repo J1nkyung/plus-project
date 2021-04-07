@@ -82,8 +82,10 @@
 .memberThumb{
    height:50px;
    width:50px;
-   background-color:red;
+  /*  background-color:red; */
+  border:1px solid red;
    border-radius:50%;
+   display:inline;
 }
 </style>
 <title>Plus! My page</title>
@@ -99,18 +101,22 @@
                       
                       <div class="navbar-nav flex-column">
                          <div class="tr nav-link p-3">
-                            <span class="clubName">${club.clubName }보노보노는 그만! ppt 만들기</span>
+                            <span class="clubName">${club.clubName}</span>
                          </div>
                          
                          <div class="tr nav-link p-3">
                             <span class="th">활동 기간</span><br/>
-                            <span class="td">${club.clubStartDate} ${club.clubEndDate}2021/01/01 ~ 2021/05/31</span>
+                           <span class="td">${club.clubStartDate} ~ ${club.clubEndDate}</span>
                          </div>
                          <div class="tr nav-link p-3 Member">
-                            <span class="th">활동중인 멤버</span><br/>
+                            <span class="th">참여중인 멤버</span><br/>
                             <div id="currMem">
-                               <div class="memberThumb"></div>
-                               <div class="memberNickname"></div>
+                        <c:forEach items="${apply}" var="applys">
+                            <div class="memberThumb"><img class="memberThumb" src="${path}/resources${applys.memberPic}" onerror="this.src='${path}/resources/img/default_pic.png'"/></div>
+                             <div class="memberNickname">${applys.memberNickname }</div> 
+                            
+                           
+                        </c:forEach>
                             </div>
                          </div>
                          

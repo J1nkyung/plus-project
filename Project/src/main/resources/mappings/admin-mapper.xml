@@ -3,7 +3,7 @@
 
 <mapper namespace="com.project.plus.mapper.AdminMapper">
 
-	<resultMap id="adminResult" type="inquiry">
+<resultMap id="adminResult" type="inquiry">
 		<id property="inquiryNum" column="inquiry_num" />
 		<result property="memberNum" column="member_num" />
 		<result property="inquiryTitle" column="inquiry_title" />
@@ -16,27 +16,113 @@
 		<result property="memberEmail" column="member_email"/>
 		<result property="memberNickname" column="member_nickname" />
 	</resultMap>
+	
+	<resultMap id="adminPayResult" type="payment">
+		<id property="payNum" column="pay_num"/>
+		<result property="memberNum" column="member_num" />
+		<result property="clubNum" column="club_num" />
+		<result property="payAmount" column="pay_amount" />
+		<result property="payMethod" column="pay_method" />
+		<result property="payDate" column="pay_date" />
+		<result property="memberNickname" column="member_nickname"/>
+		<result property="clubName" column="club_name" />
+	</resultMap>
+	
+	<resultMap id="adminClubResult" type="club">
+		<id property="clubNum" column="club_num" />
+		<result property="clubName" column="club_name" />
+		<result property="clubLeader" column="club_leader" />
+		<result property="clubTown" column="club_town" /> 
+		<result property="clubKind" column="club_kind" />	<!-- 가치더하기1, 도움더하기2 -->
+		<result property="clubCategory" column="club_category" />
+		<result property="clubOnOff" column="club_onoff" />
+		<result property="clubStartDate" column="club_startdate" />
+		<result property="clubEndDate" column="club_enddate" />
+	</resultMap>
+	
 
 	<delete id="deleteAdminInquiry">
 		DELETE FROM INQUIRY WHERE INQUIRY_NUM=#{inquiryNum}
 	</delete>
+
+	<select id="answerInquiryForm" resultMap="adminResult">
+		SELECT inquiry_num, inquiry_title, MEMBER.member_num, inquiry_content, inquiry_type, inquiry_state, 
+		inquiry_answer, inquiry_regdate, member_email, member_nickname, inquiry_answer_date
+		FROM INQUIRY JOIN MEMBER USING (member_num) WHERE INQUIRY_NUM=#{inquiryNum}
+	</select>
 	
-	
-	<!-- 관리자 : 답변 작성 
+	<!-- 관리자 : 답변 작성   -->
 	<update id="answerInquiry">
-		UPDATE INQUIRY SET INQUIRY_ANSWER=#{inquiryAnswer}, INQUIRY_STATE='답변완료' WHERE INQUIRY_NUM=#{inquiryNum} 
-	</update> -->
-	
-	<!-- 관리자 : 답변 작성 테스트중  -->
-	<update id="answerInquiry">
-		UPDATE INQUIRY SET MEMBER_NUM=1, INQUIRY_ANSWER=#{inquiryAnswer}, INQUIRY_STATE='답변완료',
-		INQUIRY_ANSWER_DATE=now() WHERE INQUIRY_NUM=#{inquiryNum} 
+		UPDATE INQUIRY SET INQUIRY_ANSWER=#{inquiryAnswer}, INQUIRY_STATE='답변완료',
+		INQUIRY_ANSWER_DATE=now() WHERE INQUIRY_NUM=#{inquiryNum}
 	</update>
 	
 	<select id="getAdminChart" resultType="Integer">
-		SELECT count(*) FROM member;
+		SELECT count(*) FROM member
 	</select>
 	
+	<select id="getAdminVisit" resultType="Integer">
+		SELECT count(*) FROM visit
+	</select>
+	
+	<select id="getAdminDayVisit" resultType="Integer">
+		SELECT count(*) FROM visit WHERE DATE_FORMAT(V_DATE, '%y-%m-%d') = DATE_FORMAT(NOW(), '%y-%m-%d')
+	</select>
+	<select id="getVisit_1" resultType="Integer">
+		SELECT count(*) FROM VISIT WHERE DATE_FORMAT(v_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 1 day, '%y-%m-%d')
+	</select>
+	<select id="getVisit_2" resultType="Integer">
+		SELECT count(*) FROM VISIT WHERE DATE_FORMAT(v_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 2 day, '%y-%m-%d')
+	</select>
+	<select id="getVisit_3" resultType="Integer">
+		SELECT count(*) FROM VISIT WHERE DATE_FORMAT(v_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 3 day, '%y-%m-%d')
+	</select>
+	<select id="getVisit_4" resultType="Integer">
+		SELECT count(*) FROM VISIT WHERE DATE_FORMAT(v_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 4 day, '%y-%m-%d')
+	</select>
+	<select id="getVisit_5" resultType="Integer">
+		SELECT count(*) FROM VISIT WHERE DATE_FORMAT(v_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 5 day, '%y-%m-%d')
+	</select>
+	<select id="getVisit_6" resultType="Integer">
+		SELECT count(*) FROM VISIT WHERE DATE_FORMAT(v_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 6 day, '%y-%m-%d')
+	</select>
+	
+	<select id="getCateStudy" resultType="Integer">
+		SELECT count(*) FROM club where club_category = '공부'
+	</select>
+	<select id="getCateExcer" resultType="Integer">
+		SELECT count(*) FROM club where club_category = '운동'
+	</select>
+	<select id="getCateHabit" resultType="Integer">
+		SELECT count(*) FROM club where club_category = '습관'
+	</select>
+	<select id="getCateHobby" resultType="Integer">
+		SELECT count(*) FROM club where club_category = '취미'
+	</select>
+	
+	<select id="getJoinToday" resultType="Integer">
+		SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')=DATE_FORMAT(NOW(), '%y-%m-%d')
+	</select>
+	<select id="getJoin_1" resultType="Integer">
+		SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 1 day, '%y-%m-%d')
+	</select>
+	<select id="getJoin_2" resultType="Integer">
+		SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 2 day, '%y-%m-%d')
+	</select>
+	<select id="getJoin_3" resultType="Integer">
+		SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 3 day, '%y-%m-%d')
+	</select>
+	<select id="getJoin_4" resultType="Integer">
+		SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 4 day, '%y-%m-%d')
+	</select>
+	<select id="getJoin_5" resultType="Integer">
+		SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 5 day, '%y-%m-%d')
+	</select>
+	<select id="getJoin_6" resultType="Integer">
+		SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 6 day, '%y-%m-%d')
+	</select>
+	
+
 	
 	<!-- 문의글 개별 상세 조회 -->
 	<select id="getAdminInquiry" resultMap="adminResult">
@@ -45,12 +131,53 @@
 		FROM INQUIRY JOIN MEMBER USING (member_num) WHERE INQUIRY_NUM=#{inquiryNum}
 	</select> 
 	
-	<!-- 관리자용 : 모든 회원이 쓴 문의글 출력 -->
-	<select id="getAdminInquiryList" resultMap="adminResult">
-		SELECT * FROM INQUIRY
-		ORDER BY INQUIRY_REGDATE DESC
+	<!--  관리자용 : 모든 회원이 쓴 문의글 출력  with 페이징-->
+	<select id="getAdminInquiryList" resultMap="adminResult" parameterType="com.project.plus.domain.CriteriaAdmin">
+		SELECT inquiry_num, member_nickname, inquiry_type, inquiry_title, inquiry_state, inquiry_regdate
+		FROM (SELECT inquiry_num, inquiry_title, MEMBER.member_num, inquiry_type, inquiry_state, inquiry_regdate, member_nickname, 
+		row_number() OVER (ORDER BY INQUIRY_REGDATE DESC) AS rNum
+		FROM INQUIRY JOIN MEMBER USING (member_num)) ADINQU
+		WHERE rNum BETWEEN #{rowStart} AND #{rowEnd} ORDER BY inquiry_regdate DESC
+	</select>
+	
+	<!-- 페이징용 전체 문의글 개수 세기 -->
+	<select id="adminInquiryListCount" resultType="int">
+		SELECT COUNT(inquiry_num) FROM inquiry
+	</select>
+	
+	<!-- 결제내역 리스트 페이징-->
+	<select id="adminPayList" resultMap="adminPayResult" parameterType="com.project.plus.domain.CriteriaAdmin">
+		SELECT pay_num, member_num, member_nickname, club_name, pay_method, pay_date, pay_amount
+		FROM (SELECT PAYMENT.pay_num, MEMBER.member_num, MEMBER.member_nickname, CLUB.club_name, PAYMENT.pay_method, PAYMENT.pay_date, PAYMENT.pay_amount,
+		row_number() OVER (ORDER BY pay_num DESC) AS rNum
+		FROM PAYMENT
+		LEFT JOIN CLUB ON CLUB.club_num = PAYMENT.club_num
+		LEFT JOIN MEMBER ON PAYMENT.member_num = MEMBER.member_num) ADPAY
+		WHERE rNum BETWEEN #{rowStart} AND #{rowEnd} ORDER BY pay_num DESC
 	</select> 
-
+	
+	<select id="adminPayListCount" resultType="int">
+		SELECT COUNT(pay_num) FROM PAYMENT
+	</select>
+	
+	
+	<!-- 모든 모임  -->
+	<select id="adminClubList" resultMap="adminClubResult" parameterType="com.project.plus.domain.CriteriaAdmin">
+		SELECT club_num, club_category, club_name, club_leader, club_town, club_kind, club_onoff, club_startdate, club_enddate
+		FROM (SELECT club_num, club_category, club_name, club_leader, club_town, club_kind, club_onoff, club_startdate, club_enddate,
+		row_number() OVER (ORDER BY club_num DESC) AS rNum
+		FROM CLUB) ADCLUB
+        WHERE rNum BETWEEN #{rowStart} AND #{rowEnd} ORDER BY club_num DESC
+    </select>
+	
+	<select id="adminClubListCount" resultType="int">
+		SELECT COUNT(club_num) FROM club
+	</select>
+	
+	<!-- 모임 삭제  // 여기에 cascade 관련이 들어가야 하는데 모든 걸 다 cascade 할것인지.. -->
+	<delete id="deleteAdminClub">
+		DELETE FROM CLUB WHERE CLUB_NUM=#{clubNum}
+	</delete>
 	
 	<!-- 관리자 입장에서 카테고리별 문의글 검색기능? 넣어야하나 말아야하나? 이걸 만들면 관리자용 1:1문의에서 카테고리별로 볼수있는 드롭다운을 또 추가해서 새로 만들어야함
 	<select id="getInquiryTypeList" resultMap="inquiryResult">

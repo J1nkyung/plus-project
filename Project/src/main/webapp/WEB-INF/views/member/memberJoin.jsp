@@ -149,27 +149,53 @@ function goSubmit() {
         var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
         if (emailVal.match(regExp) != null) {
            // alert("적합한 메일 형식입니다.")
-            
-          //  function emailsend(){
-           //     $(".mail_check_button").click(function(){
-                    alert("입력하신 메일로 인증번호가 발송되었습니다. 메일함을 확인해주세요.")
-                    	$('#mail_check_input').focus();
-                    var email = $(".mail_input").val();        // 입력한 이메일
-                    var cehckBox = $(".mail_check_input");        // 인증번호 입력란
-                     var boxWrap = $(".mail_check_input_box"); 
-                             $.ajax({
-                                 
-                                 type:"GET",
-                                 url:"mailCheck?email=" + email,
-                                 success:function(num1){
-                                         console.log("data : " + num1);
-                                         boxWrap.attr("class", "mail_check_input_box_true int1"); 
-                                         code = num1;
-                                         
-                                 }
-                             });
-            //    });
-       //     };
+
+        	   
+       var memberEmail = $('#email').val();
+ 	   var data = {memberEmail : memberEmail}
+ 	   
+ 	   $.ajax({
+ 		   type: "post",
+ 		   url : "memberEmailCheck",
+ 		   data : data,
+ 		   success : function(result){
+ 			   console.log("성공 여부"+result);
+ 		 	if(result !='fail'){
+ 		 	  alert("입력하신 메일로 인증번호가 발송되었습니다. 메일함을 확인해주세요.")
+          	$('#mail_check_input').focus();
+          var email = $(".mail_input").val();        // 입력한 이메일
+          var cehckBox = $(".mail_check_input");        // 인증번호 입력란
+           var boxWrap = $(".mail_check_input_box"); 
+                   $.ajax({
+                       type:"GET",
+                       url:"mailCheck?email=" + email,
+                       success:function(num1){
+                               console.log("data : " + num1);
+                               boxWrap.attr("class", "mail_check_input_box_true int1"); 
+                               code = num1;
+                       }
+                   });
+                   
+ 		 	}else{
+ 		       if(confirm("이미 등록된 이메일입니다.\n확인 버튼을 클릭하시면 비밀번호 찾기로 이동합니다") == true){
+ 		    	   location="findPw";
+ 		    	   return true;
+ 		       }
+ 		        else{
+ 		            return false;
+ 		        }
+ 		 	}
+ 		   
+ 		   }//success종료
+ 	   }); //ajax종료
+		  //      alert("형식에 맞는 닉네임입니다")
+                  
+		  
+		  
+	
+       
+       
+       
         } else {
             alert('형식에 맞게 입력해주세요 ex)plus@plus.com')
       	  $('#email').focus();

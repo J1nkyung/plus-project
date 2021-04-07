@@ -35,6 +35,12 @@ public class ApplyServiceImpl implements ApplyService {
 	public List<ApplyVO> checkApplyClubByMemberNum(ApplyVO vo) {
 		return applyMapper.checkApplyClubByMemberNum(vo);
 	}	
+	
+	public List<ApplyVO> applyMember(int clubNum) {
+		return applyMapper.applyMember(clubNum);
+	}
+
+
 
 }
 //정연추가 20210326

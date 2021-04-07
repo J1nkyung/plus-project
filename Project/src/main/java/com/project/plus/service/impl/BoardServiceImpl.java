@@ -1,6 +1,7 @@
 package com.project.plus.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,15 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println("Del service impl 진입 ");
 		mapper.deleteBoard(boardNum);
 		
+	}
+
+	@Override
+	public List<BoardVO> getMoreContents(Map<String, Integer> map) {
+		return mapper.getMoreContents(map);
+	}
+
+	@Override
+	public int getContentCount(int clubNum) {
+		return mapper.getContentCount(clubNum);
 	}
 }

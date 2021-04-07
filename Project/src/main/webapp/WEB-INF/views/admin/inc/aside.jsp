@@ -32,36 +32,48 @@
                     <div class="col-lg-3 sidebar fixed-top">
                      <a href="#" class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4">ADMIN PAGE</a>
                      <div class="bottom-border pb-3">
-                         <img class="rounded-circle mr-3" src="../../../../resources/img/admin.jpg" alt="" width="200px" height="200px">
+                         <img class="rounded-circle mr-3" src="${path}/resources/img/admin.jpg" alt="" width="200px" height="200px">
                          <div class="user-name">Admin</a>
                      </div>
                      <ul class="navbar-nav flex-column mt-4">
                         <!-- 회원 관리 -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link current">
+                            <a href="memberListPage" class="nav-link text-white p-3 mb-2 sidebar-link current">
                                 <i class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
                             </a>
                         </li>
                         <!-- 모임 관리 -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="adminClub" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-plus text-white fa-lg mr-3"></i>모임 관리
                             </a>
                         </li>
                        
                         <!-- 문의 관리 -->
                         <li class="nav-item">
-                            <a href="adminInquiry.do" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="adminInquiry" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-question-circle text-white fa-lg mr-3"></i>문의 관리
+                            </a>
+                        </li>
+                          <!-- 공지 관리 -->
+                        <li class="nav-item">
+                            <a href="announce" class="nav-link text-white p-3 mb-2 sidebar-link">
+                                <i class="fas fa-question-circle text-white fa-lg mr-3"></i>공지 관리
                             </a>
                         </li>
                         <!-- 결제내역 관리 -->
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="adminPay" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-coins text-white fa-lg mr-3"></i>결제내역 관리
                             </a>
                         </li>
-                        
+                        <!-- 관리자 차트 -->
+                        <li class="nav-item">
+                            <a href="adminChart" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            
+                                <i class="fas fa-question-circle text-white fa-lg mr-3"></i>차트 관리
+                            </a>
+                        </li>
                         
 
 
