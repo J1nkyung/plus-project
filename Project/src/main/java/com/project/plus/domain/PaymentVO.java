@@ -15,22 +15,6 @@ public class PaymentVO {
 	private String memberNickname;
 	private String clubName;
 	
-	public String getClubName() {
-		return clubName;
-	}
-	public void setClubName(String clubName) {
-		this.clubName = clubName;
-	}
-	public String getMemberNickname() {
-		return memberNickname;
-	}
-	public void setMemberNickname(String memberNickname) {
-		this.memberNickname = memberNickname;
-	}
-	// 현정 추가 0404
-	private String memberNickname;
-	private String clubName;
-	
 
 	
 	public int getPayNum() {

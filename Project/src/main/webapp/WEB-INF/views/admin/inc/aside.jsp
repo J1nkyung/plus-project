@@ -13,147 +13,17 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<<<<<<< HEAD
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="${path}/resources/css/comm-aside.css">
-=======
-    <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="${path}/resources/icon/themify-icons/themify-icons.css">
-    <!-- fontawesome CSS -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
-  
-<title>Plus! Admin</title>
-</head>
-<body>
-  <!-- navbar -->
-    <nav class="navbar navbar-expand-md navbar-light">
-        <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#sidebar">
-            <span class="navbar-toggle-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="sidebar">
-            <div class="container-fluid">
-                <div class="row">
-                    <!-- sidebar -->
-                    <div class="col-lg-3 sidebar fixed-top">
-                     <a href="#" class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4">ADMIN PAGE</a>
-                     <div class="bottom-border pb-3">
-                         <img class="rounded-circle mr-3" src="${path}/resources/img/admin.jpg" alt="" width="200px" height="200px">
-                         <div class="user-name">Admin</a>
-                     </div>
-                     <ul class="navbar-nav flex-column mt-4">
-                        <!-- 회원 관리 -->
-                        <li class="nav-item">
-                            <a href="memberListPage" class="nav-link text-white p-3 mb-2 sidebar-link current">
-                                <i class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
-                            </a>
-                        </li>
-                        <!-- 모임 관리 -->
-                        <li class="nav-item">
-                            <a href="adminClub" class="nav-link text-white p-3 mb-2 sidebar-link">
-                                <i class="fas fa-plus text-white fa-lg mr-3"></i>모임 관리
-                            </a>
-                        </li>
-                       
-                        <!-- 문의 관리 -->
-                        <li class="nav-item">
-                            <a href="adminInquiry" class="nav-link text-white p-3 mb-2 sidebar-link">
-                                <i class="fas fa-question-circle text-white fa-lg mr-3"></i>문의 관리
-                            </a>
-                        </li>
-                          <!-- 공지 관리 -->
-                        <li class="nav-item">
-                            <a href="announce" class="nav-link text-white p-3 mb-2 sidebar-link">
-                                <i class="fas fa-question-circle text-white fa-lg mr-3"></i>공지 관리
-                            </a>
-                        </li>
-                        <!-- 결제내역 관리 -->
-                        <li class="nav-item">
-                            <a href="adminPay" class="nav-link text-white p-3 mb-2 sidebar-link">
-                                <i class="fas fa-coins text-white fa-lg mr-3"></i>결제내역 관리
-                            </a>
-                        </li>
-                        <!-- 관리자 차트 -->
-                        <li class="nav-item">
-                            <a href="adminChart" class="nav-link text-white p-3 mb-2 sidebar-link">
-                            
-                                <i class="fas fa-question-circle text-white fa-lg mr-3"></i>차트 관리
-                            </a>
-                        </li>
-                        
->>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
 
 <!-- themify icon -->
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/icon/themify-icons/themify-icons.css">
-<!-- fontawesome CSS -->
-<!--   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous"> -->
-<style>
-	
-*{
-       font-family:   'NanumSquare', sans-serif !important;
-   
-}
 
-.wrap {
-   width: 100%;
-   height: 2000px;
-   position: relative;
-   display:flex;
-}
-
-.sidebar {
-   position: sticky;
-   width: 400px;
-   height: 100vh;
-   background-color: #f5f4f4;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
-}
-
-.sidebarContent{
-      width: 300px;
-   margin-left:100px;
-   
-   
-}
-
-.clubMainpic{
-   margin:10px;
-   border-radius:5%;
-}
-
-.tr{
-   background-color:lightgrey;
-   text-align:center;
-   margin:0 10px 20px 10px;;
-   border:1px solid lightgrey;
-   border-radius:5%;
-}
-
-
-.clubName{
-   font-size:20pt;
-   font-weight:bold;
-}
-.th{
-   font-size:14pt;
-   font-weight:bold;
-}
-
-#currMem{
-   min-height:200px;
-}
-.memberThumb{
-   height:50px;
-   width:50px;
-   background-color:red;
-   border-radius:50%;
-}
 </style>
 <title>Plus! My page</title>
 </head>

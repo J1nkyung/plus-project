@@ -29,8 +29,6 @@
 		<result property="clubHeart" column="club_heart" />
 		<result property="clubLatitude" column="club_latitude" />
 		<result property="clubLongitude" column="club_longitude" />
-		<result property="memberLatitude" column="member_latitude" />
-		<result property="memberLongitude" column="member_logitude" />
 	</resultMap>
 
 	<resultMap id="memberResult" type="user">

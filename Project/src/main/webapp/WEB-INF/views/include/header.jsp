@@ -94,19 +94,8 @@
 	                        <li class="dropli"><a href="adminInquiry">관리자</a></li>
 				               </c:when>
 				               <c:otherwise>
-<<<<<<< HEAD
 	                        <li class="dropli"><a href="getCurrentClubList?memberNum=${user.memberNum}">My Page</a></li>
-=======
-	                        <li class="dropli"><a href="memberUpdate?memberNum=${user.memberNum }">My Page</a></li>
-<<<<<<< HEAD
 	                        <li class="dropli"><a href="inquiry?memberNum=${user.memberNum}">나의1:1문의(임시)</a>
-=======
-				<li class="dropli"><a href="inquiry?memberNum=${user.memberNum}">나의1:1문의(임시)</a>
-<<<<<<< HEAD
->>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
-=======
->>>>>>> c23af9c53536feee8c6057763d4e40d9595fca1d
->>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c
 				               </c:otherwise>
 			               </c:choose>
                         </form>

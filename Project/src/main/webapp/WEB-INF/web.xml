@@ -28,16 +28,14 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-<<<<<<< HEAD
+
 	<listener>
         <listener-class>com.project.plus.action.VisitSessionListener</listener-class>
     </listener>
-=======
+
 <listener>
         <listener-class>com.project.plus.action.VisitSessionListener</listener-class>
     </listener>
-
->>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
 
 	<!-- Processes application requests -->
 	<servlet>
