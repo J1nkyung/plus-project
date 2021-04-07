@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -482,6 +483,9 @@ li {
 </body>
 =======
 >>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
+=======
+
+>>>>>>> cf6ac8aab63b403a2c45d67327ea2f5ae00bdcf7
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
@@ -721,7 +725,10 @@ li {
 </html>
 </body>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> bf56ef1 (no message)
 >>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
+=======
+>>>>>>> cf6ac8aab63b403a2c45d67327ea2f5ae00bdcf7
 </html>

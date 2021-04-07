@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -99,6 +100,9 @@ textarea {
 >>>>>>> 7161a5136ca54c2e0afd159888505446f1d6024c
 =======
 <<<<<<< HEAD
+=======
+
+>>>>>>> cf6ac8aab63b403a2c45d67327ea2f5ae00bdcf7
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
