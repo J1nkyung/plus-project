@@ -18,16 +18,12 @@ $(document).ready(function(){
 	
 	$("#btnFind").on("click", function(){
 	//이메일 중복체크 - true
-<<<<<<< HEAD
-		if (emailChk()==false||phoneChk()==false){
-			alert("이메일 체크 메서드 실행  ");
-=======
 		if (emailChk()==false){
-			alert("이메일 오류");
+			//alert("이메일 오류");
 
 		}else{
 			if(phoneChk()==false){
-				alert("휴대폰 오류");
+				//alert("휴대폰 오류");
 			}	
 			else{
 				sendEmail();
@@ -36,7 +32,6 @@ $(document).ready(function(){
 	})
 })//document ready
 			//alert("이메일 체크 메서드 실행  ");
->>>>>>> bf56ef1 (no message)
 	//휴대폰번호 중복체크 - true
 /* 			if(phoneChk()==true){
 				alert("폰번호 체크 메서드 ");
@@ -46,20 +41,8 @@ $(document).ready(function(){
 				alert("폰번호 false");
 				return false;				
 			} */
-<<<<<<< HEAD
-			return false;
-			
-		}else {
-			sendEmail();
-			location="login";//안되는 부분..
-		}
-	})
-	
-})//document ready
-=======
 	
 
->>>>>>> bf56ef1 (no message)
 
 
 //이메일 중복체크 - true
@@ -73,25 +56,16 @@ function emailChk(){
     var memberEmail = $('#email').val();
 	   var data = {memberEmail : memberEmail}
 	   
-<<<<<<< HEAD
-	   $.ajax({
-		   type: "post",
-		   url : "memberEmailCheck",
-=======
 	   var ret = true;
 	   $.ajax({
 		   type: "post",
 		   url : "memberEmailCheck",
 		   async : false,
->>>>>>> bf56ef1 (no message)
 		   data : data,
 		   success : function(result){
 			   console.log("성공 여부"+result);
 		 	if(result !='fail'){
-<<<<<<< HEAD
-=======
 		 		ret = false;
->>>>>>> bf56ef1 (no message)
 		 	 /*  alert("db에 없는 메일주소 ") */
 		       if(confirm("등록되지 않은 이메일입니다\n 확인버튼을 누르시면 회원가입 창으로 이동합니다") == true){
 		    	   location="memberJoin";
@@ -102,11 +76,7 @@ function emailChk(){
 	   }); //ajax종료
 		  //      alert("형식에 맞는 닉네임입니다")
 
-<<<<<<< HEAD
-     return true;
-=======
      return ret;
->>>>>>> bf56ef1 (no message)
     
      } else {
          alert('형식에 맞게 입력해주세요 ex)plus@plus.com')
@@ -127,29 +97,15 @@ function phoneChk(){
     	   var memberPhone = $('#mobile').val();
     	   var data = {memberPhone : memberPhone}
     	   
-<<<<<<< HEAD
-    	   $.ajax({
-    		   type: "post",
-    		   url : "memberPhoneCheck",
-=======
     	   var ret = true;
     	   $.ajax({
     		   type: "post",
     		   url : "memberPhoneCheck",
     		   async : false,
->>>>>>> bf56ef1 (no message)
     		   data : data,
     		   success : function(result){
     			   console.log("성공 여부"+result);
     		 	if(result !='fail'){
-<<<<<<< HEAD
-    		 		alert("등록되지 않은 휴대폰번호입니다 \n다시 한 번 확인해주세요")
-    		 		return false;
-    		 		
-    		 	}else{
-    		 	/* alert("db에 있는 휴대폰번호"); */
-    		 		return true;
-=======
     		 		ret = false;
     		 		alert("등록되지 않은 휴대폰번호입니다 \n다시 한 번 확인해주세요")
     		 		
@@ -157,18 +113,13 @@ function phoneChk(){
     		 	}else{
     		 	/* alert("db에 있는 휴대폰번호"); */
 
->>>>>>> bf56ef1 (no message)
     		 		
     		 	}
     		   
     		   }//success종료
-<<<<<<< HEAD
-    	   }); //ajax종료
-=======
 
     	   }); //ajax종료
     	   return ret;
->>>>>>> bf56ef1 (no message)
     }else{
         alert("입력 형식에 맞지 않습니다. '010-0000-0000'의 형태로 입력해주세요.")
         return false;
@@ -185,13 +136,6 @@ function sendEmail(){
 				memberPhone : $("#mobile").val()
 			},
 			success : function(data) {
-<<<<<<< HEAD
-					
- 			   console.log("성공 여부"+data);
-				location.href="login";
-		
-			},
-=======
 		        alert("입력하신 이메일로 비밀번호가 전송되었습니다")
 
  			   console.log("성공 여부"+data);
@@ -201,7 +145,6 @@ function sendEmail(){
 			error : function(data){
 				alert("error" + data)
 			}
->>>>>>> bf56ef1 (no message)
 		})
 }
 
@@ -212,11 +155,7 @@ function sendEmail(){
 
 <body>
 <!--  action="findPw" method="post" -->
-<<<<<<< HEAD
-    <form name="findPw" role="form">
-=======
     <form name="getPw" role="form" method="post">
->>>>>>> bf56ef1 (no message)
     
   <div id="wrapper">
             <!-- content1-->
@@ -253,11 +192,7 @@ function sendEmail(){
                     <div class="btn_area">
                     
                 <!--  버튼명만 join이고 수정버튼! -->
-<<<<<<< HEAD
-                <button id="btnFind" type="submit"><span>비밀번호찾기</span></button> 
-=======
                 <button id="btnFind" type="button"><span>비밀번호찾기</span></button> 
->>>>>>> bf56ef1 (no message)
                     
                     </div>
             </div>

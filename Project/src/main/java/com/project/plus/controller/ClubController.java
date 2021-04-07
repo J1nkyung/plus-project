@@ -170,8 +170,8 @@ public class ClubController {
 
 	// 회원 모임 수정 폼 
 	@RequestMapping("/getMyClubInfo")
-	public String getMyClubInfo(ClubVO vo, Model model) {
-		vo = clubService.getMyClubInfo(vo);
+	public String getMyClubInfo(@RequestParam("clubNum") int clubNum, ClubVO vo, Model model) {
+		vo = clubService.getMyClubInfo(clubNum);
 
 		// 경로를 자르고 파일명+확장자만 set
 		if (vo.getClubMain_pic() != null) {
