@@ -10,25 +10,25 @@
 	</resultMap>
 
 	<insert id="insertFaq">
-		<![CDATA[
-			INSERT INTO FAQ(FAQ_NUM, FAQ_CATEGORY, FAQ_TITLE, FAQ_CONTENT)
-			VALUES((SELECT NVL(MAX(SEQ), 0) + 1 FROM FAQ),
-			#{faqCategory},#{faqTitle},#{faqContent})
-		]]>
+		insert into faq(faq_category, faq_title, faq_content) values (#{faqCategory},#{faqTitle},#{faqContent})
 	</insert>
 	
 	<update id="updateFaq">
-		<![CDATA[
 			UPDATE FAQ SET FAQ_CATEGORY=#{faqCategory}, FAQ_TITLE=#{faqTitle}, FAQ_CONTENT=#{faqContent} 
 			WHERE FAQ_NUM=#{faqNum}
-		]]>
 	</update>
 	
+	<select id="editFaqForm" resultMap="faqResult">
+		SELECT * FROM FAQ WHERE FAQ_NUM=#{faqNum}
+	</select>
+	
 	<delete id="deleteFaq">
-		<![CDATA[
-			DELETE FAQ WHERE FAQ_NUM=#{faqNum}
-		]]>
+			DELETE FROM FAQ WHERE FAQ_NUM=#{faqNum}
 	</delete>
+	
+	<select id="getFaq" resultMap="faqResult">
+		SELECT * FROM FAQ WHERE FAQ_NUM=#{faqNum}
+	</select>
 	
 	<select id="getFaqList" resultMap="faqResult">
 		SELECT * FROM FAQ
