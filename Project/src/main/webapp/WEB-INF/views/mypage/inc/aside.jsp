@@ -101,8 +101,7 @@
         
         <!-- end of middle section -->
     </nav>
-   	</div>
-
+  
 
     <!— Optional JavaScript —>
     <!— jQuery first, then Popper.js, then Bootstrap JS —>

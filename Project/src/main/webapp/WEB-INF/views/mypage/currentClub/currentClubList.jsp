@@ -23,10 +23,9 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="css/myplusedit.css">
 <!-- progress Bar-->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+<!-- 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
@@ -35,7 +34,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+ -->
 
 <style>
 #clubBar {
@@ -263,7 +262,7 @@ h6{
 							<p style="font-size: 15px; text-align: center;">이루고자하는 목표를
 								더하기 멤버들과 함께 이뤄보세요.🦝🐷🐔🐸🐾</p>
 						</div>
-					<div>
+					</div>
 				</c:if>
 				<c:if test="${selectCurClubList !=null || selectCurClubList != '' }">
 					<c:forEach var="clubList" items="${selectCurClubList }">
@@ -373,14 +372,14 @@ h6{
 							<p style="font-size: 15px; text-align: center;">이루고자하는 목표를
 								더하기 멤버들과 함께 이뤄보세요.🦝🐷🐔🐸🐾</p>
 						</div>
-						<div>
+					</div>
 				</c:if>
 				<c:if test="${selectAttendClubList !=null || selectAttendClubList != '' }">
 					<c:forEach var="attendList" items="${selectAttendClubList }">
 						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="today" />
 						<div class="col-md-10" id="clubBar">
 							<div id="openClubPic">
-								<a href="getCommunity?clubNum=${clubList.memberNum}"/><img src="${path}/resources/img/goal.PNG" width="80%" height="80%" title="커뮤니티입장 GOGO~!" />
+								<a href="getCommunity?clubNum=${clubList.memberNum}"><img src="${path}/resources/img/goal.PNG" width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>
 							</div>
 							<div id="openClubProgress">
 								<h3 id="clubName" ><a href="getClub?clubNum=${clubList.memberNum}" title="모임상세페이지 GOGO~!">${attendList.clubName}   </a>
@@ -411,7 +410,7 @@ h6{
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal">×</button>
 										<h2 style="margin-top: 3%;">모임에서 나가고 싶으시군요!</h2>
-										<h6 style="margin-top: 3%; font-weight:bold"">아래 주의사항을 자세히 읽어주세요💌<h6>
+										<h6 style="margin-top: 3%; font-weight:bold"">아래 주의사항을 자세히 읽어주세요💌</h6>
 										<!-- 사용자 지정 부분② : 타이틀 -->
 									</div>
 										<div class="modal-body">
@@ -441,6 +440,8 @@ h6{
 			</div>
 		</div>
 		<br> <br>
+	</div>
+</div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
