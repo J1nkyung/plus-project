@@ -27,8 +27,8 @@ public class ClubServiceImpl implements ClubService {
 	public List<String> getClubHashtag(int clubNum) {
 		return mapper.getClubHashtag(clubNum);
 	}
-	public ClubVO getMyClubInfo(ClubVO vo) {
-		return mapper.getMyClubInfo(vo);
+	public ClubVO getMyClubInfo(int clubNum) {
+		return mapper.getMyClubInfo(clubNum);
 	}
 	public int updateClub(ClubVO vo) {
 		return mapper.updateClub(vo);
