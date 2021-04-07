@@ -88,6 +88,7 @@ public class BoardController {
 				int bNum = board.getBoardNum();
 				int result = commService.getCommentsCount(bNum);
 				board.setCommentsCount(result);
+				board.setClubNum(clubNum);
 			}
 	    model.addAttribute("boards", list);
 	    

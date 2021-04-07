@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.plus.mapper.NotifyMapper">
-
-	<resultMap id="notifyResult" type="notify">
+<mapper namespace="com.project.plus.mapper.NotificationMapper">
+	<resultMap id="notiResult" type="noti">
 		<id property="notId" column="not_id" />
 		<result property="clubNum" column="club_num" />
 		<result property="memberNum" column="member_num" />
@@ -13,9 +12,29 @@
 		<result property="notMessage" column="not_message" />
 		<result property="notUrl" column="not_url" />
 		<result property="notSendtime" column="not_sendtime" />
+		<result property="notSendtime" column="not_sendtime" />
+		<result property="notCheck" column="not_check" />
 	</resultMap>
 
+<select id="getReadNoti" resultMap="notiResult">
+	SELECT * FROM notification WHERE member_num=#{memberNum} AND not_check = 1;
+</select>
 
+<select id="getUnreadNoti" resultMap="notiResult">
+	SELECT * FROM notification WHERE member_num=#{memberNum} AND not_check = 0;
+</select>
 
+<insert id="insertCommNoti">
+	INSERT INTO notification(club_num, board_num, member_num, not_type, not_message, not_url, not_sendtime, not_check)
+	VALUES(#{clubNum}, #{boardNum}, #{memberNum}, #{notType}, #{notMessage}, #{notUrl}, NOW(), 0)
+</insert>
+
+<update id="updateStatus">
+	UPDATE notification SET not_check=1 WHERE not_id = #{notId}
+</update>
+
+<delete id="deleteNoti">
+	DELETE FROM notification WHERE not_id=#{notId}
+</delete>
 
 </mapper>

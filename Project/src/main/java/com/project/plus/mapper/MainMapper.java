@@ -3,6 +3,7 @@ package com.project.plus.mapper;
 import java.util.List;
 
 import com.project.plus.domain.ClubVO;
+import com.project.plus.domain.MemberVO;
 
 public interface MainMapper {
 	//더하기 만들기
