@@ -1,0 +1,333 @@
+@charset "UTF-8";
+*{
+    font-family: 'NanumSquare', sans-serif !important;
+}
+.clearfix:after { /*날아갈경우 높이 지정*/
+    content:"";
+    display:block;
+    clear:both;
+}
+
+/* header{
+    height:50px;
+} */
+
+#mainImg{
+            /* position: absolute;*/
+        /*     width: 750px;
+            height: 433px;
+            left: 120px;
+            top: 50px;   */    
+            width: 100%;
+            height: 433px;
+            margin-top: 50px;
+            display: inline-block;
+}
+/* 
+#right_con {
+    position: relative;
+    width: 450px;
+} */
+
+.images{
+	   width: 100%;
+     	height: 100%;
+	
+}
+
+aside{
+    position: absolute;
+    top: 50px;
+    left: 900px;
+    height: 1800px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+}
+
+
+#tilde{
+   font-size: 2em;
+}
+
+
+.stickybox{
+    position:sticky;
+    top:0;
+    width: 450px;
+    height: 720px;
+    padding: 24px;
+    border-radius: 3px;
+    box-shadow: rgb(41 42 43 / 16%) 0px 2px 6px -2px;
+    border: 1px solid rgb(255, 255, 255);
+    margin-left:20px;
+    margin-top:30px;
+ /*    padding-top:10px; */
+}
+
+
+#leaderId{
+    position: absolute;
+    top:0px;
+
+}
+
+.titleInfo{
+    width:400px;
+    height: 200px;
+}
+
+#clubname{
+    width: 400px;
+    font-size: 30px;
+    font-weight: 700;
+    padding-top:10px;
+
+}
+.clubInfoTable{
+    position:absolute;
+    width: 487px;
+    height: 700px;
+    top: 10%;
+ padding-top: 20px; 
+    padding-bottom: 5px;
+}
+
+
+#location{
+
+    display:flex;
+    margin-top:30px;
+    width:300px;
+
+    
+}
+#location img{
+
+    width:15px;
+    height: 15px;
+}
+#locationText{
+    /* position: absolute; */
+    width:300;
+    height: 30px;
+    margin-left:5px;
+}
+
+.selected {
+    color:#000;
+    font-weight: 600;
+ }
+
+a{
+   color: black;
+}
+
+a:link {text-decoration: none;}
+
+#moreInfoTab{
+    float:left;
+    padding-right: 50px;
+    cursor: pointer;
+     color: #6e7c7c;
+}
+
+#introTab{
+    float:left;
+    padding-right: 50px;
+    cursor: pointer;
+     color: #6e7c7c;
+}
+#reviewTab{
+    float:left;
+    padding-right: 50px;
+    cursor: pointer;
+     color: #6e7c7c;
+}
+
+article{
+    /* position: absolute;
+    width: 750px;*/
+    left: 120px;
+    top: 691px; 
+    top: 691px;
+}
+
+#moreInfo{
+    /* border:1px solid black; */
+    
+    height: 300px;
+    padding-top:40px;
+    margin-bottom:30px;
+    margin-top: 100px;
+}
+#leaderInfo{
+    /* border:1px solid black; */
+    height: 300px;
+    padding-top:40px;
+    margin-bottom:30px;
+    
+}
+#review{
+   /*  border:1px solid black; */
+    height: 300px;
+    margin-bottom:50px;
+}
+#infoLabel{
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.fstyle{
+    font-size: 20px;
+    font-weight: 700;
+/*     padding-bottom:10px; */
+    display: flex;
+}
+#makeDate{
+    float:left;
+}
+#clubhashtag{
+postion:absoulte;
+ top:10%;
+}
+
+
+#applyBtn{
+    position: absolute;
+    width: 270px;
+    height: 50px;
+    left:-5px;
+  /*   top: 350px; */
+    border: 0;
+    outline:0;
+    color:white;
+    background-color: #001eff;
+    font-size:17px;
+   
+}
+
+#heartBtn{
+    position:absolute;
+    width:50px;
+    height: 50px;
+
+    left:275px;
+    border: 0;
+    outline:0;
+}
+
+#heartBtn img{
+  
+    position: absolute;
+    width:24px;
+    height: 24px;
+    left: 25%;
+    top:25%;
+}
+#shareBtn{
+    position:absolute;
+    width:50px;
+    height:50px;
+   
+    left:325px;
+    margin-left: 5px;
+    border: 0;
+    outline:0;
+}
+#shareBtn img{
+  
+    position: absolute;
+    width:24px;
+    height: 24px;
+    left: 25%;
+    top:25%;
+}
+
+section{
+    width: 750px;
+    float: left;
+      margin-left:120px;
+      margin-bottom: 50px;
+}
+.stickyWrap{
+    position:absolute;
+    height:1000px; 
+    margin-bottom: 50px;
+    /* width: 750px; */
+    /* left: 120px; */
+    /* top: 550px;
+     */
+  
+
+}
+.stickyTab{
+    position:sticky;
+    background-color: white;
+    z-index: 999;
+    top:0;
+    width: 750px;
+    height: 50px;
+    padding-top:20px;
+    border-bottom: 1px solid #dddddd;
+    font-size: 20px;
+    font-weight: 500;
+      margin-top:30px;
+
+}
+
+#onoff{
+    background-color: #00af91;
+}
+#freq{
+    background-color: #ffb26b;
+}
+
+h3{
+   margin-bottom:50px;
+}
+
+#review{
+   
+   z-index:999;
+}
+
+
+.userReview{
+    width:750px;
+    margin-bottom:20px;
+}
+strong{
+    float:left;
+     margin-bottom:10px;
+}
+
+.reviewRate{
+    float:left;
+    margin-left:10px;
+    color: #001eff;
+}
+
+#reviewRegDate{
+    color: #6e7c7c;
+    font-size:8px;
+    float:left;
+    margin-left:10px;
+    margin-top:4px;
+}
+
+#reviewText{
+    clear:both;
+   margin-bottom:20px;
+}
+#moreReviewBtn{
+    /* position:absolute; */
+    margin : 0px auto;
+    width: 750px;
+    height: 40px;
+    border: 0;
+    outline:0;
+    /* color:white; */
+    /* background-color: #001eff; */
+}

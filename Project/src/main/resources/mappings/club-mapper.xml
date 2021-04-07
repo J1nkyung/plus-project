@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.plus.mapper.ClubMapper">
+	<resultMap id="clubResult" type="club">
+		<id property="clubNum" column="club_num" />
+		<result property="clubName" column="club_name" />
+		<result property="clubLeader" column="club_leader" />
+		<result property="clubTown" column="club_town" />
+		<result property="clubKind" column="club_kind" />
+		<result property="clubCategory" column="club_category" />
+		<result property="clubOnOff" column="club_onoff" />
+		<result property="clubThumb_pic" column="club_thumb_pic" />
+		<result property="clubMain_pic" column="club_main_pic" />
+		<result property="clubMax" column="club_max" />
+		<result property="clubFreq" column="club_freq" />
+		<result property="clubContent1" column="club_content1" />
+		<result property="clubContent1_pic" column="club_content1_pic" />
+		<result property="clubContent2" column="club_content2" />
+		<result property="clubContent2_pic" column="club_content2_pic" />
+		<result property="clubStartDate" column="club_startdate" />
+		<result property="clubEndDate" column="club_enddate" />
+		<result property="clubMakeDate" column="club_makedate" />
+		<result property="clubShutDate" column="club_shutdate" />
+		<result property="clubFee" column="club_fee" />
+		<result property="clubCurnum" column="club_curnum" />
+		<result property="clubHashtag" column="club_hashtag" />
+		<result property="clubCurnum" column="club_curnum" />
+		<result property="clubHashtag" column="club_hashtag" />
+			<!-- 추가 -->
+		<result property="clubLatitude" column="club_latitude" />
+		<result property="clubLongitude" column="club_longitude" />
+	</resultMap>
+	
+	<resultMap id="applyResult" type="apply">
+		<id property="applyNum" column="apply_num" />
+		<result property="applyDate" column="apply_date" />
+	</resultMap>
+	
+
+	<select id="getClub" resultMap="clubResult">
+		SELECT * FROM club WHERE
+		club_num = #{clubNum}
+	</select>
+	
+	<select id="getClubHashtag" resultType="string">
+		SELECT
+		SUBSTRING_INDEX (SUBSTRING_INDEX(Club.club_hashtag,',',numbers.n),',',-1)
+		club_hashtag
+
+		FROM
+		(select 1 n union all select 2
+		union all select 3 union all select 4
+		union all select 5 union all select 6
+		union all select 7 union all select 8
+		union all select 9 union all select 10) numbers INNER JOIN club
+		on CHAR_LENGTH ( Club.club_hashtag )
+		- CHAR_LENGTH ( REPLACE ( Club.club_hashtag , ',' , '' ))>= numbers .
+		n-1
+		WHERE SUBSTRING_INDEX ( SUBSTRING_INDEX ( Club.club_hashtag , ' ' , numbers
+		. n ), ' ' , -1 ) != ' ' AND club_num=#{clubNum}
+	</select>
+	
+	<select id="getMyClubInfo" resultMap="clubResult">
+		SELECT * FROM club WHERE club_leader = #{clubLeader} AND club_num = #{clubNum}
+	</select>
+
+	<insert id="insertClub">
+	<![CDATA[
+		INSERT INTO club(club_name, club_leader, club_town, club_kind, club_category, club_main_pic, club_thumb_pic,
+		club_onoff, club_max, club_freq, club_content1, club_content1_pic, club_content2, club_content2_pic,
+		club_makedate, club_shutdate, club_startdate, club_enddate, club_fee, club_hashtag, club_curnum, club_heart, club_latitude, club_longitude)
+		VALUES(#{clubName}, '블루베리', '마포구', #{clubKind}, #{clubCategory}, #{clubMain_pic}, #{clubThumb_pic},
+		#{clubOnOff}, #{clubMax}, #{clubFreq}, #{clubContent1}, #{clubContent1_pic}, #{clubContent2}, #{clubContent2_pic},
+		NOW(), #{clubShutDate}, #{clubStartDate}, #{clubEndDate}, #{clubFee}, #{clubHashtag}, #{clubCurnum}, 0, #{clubLatitude}, #{clubLongitude})
+	]]> 
+	</insert>
+	
+	<update id="updateClub">
+		UPDATE club SET club_town='마포구', club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, club_main_pic=#{clubMain_pic}, 
+		club_thumb_pic=#{clubThumb_pic}, club_content1=#{clubContent1},club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, 
+		club_content2_pic=#{clubContent2_pic}, club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, 
+		club_enddate=#{clubEndDate}, club_fee=#{clubFee}, club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}, club_latitude=#{clubLatitude}, club_longitude=#{clubLongitude}
+		WHERE club_num = #{clubNum}
+	</update>
+	
+	<delete id="deleteClub">
+		DELETE FROM club WHERE club_num = #{clubNum}
+	</delete>
+	
+	<!-- 신청내역 insert  -->
+	<insert id="apply">
+		INSERT INTO apply(club_num, member_num, apply_date) VALUES (#{clubNum}, #{memberNum}, NOW())
+	</insert>
+	
+	<!-- 신청내역 중복검사를 위해 정보 가져오기 -->
+	<select id="getOneApply" resultType="Integer">
+		SELECT count(*) FROM apply WHERE club_num = #{clubNum} AND member_num = #{memberNum}
+	</select>
+	
+<!-- 	참가인원 update하기  -->
+	<update id="plusCurnum">
+		UPDATE club SET club_curnum = club_curnum+1 WHERE club_num = #{clubNum}
+	</update>
+	
+	<select id="countCurnum" resultType="Integer">
+		SELECT club_curnum FROM club WHERE club_num = #{clubNum}
+	</select>
+	
+<!-- 정연 추가 찜 갯수 증가 / 감소 -->
+	<update id="plusHeartCnt">
+		UPDATE club SET club_heart = club_heart+1 WHERE club_num = #{clubNum}
+	</update>
+	<update id="minusHeartCnt">
+		UPDATE club SET club_heart = club_heart-1 WHERE club_num = #{clubNum}
+	</update>
+<!-- 	
+	방장 x , 참여중인 모임 목록 가져오기
+<select id="getAttendClubList" resultMap="club">
+		SELECT * FROM CLUB WHERE club_leader != #{clubLeader} AND club_num IN (SELECT club_num FROM APPLY WHERE member_num = #{memberNum})
+	</select>
+	
+		방장 o, 개설한 모임 가져오기
+<select id="getOpenClubList" resultMap="club">
+		SELECT * FROM CLUB WHERE club_leader = #{clubLeader}
+	</select>
+	 -->
+		<select id="selectClub" resultType="com.project.plus.domain.ClubVO">
+		<![CDATA[
+		SELECT 
+			club_num  as clubNum,
+			club_thumb_pic as clubThumb_pic,  
+			club_name as clubName , 
+			club_leader as clubLeader,
+			club_fee as clubFee,
+			club_startdate as clubStartDate , 
+			club_enddate as clubEndDate
+		    FROM club
+		    WHERE club_num = #{clubNum}
+	    ]]>
+	</select>
+	<!-- 20210403 정연 모임현황페이지  -->
+	<!--  캘린더 날짜 값 뽑아오기   -->
+	<select id="selectClubDate" resultType="com.project.plus.domain.ClubVO">
+		<![CDATA[
+		SELECT 
+			club.club_num as clubNum ,
+			apply.member_num as memberNum ,
+			club.club_name as clubName ,
+			club.club_startdate as clubStartDate ,
+			club.club_enddate as clubEndDate
+		FROM club , apply 
+		WHERE club.club_num = apply.club_num
+		AND apply.member_num = #{memberNum}
+		]]>
+	</select>
+	
+<!-- 20210329 클럽리스트 추출/개설한 모임이 종료된 모임인지 아닌지 확인   -->
+	<select id="selectCurClubList" resultType="com.project.plus.domain.ClubVO">
+		<![CDATA[
+		select club_num as clubNum , 
+					club_main_pic as clubMain_pic , 
+				    club_name as clubName , 
+				    club_startdate as clubStartDate, 
+				    club_enddate  as clubEndDate,
+				    club_fee as clubFee
+		from club 
+		where club_leader = #{clubLeader}
+		and club_enddate >= now()
+		]]>
+	</select>
+	
+<!-- 20210329 클럽 기간 연장 update문  -->
+
+    <update id="updateEndDate">
+    <![CDATA[
+		UPDATE club SET club_enddate = #{clubEndDate}
+		WHERE  club_num = #{clubNum};
+	]]>  
+    </update>
+    
+<!-- 20210329 참여중인 클럽 리스트  -->
+	<select id="selectAttendClubList" resultType="com.project.plus.domain.ClubVO">
+		<![CDATA[
+			select  club.club_num as clubNum ,
+					club_main_pic as clubMain_pic ,
+					club_name as clubName ,
+					club_startdate as clubStartDate,
+					club_enddate as clubEndDate,
+					club_fee as clubFee,
+					club_leader  as clubLeader
+			from club , apply
+			where club.club_num = apply.club_num 
+			and member_num = #{memberNum}
+			and club_enddate >= now();
+
+		]]>
+	</select>
+	
+	<!-- 20210329 참여중인 클럽 리스트  -->
+	<select id="clubOut" resultType="com.project.plus.domain.ClubVO">
+		<![CDATA[
+			select  club.club_num as clubNum ,
+					club_name as clubName ,
+					club_startdate as clubStartDate,
+					club_enddate as clubEndDate,
+					club_fee as clubFee,
+					club_curnum as clubCurnum
+			from club 
+			where club.club_num = #{clubNum}
+		]]>
+	</select>
+	
+	
+	<!-- 20210329 클럽 기간 연장 update문  -->
+	<update id="updateClubCurNum">
+	    <![CDATA[
+	    	 UPDATE club SET club_curnum = #{clubCurnum} 
+	    	 WHERE (club_num = #{clubNum});
+		]]>  
+    </update>
+    <!-- 무료 모임 나오기 -->
+	<delete id="deleteApplyClub">
+		<![CDATA[
+			DELETE FROM apply 
+			WHERE (member_num = #{memberNum} and club_num = #{clubNum} );
+		]]>
+	</delete>
+	<!-- 완료한 모임 cnt -->
+	<select id="clubCnt" resultType="int">
+		<![CDATA[
+			select count(*)
+			from apply , club
+			where member_num = #{memberNum} 
+			and apply.club_num = club.club_num
+			and club.club_enddate < now();
+		]]>
+	</select>	
+	<!-- 여기위까지 정연추가 20210403 /////////////-->
+	
+</mapper>

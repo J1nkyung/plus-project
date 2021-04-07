@@ -1,0 +1,52 @@
+        /* 전체 */
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'NanumSquare';
+        }
+        
+       
+        
+        /* 본문영역 너비 조정 */
+        
+/*         #wrapper {
+            width: 1200px;
+            height: auto;
+            margin: 0 auto;
+        
+        } */
+        
+      
+
+/* 푸터 스타일 시작 */
+.footerBox{
+	text-align:center;
+	background-color:#ebf0f3;
+}
+ 
+/* footer {
+  	height: 80px; 
+    text-align: center;
+} */
+
+.footerText li {
+    display: inline;
+    font-weight: 400;
+    font-size: 18px;
+    position: relative;
+    top: 24px;
+    margin: 10px;
+
+}
+
+.footerText li a {
+    text-decoration: none;
+}
+
+.footerText li a:hover {
+    color: #1e00ff
+}
+
+#footerAddress {
+    font-size: 15px;
+}
