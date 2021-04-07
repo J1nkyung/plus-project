@@ -13,5 +13,5 @@ public interface CommentsService {
 	public int getCommentsCount(int bNum);
 	public List<CommentsVO> getReComments(CommentsVO comments);
 	public int insertReComments(CommentsVO comments);
-	public int getBoardWriter(int bNum);
+	public CommentsVO getBoardWriter(int bNum);
 }
