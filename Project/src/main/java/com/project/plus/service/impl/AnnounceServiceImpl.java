@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.project.plus.domain.AnnounceVO;
+import com.project.plus.domain.MemberVO;
 import com.project.plus.mapper.AnnounceMapper;
 import com.project.plus.service.AnnounceService;
 
@@ -37,13 +39,14 @@ public class AnnounceServiceImpl implements AnnounceService {
 	public List<AnnounceVO> getAnnounceList(AnnounceVO vo) {
 		return mapper.getAnnounceList(vo);
 	}
-
-	
-	
-	
-
-	
-
+	@Override
+	public Object getAnnounceList(AnnounceVO vo, MemberVO user) {
+		return mapper.getAnnounceList(vo);
+	}
+	@Override
+	public AnnounceVO updateForm(AnnounceVO vo) {
+		return mapper.getAnnounce(vo);
+	}
 	
 
 
