@@ -579,7 +579,7 @@ $(function(){
 				url: "insertReComments",
 				data: {
 					commentsClass:cNum,
-					memberNum:2,
+					memberNum:mNum,
 					boardNum:boardNum,
 					commentsContent:content,
 					commentsRegdate:today,
@@ -861,7 +861,7 @@ function insertComment(bNum){
 						type: "post",
 						url: "insertComment",
 						data: {
-							memberNum:2,
+							memberNum:mNum,
 							boardNum:bNum,
 							commentsContent:content,
 							commentsRegdate:today,

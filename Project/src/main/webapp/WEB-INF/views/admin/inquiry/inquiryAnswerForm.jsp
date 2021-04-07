@@ -67,7 +67,7 @@ float:right;
 </style>
 </head>
 <body>
-	<form action="answerInquiry" method="post">
+	<form action="answerInquiry" method="post"> 
 		<div class="inquiry-wrap">
 			<h1>1:1 답변하기</h1>
 			<hr>
@@ -88,17 +88,52 @@ float:right;
 			<%-- <input type="hidden" value="${answerInquiryForm.inquiryAnswer}" name="inquiryAnswer"> --%>
 			<input type="hidden" value="${answerInquiryForm.inquiryNum}" name="inquiryNum">
 			<!--  회원번호 진경 알림에게 넘겨주기  -->
-			<a href="answerInquiry"><button type="submit" class="btn btn-primary" id="answerBtn">답변 등록</button></a>
-			</form>
+			<button type="submit" class="btn btn-primary" id="answerBtn">답변 등록</button>
 			<div class="submit"><a href="adminInquiry">글 목록 가기</a></div>
 		<hr></div>
-	</form>
+	</form> 
 <script>
 
 		$(document).ready(function(){
 
 			$("#answerBtn").on("click", function(){
 				alert("답변이 정상적으로 등록 되었습니다");
+			
+			
+			// 문의글 작성자 번호 
+			let mNum = '${answerInquiryForm.memberNum}'; 
+			let inqNum = '${answerInquiryForm.inquiryNum}'; 
+			console.log(mNum);
+			console.log(inqNum);
+			
+			let notMessage ="회원님의 문의글에 <b>관리자</b>님이 답변을 등록했어요!";
+			let notType= "문의";
+			let notUrl = "${path}/getAdminInquiry?inquiryNum=" + inqNum;	
+				  $.ajax({
+				        
+						type: "post",
+						url: "insertCommNoti",
+						data: {
+							// 알림이 갈 대상 
+							memberNum:mNum,
+							inquiryNum:inqNum,					
+							notType:notType,
+							notMessage: notMessage,
+							// 알림을 눌렀을 때 이동할 페이지 
+							notUrl:notUrl	
+						
+						},
+			            success: function (data) {
+			            	// 서버로 알림 메시지 전송 
+			            	sock.send(notType + "," + mNum + "," + notMessage + "," + notUrl);
+			            	console.log("알림 보내기 성공");
+			            	
+			            },
+			            error: function(e) {
+				        	  alert("알림 저장 오류" + e);
+				        }
+			        }); 
+			
 			});
 			
 		});

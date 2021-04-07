@@ -65,6 +65,7 @@ public class AdminController {
 	public String answerInquiryForm(InquiryVO vo, Model model) {
 		model.addAttribute("answerInquiryForm", ads.answerInquiryForm(vo));
 		System.out.println("controller의 vo" + vo);
+		System.out.println("문의 멤버 번호 : " + vo.getMemberNum());
 		return "inquiryAnswerForm.adinqu";
 	}
 
