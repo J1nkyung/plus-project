@@ -11,16 +11,13 @@
     <!-- css코드삽입 -->
       <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
-  <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+   <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-
-
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<!-- 웹소켓 import -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- 웹소켓 import -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script>
     <script>
@@ -115,22 +112,22 @@
                     <div class="dropdown">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor"><b>${user.memberNickname }</b>님, 환영합니다
                         <span class="caret"></span></button>
-                      <div class="dropdown-menu">
+                        <ul class="dropdown-menu">
                         <form>
 	                        <c:choose>
 				                <c:when test = "${user.memberNum == 1 }">
-	                        <li class="dropli"><a class="dropdown-item" href="memberListPage">회원관리</a></li>
+	                        <li class="dropli"><a href="memberListPage">회원관리</a></li>
 				               </c:when>
 				               <c:otherwise>
-	                        <li class="dropli"><a class="dropdown-item" href="memberUpdate?memberNum=${user.memberNum }">My Page</a></li>
+	                        <li class="dropli"><a href="memberUpdate?memberNum=${user.memberNum }">My Page</a></li>
 				               </c:otherwise>
 			               </c:choose>
                         </form>
                       <form action="logout.do" method="get">
                       <!--  onclick="kakaoLogout()" -->
-                        <li class="dropli api-btn"><a class="dropdown-item" href="logout.do">LogOut</a></li>
+                        <li class="dropli api-btn"><a href="logout.do">LogOut</a></li>
                       </form>
-                   </div>
+                        </ul>
                     </div>
                 </li>
               	 <li class="nav-right icon"><a href="chat.do?memberNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/chat.png" class="icons"></a></li>
