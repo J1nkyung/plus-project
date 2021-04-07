@@ -31,12 +31,11 @@ public class ClubVO {
 	private Date clubShutDate;
 	private int clubFee;
 	private String clubHashtag;
-	
+
 	private int clubCurnum;
 	private int clubHeart;
-	private String clubLatitude;
-	private String clubLongitude;
-
+	private Float clubLatitude;
+	private Float clubLongitude;
 
 
 }

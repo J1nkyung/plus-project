@@ -10,16 +10,13 @@
 <title>Just GPS</title>
 </head>
 <body>
- <form action="/totalList" id="gpsForm" method="get">    
-    	<input type="hidden" name="userLatitude" >    
-    	<input type="hidden" name="userLongitude">
-    	
-    
-		  	    
-    </form>
-    
-   
-    <!-- jQuery -->
+ 
+  <form action="/main" id="gpsForm" method="get">    
+    	<input type="hidden" name="memberLatitude" >    
+    	<input type="hidden" name="memberLongitude">
+    	</form>
+ 
+     <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
     /**
@@ -66,8 +63,8 @@
                 
                 console.log(latitude, longitude);
                 
-                $("input[name='userLatitude']").val(latitude);
-                $("input[name='userLongitude']").val(longitude);
+                $("input[name='memberLatitude']").val(latitude);
+                $("input[name='memberLongitude']").val(longitude);
                 
                 console.log(msg);
             // elt.innerHTML = msg;     // 모든 위치 정보를 출력한다.
@@ -81,9 +78,7 @@
     	}, 500);
            
     </script>
-</body>
-  </html>
-    </script>
+ 
 </body>
 
 </html>

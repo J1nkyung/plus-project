@@ -33,6 +33,9 @@ public class Criteria {
 	
 	/* 검색 타입 배열 */
 	private String[] typeArr;
+	
+	private Double memberLatitude;
+	private Double memberLongitude;
 
 	/* 기본 생성자 -> 기본 세팅 : pageNum = 1, amount = 20 */
 	public Criteria() {
@@ -103,12 +106,29 @@ public class Criteria {
 	public void setTypeArr(String[] typeArr) {
 		this.typeArr = typeArr;
 	}
+	public Double getMemberLatitude() {
+		return memberLatitude;
+	}
+
+	public void setMemberLatitude(Double memberLatitude) {
+		this.memberLatitude = memberLatitude;
+	}
+
+	public Double getMemberLongitude() {
+		return memberLongitude;
+	}
+
+	public void setMemberLongitude(Double memberLongitude) {
+		this.memberLongitude = memberLongitude;
+	}
 	
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", rowStart=" + rowStart + ", rowEnd=" + rowEnd
-				+ ", keyword=" + keyword + ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) + "]";
+				+ ", keyword=" + keyword + ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) + ", memberLatitude=" + memberLatitude + ", memberLongitude=" + memberLongitude+"]";
 	}
+
+	
 
 
 
