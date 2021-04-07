@@ -2,8 +2,10 @@ package com.project.plus.service;
 
 import java.util.List;
 import com.project.plus.domain.ClubVO;
+import com.project.plus.domain.MemberVO;
 
 public interface MainService {
+
 	//더하기 만들기
 	public void insertClub(ClubVO vo);
 	//인기 더하기 리스트

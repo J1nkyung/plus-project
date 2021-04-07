@@ -164,8 +164,8 @@ function kakaoLogin(){
                        <a href="#"><li><button class="join-member"><span class="join-member">가입하기</span></button></li></a> 
                     </ul>
                     -->
-                    <span><a href="#" id="find-id">비밀번호 찾기</a></span>
-                        <p>같이하실래요? <a href="memberJoin.do" class="joinMsg">가입하기</a></p><br/>
+                    <span><a href="findPw" id="find-id">비밀번호 찾기</a></span>
+                        <p>같이하실래요? <a href="memberJoin" class="joinMsg">가입하기</a></p><br/>
                 </section>
                 
                 </div>

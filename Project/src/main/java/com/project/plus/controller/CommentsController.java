@@ -34,13 +34,14 @@ public class CommentsController {
 	public CommentsVO insertComment(CommentsVO comments) {
 		// 댓글을 등록하면 vo를 다시 화면에 뿌려줘야 함 
 		commService.insertComment(comments);
-		log.info(comments.getBoardNum());
+		log.info("게시글 번호 : " + comments.getBoardNum());
 		
 		// 보드 넘버의 작성자 찾기 
 		int bNum = comments.getBoardNum();
 		if(bNum!=0) {
-			int mNum = commService.getBoardWriter(bNum);
-			comments.setBoardWriter(mNum);
+			CommentsVO vo = commService.getBoardWriter(bNum);
+			comments.setBoardWriter(vo.getMemberNum());
+			log.info("작성자 번호 : " + vo.getMemberNum());
 		}
 		return comments;
 	}

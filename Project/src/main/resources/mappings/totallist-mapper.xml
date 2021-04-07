@@ -28,10 +28,10 @@
 		<result property="clubHeart" column="club_heart" />
 		<result property="clubLatitude" column="club_latitude" />
 		<result property="clubLongitude" column="club_longitude" />
-
 	</resultMap>
 
 
+<<<<<<< HEAD
 <sql id="search">
 		<if test="searchType != null"> 
 			<if test="searchType == 't'.toString()">and (club_name like CONCAT('%',#{keyword},'%')
@@ -43,14 +43,40 @@
 			<if test="searchType == 'c'.toString()">and club_content1 like CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType == 'h'.toString()">and club_hashtag like CONCAT('%',#{keyword},'%')</if>
 	</if>
+=======
+
+
+
+	<sql id="search">
+
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and (club_name like CONCAT('%',#{keyword},'%')
+				or club_leader like
+				CONCAT('%',#{keyword},'%')
+				or club_content1 like
+				CONCAT('%',#{keyword},'%')
+				or club_hashtag like
+				CONCAT('%',#{keyword},'%'))
+			</if>
+			<if test="searchType == 'w'.toString()">and club_category="운동" and club_name like
+				CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 's'.toString()">and club_category="공부" and club_name like
+				CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'ho'.toString()">and club_category="취미" and club_name like
+				CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'ha'.toString()">and club_category="습관" and club_name like
+				CONCAT('%',#{keyword},'%')</if>
+
+
+		</if>
+>>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
 	</sql>
 
 
-	<!-- 게시물 목록(페이징) -->
+	<!-- 게시물 목록(페이징 처리) -->
 	<select id="getListPaging" resultMap="clubResult"
 		parameterType="com.project.plus.domain.SearchCriteria">
-		<!-- select * from club where club_num > 0 <include refid="search"></include> 
-			order by club_heart desc limit #{rowStart}, #{rowEnd} </select> -->
 		SELECT *
 		FROM (
 		SELECT *,
@@ -60,7 +86,8 @@
 		<include refid="search"></include>
 		) memPage
 		WHERE rNum between #{rowStart} and #{rowEnd}
-		ORDER BY club_heart DESC
+		ORDER BY
+		club_heart DESC
 	</select>
 
 
@@ -68,8 +95,6 @@
 	<!-- DB의 총 갯수 -->
 	<select id="getTotal" resultType="int"
 		parameterType="com.project.plus.domain.SearchCriteria">
-		<!-- select * from club where club_num > 0 <include refid="search"></include> 
-			</select> -->
 
 		SELECT COUNT(club_num)
 		FROM club
@@ -79,10 +104,9 @@
 		AND club_max > club_curnum
 	</select>
 
-<!-- 
-	 <![CDATA[ SELECT * (6371*acos(cos(radians(#{userLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude) 
+	<!-- <![CDATA[ SELECT * (6371*acos(cos(radians(#{userLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude) 
 		-radians(#{userLongitude}))+sin(radians(#{userLatitude}))*sin(radians(club_latitude))) 
 		AS distance FROM club HAVING distance <= 10 10km 반경의 데이터만 가져온다. ORDER BY 
-		distance]]>  -->
+		distance]]> -->
 
 </mapper>

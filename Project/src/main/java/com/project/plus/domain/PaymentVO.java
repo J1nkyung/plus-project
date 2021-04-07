@@ -27,6 +27,12 @@ public class PaymentVO {
 	public void setMemberNickname(String memberNickname) {
 		this.memberNickname = memberNickname;
 	}
+	// 현정 추가 0404
+	private String memberNickname;
+	private String clubName;
+	
+
+	
 	public int getPayNum() {
 		return payNum;
 	}
@@ -71,10 +77,25 @@ public class PaymentVO {
 		this.memberPoint = memberPoint;
 	}
 	
+	// 현정 추가 0404
+	public String getClubName() {
+		return clubName;
+	}
+	public void setClubName(String clubName) {
+		this.clubName = clubName;
+	}
+	public String getMemberNickname() {
+		return memberNickname;
+	}
+	public void setMemberNickname(String memberNickname) {
+		this.memberNickname = memberNickname;
+	}
+	
 	@Override
 	public String toString() {
 		return "PaymentVO [payNum=" + payNum + ", memberNum=" + memberNum + ", clubNum=" + clubNum + ", payAmount="
 				+ payAmount + ", payMethod=" + payMethod + ", payDate=" + payDate + ", memberPoint=" + memberPoint+ ", memberNickname=" + memberNickname + ", clubName=" + clubName
+				+ payAmount + ", payMethod=" + payMethod + ", payDate=" + payDate + ", memberPoint=" + memberPoint + ", memberNickname=" + memberNickname + ", clubName=" + clubName
 				+ "]";
 	}
 	

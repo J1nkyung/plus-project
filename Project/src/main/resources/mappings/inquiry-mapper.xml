@@ -67,4 +67,8 @@
 		WHERE member_num=#{memberNum}
 		]]>
 	</select>
+<<<<<<< HEAD
 </mapper>
+=======
+</mapper>
+>>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3

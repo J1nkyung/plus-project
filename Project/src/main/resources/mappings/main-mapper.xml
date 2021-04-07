@@ -11,8 +11,8 @@
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />
-	<result property="clubThumb_pic" column="club_thumb_pic" />
-	<result property="clubMain_pic" column="club_main_pic" />
+		<result property="clubThumb_pic" column="club_thumb_pic" />
+		<result property="clubMain_pic" column="club_main_pic" />
 		<result property="clubMax" column="club_max" />
 		<result property="clubFreq" column="club_freq" />
 		<result property="clubContent1" column="club_content1" />
@@ -29,7 +29,14 @@
 		<result property="clubHeart" column="club_heart" />
 		<result property="clubLatitude" column="club_latitude" />
 		<result property="clubLongitude" column="club_longitude" />
+		<result property="memberLatitude" column="member_latitude" />
+		<result property="memberLongitude" column="member_logitude" />
+	</resultMap>
 
+	<resultMap id="memberResult" type="user">
+		<id property="memberNum" column="member_num" />
+		<result property="memberLatitude" column="member_latitude" />
+		<result property="memberLongitude" column="member_logitude" />
 	</resultMap>
 
 
@@ -45,34 +52,63 @@
 	]]>
 	</insert>
 
-	<!-- 인기 더하기 -->
-	<select id="getListBest" resultMap="clubResult">
-<![CDATA[
-		SELECT * FROM club 
-		WHERE club_shutdate > NOW()
-		AND club_max > club_curnum
-		ORDER BY club_heart DESC 
+<!-- 	<sql id="location"> 
+	<![CDATA[
+            SELECT *,
+				(6371*acos(cos(radians(37))*cos(radians(club_latitude))*cos(radians(club_longitude)
+				-radians(127))+sin(radians(37))*sin(radians(club_latitude))))
+				AS distance 
+            FROM
+                club
+            HAVING
+				distance < 10
+	    	ORDER BY distance
+                LIMIT 0,1000
 	]]>
+	</sql> -->
+
+	<select id="getListBest" resultMap="clubResult" >
+		<![CDATA[
+            SELECT *,
+				(6371*acos(cos(radians(${memberLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude)
+				-radians(${memberLongitude}))+sin(radians(${memberLatitude}))*sin(radians(club_latitude))))
+				AS distance 
+            FROM
+                club
+            HAVING
+				distance < 100
+	    	ORDER BY club_heart DESC
+                LIMIT 0,1000
+	]]>
+	
+	<!-- <![CDATA[ 
+	SELECT * FROM club
+	WHERE 1=1
+	
+	 WHERE club_shutdate > NOW() 
+	 AND club_max > club_curnum 
+	 ORDER BY club_shutdate - NOW() ASC ]]> 
+	 -->
 	</select>
 
 	<select id="getListDeadline" resultMap="clubResult">
- <![CDATA[ SELECT * FROM club WHERE club_shutdate > NOW() AND club_max 
-			> club_curnum ORDER BY club_shutdate - NOW() ASC ]]> 
-	<!--  <![CDATA[ SELECT * (6371*acos(cos(radians(#{userLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude) 
-			-radians(#{userLongitude}))+sin(radians(#{userLatitude}))*sin(radians(club_latitude))) 
-			AS distance FROM club HAVING distance <= 10 WHERE WHERE club_shutdate > NOW() 
-			AND club_max > club_curnum ORDER BY distance LIMIT 0, 8 ]]> -->
+
+ SELECT * 
+ FROM club 
+ WHERE club_longitude =${memberLatitude}
+ 
 	</select>
 
 
-	<!-- <!— 검색 리스트 동적 쿼리 —> -->
-	<select id="getListSearch" resultMap="clubResult">
 
-<![CDATA[
-		SELECT * FROM club 	
-	    WHERE club_name like '%Test%' or club_hashtag like '%Test%'
-	    AND club_max > club_curnum AND club_shutdate > NOW()
-	    ORDER BY club_num DESC
-	]]>
-	</select>
+
+
+	<!-- <![CDATA[ SELECT * (6371*acos(cos(radians(#{memberLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude) 
+		-radians(#{memberLongitude}))+sin(radians(#{memberLatitude}))*sin(radians(club_latitude))) 
+		AS distance FROM club HAVING distance <= 10 WHERE WHERE club_shutdate > NOW() 
+		AND club_max > club_curnum -]]> -->
+
+
+
+
 </mapper>

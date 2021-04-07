@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.plus.domain.BoardVO;
 import com.project.plus.domain.MemberVO;
 
 import lombok.extern.log4j.Log4j;
@@ -14,6 +15,8 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class ProfileUtils {
 	
+	
+	//프로필사진 저장하는 메소드
 	public static MemberVO profile(MemberVO vo, String uploadPath, MultipartFile file) throws Exception{
 		//넘어온 파일이 있으면
 		if (!file.getOriginalFilename().isEmpty() && !file.isEmpty()) {
@@ -50,6 +53,37 @@ public class ProfileUtils {
 		
 		return vo;
 
+		
+	}
+	
+	
+	//게시판 파일 저장하는 메소드
+	public static BoardVO boardPic(BoardVO vo, String uploadPath, MultipartFile file) throws Exception{
+		//넘어온 파일이 있으면
+		if (!file.getOriginalFilename().isEmpty() && !file.isEmpty()) {
+			
+			// 파일의 원본 이름을 얻고
+			String boardPicName = file.getOriginalFilename();
+			
+			// 파일명 중복을 피하기 위해 고유한 id 생성 
+			UUID uid = UUID.randomUUID();
+			
+			// 원본파일과 UUID 결합
+			String newBoardPicName = uid.toString() + "_" + boardPicName;
+			
+			// 파일을 저장할 폴더 생성(년 월 일 기준)
+			String datePath = ProfileUtils.calcPath(uploadPath);
+			
+			file.transferTo(new File(uploadPath + datePath + File.separator + newBoardPicName));
+			vo.setBoardPic(File.separator + "uploadImg" + datePath + File.separator + newBoardPicName);
+			
+			
+		}else {
+			vo.setBoardPic("");
+		}
+		
+		return vo;
+		
 		
 	}
 	

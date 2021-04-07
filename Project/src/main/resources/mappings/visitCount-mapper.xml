@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.plus.mapper.VisitCountMapper">
@@ -12,4 +15,24 @@
 	</insert>
 	
 	
+=======
+>>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.plus.mapper.VisitCountMapper">
+	
+	<resultMap id="visitResult" type="visit">
+		<id property="vDate" column="v_date"/>
+	</resultMap>
+	
+	<!--  총 방문자수를 증가시킨다  -->
+	<insert id="setTotalCount">
+		INSERT INTO VISIT (V_DATE) VALUES (now())
+	</insert>
+	
+	
+<<<<<<< HEAD
+=======
+>>>>>>> bf56ef1 (no message)
+>>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
 </mapper>

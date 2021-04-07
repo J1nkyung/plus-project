@@ -35,6 +35,10 @@
      <put-attribute name="body" value="/WEB-INF/views/main/totalList.jsp" /> 
   </definition>
 
+<<<<<<< HEAD
+=======
+  
+>>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
 <!-- 로그인 , 로그아웃-->
     <definition name="*.login" extends="base"> 
      <put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp" /> 
@@ -80,7 +84,11 @@
   </definition>	
   
  <!-- 마이페이지 -->
+<<<<<<< HEAD
     <definition name="mypage" template="/WEB-INF/views/include/mytemplate.jsp"> 
+=======
+<definition name="mypage" template="/WEB-INF/views/include/mytemplate.jsp"> 
+>>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
    <put-attribute name="aside" value="/WEB-INF/views/mypage/inc/aside.jsp" />
    <put-attribute name="body" value="" /> 
@@ -98,8 +106,18 @@
      <put-attribute name="body" value="/WEB-INF/views/community/{1}.jsp" /> 
   </definition>
   
+<<<<<<< HEAD
   <!-- 마이페이지  -->
   <definition name="*.reviews" extends="mypage"> 
+=======
+  
+    
+    <definition name="*.curClub" extends="mypage"> <!-- 나중에 mypage로 바꿔야함-->
+     <put-attribute name="body" value="/WEB-INF/views/mypage/currentClub/{1}.jsp" /> 
+  </definition>
+  
+  <definition name="*.reviews" extends="mypage">  <!-- 나중에 mypage로 바꿔야함-->
+>>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
      <put-attribute name="body" value="/WEB-INF/views/mypage/reviews/{1}.jsp" /> 
   </definition>
   
@@ -110,12 +128,20 @@
     <definition name="*.heart" extends="mypage"> 
      <put-attribute name="body" value="/WEB-INF/views/mypage/heart/{1}.jsp" /> 
   </definition>
+	
+  <definition name="*.inqu" extends="mypage"> 
+     <put-attribute name="body" value="/WEB-INF/views/mypage/inquiry/{1}.jsp" /> 
+  </definition>
   
+<<<<<<< HEAD
     <definition name="*.inqu" extends="mypage"> 
      <put-attribute name="body" value="/WEB-INF/views/mypage/inquiry/{1}.jsp" /> 
   </definition>
   
    <!-- 관리자페이지 -->
+=======
+    <!-- 관리자페이지 -->
+>>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
 <definition name="admin" template="/WEB-INF/views/include/mytemplate.jsp"> 
    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
    <put-attribute name="aside" value="/WEB-INF/views/admin/inc/aside.jsp" />
@@ -138,6 +164,10 @@
  <definition name="*.faq" extends="base">
  	<put-attribute name="body" value="/WEB-INF/views/faq/{1}.jsp" />
  </definition>
+<<<<<<< HEAD
+=======
+  
+>>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
  
 
 

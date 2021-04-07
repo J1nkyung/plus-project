@@ -10,5 +10,6 @@ public interface ApplyMapper {
 	public ApplyVO checkApplyClub(ApplyVO vo);
 	public List<ApplyVO> checkApplyClubByMemberNum(ApplyVO vo);
 	public List<ApplyVO> applyPayClubInfo(ApplyVO vo);
+	public List<ApplyVO> applyMember(int clubNum);
 }
 //정연추가 20210326

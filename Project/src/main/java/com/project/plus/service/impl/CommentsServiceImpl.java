@@ -57,7 +57,7 @@ public class CommentsServiceImpl implements CommentsService {
 	}
 
 	@Override
-	public int getBoardWriter(int bNum) {
+	public CommentsVO getBoardWriter(int bNum) {
 		return mapper.getBoardWriter(bNum);
 	}
 

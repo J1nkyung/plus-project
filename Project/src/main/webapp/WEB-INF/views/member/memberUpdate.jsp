@@ -167,7 +167,7 @@ $(document).ready(function(){
 	
 	//회원의 수정버튼 
 	$("#btnJoin").on("click", function(){
-		alert("수정되었습니다~~~");
+		alert("회원님의 정보가 수정되었습니다");
 		formObj.attr("action", "memberUpdate").submit();
 		formObj.attr("method", "post");
 //		formObj.submit();				
