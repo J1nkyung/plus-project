@@ -116,8 +116,12 @@
 	                        <li class="dropli"><a href="memberListPage">회원관리</a></li>
 				               </c:when>
 				               <c:otherwise>
+<<<<<<< HEAD
+	                        <li class="dropli"><a href="getCurrentClubList?memberNum=${user.memberNum}">My Page</a></li>
+=======
 	                        <li class="dropli"><a href="memberUpdate?memberNum=${user.memberNum }">My Page</a></li>
 				<li class="dropli"><a href="inquiry?memberNum=${user.memberNum}">나의1:1문의(임시)</a>
+>>>>>>> c23af9c53536feee8c6057763d4e40d9595fca1d
 				               </c:otherwise>
 			               </c:choose>
                         </form>

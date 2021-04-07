@@ -25,6 +25,7 @@
 <body>
     <div class="pointContainer">
     	<form method="post" action="applyPayClubPayment" >
+    		<input type="hidden" name ="memberNum" value="${user.memberNum }"/>
     		<input type="hidden" name="clubNumArr" value="${clubNumArr }">
     		<input type="hidden" id="clubLeader" name="clubLeader" value="${clubLeader}">
     		
@@ -41,18 +42,15 @@
 		    <h2>결제포인트</h2>
 		    <p>${totalPoint }</p>
 		    <input type="hidden" name="totalFee" value="${totalPoint }" >
-		    
 		    <input type="submit" id="payBtn" value="결제하기" onclick="clickAlert()">
 	    </form>
     </div>     
-     <script src="${path}/resources/js/jquery-1.12.4.min.js"></script> 
+    <script src="${path}/resources/js/jquery-1.12.4.min.js"></script> 
     <script>
 
      if('${msg}' != ''){
          alert('${msg}');
      }
-     
-
     </script>
 </body>
 </html>

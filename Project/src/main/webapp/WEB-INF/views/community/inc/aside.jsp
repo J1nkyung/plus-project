@@ -4,6 +4,8 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ page import="com.project.plus.domain.InquiryVO"%>
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +21,7 @@
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="${path}/resources/css/comm-aside.css">
+<link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
 <style>
 	
 *{

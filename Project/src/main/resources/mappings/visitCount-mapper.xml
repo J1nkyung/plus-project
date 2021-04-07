@@ -10,7 +10,6 @@
 	<insert id="setTotalCount">
 		INSERT INTO VISIT (V_DATE) VALUES (now())
 	</insert>
-	
-	
 
+	
 </mapper>
