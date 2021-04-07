@@ -38,7 +38,7 @@
                      <ul class="navbar-nav flex-column mt-4">
                         <!-- 회원 관리 -->
                         <li class="nav-item">
-                            <a href="memberList" class="nav-link text-white p-3 mb-2 sidebar-link current">
+                            <a href="memberListPage" class="nav-link text-white p-3 mb-2 sidebar-link current">
                                 <i class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
                             </a>
                         </li>
