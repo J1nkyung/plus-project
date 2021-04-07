@@ -73,7 +73,7 @@
                         </li>
                         <!-- 1:1 Inquiry -->
                         <li class="nav-item">
-                            <a href="inquiry" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="inquiry?memberNum=${user.memberNum}" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-question-circle text-white fa-lg mr-3"></i>1:1문의
                             </a>
                         </li>
