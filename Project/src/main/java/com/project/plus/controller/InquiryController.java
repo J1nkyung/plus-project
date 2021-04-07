@@ -29,7 +29,8 @@ public class InquiryController {
 	
 	@Autowired
 	private InquiryService is;
-
+	
+	// 회원 : 1:1 문의글 작성 폼
 	@RequestMapping(value = "/inquiryForm", method = RequestMethod.GET)
 	public String inquiryForm(InquiryVO vo, MemberVO mvo, HttpSession session) throws Exception {
 		MemberVO user = (MemberVO) session.getAttribute("user");
@@ -39,53 +40,45 @@ public class InquiryController {
 		return "inquiryForm.inqu";
 	}
 
+	// 회원 : 1:1 문의글 제출 메서드
 	@RequestMapping(value = "/writeInquiry", method = RequestMethod.POST)
 	public String writeInquiry(InquiryVO vo) throws Exception {
 		is.writeInquiry(vo);
 		return "redirect:inquiry";
 	}
 
+	// 회원 : 1:1 문의글 수정 폼
 	@RequestMapping("/editInquiryForm")
 	public String editInquiryForm(InquiryVO vo, Model model) {
 		model.addAttribute("inquiryForm", is.editInquiryForm(vo));
 		return "inquiryEditForm.inqu";
 	}
 
+	// 회원 : 1:1 문의글 수정 등록 메서드
 	@RequestMapping(value = "/editInquiry", method = RequestMethod.POST)
 	public String editInquiry(InquiryVO vo) {
 		is.editInquiry(vo);
 		return "redirect:inquiry";
 	}
 
+	// 회원 : 1:1 문의글 삭제 메서드
 	@RequestMapping("/deleteInquiry")
 	public String deleteInquiry(InquiryVO vo) {
 		is.deleteInquiry(vo);
 		return "redirect:inquiry";
 	}
 
+	// 회원 : 1:1 문의글 개별 조회  
 	@GetMapping("/getInquiry")
 	public String getInquiry(InquiryVO vo, Model model) {
 		model.addAttribute("inquiry", is.getInquiry(vo));
 		return "getInquiry.inqu";
 	}
-
-//	// 1:1 문의 목록 조회
-//	@RequestMapping("/inquiry")
-//	public String getInquiryList(InquiryVO vo, Model model, HttpSession session) {
-//		MemberVO user = (MemberVO) session.getAttribute("user");
-//		vo.setMemberNum(user.getMemberNum());
-//		model.addAttribute("inquiryList", is.getInquiryList(vo));
-//		return "inquiry.inqu";
-//	}
 	
-	// 1:1 문의 목록 조회 페이징처리용
+	// 회원 : 1:1 문의 목록 조회 페이징처리 완
 	@RequestMapping(value="/inquiry", method=RequestMethod.GET)
 	public String getInquiryList(Model model, HttpSession session, CriteriaAdmin cri) throws Exception {
 		MemberVO user = (MemberVO) session.getAttribute("user");
-		
-//		vo.setMemberNum(user.getMemberNum());
-//		System.out.println(vo);
-//		model.addAttribute("list", is.getInquiryList(vo));
 		
 		cri.setMemberNum(user.getMemberNum());
 		

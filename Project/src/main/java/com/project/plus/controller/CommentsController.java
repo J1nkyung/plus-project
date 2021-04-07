@@ -34,9 +34,18 @@ public class CommentsController {
 	public CommentsVO insertComment(CommentsVO comments) {
 		// 댓글을 등록하면 vo를 다시 화면에 뿌려줘야 함 
 		commService.insertComment(comments);
-		log.info(comments.getCommentsNum());
+		log.info(comments.getBoardNum());
+		
+		// 보드 넘버의 작성자 찾기 
+		int bNum = comments.getBoardNum();
+		if(bNum!=0) {
+			int mNum = commService.getBoardWriter(bNum);
+			comments.setBoardWriter(mNum);
+		}
 		return comments;
 	}
+	
+	
 	
 	@RequestMapping("/updateComment")
 	@ResponseBody

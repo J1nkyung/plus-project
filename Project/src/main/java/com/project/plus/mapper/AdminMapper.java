@@ -3,6 +3,7 @@ package com.project.plus.mapper;
 import java.util.List;
 
 import com.project.plus.domain.ClubVO;
+import com.project.plus.domain.CriteriaAdmin;
 import com.project.plus.domain.InquiryVO;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.PaymentVO;
@@ -14,8 +15,10 @@ public interface AdminMapper {
 
 	public InquiryVO getAdminInquiry(InquiryVO vo);
 
-	List<InquiryVO> getAdminInquiryList(InquiryVO vo);
+	public List<InquiryVO> getAdminInquiryList(CriteriaAdmin cri) throws Exception;
 
+	public int adminInquiryListCount(CriteriaAdmin cri) throws Exception;
+	
 	public int getAdminChart(MemberVO mvo);
 
 	public int getAdminVisit(VisitCountVO vcvo);
@@ -60,15 +63,13 @@ public interface AdminMapper {
 
 	public void answerInquiry(InquiryVO vo);
 
-	public List<PaymentVO> adminPayList(PaymentVO pvo);
-
-	public List<ClubVO> adminClubList(ClubVO cvo);
+	public List<PaymentVO> adminPayList(CriteriaAdmin cri) throws Exception;
+	
+	public int adminPayListCount(CriteriaAdmin cri) throws Exception;
 
 	public void deleteAdminClub(ClubVO cvo);
 
-//	public List<Map<String, Object>> getAdminInquiryList(CriteriaAdmin criAd);
-//
-//	public int countAdminInquiryList(InquiryVO vo);
-//
-//	public Integer countAdminInquiryList(String string);
+	public List<ClubVO> adminClubList(CriteriaAdmin cri) throws Exception;
+
+	public int adminClubListCount(CriteriaAdmin cri) throws Exception;
 }

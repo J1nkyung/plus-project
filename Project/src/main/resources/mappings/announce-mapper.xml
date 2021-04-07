@@ -10,11 +10,6 @@
 	</resultMap>
 
 	<insert id="insertAnnounce">
-		<!-- <![CDATA[
-			INSERT INTO ANNOUNCE(ANNOUNCE_NUM, ANNOUNCE_TITLE, ANNOUNCE_CONTENT, ANNOUNCE_REGDATE)
-			VALUES((SELECT NVL(MAX(SEQ), 0) + 1 FROM ANNOUNCE),
-			#{announceTitle},#{announceContent},#{announceRegDate})
-		]]> -->
 		insert into announce(announce_title, announce_content, announce_regdate) values (#{announceTitle},#{announceContent},now())
 	</insert>
 	
@@ -33,16 +28,5 @@
 	
 	<select id="getAnnounceList" resultMap="announceResult">
 		SELECT * FROM ANNOUNCE ORDER BY ANNOUNCE_NUM DESC
-		<!-- WHERE 1=1
-		<if test="searchCondition == 'TITLE'">
-			AND TITLE LIKE '%'||#{searchKeyword}||'%'
-		</if>
-		<if test="searchCondition == 'CONTENT'">
-			AND CONTENT LIKE '%'||#{searchKeyword}||'%'
-		</if>
-		<if test="searchCondition == 'WRITER'">
-			AND WRITER LIKE '%'||#{searchKeyword}||'%'
-		</if> -->
-		
 	</select>
 </mapper>

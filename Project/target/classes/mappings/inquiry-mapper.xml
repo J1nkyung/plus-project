@@ -51,12 +51,6 @@
 		FROM INQUIRY JOIN MEMBER USING (member_num) WHERE INQUIRY_NUM=#{inquiryNum}
 	</select>
 	
-	<!-- 해당 회원이 쓴 문의글 목록 출력
-	<select id="getInquiryList" resultMap="inquiryResult">
-		SELECT inquiry_num, inquiry_title, MEMBER.member_num, inquiry_content, inquiry_type, inquiry_state, inquiry_answer, inquiry_regdate, member_email, member_nickname
-		FROM INQUIRY JOIN MEMBER USING (member_num) WHERE MEMBER_NUM=#{memberNum} ORDER BY INQUIRY_REGDATE DESC
-	</select> -->
-	
 	<!-- 문의글 10개씩 끊어서 페이징 -->
 	<select id="getInquiryList" resultMap="inquiryResult" parameterType="com.project.plus.domain.CriteriaAdmin">
 		SELECT member_num, inquiry_num, inquiry_title, inquiry_content, inquiry_type, inquiry_state, inquiry_regdate 

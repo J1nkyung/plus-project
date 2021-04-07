@@ -79,7 +79,7 @@
     <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
   </definition>	
   
- 
+ <!-- 마이페이지 -->
     <definition name="mypage" template="/WEB-INF/views/include/mytemplate.jsp"> 
    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
    <put-attribute name="aside" value="/WEB-INF/views/mypage/inc/aside.jsp" />

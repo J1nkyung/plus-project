@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<link rel="stylesheet" href="${path}/resources/css/reviewList.css">
+<script type="text/javascript"
+	src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,9 +24,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
-<!-- themify icon -->
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/icon/themify-icons/themify-icons.css">
+
 <!-- font -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
@@ -40,120 +43,200 @@ a:hover {
 	text-decoration: none;
 }
 
-th {
-	text-align: center;
+.Container {
+	margin: 0;
+	width: 1140px;
 }
 
-.table td, .table th {
-	vertical-align: middle;
+.Content {
+	padding: 40px 60px;
+	height: 100vh;
+}
+
+#tableWrapper {
+	width: 85%;
+	height: 415.550px;
+}
+
+#block {
+	border: 1px solid rgba(189, 186, 186, 0.829);
+	border-radius: 2%;
+	min-height: 443.2px;
+}
+
+#tableWrapper table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#tableWrapper table th {
+	text-align: center;
+	background-color: grey;
+	height: 19.6px;
+	padding: 13px;
+	background-color: #001eff;
+	color: white;
+}
+
+#tableWrapper table td {
+	text-align: center;
+	padding: 7px;
+	max-height: 17px;
+}
+
+#pageArea {
+	margin: 0 auto;
+	position: relative;
+}
+
+.paging {
+	margin-top: 10px;
+	position: absolute;
+	left: 45%;
+}
+
+.paging>li {
+	list-style: none;
+	float: left;
+	padding: 6px 1px;
+}
+
+.span {
+	padding: 6px 12px;
+	border: 1px solid lightgray;
+}
+
+#info, .paging>li :hover {
+	text-decoration: none;
+}
+
+#keywordInput {
+	display: inline;
+}
+
+.search {
+	float: right;
+	margin-bottom: 3px;
+	margin-right: 3px;
+}
+
+#searchType {
+	height: 24px;
+}
+</style>
+<style type="text/css">
+li {
+	list-style: none;
+	float: left;
+	padding: 6px;
 }
 </style>
 
+
 <body>
+	<div class="Container">
+		<div class="Content">
+			<h1>모임 관리</h1>
 
-	<section>
-		<div class="container-fluid">
-			<div class="row mb-5">
-				<div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-					<div class="row">
-						<div class="col-12">
-							<h3 class="text-muted text-center mb-3">1:1 문의 관리</h3>
-							<table class="table bg-light">
-								<thead>
-									<tr class="text-muted">
-										<th>모임번호</th>
-										<th>카테고리</th>
-										<th>모임이름</th>
-										<th>모임장</th>
-										<th>지역구분</th>
-										<th>시작일</th>
-										<th>종료일</th>
-										<th>온오프라인</th>
-										<th>모임구분</th>
-										<th>모임삭제</th>
-									</tr>
-								</thead>
+			<div id="tableWrapper">
+				<form role="form" method="get" id="form">
+
+					<div id="block">
+						<table class="useInfo">
+							<thead>
+								<tr>
+									<th>모임번호</th>
+									<th>카테고리</th>
+									<th>모임이름</th>
+									<th>모임장</th>
+									<th>지역구분</th>
+									<th>시작일</th>
+									<th>종료일</th>
+									<th>온오프라인</th>
+									<th>모임구분</th>
+									<th>모임삭제</th>
+								</tr>
+							</thead>
+							<tbody>
 								<c:forEach var="club" items="${adminClubList}">
+									<tr>
+										<td>${club.clubNum}</td>
+										<td>${club.clubCategory}</td>
+										<td><a href="${path}/getClub?clubNum=${club.clubNum}">${club.clubName}</a></td>
+										<td>${club.clubLeader}</td>
+										<td>${club.clubTown}</td>
+										<fmt:parseDate var="parseRegDate"
+											value="${club.clubStartDate}" pattern="yyyy-MM-dd" />
+										<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
+											pattern="yyyy-MM-dd" />
+										<td class="text-center">${resultRegDt}</td>
+										<fmt:parseDate var="parseRegDate" value="${club.clubEndDate}"
+											pattern="yyyy-MM-dd" />
+										<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
+											pattern="yyyy-MM-dd" />
+										<td class="text-center">${resultRegDt}</td>
 
-									<tbody>
-										<!-- table row -->
-										<tr>
-											<th>${club.clubNum}</th>
-											<td>${club.clubCategory}</td>
-											<td><a href="${path}/getClub?clubNum=${club.clubNum}">${club.clubName}</a></td>
-											<td>${club.clubLeader}</td>
-											<td>${club.clubTown}</td>
-											<fmt:parseDate var="parseRegDate"
-												value="${club.clubStartDate}" pattern="yyyy-MM-dd" />
-											<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
-												pattern="yyyy-MM-dd" />
-											<td class="text-center">${resultRegDt}</td>
-											<fmt:parseDate var="parseRegDate" value="${club.clubEndDate}"
-												pattern="yyyy-MM-dd" />
-											<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
-												pattern="yyyy-MM-dd" />
-											<td class="text-center">${resultRegDt}</td>
+										<c:if test="${club.clubOnOff eq '온라인'}">
+											<td class="text-center"><button type="button"
+													class="btn btn-warning btn-sm" style="width: 70px">${club.clubOnOff}</button></td>
+										</c:if>
+										<c:if test="${club.clubOnOff eq '오프라인'}">
+											<td class="text-center"><button type="button"
+													class="btn btn-info btn-sm" style="width: 70px">${club.clubOnOff}</button></td>
+										</c:if>
 
-											<c:if test="${club.clubOnOff eq '온라인'}">
-												<td class="text-center"><button type="button"
-														class="btn btn-warning btn-sm" style="width: 70px">${club.clubOnOff}</button></td>
-											</c:if>
-											<c:if test="${club.clubOnOff eq '오프라인'}">
-												<td class="text-center"><button type="button"
-														class="btn btn-info btn-sm" style="width: 70px">${club.clubOnOff}</button></td>
-											</c:if>
-
-											<c:if test="${club.clubKind eq 1}">
-												<td class="text-center"><button type="button"
-														class="btn btn-primary btn-sm"
-														style="width: 70px; font-weight: bold;">가치더하기</button></td>
-											</c:if>
-											<c:if test="${club.clubKind eq 2}">
-												<td class="text-center"><button type="button"
-														class="btn btn-danger btn-sm"
-														style="width: 70px; font-weight: bold;">도움더하기</button></td>
-											</c:if>
-											<form action="deleteAdminClub" method="post">
-												<input type="hidden" name="clubNum" value="${club.clubNum}">
-											<td class="text-center"><button type="submit"
-													class="btn btn-danger btn-sm" id="delBtn"
-													style="width: 70px; font-weight: bold;">삭제</button></td>
-											</form>
-										</tr>
-									</tbody>
+										<c:if test="${club.clubKind eq 1}">
+											<td class="text-center"><button type="button"
+													class="btn btn-primary btn-sm"
+													style="width: 70px; font-weight: bold;">가치더하기</button></td>
+										</c:if>
+										<c:if test="${club.clubKind eq 2}">
+											<td class="text-center"><button type="button"
+													class="btn btn-danger btn-sm"
+													style="width: 70px; font-weight: bold;">도움더하기</button></td>
+										</c:if>
+										<form action="deleteAdminClub" method="post">
+											<input type="hidden" name="clubNum" value="${club.clubNum}">
+											<td class="text-center">
+											<a href="deleteAdminClub">
+											<button type="submit" class="btn btn-danger btn-sm" id="delBtn" 
+											style="width: 70px; font-weight: bold;">삭제</button></a></td>
+										</form>
+									</tr>
 								</c:forEach>
-							</table>
-
-							<!-- pagination -->
-							<nav>
-								<ul class="pagination justify-content-center">
-									<li class="page-item"><a href="#"
-										class="page-link py-2 px-3"> <span>&laquo;</span>
-									</a></li>
-
-									<!-- 페이지 정보 추가 -->
-									<li class="page-item active"><a href="#"
-										class="page-link py-2 px-3">1</a></li>
-									<li class="page-item"><a href="#"
-										class="page-link py-2 px-3">2</a></li>
-									<li class="page-item"><a href="#"
-										class="page-link py-2 px-3">3</a></li>
-									<li class="page-item"><a href="#"
-										class="page-link py-2 px-3">4</a></li>
-
-									<li class="page-item"><a href="#"
-										class="page-link py-2 px-3"> <span>&raquo;</span>
-									</a></li>
-								</ul>
-							</nav>
-							<!-- end of pagination -->
-						</div>
+							</tbody>
+						</table>
 					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+					<!-- pagenation -->
+					<div id="pageArea">
 
+						<ul class="paging">
+
+							<c:if test="${pageMakerClub.prev}">
+								<li><a class="span"
+									href="adminClub${pageMakerClub.makeQuery(pageMakerClub.startPage - 1)}">◀</a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMakerClub.startPage}"
+								end="${pageMakerClub.endPage}" var="idx">
+								<li><a href="adminClub${pageMakerClub.makeQuery(idx)}"><span
+										class="span">${idx}</span></a></li>
+							</c:forEach>
+
+							<c:if test="${pageMakerClub.next && pageMakerClub.endPage > 0}">
+								<li><a class="span"
+									href="adminClub${pageMakerClub.makeQuery(pageMakerClub.endPage + 1)}">▶</a></li>
+							</c:if>
+						</ul>
+
+					</div>
+					<!-- pageArea -->
+				</form>
+			</div>
+			<!-- wrapper -->
+
+		</div>
+	</div>
 	<!-- end of table -->
 	<script>
 		$(document).ready(function() {

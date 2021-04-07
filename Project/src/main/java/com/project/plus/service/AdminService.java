@@ -3,6 +3,7 @@ package com.project.plus.service;
 import java.util.List;
 
 import com.project.plus.domain.ClubVO;
+import com.project.plus.domain.CriteriaAdmin;
 import com.project.plus.domain.InquiryVO;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.PaymentVO;
@@ -10,11 +11,13 @@ import com.project.plus.domain.VisitCountVO;
 
 public interface AdminService {
 	
+	InquiryVO answerInquiryForm(InquiryVO vo);
+	void answerInquiry(InquiryVO vo);
 	void deleteAdminInquiry(InquiryVO vo);
 
 	InquiryVO getAdminInquiry(InquiryVO vo);
-
-	List<InquiryVO> getAdminInquiryList(InquiryVO vo);
+	public List<InquiryVO> getAdminInquiryList(CriteriaAdmin cri) throws Exception;
+	public int adminInquiryListCount(CriteriaAdmin cri) throws Exception;
 	
 	int getAdminChart(MemberVO mvo);
 	
@@ -41,20 +44,13 @@ public interface AdminService {
 	int getJoin_4(MemberVO mvo);
 	int getJoin_5(MemberVO mvo);
 	int getJoin_6(MemberVO mvo);
-	
-	
-	InquiryVO answerInquiryForm(InquiryVO vo);
-	
-	void answerInquiry(InquiryVO vo);
 
-
-	List<PaymentVO> adminPayList(PaymentVO pvo);
-	List<ClubVO> adminClubList(ClubVO cvo);
-
+	public List<PaymentVO> adminPayList(CriteriaAdmin cri) throws Exception;
+	public int adminPayListCount(CriteriaAdmin cri) throws Exception;
 	
 	void deleteAdminClub(ClubVO cvo);
 
-//	List<Map<String, Object>> getAdminInquiryList(CriteriaAdmin criAd);
-//	int countAdminInquiryList(InquiryVO vo);
+	public List<ClubVO> adminClubList(CriteriaAdmin cri) throws Exception;
+	public int adminClubListCount(CriteriaAdmin cri) throws Exception;
 	
 }

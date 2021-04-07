@@ -21,7 +21,9 @@
 		<typeAlias alias="visit" type="com.project.plus.domain.VisitCountVO"/>
 		<typeAlias alias="board" type="com.project.plus.domain.BoardVO"/>
 		<typeAlias alias="comments" type="com.project.plus.domain.CommentsVO"/>
-		<typeAlias alias="payment" type="com.project.plus.domain.PaymentVO" />
+		<typeAlias alias="payment" type="com.project.plus.domain.PaymentVO"/>
+		<typeAlias alias="notify" type="com.project.plus.domain.NotificationVO"/>
+	
 </typeAliases>
 
 

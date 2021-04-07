@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.plus.domain.ClubVO;
+import com.project.plus.domain.CriteriaAdmin;
 import com.project.plus.domain.InquiryVO;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.PaymentVO;
@@ -20,6 +21,21 @@ public class AdminServiceImpl implements AdminService {
 	AdminMapper mapper;
 
 	@Override
+	public InquiryVO getAdminInquiry(InquiryVO vo) {
+		return mapper.getAdminInquiry(vo);
+	}
+	
+	@Override
+	public List<InquiryVO> getAdminInquiryList(CriteriaAdmin cri) throws Exception {
+		return mapper.getAdminInquiryList(cri);
+	}
+	
+	@Override
+	public int adminInquiryListCount(CriteriaAdmin cri) throws Exception {
+		return mapper.adminInquiryListCount(cri);
+	}
+
+	@Override
 	public void deleteAdminInquiry(InquiryVO vo) {
 		mapper.deleteAdminInquiry(vo);
 	}
@@ -30,14 +46,10 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public InquiryVO getAdminInquiry(InquiryVO vo) {
-		return mapper.getAdminInquiry(vo);
+	public InquiryVO answerInquiryForm(InquiryVO vo) {
+		return mapper.answerInquiryForm(vo);
 	}
 
-	@Override
-	public List<InquiryVO> getAdminInquiryList(InquiryVO vo) {
-		return mapper.getAdminInquiryList(vo);
-	}
 
 	@Override
 	public int getAdminChart(MemberVO mvo) {
@@ -53,12 +65,6 @@ public class AdminServiceImpl implements AdminService {
 	public int getAdminDayVisit(VisitCountVO vcvo) {
 		return mapper.getAdminDayVisit(vcvo);
 	}
-
-	@Override
-	public InquiryVO answerInquiryForm(InquiryVO vo) {
-		return mapper.answerInquiryForm(vo);
-	}
-
 
 	@Override
 	public int getVisit_1(VisitCountVO vcvo) {
@@ -151,13 +157,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<PaymentVO> adminPayList(PaymentVO pvo) {
-		return mapper.adminPayList(pvo);
+	public List<PaymentVO> adminPayList(CriteriaAdmin cri) throws Exception {
+		return mapper.adminPayList(cri);
 	}
 	
 	@Override
-	public List<ClubVO> adminClubList(ClubVO cvo) {
-		return mapper.adminClubList(cvo);
+	public int adminPayListCount(CriteriaAdmin cri) throws Exception {
+		return mapper.adminPayListCount(cri);
 	}
 
 	@Override
@@ -166,15 +172,14 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 
-//	@Override
-//	public List<Map<String, Object>> getAdminInquiryList(CriteriaAdmin criAd) {
-//		return mapper.getAdminInquiryList(criAd);
-//	}
-//	
-//	public int countAdminInquiryList(InquiryVO vo) {
-//		return (Integer)mapper.countAdminInquiryList("admin.countAdminInquiryList");
-//	}
+	@Override
+	public List<ClubVO> adminClubList(CriteriaAdmin cri) throws Exception {
+		return mapper.adminClubList(cri);
+	}
 
-
+	@Override
+	public int adminClubListCount(CriteriaAdmin cri) throws Exception {
+		return mapper.adminClubListCount(cri);
+	}
 
 }

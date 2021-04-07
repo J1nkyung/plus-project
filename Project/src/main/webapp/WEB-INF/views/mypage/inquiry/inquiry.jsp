@@ -27,7 +27,7 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <style>
-/* body {
+body {
 	font-family: 'NanumSquare', sans-serif;
 	margin-left:40px;
 }
@@ -39,12 +39,7 @@ color:inherit;
 a:hover {
 text-decoration:none;
 }
-th {
-text-align:center;
-}
-.table td, .table th {
-vertical-align: middle;
-} */
+
 .Container {
 	margin: 0;
 	width: 1140px;
@@ -127,83 +122,16 @@ vertical-align: middle;
 }
 </style>
 <style type="text/css">
-	li {list-style:none; float:left; padding:6px;}
+li {
+	list-style: none;
+	float: left;
+	padding: 6px;
+}
 </style>
 
 <body>
 
-	<%-- 	<section>
-		<div class="container-fluid">
-			<div class="row mb-5">
-				<div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-					<div class="row">
-						<div class="col-12">
-							<h3 class="text-muted text-center mb-3">1:1 문의 내역</h3>
-							<table class="table bg-light">
-								<thead>
-									<tr class="text-muted">
-										<th>카테고리</th>
-										<th>제목</th>
-										<th>문의날짜</th>
-										<th>답변상태</th>
-									</tr>
-								</thead>
-								<c:forEach var="inquiry" items="${inquiryList}">
 
-									<tbody>
-										<!-- table row -->
-										<tr>
-											<th>${inquiry.inquiryType}</th>
-											<td><a
-												href="${path}/getInquiry.do?inquiryNum=${inquiry.inquiryNum}"
-												class="inquiry-title">${inquiry.inquiryTitle}</a></td>
-											<fmt:parseDate var="parseRegDate"
-												value="${inquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
-											<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
-												pattern="yyyy-MM-dd" />
-											<td class="text-center">${resultRegDt}</td>
-											<td class="text-center"><button type="button"
-													class="btn btn-primary btn-sm" style="width: 70px">${inquiry.inquiryState}</button></td>
-
-										</tr>
-									</tbody>
-								</c:forEach>
-							</table>
-
-							<!-- pagination -->
-							<nav>
-								<ul class="pagination justify-content-center">
-									<li class="page-item"><a href="#"
-										class="page-link py-2 px-3"> <span>&laquo;</span>
-									</a></li>
-
-									<!-- 페이지 정보 추가 -->
-									<li class="page-item active"><a href="#"
-										class="page-link py-2 px-3">1</a></li>
-									<li class="page-item"><a href="#"
-										class="page-link py-2 px-3">2</a></li>
-									<li class="page-item"><a href="#"
-										class="page-link py-2 px-3">3</a></li>
-									<li class="page-item"><a href="#"
-										class="page-link py-2 px-3">4</a></li>
-
-									<li class="page-item"><a href="#"
-										class="page-link py-2 px-3"> <span>&raquo;</span>
-									</a></li>
-								</ul>
-							</nav>
-							<!-- end of pagination -->
-						</div>
-						<button class="btn btn-primary pull-right">
-							<a href="${path}/inquiryForm.jsp">문의</a>
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section> --%>
-
-	<!-- end of table -->
 	<div class="Container">
 		<div class="Content">
 			<h1>1:1 문의 내역</h1>
@@ -226,35 +154,35 @@ vertical-align: middle;
 							value="${scmem.keyword}" />
 						<button id="searchBtn" type="button">검색</button>
 					</div>--%>
-					<!-- search --> 
+					<!-- search -->
 
 					<div id="block">
 						<table class="useInfo">
-						<thead>
-							<tr>
-								<th>카테고리</th>
-								<th>제목</th>
-								<th>문의날짜</th>
-								<th>답변상태</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach var="inquiry" items="${inquiryList}">
+							<thead>
 								<tr>
-									<td>${inquiry.inquiryType}</td>
-									<td><a
-										href="${path}/getInquiry?inquiryNum=${inquiry.inquiryNum}"
-										class="inquiry-title">${inquiry.inquiryTitle}</a></td>
-									<fmt:parseDate var="parseRegDate"
-										value="${inquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
-									<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
-										pattern="yyyy-MM-dd" />
-									<td class="text-center">${resultRegDt}</td>
-									<td class="text-center"><button type="button"
-											class="btn btn-primary btn-sm" style="width: 70px">${inquiry.inquiryState}</button></td>
-
+									<th>카테고리</th>
+									<th>제목</th>
+									<th>문의날짜</th>
+									<th>답변상태</th>
 								</tr>
-							</c:forEach>
+							</thead>
+							<tbody>
+								<c:forEach var="inquiry" items="${inquiryList}">
+									<tr>
+										<td>${inquiry.inquiryType}</td>
+										<td><a
+											href="${path}/getInquiry?inquiryNum=${inquiry.inquiryNum}"
+											class="inquiry-title">${inquiry.inquiryTitle}</a></td>
+										<fmt:parseDate var="parseRegDate"
+											value="${inquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
+										<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
+											pattern="yyyy-MM-dd" />
+										<td class="text-center">${resultRegDt}</td>
+										<td class="text-center"><button type="button"
+												class="btn btn-primary btn-sm" style="width: 70px">${inquiry.inquiryState}</button></td>
+
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -262,19 +190,23 @@ vertical-align: middle;
 					<div id="pageArea">
 
 						<ul class="paging">
+						
 							<c:if test="${pageMakerAdmin.prev}">
-								<li><a href="inquiryList${pageMakerAdmin.makeQuery(pageMakerAdmin.startPage - 1)}">이전</a></li>
-    						</c:if>
-							
-							<c:forEach begin="${pageMakerAdmin.startPage}" end="${pageMakerAdmin.endPage}"
-								var="idx">
-								<li><a href="inquiryList${pageMakerAdmin.makeQuery(idx)}">${idx}</a></li>
+							<li><a class="span"
+								href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.startPage - 1)}">◀</a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMakerAdmin.startPage}"
+								end="${pageMakerAdmin.endPage}" var="idx">
+								<li><a href="inquiry${pageMakerAdmin.makeQuery(idx)}"><span
+										class="span">${idx}</span></a></li>
 							</c:forEach>
-							
-							  <c:if test="${pageMakerAdmin.next && pageMakerAdmin.endPage > 0}">
-    						<li><a href="inquiryList${pageMakerAdmin.makeQuery(pageMakerAdmin.endPage + 1)}">다음</a></li>
-   							 </c:if> 
-   						</ul>
+
+							<c:if test="${pageMakerAdmin.next && pageMakerAdmin.endPage > 0}">
+							<li><a class="span"
+								href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.endPage + 1)}">▶</a></li>
+							</c:if>
+						</ul>
 
 					</div>
 					<!-- pageArea -->

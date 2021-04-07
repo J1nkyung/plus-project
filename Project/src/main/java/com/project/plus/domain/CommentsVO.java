@@ -16,8 +16,11 @@ public class CommentsVO {
 	private String commentsContent;
 	private String memberNickname;
 	private String memberPic;
+	private int boardWriter;
 	
 	private int commentsClass;
 	private int commentsOrder;
 	private int commentsGroupNum;
+	
+	
 }

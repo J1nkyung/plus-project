@@ -53,7 +53,6 @@ public class FaqController {
 	}
 
 	// 자주 묻는 질문 개별 글 조회
-
 	@RequestMapping("/getFaq")
 	public String getFaq(FaqVO vo, Model model) {
 		model.addAttribute("faq", faqService.getFaq(vo));

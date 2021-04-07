@@ -4,6 +4,7 @@
 <mapper namespace="com.project.plus.mapper.CommentsMapper">
 	<resultMap id="commResult" type="comments">
 		<id property="commentsNum" column="comments_num" />
+		<result property="commentsClass" column="comments_Class" />
 		<result property="memberNum" column="member_num" />
 		<result property="memberNickname" column="member_nickname" />
 		<result property="memberPic" column="member_pic" />
@@ -34,20 +35,39 @@
 	<select id="getComments" resultMap="commResult">
 		SELECT member_nickname, member_num, member_pic, comments_num, board_num, comments_content, date_format(comments_regdate,'%Y.%c.%e %H:%i') as comments_changed_regdate 
 		FROM comments 
-		JOIN member USING (member_num) WHERE board_num = #{boardNum}
-		ORDER BY comments_regdate DESC LIMIT 5
+		JOIN member USING (member_num) WHERE board_num = #{boardNum} AND comments_class IS NULL
+		ORDER BY comments_regdate DESC
 	</select>
 	
 	<select id="getCommentsCount" resultType="Integer">
-		SELECT count(*) FROM comments WHERE board_num = #{boardNum}
+		SELECT count(*) FROM comments WHERE board_num = #{boardNum} AND comments_class IS NULL
 	</select>
 	
 	<!-- 댓글 더보기.. 몇개씩? -->
-	<select id="getMoreComments" resultMap="commResult">
+	<!-- <select id="getMoreComments" resultMap="commResult">
 		SELECT member_nickname, member_num, board_num, comments_num, comments_content, date_format(comments_regdate,'%Y.%c.%e %H:%i') as comments_changed_regdate 
 		FROM comments 
 		JOIN member USING (member_num) WHERE board_num = #{boardNum} 
 		ORDER BY comments_regdate DESC LIMIT #{startIndex}, 5
+	</select> -->
+	
+	<!-- 대댓글 가져오기 -->
+	<select id="getReComments" resultMap="commResult">
+		SELECT member_nickname, member_num, board_num, comments_num, comments_class, comments_content, date_format(comments_regdate,'%Y.%c.%e %H:%i') as comments_changed_regdate  FROM comments
+		JOIN member USING (member_num) WHERE comments_class = #{commentsClass} ORDER BY comments_regdate DESC
+	</select>
+	
+	<insert id="insertReComments">
+		INSERT INTO comments(member_num, board_num, comments_class, comments_regdate, comments_content) 
+		VALUES (#{memberNum}, #{boardNum}, #{commentsClass}, STR_TO_DATE(#{commentsRegdate}, '%Y. %m. %d %H:%i:%s'),#{commentsContent})
+		
+		<selectKey resultType="int" keyProperty="commentsNum" order="AFTER">
+			SELECT LAST_INSERT_ID()
+      </selectKey>
+	</insert>
+	
+	<select id="getBoardWriter">
+		SELECT member_num FROM board WHERE board_num = #{boardNum}
 	</select>
 	
 <!-- 멤버 테이블과 조인 쿼리 써야함 
@@ -55,4 +75,4 @@
 		SELECT member_nickname FROM member WHERE member_num = #{memberNum}
 	</select> -->
 	
-</mapper> 
+</mapper>
