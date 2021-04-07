@@ -101,11 +101,11 @@
   
   
     
-    <definition name="*.curClub" extends="mypage"> <!-- 나중에 mypage로 바꿔야함-->
+    <definition name="*.curClub" extends="mypage"> 
      <put-attribute name="body" value="/WEB-INF/views/mypage/currentClub/{1}.jsp" /> 
   </definition>
   
-  <definition name="*.reviews" extends="mypage">  <!-- 나중에 mypage로 바꿔야함-->
+  <definition name="*.reviews" extends="mypage">  
      <put-attribute name="body" value="/WEB-INF/views/mypage/reviews/{1}.jsp" /> 
   </definition>
   

@@ -27,7 +27,7 @@
 <style>
 .heartContainer {
 	margin: 0;
-	width: 1140px;
+	/* width: 1140px; */
 }
 
 #heartTitle {
@@ -37,6 +37,7 @@
 .heartTab {
 	padding: 10px;
 	background: #ffffff;
+	margin-bottom: 10%;
 }
 
 .heartTab section {
@@ -174,10 +175,9 @@ div {
 						<div id="cardPadding">
 							<input type="checkbox" class="inputB" id="card1" name="clubNum"
 								value="${freeclub.clubNum}" /><br> <label for="card">
-								<div class="card" style="width: 400px">
-									<c:if
-										test="${freeclub.clubThumbPic == null || freeclub.clubThumbPic== ''}">
-										<img src="${path}/resources/img/goal.PNG" class="card-img-top" alt="Card image" style="width: 100%">
+								<div class="card" style="width: 400px" onclick="location.href='getClub?clubNum=${freeclub.clubNum}'">
+									<c:if test="${freeclub.clubThumbPic == null || freeclub.clubThumbPic== ''}">
+										<img src="${path}/resources/img/goal.PNG" class="card-img-top" alt="Card image" style="width: 100%"  >
 									</c:if>
 									<c:if
 										test="${freeclub.clubThumbPic != null || freeclub.clubThumbPic== ''}">
@@ -234,7 +234,7 @@ div {
 							<input type="checkbox" class="inputB" id="card2" name="clubNum"
 								value="${nofreeclub.clubNum}"><br> <label
 								for="card">
-								<div class="card" style="width: 400px">
+								<div class="card" style="width: 400px" onclick="location.href='getClub?clubNum=${nofreeclub.clubNum}'">
 									<c:if
 										test="${nofreeclub.clubThumbPic == null || nofreeclub.clubThumbPic== ''}">
 										<img src="${path}/resources/img/goal.PNG" class="card-img-top"

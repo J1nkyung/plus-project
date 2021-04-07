@@ -173,6 +173,8 @@
 	                        <i class="rating__icon rating__icon--star fa fa-star"></i>
 	                     </label> 
                   	  <input  class="rating__input" name="reviewRate" id="rating-5" value="5"  type="radio">
+                  	  
+                  	  
           		  </div>
 				<div>
 					<input type="hidden" name="clubNum" value="${readReview.clubNum}"/>

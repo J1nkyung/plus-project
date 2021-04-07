@@ -2,11 +2,12 @@ package com.project.plus.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.project.plus.domain.MemberVO;
@@ -26,11 +27,10 @@ public class PaymentController {
 
 	
 	@RequestMapping("/getPaymentList")
-	public String getPaymentList(PaymentVO vo, MemberVO membervo, Model model) {
-		
-		vo.setMemberNum(3);
-		membervo.setMemberNum(3);
-		
+	public String getPaymentList(PaymentVO vo, MemberVO membervo,HttpSession session, Model model) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		vo.setMemberNum(user.getMemberNum());
+		membervo.setMemberNum(user.getMemberNum());
 		int currentMemberPoint = memberService.selectMemberPoint(membervo);
 		List<PaymentVO> paymentList = paymentService.selectPaymentList(vo);
 		model.addAttribute("currentMemberPoint", currentMemberPoint);
@@ -45,8 +45,8 @@ public class PaymentController {
 	
 	@RequestMapping("/chargePoint")
 	public void chargePoint(PaymentVO vo, MemberVO membervo) {
-		vo.setMemberNum(3);
-		membervo.setMemberNum(3);
+//		vo.setMemberNum(3);
+//		membervo.setMemberNum(3);
 		// 유저가 현재 가지고 있는 포인트
 		int currentMemberPoint = memberService.selectMemberPoint(membervo);
 		// 콘솔 값 확인 
