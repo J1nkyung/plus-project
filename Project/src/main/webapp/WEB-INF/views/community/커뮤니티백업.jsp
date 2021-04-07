@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <title>커뮤니티</title>
 <style>
 body {
@@ -455,7 +455,7 @@ $(function(){
 			}) 
 		
 	})
-});	// function 끝 
+});
 
 
 // 대댓글 삭제 
@@ -495,12 +495,12 @@ function showReComments(cNum){
 	// 대댓글 접었다 펴기 
 	$showReCommBtn = $(event.target);
 	$showReCommBtn.toggleClass('selected');
-	let target = $showReCommBtn.closest('.userComment').children('.reComm-wrap');
+	let target = $showReCommBtn.parent().parent().children('.reComm-wrap');
 		if(!$showReCommBtn.hasClass('selected')){
 			target.remove();	
 	} else{
 		console.log('댓글번호 : ' + cNum);
-		let userComm = event.target.closest('.userComment');
+		let userComm = event.target.parentNode.parentNode;
 		
 		// 대댓글 wrap 만들기 
 		let reCommWrap = document.createElement('div');
@@ -578,15 +578,16 @@ function getComments(bNum){
 	
 	$showCommBtn = $(event.target);
 	$showCommBtn.toggleClass('selected');
-	let inlineContent = $showCommBtn.closest('.inlineContent');
+	let inlineContent = $showCommBtn.parent().parent().parent();
 	if(!$showCommBtn.hasClass('selected')){
 		inlineContent.children('.commentBox').remove();
 		inlineContent.children('.comments-wrap').remove();
 
 	} else{
 	
-		//inlineContent 찾기 
-	let pnode = event.target.closest('.inlineContent');
+	let pnode = event.target.parentNode.parentNode.parentNode;
+	
+	// contentBox
 	console.log(pnode);
 	
 	// 댓글 입력 부분 
@@ -677,9 +678,7 @@ function insertComment(bNum){
 		
 		
 		
-		//let pnode = event.target.parentNode.parentNode.nextElementSibling;
-		let pnode = event.target.closest('.commentBox').nextElementSibling;
-		
+		let pnode = event.target.parentNode.parentNode.nextElementSibling;
 		console.log(pnode);	//comments-wrap
 		
 		let area = event.target.parentNode.getElementsByTagName('textArea')[0];
@@ -911,13 +910,6 @@ function updateComment(cNum){
 				            		console.log("댓글삭제완료");
 				            		alert("댓글이 삭제되었습니다!");
 				            		pnode.innerHTML="";
-				            		// 댓글 개수 감소 
-				            		console.log(pnode)
-				            		let showBtn = pnode.parentNode.parentNode.firstElementChild.lastElementChild;
-				            		console.log(showBtn)
-				            		let count = showBtn.lastElementChild;	// a태그 
-				            		let calc = "-";
-				            		changeCount(calc, count); 
 				            		
 				            	} else {
 				            		console.log("댓글삭제실패");
@@ -930,7 +922,14 @@ function updateComment(cNum){
 				
 		}
 	
-	
+		// 댓글 개수 감소 
+		console.log(pnode)
+		let showBtn = pnode.parentNode.parentNode.firstElementChild.lastElementChild;
+		console.log(showBtn)
+		let count = showBtn.lastElementChild;	// a태그 
+		console.log(count.lastElementChild)
+		let calc = "-";
+		changeCount(calc, count); 
 	}
 		
 	

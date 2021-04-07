@@ -141,53 +141,10 @@
 </section>
 </wrap>
 
-<!-- 카카오 link api -->
-<script>
-  Kakao.init('c727ac6af8f4ea892e4524df5eed6359');
-  Kakao.isInitialized();
-
-    function sendLink() {
-      Kakao.Link.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: 'PLUS 모임!',
-          description: '"${club.clubName}" 모임에 지금 바로 참여해보세요~',
-          imageUrl:
-            'https://postfiles.pstatic.net/MjAyMTAzMjFfMTYy/MDAxNjE2MzMxNjMzMTQy.AqxK620MPDQyOyUWo0DQaD2gX7k63f360KEStS_8LhUg.2HGpYONTIq7XJd6uKdSkvOCEsJu70nUTujm9HSGnXG8g.PNG.jk940816/logo.png?type=w966',
-          link: {
-            mobileWebUrl: 'http://localhost:9999/plus/getClub',
-            webUrl: 'http://localhost:9999/plus/getClub',
-          },
-        },
-        social: {
-          likeCount: 286,
-          commentCount: ${reviewCount},
-        },
-        buttons: [ 
-          {
-            title: '웹으로 보기',
-            link: {
-              mobileWebUrl: 'http://localhost:9999/plus/getClub',
-              webUrl: 'http://localhost:9999/plus/getClub',
-            },
-          },
-          {
-            title: '앱으로 보기',
-            link: {
-              mobileWebUrl: 'http://localhost:9999/plus/getClub',
-              webUrl: 'http://localhost:9999/plus/getClub',
-            },
-          },
-        ],
-      })
-    }
-  </script>
- 
+<!--지도 추가(혜미)-->
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=54bd0b6b843cae2c7eb4621d80f301a4"></script>
 <script>
-<!--지도 추가(혜미)-->
-
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = { 
     center: new kakao.maps.LatLng(${club.clubLatitude}, ${club.clubLongitude}), // 지도의 중심좌표
@@ -206,8 +163,51 @@ position: markerPosition
 
 //마커가 지도 위에 표시되도록 설정합니다
 marker.setMap(map);
+</script>
+<script>
+// 카카오 링크 api 
+
+Kakao.init('c727ac6af8f4ea892e4524df5eed6359');
+Kakao.isInitialized();
+
+  function sendLink() {
+    Kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: 'PLUS 모임!',
+        description: '"${club.clubName}" 모임에 지금 바로 참여해보세요~',
+        imageUrl:
+          'https://postfiles.pstatic.net/MjAyMTAzMjFfMTYy/MDAxNjE2MzMxNjMzMTQy.AqxK620MPDQyOyUWo0DQaD2gX7k63f360KEStS_8LhUg.2HGpYONTIq7XJd6uKdSkvOCEsJu70nUTujm9HSGnXG8g.PNG.jk940816/logo.png?type=w966',
+        link: {
+          mobileWebUrl: 'http://localhost:9999/plus/getClub',
+          webUrl: 'http://localhost:9999/plus/getClub',
+        },
+      },
+      social: {
+        likeCount: 286,
+        commentCount: ${reviewCount},
+      },
+      buttons: [ 
+        {
+          title: '웹으로 보기',
+          link: {
+            mobileWebUrl: 'http://localhost:9999/plus/getClub',
+            webUrl: 'http://localhost:9999/plus/getClub',
+          },
+        },
+        {
+          title: '앱으로 보기',
+          link: {
+            mobileWebUrl: 'http://localhost:9999/plus/getClub',
+            webUrl: 'http://localhost:9999/plus/getClub',
+          },
+        },
+      ],
+    })
+  }
 
 
+// 본문 function 
 $(function(){
    
    /* 탭메뉴  */
@@ -309,7 +309,7 @@ $(function(){
                   });
                }
 
-            // 결제가 필요한 모임 신청하기 버튼 클릭시 이미 신청 내역이라면 alert 창 띄우ㄱ 
+            // 결제가 필요한 모임 신청하기 버튼 클릭시 이미 신청 내역이라면 alert 창 띄우기 
             $("#payBtn").on('click',function(){
                console.log('${yesNo}');
                if(!'${user.memberNum}'){
@@ -400,15 +400,12 @@ $(function(){
          apply().then(plusCurnum).then(successFunc).catch(errorFunc);
     }); 
  }); 
- 
- </script>
-<script>
+
 /*정연수정 20210405*/
 if('${msg}' != ''){
     alert('${msg}');
 }
-</script>
-<script>
+
 /*찜 수정 20210401*/
 var state = document.getElementById("heartImg").value; 
 $('#heartBtn').on('click',function(){
@@ -466,10 +463,8 @@ document.getElementById("heartImg").src = "${path}/resources/img/heart.png";
              alert("error");
            }
       });
+	}
 }
-
    
 </script>
-
-
 </html>
