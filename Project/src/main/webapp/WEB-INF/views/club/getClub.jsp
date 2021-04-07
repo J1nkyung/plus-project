@@ -110,8 +110,17 @@
 				<div id="infoLabel">참가비</div>
 				<div class="fstyle" id="amount">${club.clubFee}P</div>
 				<br>
-				<button type="button" class="btn" id="applyBtn">신청하기</button>
-
+				<!-- 정연수정 20210403 -->
+				<c:if test="${club.clubFee ==0 }">
+					<button type="button" class="btn" id="applyBtn">신청하기</button>
+				</c:if>
+				<form action="payClub" method="post" >
+					<c:if test="${club.clubFee > 0 }">
+						<input type="hidden"  name="clubNum" value="${club.clubNum}"/>
+						<input type="hidden"  name="clubLeader" value="${club.clubLeader}"/>
+						<button type="submit" class="btn" id="payBtn">돈내기</button>
+					</c:if>
+				</form>
 				<!-- 찜버튼 -->
 				<button type="button" class="btn" id="heartBtn">
 					<c:if test="${isThereHeart eq 0}">
@@ -131,29 +140,7 @@
 	</aside>
 </section>
 </wrap>
-<!-- <script>
 
-/* /* $(function(){
-    
-   $('#heartBtn').on('click',function(){
-        로그인 검사 
-      if(!'${user.memberNum}'){
-         alert("로그인해주세요!");
-         return;
-      }
-   }) */
-
-//찜버튼
-
-   console.log("하트확인 전 ")
-    if(${isThereHeart == 0}){
-       state=0;
-    }else{
-       state=1;
-   }
- console.log("하트확인 후 " + state);
-
-</script> -->
 <!-- 카카오 link api -->
 <script>
   Kakao.init('c727ac6af8f4ea892e4524df5eed6359');
@@ -322,6 +309,22 @@ $(function(){
                   });
                }
 
+            // 결제가 필요한 모임 신청하기 버튼 클릭시 이미 신청 내역이라면 alert 창 띄우ㄱ 
+            $("#payBtn").on('click',function(){
+               console.log('${yesNo}');
+               if(!'${user.memberNum}'){
+                   alert("로그인해주세요!");
+                   return false;
+                }
+                if(${club.clubCurnum} >= ${club.clubMax} ){
+                   alert("모집 인원이 마감되어 신청하실 수 없습니다");
+                   return;
+                }
+/*                 if('${yesNo}' != ''){
+                    alert('${yesNo}');
+                } */
+            });
+            
              // 신청하기 버튼 클릭시 
              $("#applyBtn").on('click',function(){
                 console.log('${user.memberNum}');
@@ -399,7 +402,12 @@ $(function(){
  }); 
  
  </script>
-
+<script>
+/*정연수정 20210405*/
+if('${msg}' != ''){
+    alert('${msg}');
+}
+</script>
 <script>
 /*찜 수정 20210401*/
 var state = document.getElementById("heartImg").value; 
@@ -409,7 +417,6 @@ if(! '${user.memberNum}'){
    alert("로그인해주세요!");
    return;
 }else{
-	
 	toggleImg();
 	console.log('여기까지 ~~~');
 }
@@ -460,7 +467,7 @@ document.getElementById("heartImg").src = "${path}/resources/img/heart.png";
            }
       });
 }
-} 
+
    
 </script>
 

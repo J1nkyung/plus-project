@@ -45,7 +45,11 @@ public interface MemberMapper {
 	
 	public void updateClubLeaderPoint(MemberVO vo);
 	
+	public int selectMemberNumberByNickname(MemberVO vo);
+	
 	void insertLocation(MemberVO vo);
+	//정연 하단 추가 20210403
+	public void refundFee(MemberVO vo);
 
 
 }

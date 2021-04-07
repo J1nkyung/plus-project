@@ -46,6 +46,21 @@ public class CommentsServiceImpl implements CommentsService {
 		return mapper.getCommentsCount(bNum);
 	}
 
+	@Override
+	public List<CommentsVO> getReComments(CommentsVO comments) {
+		return mapper.getReComments(comments);
+	}
+
+	@Override
+	public int insertReComments(CommentsVO comments) {
+		return mapper.insertReComments(comments);
+	}
+
+	@Override
+	public int getBoardWriter(int bNum) {
+		return mapper.getBoardWriter(bNum);
+	}
+
 
 
 	

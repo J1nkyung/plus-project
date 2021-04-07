@@ -131,11 +131,16 @@ textarea {
 	display: flex;
 }
 
-#submitCommBtn {
+
+.reComm-box{
+	margin-left:80px;
+	display:flex;
+} 
+
+#submitCommBtn, #submit-reCommBtn {
 	display: inline-block;
 	padding: 10px 20px;
 	color: #999;
-	/* vertical-align: middle; */
 	background-color: #fdfdfd;
 	border: 0;
 	cursor: pointer;
@@ -144,7 +149,7 @@ textarea {
 }
 
 #commContent {
-	margin: 0px 0px 20px 60px;
+	margin: 0px 0px 50px 60px;
 }
 
 #commRegdate {
@@ -152,12 +157,23 @@ textarea {
 	color: #6e7c7c;
 	font-size: 12px;
 }
+#editBtn{
+	margin-bottom:30px;
+	color:#6e7c7c;
+}
 
-#delComm, #updateComm {
+#delComm, #updateComm{
 	float: right;
 	font-size: 15px;
 	margin-right: 10px;
 	cursor: pointer;
+}
+
+#showReCommBtn{
+	font-size: 15px;
+	margin-right: 10px;
+	cursor: pointer;
+    margin-left: 60px;
 }
 
 #editText {
@@ -202,8 +218,8 @@ textarea {
    }
 
 #boardRegdate{
-           margin:32px;
-        }
+  	margin:32px;
+  }
         
 #dropdown {
 	width: 15px;
@@ -278,6 +294,8 @@ height:35px;
 .moreBtn:focus{
 border:0;
 outline:0;
+.reComm-list {
+    margin: 40px 0 0 40px;
 }
 </style>
 </head>
@@ -317,6 +335,12 @@ outline:0;
                                     </button>
                                     <button type="submit" id="btnDel"><a href="${path}/deleteBoard?boardNum=${board.boardNum}">삭제</a>
                                     </button>
+                               <%--      <button type="submit" id="btnUp">
+                                       <a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>
+                                    </button>
+                                    <button type="submit" id="btnDel">
+                                       <a href="${path}/deleteBoard?boardNum=${board.boardNum}">삭제</a>
+                                    </button> --%>
                                  </ul>
                               </li>
                            </ul>
@@ -517,25 +541,214 @@ let contentCnt = '${contentCount}'
 	
 	
 	
+// 나중에 session 멤버 번호를 가져와야함 
+let mNum = '${user.memberNum}';
+let userNickname = '${user.memberNickname}';
+let boardNum = 0;
 
 $(function(){
 
-
+	
+	//대댓글 등록
+	$(document).on('click','#submit-reCommBtn',function(){
+		//e.stopImmediatePropagation();
+		
+		// 대댓글 리스트 div 가져오기 
+		let reCommWrap = $(this).parent().parent();
+		console.log(reCommWrap)
+		
+		// textarea 입력 값 가져오기 
+		let area = $(this).parent().children(":first");
+		let content = area.val();
+		if(content=="" || content==" "){
+			alert("내용을 입력해주세요!");
+			return;
+		}
+		
+		let today = getTime();
+		
+		// 댓글번호 가져오기 
+		let cNum = $(this).attr('name');
+		console.log("댓글번호 : " + cNum);
+		console.log("게시글번호 : " + boardNum); 
+		
+		
+		 
+		   	$.ajax({
+				type: "post",
+				url: "insertReComments",
+				data: {
+					commentsClass:cNum,
+					memberNum:2,
+					boardNum:boardNum,
+					commentsContent:content,
+					commentsRegdate:today,
+				},
+		    	 success: function (data) {
+		     		console.log(data)
+		     		console.log(data.commentsNum)
+		     		if(data){
+		     		
+		     		// 오늘 날짜 format 변환
+		     			today = today.split(':');
+						// 대댓글입력시 대댓글 목록에 추가 
+						let reList ='<div class="reComm-list">';
+						reList +='<div class="userSpan">'
+						reList += '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
+						reList += '<div id="commentNickname">'+ userNickname +'</div>';
+						reList += '<div id="commRegdate">'+ today[0] + ':' + today[1] +'</div></div>';
+						reList += '<div id="commContent">'+ content +'</div>';
+				     	reList += '<div id="editBtn"><div id="delComm" onclick="delReComm('+data.commentsNum+')">삭제</div>'
+				     	reList += '<div id="updateComm" onclick="changeTag('+data.commentsNum+')">수정</div></div></div>';
+				     	let reCommBox = reCommWrap.children().first();
+				     	console.log(reCommBox)
+				     	$(reList).insertAfter(reCommBox);
+				     	//reCommWrap.append(reList);
+				     	
+				     	console.log("대댓글 등록 성공!")
+				     	alert("댓글이 등록되었습니다!");
+				     	area.val('');
+		     		}
+		     	
+		        },
+		        error: function(e) {
+		        	  alert("대댓글 불러오기 오류" + e);
+		        }
+			}) 
+		
+	})
 });
 
-let userNickname = '${user.memberNickname}';
+
+// 대댓글 삭제 
+function delReComm(cNum){
+	let thisEle = $(event.target);
+	let reCommList = thisEle.parent().parent();
+	
+	
+	$.ajax({
+		type: "post",
+		url: "deleteComment",
+		data: {
+			commentsNum:cNum,
+		},
+	          success: function (data) {
+        	console.log(data)
+        	if(data){
+            		console.log("대댓글삭제완료");
+            		alert("댓글이 삭제되었습니다!");
+            		reCommList.remove();
+            		
+            	} else {
+            		console.log("대댓글삭제실패");
+	      		}
+        },
+        error: function() {
+        	  alert("대댓글 삭제 오류");
+        }
+    });
+	
+}
+
+
+// 답글 버튼 클릭시 
+function showReComments(cNum){
+	
+	// 대댓글 접었다 펴기 
+	$showReCommBtn = $(event.target);
+	$showReCommBtn.toggleClass('selected');
+	let target = $showReCommBtn.parent().parent().children('.reComm-wrap');
+		if(!$showReCommBtn.hasClass('selected')){
+			target.remove();	
+	} else{
+		console.log('댓글번호 : ' + cNum);
+		let userComm = event.target.parentNode.parentNode;
+		
+		// 대댓글 wrap 만들기 
+		let reCommWrap = document.createElement('div');
+		reCommWrap.classList.add('reComm-wrap');
+		userComm.appendChild(reCommWrap);
+		
+		// 대댓글 작성 폼 보여주기
+		let reCommBox = document.createElement('div');
+		reCommBox.classList.add('reComm-box');
+		reCommBox.innerHTML = '<textarea cols="50" rows="2" id="re-textarea" placeholder="답글을 입력해보세요!" />';
+		reCommBox.innerHTML += '<input type="button" id="submit-reCommBtn" name='+ cNum +' value="등록하기" />';
+		reCommWrap.appendChild(reCommBox);
+		
+		// 대댓글 입력을 위한 노드 추가  
+		let reCommList = document.createElement('div');
+		reCommList.classList.add('reComm-list');
+		reCommWrap.appendChild(reCommList);
+		
+		
+		
+		// 해당 댓글의 대댓글 목록 가져오는 ajax 		
+	 	 $.ajax({
+				type: "post",
+				url: "getReComments",
+				data: {
+					commentsClass:cNum,
+				},
+	         success: function (data) {
+	         	console.log(data)
+	         	
+				for(var i=0; i<data.length; i++){
+					// 대댓글 리스트 보여주기 
+					let reCommList = document.createElement('div');
+					reCommList.classList.add('reComm-list');
+					let span = document.createElement('div');
+					span.classList.add('userSpan');
+					span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
+					span.innerHTML += '<div id="commentNickname">'+data[i].memberNickname +'</div>';
+					span.innerHTML += '<div id="commRegdate">'+ data[i].commentsChangedRegdate +'</div></div>';
+					
+					let commContent = document.createElement('div');
+					commContent.id = 'commContent';
+					commContent.innerHTML += data[i].commentsContent;
+					
+					let editBtn = document.createElement('div');
+					editBtn.classList.add('editBtn');
+					editBtn.innerHTML += '<div id="delComm" onclick="delReComm('+data[i].commentsNum+')">삭제</div>'
+					editBtn.innerHTML += '<div id="updateComm" onclick="changeTag('+data[i].commentsNum+')">수정</div>';
+					
+					reCommList.appendChild(span);
+					reCommList.appendChild(commContent);
+					reCommList.appendChild(editBtn);
+					reCommWrap.appendChild(reCommList);
+					userComm.appendChild(reCommWrap);
+					console.log(userComm) 
+
+					}
+		        },
+		        error: function(e) {
+		        	  alert("대댓글 불러오기 오류" + e);
+		        }
+	     });  
+	}
+	
+	
+}
+
+
+
 
 
 //댓글보기 클릭시 
 function getComments(bNum){
 	// 댓글 보기 접었다 펴기 
-	$("#showCommBtn").toggleClass('selected');
-	if(!$("#showCommBtn").hasClass('selected')){
-		$('.commentBox').remove();		
-		$('.comments-wrap').remove();		
+	
+	$showCommBtn = $(event.target);
+	$showCommBtn.toggleClass('selected');
+	let inlineContent = $showCommBtn.parent().parent().parent();
+	if(!$showCommBtn.hasClass('selected')){
+		inlineContent.children('.commentBox').remove();
+		inlineContent.children('.comments-wrap').remove();
+
 	} else{
 	
 	let pnode = event.target.parentNode.parentNode.parentNode;
+	
 	// contentBox
 	console.log(pnode);
 	
@@ -548,6 +761,7 @@ function getComments(bNum){
 	
 	write.innerHTML ='<textarea cols="80" rows="1" id="textArea" placeholder="댓글을 입력해보세요!"></textarea>';
 	write.innerHTML += '<br> <input type="button" id="submitCommBtn" value="등록하기" onclick="insertComment('+ bNum +')" />';
+	boardNum = bNum;
 	
 	commBox.appendChild(write);
 	pnode.appendChild(commBox);
@@ -580,11 +794,18 @@ function getComments(bNum){
 		         	/* span.innerHTML += '<img src="${path}/resources/img/down.png" id="dropdown"/>'; */
 		         	comment.appendChild(span);
 		         	comment.innerHTML += '<div id="commContent">'+ data[i].commentsContent +'</div></div>';
+		         	
 		         	// 댓글쓴이와 로그인 유저가 같은 사람이면 수정,삭제가 보임 
 		         	if(data[i].memberNickname === userNickname){
-		         	comment.innerHTML += '<div id="editBtn"><div id="delComm" onclick="deleteComment('+data[i].commentsNum+')">삭제</div>'
-		         						+'<div id="updateComm" onclick="changeTag('+data[i].commentsNum+')">수정</div></div>';
-		         	} 
+			         	comment.innerHTML += '<div id="editBtn"><div id="delComm" onclick="deleteComment('+data[i].commentsNum+')">삭제</div>'
+			         						+'<div id="updateComm" onclick="changeTag('+data[i].commentsNum+')">수정</div>'
+			         						+'<div id="showReCommBtn" onclick="showReComments('+data[i].commentsNum+')">대댓글</div></div>';
+			         	comment.innerHTML += '<div class="reComm-wrap"></div>';		
+		         	} else {
+		         		
+			         	comment.innerHTML +='<div id="editBtn"><div id="showReCommBtn" onclick="showReComments('+data[i].commentsNum+')">대댓글</div></div>';
+			         	comment.innerHTML += '<div class="reComm-wrap"></div>';
+		         	}
 		         	
 		         	commWrap.appendChild(comment);
 					pnode.appendChild(commWrap);
@@ -614,25 +835,30 @@ function getTime() {
 
 // 댓글 등록 
 function insertComment(bNum){
-	console.log(bNum)
-	
-	
-	let pnode = event.target.parentNode.parentNode.nextElementSibling;
-	console.log(pnode);	//comments-wrap
-	
-	let area = event.target.parentNode.getElementsByTagName('textArea')[0];
-	console.log(area)
-	let content = area.value;
-	area.value="";
-	console.log(content);
-	
-	let today = getTime();
-    console.log(today);
-    
-    console.log(pnode.parentNode)
+	return new Promise(function(resolve, reject){
+		console.log(bNum)
+		
+		
+		let pnode = event.target.parentNode.parentNode.nextElementSibling;
+		console.log(pnode);	//comments-wrap
+		
+		let area = event.target.parentNode.getElementsByTagName('textArea')[0];
+		console.log(area)
+		let content = area.value;
+		area.value="";
+		console.log(content);
+		if(content=="" || content==" "){
+			alert("내용을 입력해주세요!");
+			return;
+		}
+		
+		let today = getTime();
+	    console.log(today);
+	    
+	    console.log(pnode.parentNode)
  	
-			       //  return new Promise(function(resolve, reject){
 			       $.ajax({
+			        
 						type: "post",
 						url: "insertComment",
 						data: {
@@ -642,7 +868,7 @@ function insertComment(bNum){
 							commentsRegdate:today,
 						},
 			            success: function (data) {
-			            	
+			            	let writer = data.boardWriter;
 			            	// 분까지만 나타내기 
 			            	today = today.split(':');
 			            	
@@ -657,8 +883,10 @@ function insertComment(bNum){
 			            	span.innerHTML += '<div id="commRegdate">'+ today[0]+':'+today[1] +'</div>';
 			            	comment.appendChild(span);
 			            	comment.innerHTML += '<div id="commContent">'+ data.commentsContent +'</div></div>';
+			            //	comment.innerHTML += '<input type="hidden" id="hiddenNum" value="'+bNum+'" />';
 			            	comment.innerHTML += '<div id="editBtn"><div id="delComm" onclick="deleteComment('+data.commentsNum+')">삭제</div>'
-			            						+'<div id="updateComm" onclick="changeTag('+data.commentsNum+')">수정</div></div>';
+			            						+'<div id="updateComm" onclick="changeTag('+data.commentsNum+')">수정</div>'
+			            						+'<div id="showReCommBtn" onclick="showReComments('+data.commentsNum+')">대댓글</div></div>';
 			            	
 			            //comments wrap에 가져온 comment 삽입 
 			            	wrap.appendChild(comment);
@@ -670,20 +898,53 @@ function insertComment(bNum){
 			         	  	 inline.insertBefore(wrap, inline.children[2]);
 		                   	console.log("댓글 등록 성공");
 		                   	alert("댓글이 등록되었습니다!"); 
+		                   	
+		               	 // 성공하면 댓글 개수 증가 
+					  	 	let showBtn = pnode.parentNode.firstElementChild
+					   		let count = showBtn.lastElementChild.lastElementChild;
+		 					let calc = "+";
+		 					changeCount(calc, count); 
+		 					
+		 					// 게시글 작성자 보내기 
+		 					resolve(writer);
 		               
 				        },
 				        error: function(e) {
 				        	  alert("댓글 등록 오류" + e);
 				        }
 			        });  
-		//    }); 
-			   		 // 댓글 개수 증가 
-			  	 	let showBtn = pnode.parentNode.firstElementChild
-			   		let count = showBtn.lastElementChild.lastElementChild;
- 					let calc = "+";
- 					changeCount(calc, count); 
+			   }); 
+			   	
  				
 			}
+			
+	function saveNoti(writer){
+		return new Promise(function(resolve, reject){
+			  $.ajax({
+			        
+					type: "post",
+					url: "insertNoti",
+					data: {
+						// 알림이 갈 대상 
+						memberNum:writer,
+						boardNum:bNum,
+						notType:"댓글",
+						notMessage:"게시글에 댓글이 달렸습니다",
+						// 알림을 눌렀을 때 이동할 페이지 
+						notUrl:"${path}/getCommunity?clubNum=3"
+					
+					},
+		            success: function (data) {
+		            	
+		            	
+		            },
+		            error: function(e) {
+			        	  alert("알림 저장 오류" + e);
+			        }
+		        });  
+		});
+		
+	}
 			
 			
 
@@ -691,6 +952,7 @@ function insertComment(bNum){
 	//수정하는 폼으로 바꾸기 
 	function changeTag(cNum){
 		let pnode = event.target.parentNode.previousElementSibling;	
+		console.log(pnode);	//userSpan?
 		
 		// 수정할 텍스트 
 		let text = pnode.innerText;
@@ -723,6 +985,8 @@ function insertComment(bNum){
 function updateComment(cNum){
 	let editBtn = event.target.parentNode;
 	let userComm = editBtn.parentNode;
+	console.log(editBtn)
+	console.log(userComm)
 	
 	// 댓글 등록시간 tag 가져오기 
 	let regdate = userComm.firstElementChild.lastElementChild;
@@ -742,9 +1006,21 @@ function updateComment(cNum){
 	userComm.insertBefore(commContent, editBtn);
 	
 	//수정, 삭제버튼으로 돌리기 
+	console.log(editBtn.parentNode.className)
+	console.log(userComm)
+	
+	if(editBtn.parentNode.className!=="reComm-list"){
+		console.log("댓글의 버튼")
 	editBtn.innerHTML = '<div id="delComm" onclick="deleteComment('+cNum+')">삭제</div>'
-						+'<div id="delComm" onclick="changeTag('+cNum+')">수정</div>';
-						
+						+'<div id="updateComm" onclick="changeTag('+cNum+')">수정</div>'
+						+'<div id="showReCommBtn" onclick="showReComments('+cNum+')">대댓글</div>';
+	} else {
+		console.log("대댓글의 버튼")
+		editBtn.innerHTML = '<div id="delComm" onclick="deleteComment('+cNum+')">삭제</div>'
+		+'<div id="updateComm" onclick="changeTag('+cNum+')">수정</div>';
+	}
+	
+	
 	let today = getTime();
 	
 		$.ajax({
@@ -842,17 +1118,22 @@ function updateComment(cNum){
 	}
 			
 
+	// 소켓 생성, 연결 
+	let sock;
+	function connect(clubNum){
+		sock = new SockJS("http://localhost:9999/plus/echo");
+		sock.onopen = onopen;
+		sock.onmessage = onMessage;
+		sock.onclose = onclose; 
+	}
 
-	
-	
-	
-	/*		
-			// 알림 
-			function plusCurnum(){
+
+			// 내 게시글에 댓글이 달리면 알림 보내기 
+/* 			function sendCommNtf(){
 				   return new Promise(function(resolve, reject){
 			          	$.ajax({
 						type: "post",
-						url: "plusCurnum", 
+						url: "sendCommNtf", 
 						data: {
 						},
 			            success: function (data) {
@@ -869,7 +1150,7 @@ function updateComment(cNum){
 			
 			  function errorFunc() {
 	            	 console.log("promise error");
-	           } */
+	           }  */
 
 </script>
 </html>

@@ -96,7 +96,7 @@
   </definition>	
   
  
-    <definition name="mypage" template="/WEB-INF/views/include/mytemplate.jsp"> 
+<definition name="mypage" template="/WEB-INF/views/include/mytemplate.jsp"> 
    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
    <put-attribute name="aside" value="/WEB-INF/views/mypage/inc/aside.jsp" />
    <put-attribute name="body" value="" /> 
@@ -115,7 +115,12 @@
   </definition>
   
   
-  <definition name="*.reviews" extends="mypage"> 
+    
+    <definition name="*.curClub" extends="mypage"> <!-- 나중에 mypage로 바꿔야함-->
+     <put-attribute name="body" value="/WEB-INF/views/mypage/currentClub/{1}.jsp" /> 
+  </definition>
+  
+  <definition name="*.reviews" extends="mypage">  <!-- 나중에 mypage로 바꿔야함-->
      <put-attribute name="body" value="/WEB-INF/views/mypage/reviews/{1}.jsp" /> 
   </definition>
   

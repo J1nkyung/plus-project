@@ -62,6 +62,29 @@
     		
    		
     	}
+    	
+    	
+     //	알림 벨 클릭시 
+/*      function getContent(){
+     	$.ajax({
+			type: "post",
+			url: "getNtf", 
+			data: {
+			},
+		     success: function (data) {
+	            	console.log(data);
+			           	if(data){
+			           		console.log("알림 가져오기")
+			           	},
+	            error: function() {
+	            	  alert("메시지 저장 error");
+	            	}
+        });
+    	 
+     } */
+     
+     
+     
     </script>
 </head>
 
@@ -104,8 +127,8 @@
                         </ul>
                     </div>
                 </li>
-              	 <li class="nav-right icon"><a href="chat.do?memberNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
-                <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
+              	 <li class="nav-right icon"><a href="chat.do?memberNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/chat.png" class="icons"></a></li>
+                <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" class="icons" id="bell"></a></li>
              </c:when>
              <c:otherwise><!-- 로그인 정보가 없으면  -->
                 <li class="nav-right nav-left hovereffect login" id="login"><a href="login.do">로그인</a></li>
