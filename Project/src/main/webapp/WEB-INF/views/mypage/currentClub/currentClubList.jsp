@@ -271,12 +271,14 @@ h6{
 							<input type="hidden" id="clubNum" value="${clubList.clubNum}" />
 							<input type="hidden" id="memberNum" value="${user.memberNum}" />
 							<div id="openClubPic">
-								<a href="getClub?memberNum=${user.memberNum}"> <img src="${path}/resources/img/books.PNG"
+<%-- 								<a href="getClub?memberNum=${user.memberNum}"> <img src="${path}/resources/img/books.PNG"
+									width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a> --%>
+								<a href="getCommunity?clubNum=${clubList.memberNum}"> <img src="${path}/resources/img/books.PNG"
 									width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>
 							</div>
 							<div id="openClubProgress">
 								<h3 id="clubName">
-									<a href="getClubInfo.do" title="모임상세페이지 GOGO~!">${clubList.clubName}</a>
+									<a href="getClub?clubNum=${clubList.clubNum}" title="모임상세페이지 GOGO~!">${clubList.clubName}</a>
 								</h3>
 								<div class="w3-light-grey w3-round-large">
 									<div class="w3-container w3-blue w3-round-large" 
@@ -378,10 +380,10 @@ h6{
 						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="today" />
 						<div class="col-md-10" id="clubBar">
 							<div id="openClubPic">
-								<a href="#"/><img src="${path}/resources/img/goal.PNG" width="80%" height="80%" title="커뮤니티입장 GOGO~!" />
+								<a href="getCommunity?clubNum=${clubList.memberNum}"/><img src="${path}/resources/img/goal.PNG" width="80%" height="80%" title="커뮤니티입장 GOGO~!" />
 							</div>
 							<div id="openClubProgress">
-								<h3 id="clubName" ><a href="getClubInfo.do" title="모임상세페이지 GOGO~!">${attendList.clubName}   </a>
+								<h3 id="clubName" ><a href="getClub?clubNum=${clubList.memberNum}" title="모임상세페이지 GOGO~!">${attendList.clubName}   </a>
 									<c:if test="${attendList.clubFee > 0}"><span class="badge badge-danger">유료</span></c:if>
 									<c:if test="${attendList.clubFee == 0}"><span class="badge badge-secondary">무료</span></c:if>
 								

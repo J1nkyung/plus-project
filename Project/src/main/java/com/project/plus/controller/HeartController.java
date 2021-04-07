@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,10 +39,13 @@ public class HeartController {
 	@Autowired
 	private ClubService clubService;
 
-	@RequestMapping("/getHeartList")//.do뺌
-	public String getHeartList(ApplyVO avo, HeartVO vo, Model model) {
-		vo.setMemberNum(5);
-		avo.setMemberNum(5);
+	@RequestMapping("/getHeartList")
+	public String getHeartList(ApplyVO avo, HeartVO vo, Model model , HttpSession session) {
+		System.out.println("********** reviewe 컨트롤러 **********");
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		vo.setMemberNum(user.getMemberNum());
+		avo.setMemberNum(user.getMemberNum());
+		System.out.println("멤버넘버 확인 vo :" + vo.getMemberNum()  + "  avo  : " + avo.getMemberNum());
 		
 		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(avo));
 		model.addAttribute("selectFreeClub", heartService.selectFreeClub(vo));
@@ -51,14 +55,15 @@ public class HeartController {
 
 	@RequestMapping(value = "/applyFreeClub", produces = "application/text;charset=UTF-8")//.do뺌
 	@ResponseBody
-	public String applyFreeClub(ApplyVO vo, Model model, HttpServletRequest request) {
+	public String applyFreeClub(ApplyVO vo, Model model,HttpSession session, HttpServletRequest request) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		vo.setMemberNum(user.getMemberNum());
 		String msg = "Nooo";
 		System.out.println("************************** applyFreeClub.do ****************************");
 		String[] clubNumArr = request.getParameterValues("clubNumArr");
 		if (clubNumArr != null) {
 			System.out.println("clubNumArr : " + clubNumArr.length);
 			System.out.println("*********** " + vo.getClubNum() + " , memberNum : " + vo.getMemberNum());
-			vo.setMemberNum(5);
 			for (int i = 0; i < clubNumArr.length; i++) {
 				vo.setClubNum(Integer.parseInt(clubNumArr[i]));
 				if (applyService.checkApplyClub(vo) == null) {
@@ -80,24 +85,26 @@ public class HeartController {
 	@RequestMapping("/applyPayClub")//.do뺌
 	public String applyPayClub(ApplyVO vo, Model model, HttpServletRequest request) {
 		System.out.println("************************** applyPayClub.do ****************************");
-
+		System.out.println(" vo.getMemberNum() 확인" +  vo.getMemberNum());
 		String clubNumArrStr[] = request.getParameter("clubNumArr").split(",");
 		int clubNumArr[] = Arrays.stream(clubNumArrStr).mapToInt(Integer::parseInt).toArray();
 		vo.setClubNumArr(clubNumArr);
-		vo.setMemberNum(5);
 		List<ApplyVO> list = applyService.applyPayClubInfo(vo);
 		model.addAttribute("list", list);
 		model.addAttribute("clubNumArr", request.getParameter("clubNumArr"));
 		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(vo));
-
-		return "applyPayClub.heart";
+		System.out.println("ddddd여기 다시 서버 켜서 찍히는지 확인하기 ");
+		return "mypage/heart/applyPayClub";
 	}
 
-	@RequestMapping("/applyPayClubPayment")//.do뺌
-	public String applyPayClubPayment(ApplyVO vo, MemberVO mvo, PaymentVO pvo, Model model, HttpServletRequest request) {
+	@RequestMapping("/applyPayClubPayment")
+	public String applyPayClubPayment(ApplyVO vo, MemberVO mvo, PaymentVO pvo, Model model,HttpSession session, HttpServletRequest request) {
 		String msg ="";
-		System.out.println("************************** applyPayClubPayment.do ****************************");
+		System.out.println("************************** applyPayClubPayment****************************");
 
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		mvo.setMemberNum(user.getMemberNum());
+		
 		System.out.println("리퀘스트 값 뽑아보기 : " + request.getParameter("clubNumArr").split(","));
 		String clubNumArrStr[] = request.getParameter("clubNumArr").split(",");
 		System.out.println("clubNumArr값 확인하기 : " + Arrays.toString(clubNumArrStr));// 배열에 콤마로 구분되어 들어간다.
@@ -108,12 +115,12 @@ public class HeartController {
 		System.out.println("getTotalFee : " + vo.getTotalFee());
 		int totalFee = vo.getTotalFee();
 
-		mvo.setMemberNum(5);
+		System.out.println("멤버값 확인하기 : " + mvo.getMemberNum() + "*********&&");
 		mvo.setMemberPoint(totalFee);
 		int currentPoint = memberService.selectMemberPoint(mvo); //보유 포인트 
 
 		if (clubNumArrStr != null) {
-			if ((currentPoint == 0) && ((currentPoint - totalFee) < 0)) {
+			if ((currentPoint == 0) || ((currentPoint - totalFee) < 0)) {
 				System.out.println("포인트가 부족합니다.");
 				msg = "포인트가 부족합니다. 마이페이지에서 포인트 충전 가능합니다.";
 			} else {
@@ -122,9 +129,7 @@ public class HeartController {
 				for (int i : clubNumArr) {
 					System.out.println(i);
 					vo.setClubNum(i);
-					vo.setMemberNum(5); // 임의의 값
 					pvo.setClubNum(i);
-					pvo.setMemberNum(5);
 					// 모임 신청 -apply 신청테이블에 정보 넣어주기
 					applyService.applyFreeClub(vo); 
 					// 참가자 payment 추가시킨다. 
@@ -153,7 +158,7 @@ public class HeartController {
 			}
 		}
 		model.addAttribute("msg", msg);
-		return "forward:/getHeartList"; // .do 뺌
+		return "forward:/getHeartList"; 
 	}
 	
 	@RequestMapping(value = "/insertHeart", produces = "application/text;charset=UTF-8")
@@ -165,7 +170,6 @@ public class HeartController {
 		System.out.print(vo.getClubName()+ "  \"클럽 이름\" ");
 		
 		heartService.insertHeart(vo);
-		System.out.println("iiiiiinnnnnnnnssssssseeeeeeeerrrrrrtttttttt!!!!!!");
 		clubService.plusHeartCnt(cvo);
 		System.out.println("찜목록추가완료.. view..");
 		return "찜하기 완료! 찜목록에서 확인해보세요❤";

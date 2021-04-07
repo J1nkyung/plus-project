@@ -1,5 +1,7 @@
 package com.project.plus.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.project.plus.domain.ClubVO;
+import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.ReviewVO;
 import com.project.plus.service.ClubService;
 import com.project.plus.service.ReviewService;
@@ -23,8 +26,11 @@ public class ReviewController {
 
 	
 	@RequestMapping("/getReviewList")
-	public String getReviewList(ReviewVO vo, Model model) {
-		vo.setMemberNum(5);
+	public String getReviewList(ReviewVO vo, Model model, HttpSession session) {
+		System.out.println("********** reviewe 컨트롤러 **********");
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		vo.setMemberNum(user.getMemberNum());
+		System.out.println("리뷰 멤버 넘버  : " + vo.getMemberNum());
 		model.addAttribute("selectNotReview", reviewService.selectNotReview(vo)); 
 		model.addAttribute("selectOkayReview", reviewService.selectOkayReview(vo)); 
 		
@@ -46,8 +52,8 @@ public class ReviewController {
 	
 	@RequestMapping("/writeReview.do") // 모임 값 꺼내는 컨트롤러 
 	public String writeReview(ReviewVO vo, Model model) {
-		System.out.println("vo.setMemberNum(5)	 넘버 확인 ***** " + vo.getMemberNum());
-		System.out.println("vo.setClubNum(14) 넘버 확인 ***** " + vo.getClubNum());
+		System.out.println("MemberNum 넘버 확인 ***** " + vo.getMemberNum());
+		System.out.println("ClubNum넘버 확인 ***** " + vo.getClubNum());
 		reviewService.insertReview(vo);
 
 		return "redirect:getReviewList";

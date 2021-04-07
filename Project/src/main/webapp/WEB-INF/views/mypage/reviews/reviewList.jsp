@@ -28,6 +28,8 @@
 		        <label for="tab2">내가 작성한 리뷰</label>
 		   
 		        <section id="ReviewContent1" style="margin-bottom:20px;">
+		        <c:if test="${ empty selectNotReview }">
+		        	<p id="noReviewBox">작성 가능한 리뷰가 없습니다! ⛳ <p></c:if>
 		        <c:forEach var="noRvw" items="${selectNotReview}">
 		                <!-- float left -->
 		                <div>

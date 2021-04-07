@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.plus.mapper.NotificationMapper">
-
+<mapper namespace="com.project.plus.mapper.ApplyMapper"> 
 	<resultMap id="applyResult" type="apply">
 		<id property="applyNum" column="apply_num" />
 		<result property="clubNum" column="club_num" />
@@ -11,14 +10,14 @@
 	</resultMap>
 
 	<!-- 신청내역 insert  -->
-	<insert id="apply">
+	<!-- <insert id="apply">
 		INSERT INTO APPLY(club_num, member_num, apply_date) VALUES (#{clubNum}, #{memberNum}, NOW())
-	</insert>
+	</insert> -->
 	
 	<!-- 신청내역 중복검사를 위해 정보 가져오기 -->
-	<select id="getOneApply" resultType="Integer">
+	<!-- <select id="getOneApply" resultType="Integer">
 		SELECT count(*) FROM APPLY WHERE club_num = #{clubNum} AND member_num = #{memberNum}
-	</select>
+	</select> -->
 	
 	
 	
@@ -28,8 +27,8 @@
 	<!--========Free Club Insert applyTable=========  -->
 	<insert id="applyFreeClub">
 		<![CDATA[
-		INSERT into apply (member_num, club_num, apply_date)
-		VALUES (#{memberNum}, #{clubNum},now())
+		INSERT INTO APPLY(member_num, club_num, apply_date)
+		VALUES (#{memberNum}, #{clubNum}, now())
 		]]>
 	</insert>
 
