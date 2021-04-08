@@ -11,44 +11,44 @@
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="${path}/resources/css/bootstrap-datepicker.css">
+<link rel="stylesheet"
+	href="${path}/resources/css/bootstrap-datepicker.css">
 <link rel="stylesheet" href="${path}/resources/css/clubform.css">
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.ko.js"></script>
 <style>
-	/* body, html{ height: 100%;} */
-#delBtn, #modifyBtn{
+/* body, html{ height: 100%;} */
+#delBtn, #modifyBtn {
 	width: 195px;
 	height: 50px;
 	top: 350px;
 	border: 0;
-	outline:0;
-	color:white;
+	outline: 0;
+	color: white;
 	background-color: #001eff;
-font-size:15px;
+	font-size: 15px;
 }
 
-
-#delTag{
-	color:white;
+#delTag {
+	color: white;
 }
-
 </style>
 </head>
 <header></header>
 <section>
-<form action="updateClub" method="post" enctype="multipart/form-data" id="frm">
+	<form action="updateClub" method="post" enctype="multipart/form-data"
+		id="frm">
 
 		<div class="selection">
-	<!-- 		<div class="select-kind">
+			<!-- 		<div class="select-kind">
 				<label for="exampleFormControlSelect2">더하기 종류</label> 
 				<select class="form-control" id="select-kindbox" name="clubKind" onchange="changeDetail()">
 					<option value="1">가치더하기</option>
 					<option value="2">도움더하기</option>
 				</select>
 			</div> -->
-						
+
 			<div class="select-onoff">
 				<label for="exampleFormControlSelect2">온라인/오프라인</label> <select
 					class="form-control" name="clubOnOff">
@@ -66,22 +66,21 @@ font-size:15px;
 				</select>
 			</div>
 		</div>
-		<label for="exampleFormControlFile1">모임 이름</label>
-		<input type="text" maxlength='16' class="form-control"
-			id="club-title" placeholder="최대 16글자로 입력해주세요" value="${club.clubName}" readonly>
+		<label for="exampleFormControlFile1">모임 이름</label> <input type="text"
+			maxlength='16' class="form-control" id="club-title"
+			placeholder="최대 16글자로 입력해주세요" value="${club.clubName}" readonly>
 
 		<div class="form-group">
 			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label>
 			<!-- <div class="img-form">
                   
               </div> -->
-              <div class="uploadBox">
-              <label class="btn btn-info btn-sm uploadBtn">
-					  파일 선택
-					  <input type="file" style="display: none;" name="upload" onchange="getFileName(0)" />
-					</label>
-					  <span id="spanFileName[0]">${club.clubMain_pic}</span>
-			<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
+			<div class="uploadBox">
+				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+					type="file" style="display: none;" name="upload"
+					onchange="getFileName(0)" />
+				</label> <span id="spanFileName[0]">${club.clubMain_pic}</span>
+				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
 			</div>
 		</div>
 		<article>
@@ -89,60 +88,59 @@ font-size:15px;
 				<label for="exampleFormControlFile1">개설하고자 하는 모임의 성격을
 					설명해주세요!</label>
 				<textarea name="clubContent1">${club.clubContent1}</textarea>
-				 <div class="uploadBox">
-				<label class="btn btn-info btn-sm uploadBtn">
-					  파일 선택
-					  <input type="file" style="display: none;" name="upload" onchange="getFileName(1)" />
-					</label>
-					  <span id="spanFileName[1]">${club.clubContent1_pic}</span>
+				<div class="uploadBox">
+					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+						type="file" style="display: none;" name="upload"
+						onchange="getFileName(1)" />
+					</label> <span id="spanFileName[1]">${club.clubContent1_pic}</span>
 					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
 				</div>
 			</div>
 			<div id="write-checkinfo">
-				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을 설명해주세요!</label>
+				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을
+					설명해주세요!</label>
 				<textarea name="clubContent2">${club.clubContent2}</textarea>
-				 <div class="uploadBox">
-				<!-- <input type="file" class="form-control-file"
+				<div class="uploadBox">
+					<!-- <input type="file" class="form-control-file"
 					id="exampleFormControlFile1"> -->
-					<label class="btn btn-info btn-sm uploadBtn">
-					  파일 선택
-					  <input type="file" style="display: none;" name="upload" onchange="getFileName(2)" />
-					</label>
-					  <span id="spanFileName[2]">${club.clubContent2_pic}</span>
+					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+						type="file" style="display: none;" name="upload"
+						onchange="getFileName(2)" />
+					</label> <span id="spanFileName[2]">${club.clubContent2_pic}</span>
 					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
 				</div>
 			</div>
 			<div class="hashtag-wrap">
-				
+
 				<input type="text" class="form-control" id="write-hashtag"
 					onkeypress="onKeyDown()" maxlength='10'
 					placeholder="해쉬태그를 입력해주세요! (최대 5개)">
-			<%-- 	<c:forEach items="${tags}" var="tag">
+				<%-- 	<c:forEach items="${tags}" var="tag">
 				<span class="label label-info hashbadge"># ${tag}<span id="delTag" style="cursor: pointer;"> x</span></span>
 				</c:forEach> --%>
-				<input type="text" style="display:none" id="add-hashtag" name="clubHashtag"/>
+				<input type="text" style="display: none" id="add-hashtag"
+					name="clubHashtag" />
 				<!-- append hashtag -->
 
 			</div>
 		</article>
 </section>
 <aside>
-		
-	<div class="clubinfo-form">
-	<div class="location">
-	
 
-				<label for="exampleFormControlSelect2">모임위치</label><br> 
-				<p id=location-content><img
-					src="${path}/resources/img/mapicon.png">지도의 마커를 움직여 모임의 위치를 수정해보세요.</p>
-			
-            <div id="map" style="width:450px;height:300px;"></div>
-          </div>
+	<div class="clubinfo-form">
+		<div class="location">
+
+			<img src="${path}/resources/img/mapicon.png"> <label
+				for="exampleFormControlSelect2">모임위치</label><br>
+
+
+			<div id="map" style="width: 450px; height: 300px;"></div>
+		</div>
 		<label for="exampleFormControlSelect2">모집 종료일 </label>
-	
+
 		<div class="clubdate">
 			<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-		<input type="text" class="form-control c-date" id="shut-date"
+			<input type="text" class="form-control c-date" id="shut-date"
 				name="clubShutDate" value="${club.clubShutDate}" />
 		</div>
 		<label for="exampleFormControlSelect2">모임 진행 기간 </label>
@@ -151,7 +149,7 @@ font-size:15px;
 				<div class="clubdate">
 					<img class="calanderimg" src="${path}/resources/img/calendar.png" />
 					<input type="text" class="form-control c-date" id="start-date"
-						name="clubStartDate" value="${club.clubStartDate}"/>
+						name="clubStartDate" value="${club.clubStartDate}" />
 				</div>
 			</div>
 			<div id="tilde">~</div>
@@ -165,7 +163,8 @@ font-size:15px;
 		</div>
 		<div class="people">
 			<label for="exampleFormControlSelect2">참가인원</label> <input
-				type="text" class="form-control" placeholder="최대 50명" id="club-max" name="clubMax" value="${club.clubMax}">
+				type="text" class="form-control" placeholder="최대 50명" id="club-max"
+				name="clubMax" value="${club.clubMax}">
 		</div>
 
 
@@ -182,21 +181,23 @@ font-size:15px;
 			</select>
 		</div>
 		<div class="radioBtn">
-            <label class="radio-inline"><input type="radio" name="optradio" value="free" onclick="radioEvent()">무료</label>
-            <label class="radio-inline"><input type="radio" name="optradio" value="pay" onclick="radioEvent()">유료</label>
-        </div>
+			<label class="radio-inline"><input type="radio"
+				name="optradio" value="free" onclick="radioEvent()">무료</label> <label
+				class="radio-inline"><input type="radio" name="optradio"
+				value="pay" onclick="radioEvent()">유료</label>
+		</div>
 		<div class="clubfeeBox">
 			<label for="exampleFormControlSelect2">참가비용</label> <input
 				type="text" class="form-control" id="club-fee" name="clubFee">
 		</div>
-			<input name="clubNum" type="hidden" value="${club.clubNum}"/>
-			<input name="clubMakeDate" type="hidden" value="${club.clubMakeDate}"/>
-			<input name="clubCurnum" type="hidden" value="${club.clubCurnum}"/>
-			<input name="clubKind" type="hidden" value="${club.clubKind}"/>
-			<input name="clubLatitude" type="hidden"  id="club-lat" value=""></input>
-<input  name="clubLongitude" type="hidden" id="club-lng" value=""></input> 
+		<input name="clubNum" type="hidden" value="${club.clubNum}" /> <input
+			name="clubMakeDate" type="hidden" value="${club.clubMakeDate}" /> <input
+			name="clubCurnum" type="hidden" value="${club.clubCurnum}" /> <input
+			name="clubKind" type="hidden" value="${club.clubKind}" /> <input
+			name="clubLatitude" type="hidden" id="club-lat" value=""></input> <input
+			name="clubLongitude" type="hidden" id="club-lng" value=""></input>
 		<button type="button" class="btn" id="modifyBtn" onclick="goSubmit()">수정하기</button>
-	</form>
+		</form>
 		<button type="button" class="btn" id="delBtn" onclick="deleteClub()">삭제하기</button>
 	</div>
 </aside>
