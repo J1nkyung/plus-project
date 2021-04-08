@@ -100,8 +100,14 @@
 									</a>
 									<div class="card-bodyarea">
 										<div class=spanspace>
-											<span class="badge" id="onoff">${club.clubOnOff}</span> <span
-												class="badge" id="freq">${club.clubFreq}</span>
+										 <c:if test="${club.clubOnOff eq '온라인'}">
+        	  <span class="badge" id="onoff">${club.clubOnOff}</span> 
+         </c:if>
+          <c:if test="${club.clubOnOff eq '오프라인'}">
+        	  <span class="badge" id="onoff1" >${club.clubOnOff}</span> 
+         </c:if>
+           
+            <span class="badge" id="freq">${club.clubFreq}</span>
 
 										</div>
 										<div class=clubtitle>
@@ -143,13 +149,13 @@
 			
 						 <div id="pageArea">
 						  <ul class="paging">
-						    	<li ><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}">◀</a></li>
+						    	<li ><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}"><<</a></li>
 						
 						    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 						    	<li><a href="totalList${pageMaker.makeSearch(idx)}"><span class="span" >${idx}</span></a></li>
 						    </c:forEach>
 						
-						    	<li><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">▶</a></li>
+						    	<li><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">>></a></li>
 						  </ul>
 					 </div>
 

@@ -2,7 +2,6 @@ package com.project.plus.domain;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.text.DecimalFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +16,6 @@ public class ClubVO {
 	private String clubThumb_pic;
 	private String clubName;
 	private String clubLeader;
-	private String clubTown;
 	private int clubKind;
 	private String clubCategory;
 	private String clubOnOff;

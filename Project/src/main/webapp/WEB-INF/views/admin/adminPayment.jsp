@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
@@ -168,15 +167,15 @@ li {
 										<td class="text-center">${resultRegDt}</td>
 										<c:if test="${payment.payMethod eq '포인트충전'}">
 											<td class="text-center"><button type="button"
-													class="btn btn-primary btn-sm" style="width: 70px">충전</button></td>
+													class="btn btn-primary btn-sm" disabled style="width: 70px">충전</button></td>
 										</c:if>
 										<c:if test="${payment.payMethod eq '포인트사용'}">
 											<td class="text-center"><button type="button"
-													class="btn btn-danger btn-sm" style="width: 70px">사용</button></td>
+													class="btn btn-danger btn-sm" disabled style="width: 70px">사용</button></td>
 										</c:if>
 										<c:if test="${payment.payMethod eq '포인트입금'}">
 											<td class="text-center"><button type="button"
-													class="btn btn-info btn-sm" style="width: 70px">입금</button></td>
+													class="btn btn-info btn-sm" disabled style="width: 70px">입금</button></td>
 										</c:if>
 									</tr>
 								</c:forEach>

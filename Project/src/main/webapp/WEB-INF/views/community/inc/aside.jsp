@@ -128,7 +128,7 @@ text-decoration:none;
 	  <div class="sidebar fixed-top">
          <div class="bottom-border sidebarContent">
             <img class="clubMainpic"
-               src="${path}/resources/img/avatar-6.jpg" alt="" width="280px"
+               src="${path}/resources/img/comm-main-pic.png" alt="" width="280px"
                height="200px">
 
                       

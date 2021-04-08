@@ -135,6 +135,7 @@ public class AdminController {
 	// 관리자 : 모임 삭제
 	@RequestMapping("/deleteAdminClub")
 	public String deleteAdminClub(ClubVO cvo) {
+		System.out.println("몇번 모임 삭제하는지 알려주세요" + cvo);
 		ads.deleteAdminClub(cvo);
 		return "redirect:adminClub";
 	}

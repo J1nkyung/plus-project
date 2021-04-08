@@ -42,10 +42,10 @@
 	</definition>
 
 	<!-- 멤버 정보수정, 리스트 조회 -->
-	<definition name="*.member" extends="base">
+	<!-- <definition name="*.member" extends="base">
 		<put-attribute name="body"
 			value="/WEB-INF/views/member/{1}.jsp" />
-	</definition>
+	</definition> -->
 
 	<!-- 리스트 조회 -->
 	<!-- <definition name="memberList" extends="base"> <put-attribute name="body" 
