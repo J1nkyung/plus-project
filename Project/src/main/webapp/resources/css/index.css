@@ -383,14 +383,6 @@ box-shadow: 0 5px 15px -5px #52515170;
 	transition: .1s;
 }
 
-.lightbox img : hover {
-	transform: scale(1.05);
-
-   width: 100%;
-   height: 200px;
-   transition: .1s;
-
-}
 
 #bottomarea{
 	padding-bottom:100px;
