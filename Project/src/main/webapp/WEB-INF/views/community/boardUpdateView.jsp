@@ -58,13 +58,17 @@ margin:1px;
 </style>
 </head>
 <body>
-	<form name="updateForm" enctype="multipart/form-data">
+	<form name="updateForm" enctype="multipart/form-data" action="updateViewPost" method="post">
 		<div class="wrap">
 			<h2>게시글 수정하기</h2>
 			<hr>
 			<input type="hidden" name="boardNum" value="${update.boardNum }">
 			<input type="hidden" name="memberPic" value="${update.memberPic }"/>
-			<input type="hidden" name="boardRegDate" value="${update.boardRegDate }"/>
+
+			<!-- 
+			<input type="hidden" name="regdate"value="${update.boardRegDate }"/>
+			 -->
+			 
 			<input type="hidden" name="clubNum" value="${update.clubNum}"/>
 			<input type="hidden" name="memberNum" value="${update.memberNum}"/>
 			
@@ -74,14 +78,15 @@ margin:1px;
 			<input type="text" id="memberNickname" name="memberNickname" value="작성자 : ${update.memberNickname }" readonly/>
 			
 			<textarea name="boardContent" id="content">${update.boardContent}</textarea>
+             
             <input id="picFile" type="file" name="boardPhoto" value="${board.boardPic }" />
-            				<!-- 이미지 미리보기 영역  -->
+            			
 				<div id="imgViewArea" style="margin-top:10px; display:none;">
 					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/></div>
             <button type="button" class="removePic" onclick="removePic();">파일삭제</button>
-            
+             <!---->
 			<button type="button" id="BtnUp">저장하기</button><br/>
-	<div class="submit"><a href="getCommunity">글 목록 가기</a></div>
+	<div class="submit"><a href="getCommunity?clubNum=${update.clubNum }">글 목록 가기</a></div>
 		<hr></div>
 	</form>
 <script>
@@ -98,19 +103,21 @@ removePic = function(){
 
 $(document).ready(function(){
 	
+	
+	
 	var formObj = $("form[name='updateForm']");
-		
+	
+	console.log(formObj);
+	
 		$("#BtnUp").on("click", function(){
-		formObj.attr("action", "updateView");
-		formObj.attr("method", "post");
-		formObj.submit();           
+			formObj.attr("method", "post");
+		formObj.submit();
 		
 		alert('성공적으로 수정했습니다');
 		})
 		
 	});
-
-    
+ 
     
 // 모임 프로필 이미지 미리보기 
 function readURL(input) {
