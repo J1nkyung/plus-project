@@ -44,7 +44,7 @@ top:50px;
 
 .form-control{
 width:150px;
-margin-bottom: 50px;
+margin-bottom: 30px;
 
 }
 .form-row{
@@ -66,6 +66,7 @@ margin-right:5px;
 .clubdate{
 display: flex;
 flex-direction: row;
+padding-bottom:10px;
 }
 
 #club-title{
@@ -117,7 +118,8 @@ width: 713px;
     margin-right: 5px;
 }
 .radioBtn{
-    margin-bottom:50px;
+	 margin-top:40px;
+    margin-bottom:40px;
 }
 
 .clubfeeBox{
@@ -126,15 +128,14 @@ width: 713px;
 
 #applyBtn{
 /* position: absolute; */
-width: 380px;
+width: 440px;
 height: 50px;
 top: 350px;
 border: 0;
 outline:0;
 color:white;
 background-color: #001eff;
-margin-top:30px;
-font-size:17px;
+font-size:15px;
 
 }
 
@@ -155,5 +156,5 @@ font-size:17px;
 	width:60px;
 	height:20px;
 	padding: 0 3px 3px 3px;
-	margin-bottom:30px;
+
 }

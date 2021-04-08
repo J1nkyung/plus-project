@@ -19,14 +19,14 @@
 <style>
 	/* body, html{ height: 100%;} */
 #delBtn, #modifyBtn{
-	width: 180px;
+	width: 195px;
 	height: 50px;
 	top: 350px;
 	border: 0;
 	outline:0;
 	color:white;
 	background-color: #001eff;
-	margin-top:30px;
+font-size:15px;
 }
 
 
@@ -60,14 +60,10 @@
 				<label for="exampleFormControlSelect2">카테고리 선택</label> <select
 					class="form-control" name="clubCategory">
 					<option value="운동">운동</option>
-					<option value="공부">공부</option>
+					<option value="공부">학습</option>
 					<option value="습관">습관</option>
 					<option value="취미">취미</option>
 				</select>
-			</div>
-			<div class="location">
-				<label for="exampleFormControlSelect2">모임위치</label><br> <img
-					src="${path}/resources/img/mapicon.png"> 위치를 선택해주세요
 			</div>
 		</div>
 		<label for="exampleFormControlFile1">모임 이름</label>
@@ -131,8 +127,19 @@
 		</article>
 </section>
 <aside>
+		
 	<div class="clubinfo-form">
+	<div class="location">
+	
+
+				<label for="exampleFormControlSelect2">모임위치</label><br> 
+				<p id=location-content><img
+					src="${path}/resources/img/mapicon.png">지도의 마커를 움직여 모임의 위치를 수정해보세요.</p>
+			
+            <div id="map" style="width:450px;height:300px;"></div>
+          </div>
 		<label for="exampleFormControlSelect2">모집 종료일 </label>
+	
 		<div class="clubdate">
 			<img class="calanderimg" src="${path}/resources/img/calendar.png" />
 		<input type="text" class="form-control c-date" id="shut-date"
@@ -186,12 +193,40 @@
 			<input name="clubMakeDate" type="hidden" value="${club.clubMakeDate}"/>
 			<input name="clubCurnum" type="hidden" value="${club.clubCurnum}"/>
 			<input name="clubKind" type="hidden" value="${club.clubKind}"/>
+			<input name="clubLatitude" type="hidden"  id="club-lat" value=""></input>
+<input  name="clubLongitude" type="hidden" id="club-lng" value=""></input> 
 		<button type="button" class="btn" id="modifyBtn" onclick="goSubmit()">수정하기</button>
 	</form>
 		<button type="button" class="btn" id="delBtn" onclick="deleteClub()">삭제하기</button>
 	</div>
 </aside>
+
+<!--지도 추가(혜미)-->
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=54bd0b6b843cae2c7eb4621d80f301a4"></script>
 <script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = { 
+    center: new kakao.maps.LatLng(${club.clubLatitude}, ${club.clubLongitude}), // 지도의 중심좌표
+    level: 4// 지도의 확대 레벨
+};
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+//마커가 표시될 위치입니다 
+ var markerPosition  = new kakao.maps.LatLng(${club.clubLatitude}, ${club.clubLongitude}); 
+
+//마커를 생성합니다
+var marker = new kakao.maps.Marker({
+position: markerPosition
+});
+
+//마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
+
+
+
+<!---------------------지도 끝------------------->
 
 
 //파일 선택시 파일이름 변경 

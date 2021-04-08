@@ -39,7 +39,7 @@
 				<label for="exampleFormControlSelect2">카테고리 선택</label> <select
 					class="form-control" name="clubCategory">
 					<option value="운동">운동</option>
-					<option value="공부">공부</option>
+					<option value="공부">학습</option>
 					<option value="습관">습관</option>
 					<option value="취미">취미</option>
 				</select>
@@ -165,7 +165,7 @@
 				type="text" class="form-control" id="club-fee" name="clubFee"
 				maxlength="6">
 		</div>
-		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">신청하기</button>
+		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">등록하기</button>
 	</div>
 <input type="hidden" name="clubLatitude" id="club-lat" value=""></input>
 <input type="hidden" name="clubLongitude" id="club-lng" value=""></input> 
