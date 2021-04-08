@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/plus.css">
+	href="${path}/resources/css/expert.css">
 
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -168,13 +168,12 @@
 	</section>
 
 	
-	 <div class="addplus">
-		<a href="clubForm"><span class="material-icons" style= "font-size:60px;" >
-add_circle
-</span></a>
-	</div> 
-	<!-- 푸터와 공백을 위해 지정한 div -->
-	<div id="bottomarea"></div>
+ <button id="addplus">
+		<a href="clubForm.jsp"> <span class="material-icons"
+			style="display: inline-block; font-size: 55px;"> add_circle </span></a>
+	</button> 
+	</div>
+	</div>
 </body>
 
 <!--어썸폰트 아이콘 -->
@@ -194,19 +193,30 @@ add_circle
 
 <script>
 
-   
-        //더하기 등록 버튼 고정
-        $( document ).ready( function() {
-            var jbOffset = $( '.material-icons' ).offset();
-            $( window ).scroll( function() {
-              if ( $( document ).scrollTop() > 300) {
-                $( '.material-icons' ).addClass( 'buttonFixed' );
-              }
-              else {
-                $( '.material-icons' ).removeClass( 'buttonFixed' );
-              }
+     
+
+        <!------------------스크롤 위로 올리기----------------->
+        var backToTop = () => {
+            // Scroll | button show/hide
+            window.addEventListener('scroll', () => {
+                if (document.querySelector('html').scrollTop > 100) {
+                    document.getElementById('go-top').style.display = "block";
+                } else {
+                    document.getElementById('go-top').style.display = "none";
+                }
             });
-          } );
+            // back to top
+            document.getElementById('go-top').addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            })
+        };
+        backToTop();
+        
+        
         
 
     </script>

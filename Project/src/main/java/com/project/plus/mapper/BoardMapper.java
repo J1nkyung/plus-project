@@ -13,7 +13,5 @@ public interface BoardMapper {
 	public int getContentCount(int BoardNum);
 	public void updateBoard(BoardVO board);
 	public void deleteBoard(int BoardNum);
-
-	
 	
 }

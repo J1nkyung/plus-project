@@ -34,6 +34,7 @@
 
 
 
+
 	<sql id="search">
 
 		<if test="searchType != null">
@@ -89,10 +90,5 @@
 		AND club_shutdate > NOW()
 		AND club_max > club_curnum
 	</select>
-
-	<!-- <![CDATA[ SELECT * (6371*acos(cos(radians(#{userLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude) 
-		-radians(#{userLongitude}))+sin(radians(#{userLatitude}))*sin(radians(club_latitude))) 
-		AS distance FROM club HAVING distance <= 10 10km 반경의 데이터만 가져온다. ORDER BY 
-		distance]]> -->
 
 </mapper>

@@ -1,21 +1,16 @@
 package com.project.plus.controller;
 
-import java.lang.reflect.Member;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.plus.domain.ClubVO;
-import com.project.plus.domain.Criteria;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.service.MainService;
+import com.project.plus.service.VisitCountService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -26,10 +21,15 @@ public class MainController {
 
 	@Autowired
 	private MainService service;
+	
+	@Autowired
+	private VisitCountService vcs;
 
 	@RequestMapping("/main")
 	public String mainList(Model model, ClubVO cvo, MemberVO mvo, HttpSession session) {
 		log.info("main");
+		// main페이지 방문한 방문자 수 카운팅하는 메서드 호출 0409 현정 (절대 지우지 마세요!)
+		vcs.setTotalCount();
 	  
 //세션에 값 담기
 		session.setAttribute("memberLatitude", mvo.getMemberLatitude());

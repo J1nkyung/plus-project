@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
@@ -212,6 +211,11 @@ li {
 					</div>
 					<!-- pageArea -->
 				</form>
+				</div>
+						<button class="btn btn-primary pull-right">
+							<a href="${path}/inquiryForm.jsp">문의</a>
+						</button>
+					</div>
 			</div>
 			<!-- wrapper -->
 
