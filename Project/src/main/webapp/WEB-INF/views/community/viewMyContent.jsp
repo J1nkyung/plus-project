@@ -245,6 +245,7 @@ margin-left:3px;
 
    
 .dropbtn {
+  background-color:#f5f4f4;
   padding: 30px 16px 5px 16px;
   font-size: 16px;
   border: none;
@@ -316,6 +317,11 @@ padding-bottom:30px;
 .reComm-list {
     margin: 40px 0 0 40px;
 }
+#goBack{
+color:#333;
+float:right;
+margin-right:230px;
+}
 </style>
 </head>
 <body>
@@ -332,7 +338,6 @@ padding-bottom:30px;
 
 <div id="repeatBox">
 
-      <c:forEach items="${boards}" var="board">
          <div class="inlineContent">
             <!-- 게시글 -->
             <div class="contentBox">
@@ -386,53 +391,14 @@ padding-bottom:30px;
                <!-- 댓글 쓰는 부분 -->
 
 
-
-
-               <%-- <c:forEach items="${comments}" var="comment">
-                     <c:if test="${board.boardNum == comment.boardNum}">
-                     아래부터 시작해야 함 
-                     <hr>
-                     <div id="commentBox">
-                        <div id="writeComment">
-                           <textarea cols="80" rows="1" id="textArea"
-                              placeholder="댓글을 입력해보세요!"></textarea>
-                           <br> <input type="button" id="submitCommBtn" value="등록하기"
-                              onclick="insertComment(${board.boardNum})" />
-                        </div>
-                     </div>
-                        <div class="comments-wrap">
-                           <div class="userComment">
-                              <div class="userSpan">
-                                 <img src="${path}/resources${comment.memberPic}"
-                                    id="commentUserPic"
-                                    onerror="this.src='${path}/resources/img/default_pic.png'" />
-                                 <div id="commentNickname">${comment.memberNickname}</div>
-                                 <div id="commRegdate">${comment.commentsChangedRegdate}</div>
-                              </div>
-                              <div id="commContent">${comment.commentsContent}</div>
-                              <div id="editBtn">
-                                 <a href="#" id="delComm"
-                                    onclick="deleteComment(${comment.commentsNum})">삭제</a> <a
-                                    id="updateComm" href="#"
-                                    onclick="changeTag(${comment.commentsNum})">수정</a>
-                              </div>
-                              <hr>
-                           </div>
-                        </div>
-                     </c:if>
-                  </c:forEach> --%>
                <div id="showCommBtn">
                   <img id="commImg" src="${path}/resources/img/message.png" />
-                  <div id="commList" onclick="getComments(${board.boardNum})">댓글(${board.commentsCount}개)</div>
+                  <div id="commList" onclick="getComments(${board.boardNum})">댓글(${commCount}개)</div>
                </div>
             <!-- 댓글 가져오기  -->
             </div><!--contentBox  -->
          </div><!-- inline content 끝 -->
-      </c:forEach>
-      <div class="newContent">
-      
-      </div>
-      <button type="button" class="moreBtn" id="moreContentBtn">더보기</button>
+        <a id="goBack" href="javascript:history.back();">목록으로</a>
    </div><!-- repeatBox -->
    </div>   <!--communityContainer end-->
 </body>
@@ -485,90 +451,7 @@ $(function(){
 	
 	
 	
-	
-let contentCnt = '${contentCount}'
-	console.log('콘텐츠 개수'+contentCnt)
-
-	$(function(){
-		 if(contentCnt<=5){
-			 console.log("콘텐츠 카운트 체크")
-			 $('#moreContentBtn').css("display","none");
-		 }else{
-			 console.log("콘텐츠 5개 이상")
-		 }
-		 
-		 //개수제한
-		 let startIndex = 0;
-		 // 더보기 버튼 클릭 시 보여줄 값
-		 let step = 5;
-		
-		 $('#moreContentBtn').click(function(){
-			 startIndex += step;
-			 console.log('시작넘버'+startIndex);
-			 getMoreContents(startIndex); //밑에 있는 함수명
-		 });
-		 
-		 // 더보기
-		 function getMoreContents(startIndex){
-			 $.ajax({
-				 type: "post",
-				 async: "true",
-				 dataType : "json",
-				 data: JSON.stringify({
-					 clubNum:'${club.clubNum}',
-					/* memberNum:'${user.memberNum}',*/
-					 startIndex:startIndex
-				 }),
-				 contentType: "application/json",
-				 url: "getMoreContents", //controller주소
-				 success: function(data) {
-					let newContentList = "";
-					 
-					let compareUser = '${writer eq user.memberNum}';
-					let path = '${path}';
-					
-					 for(i = 0; i < data.length; i++){
-				 let newContent = '<div class="inlineContent">';
-					 newContent += '<div class="contentBox">';
-					 newContent += '<form role="form" name="updateForm" method="post">';
-					 newContent += '<div class="userInfo">';
-					 newContent += '<input type="hidden" name="boardNum" value="'+ data[i].boardNum +'">';
-					 newContent += '<img src="' + path +'/resources'+ data[i].memberPic +'" id="userPic" onerror="this.src=\'' + path +'/resources/img/default_pic.png\'" />';
-					 newContent += '<p id="boardNickname">' + data[i].memberNickname + '</p>';
-					 newContent += '<div id="boardRegdate">' + data[i].boardRegDate + '</div>';
-					 newContent += '<c:set var="writer" value="' + data[i].memberNum + '" />';
-					 newContent += '<c:if test="' + compareUser +'">';
-					 newContent += '<div class="dropdowns">';
-					 newContent += '<ul><li><button class="dropbtn"><img id="dropmenu" src="' + path +'/resources/img/menu.png"></button>';
-					 newContent += '<ul><button type="submit" id="btnUp"><a href="' + path +'/updateView?boardNum=' + data[i].boardNum + '">수정</a></button>';
-					 newContent += '<button type="submit" id="btnDel"><a href="' + path +'/deleteBoard?boardNum=' + data[i].boardNum + '">삭제</a></button>';
-					 newContent += '</ul></li></ul></div></c:if></div>';
-					 newContent += '<div class="certification"><div id="certificationPic">';
-					 newContent += '<img src="' + path + '/resources' + data[i].boardPic + '" onerror="this.style.display=\'none\';"></div>';
-					 newContent += '<p id="certificationContent">' + data[i].boardContent + '</p>';
-					 newContent += '</div></form>';
-					 newContent += '<div id="showCommBtn">';
-					 newContent += '<img id="commImg" src="' + path +'/resources/img/message.png" />';
-					 newContent += '<div id="commList" onclick="getComments('+ data[i].boardNum + ')">댓글(' + data[i].commentsCount + '개)</div></div></div></div>';
-					 newContentList += newContent;
-					 
-					 }
-					 
-					 //부모태그에다가 작성한 html 태그를 append 시킨다
-					 $(newContentList).appendTo($(".newContent")).slideDown();
-					 
-					 //더이상 볼 리뷰 없으면 더보기버튼 삭제
-					 if(startIndex + step > contentCnt){
-		        			$('#moreContentBtn').remove();
-		        		}
-				 }
-			 })
-		 }
-		
-	})
-	
-	
-	
+// 나중에 session 멤버 번호를 가져와야함 
 let mNum = '${user.memberNum}';
 let userNickname = '${user.memberNickname}';
 let boardNum = 0;
@@ -943,7 +826,7 @@ function insertComment(bNum){
 		 					
 		 					let notMessage ="회원님의 게시글에 <b>" + userNickname + "</b>님이 새로운 댓글을 등록했어요!";
 		 					let notType= "댓글";
-		 					let notUrl = "${path}/viewMyContent?boardNum=" + bNum;
+		 					let notUrl = "${path}/getCommunity?clubNum=" + clubNum;
 		 					  $.ajax({
 		 					        
 		 							type: "post",

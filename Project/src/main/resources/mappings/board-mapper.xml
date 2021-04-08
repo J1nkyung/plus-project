@@ -77,7 +77,7 @@
 	 	DELETE FROM BOARD WHERE board_num = #{boardNum};
 	 </delete>
 	 
-	 <select id="viewMyContents" resultMap="boardResult" parameterType="map">
+	 <select id="viewMyList" resultMap="boardResult" parameterType="map">
 	 SELECT board.*, member_nickname, member_pic
 	 FROM board
 	 JOIN MEMBER

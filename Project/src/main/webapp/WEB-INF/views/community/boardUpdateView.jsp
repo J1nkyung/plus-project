@@ -58,7 +58,7 @@ margin:1px;
 </style>
 </head>
 <body>
-	<form name="updateForm" enctype="multipart/form-data" action="updateViewPost" method="post">
+	<form name="updateForm" enctype="multipart/form-data">
 		<div class="wrap">
 			<h2>게시글 수정하기</h2>
 			<hr>
@@ -71,9 +71,6 @@ margin:1px;
 			 
 			<input type="hidden" name="clubNum" value="${update.clubNum}"/>
 			<input type="hidden" name="memberNum" value="${update.memberNum}"/>
-			
-			<!-- <input type="text" class="form-control" id="title"
-				placeholder="제목을 입력해주세요." name="title"> -->
 			
 			<input type="text" id="memberNickname" name="memberNickname" value="작성자 : ${update.memberNickname }" readonly/>
 			
@@ -111,6 +108,8 @@ $(document).ready(function(){
 	
 		$("#BtnUp").on("click", function(){
 			formObj.attr("method", "post");
+			formObj.attr("action", "updateViewPost");
+			
 		formObj.submit();
 		
 		alert('성공적으로 수정했습니다');

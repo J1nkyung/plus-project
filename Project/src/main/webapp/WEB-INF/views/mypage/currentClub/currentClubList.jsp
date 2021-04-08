@@ -5,11 +5,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" href="${path}/resources/css/myplusedit.css">
 <%@ page import="java.util.*"%>
 <%@ page import="com.project.plus.domain.ClubVO"%>
 <%@ page import="java.text.SimpleDateFormat"%>
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
  <jsp:useBean id="now" class="java.util.Date" />
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -19,12 +17,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+	crossorigin="anonymous"> -->
 <!-- progress Bar-->
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <!-- 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -37,6 +35,18 @@
  -->
 
 <style>
+/* 진경 수정 */
+.fixed-top{
+ position: sticky;
+}
+.wrap{
+	height:2000px;
+}
+.container {
+    height: 100%;
+}
+
+
 #clubBar {
 	display: flex;
 }
@@ -220,7 +230,7 @@ h6{
 </head>
 <title>내 모임 관리</title>
 <body>
-	<div class="container">
+	<div class="container" class="clearfix">
 		<div class="row">
 			<!-- 상단의 my progress -->
 			<div class="col-md-4">my progress</div>
@@ -252,7 +262,7 @@ h6{
 		</div>
 		
 		<!-- 개설한 모임 -->
-		<div class="row-middle">
+		<div class="row-middle" >
 			<div class="open-plus">
 				개설한 모임
 				<c:if test="${empty selectCurClubList }">
@@ -272,7 +282,7 @@ h6{
 							<div id="openClubPic">
 <%-- 								<a href="getClub?memberNum=${user.memberNum}"> <img src="${path}/resources/img/books.PNG"
 									width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a> --%>
-								<a href="getCommunity?clubNum=${clubList.memberNum}"> <img src="${path}/resources/img/books.PNG"
+								<a href="getCommunity?clubNum=${clubList.clubNum}"> <img src="${path}/resources/img/books.PNG"
 									width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>
 							</div>
 							<div id="openClubProgress">
@@ -285,7 +295,7 @@ h6{
 								</div>
 							</div>
 							<div id="openClubBtn">
-								<input type="button"onClick="location.href='myClubInfo'" id="extendBtn" value="수정하기"/>
+								<input type="button"onClick="location.href='getMyClubInfo?clubNum=${clubList.clubNum}'" id="extendBtn" value="수정하기"/>
 								<c:if test="${clubList.progressBar >= 70}">
 									<c:if test="${clubList.clubFee == 0}">
 										<input type="button" id="extendBtn" data-toggle="modal" data-target="#myModal${clubList.clubNum}" value="연장하기"
@@ -442,9 +452,9 @@ h6{
 		<br> <br>
 	</div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->
 <script>
 function clubOut(clubNum, clubLeader) {
 	$.ajax({

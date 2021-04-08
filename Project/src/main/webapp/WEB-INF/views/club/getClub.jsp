@@ -72,8 +72,14 @@
    <aside>
       <div class="stickybox">
          <div id="leaderId">${club.clubLeader}
-            <span class="badge" id="onoff">${club.clubOnOff}</span> <span
-               class="badge" id="freq">${club.clubFreq}</span>
+         <c:if test="${club.clubOnOff eq '온라인'}">
+        	  <span class="badge" id="onoff">${club.clubOnOff}</span> 
+         </c:if>
+          <c:if test="${club.clubOnOff eq '오프라인'}">
+        	  <span class="badge" id="onoff1" >${club.clubOnOff}</span> 
+         </c:if>
+           
+            <span class="badge" id="freq">${club.clubFreq}</span>
          </div>
          
             <div id="clubname">${club.clubName}</div>
