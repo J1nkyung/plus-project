@@ -88,10 +88,13 @@ padding:16px 0 0 0;
 text-align:center;
 }
 .Member{
-   min-height:150px; 
+/*    min-height:130px; 
+ */   width:268px;
       display:flex;
    margin:10px 16px;
    padding:0 16px 16px 16px;
+   white-space:normal;
+   overflow:auto;
    
 }
 .memberThumb{
@@ -142,7 +145,7 @@ text-decoration:none;
                       <div class="tr nav-link Member">
 		                        <c:forEach items="${apply}" var="applys">
                          <div id="currMem">
-		                            <div class="memberThumb"><img class="memberThumb" src="${path}/resources${applys.memberPic}" onerror="this.src='${path}/resources/img/default_pic.png'"/></div>
+		                            <img class="memberThumb" src="${path}/resources${applys.memberPic}" onerror="this.src='${path}/resources/img/default_pic.png'"/>
 		                             <div class="memberNickname">${applys.memberNickname }</div> 
                          </div>
 		                        </c:forEach>
@@ -150,7 +153,7 @@ text-decoration:none;
                          
                           <div class="tr nav-link p-3">
                             
-                            <span class="td"><button type="submit" id="viewMine"><a href="${path}/getCommunity?clubNum=${club.clubNum }&memberNum=${user.memberNum}">내글보기</a></button></span>
+                            <span class="td"><button type="submit" id="viewMine"><a href="${path}/ViewMyList?clubNum=${club.clubNum }&memberNum=${user.memberNum}">내글보기</a></button></span>
                         </div>
                          
                          

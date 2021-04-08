@@ -15,7 +15,7 @@ public interface BoardMapper {
 	public int getContentCount(int BoardNum);
 	public void updateBoard(BoardVO board);
 	public void deleteBoard(int BoardNum);
-	public List<BoardVO> viewMyContents(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum);
+	public List<BoardVO> viewMyList(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum);
 	
 	
 }
