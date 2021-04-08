@@ -41,7 +41,7 @@ public class HeartController {
 
 	@RequestMapping("/getHeartList")
 	public String getHeartList(ApplyVO avo, HeartVO vo, Model model , HttpSession session) {
-		System.out.println("********** reviewe 컨트롤러 **********");
+		System.out.println("********** HeartList 컨트롤러 **********");
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		vo.setMemberNum(user.getMemberNum());
 		avo.setMemberNum(user.getMemberNum());
@@ -50,7 +50,7 @@ public class HeartController {
 		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(avo));
 		model.addAttribute("selectFreeClub", heartService.selectFreeClub(vo));
 		model.addAttribute("selectNoFreeClub", heartService.selectNoFreeClub(vo));
-		return "heartList.heart";
+		return "mypage/heart/heartList";
 	}
 
 	@RequestMapping(value = "/applyFreeClub", produces = "application/text;charset=UTF-8")//.do뺌

@@ -207,7 +207,19 @@ postion:absoulte;
     font-size:17px;
    
 }
-
+#payBtn{
+    position: absolute;
+    width: 270px;
+    height: 50px;
+    left:-5px;
+  /*   top: 350px; */
+    border: 0;
+    outline:0;
+    color:white;
+    background-color: #001eff;
+    font-size:17px;
+   
+}
 #heartBtn{
     position:absolute;
     width:50px;
