@@ -39,7 +39,6 @@
    position: sticky;
    width: 300px;
    height: 100vh;
-   background-color: #f5f4f4;
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;

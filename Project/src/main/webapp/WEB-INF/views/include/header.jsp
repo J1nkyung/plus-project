@@ -22,7 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script>
     <script>
-        		/*
+        		/* 
         $(document).ready(
         		function () {
             $('.hovereffect').on("click", function () {
@@ -100,6 +100,7 @@
 	                        <li class="dropli"><a href="memberListPage">회원관리</a></li>
 				               </c:when>
 				               <c:otherwise>
+	                        <li class="dropli"><a href="getCurrentClubList?memberNum=${user.memberNum }">My Page</a></li>
 	                         <li class="dropli"><a href="getCurrentClubList?memberNum=${user.memberNum}">My Page</a></li>
 				               </c:otherwise>
 			               </c:choose>

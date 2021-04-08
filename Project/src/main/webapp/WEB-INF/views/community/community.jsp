@@ -17,12 +17,12 @@
 <style>
 body {
 	font-size: 16px;
-	background-color: #f5f4f0;
-}
+/* 	background-color: #f5f4f0;
+ */}
 
 .communityContainer {
 	margin: 0;
-	margin-left:30px;
+	margin-left:100px;
 	width: 100%;
 }
 
@@ -362,9 +362,9 @@ padding-bottom:30px;
                                     <img id="dropmenu" src="${path }/resources/img/menu.png">
                                  </div>
                                  <ul>
-                                    <button type="submit" id="btnUp"><a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>
+                                    <button type="submit" id="btnUp"><a href="${path}/updateView?boardNum=${board.boardNum}&clubNum=${board.clubNum}">수정</a>
                                     </button>
-                                    <button type="submit" id="btnDel"><a href="${path}/deleteBoard?boardNum=${board.boardNum}">삭제</a>
+                                    <button type="submit" id="btnDel"><a href="${path}/deleteBoard?boardNum=${board.boardNum}&clubNum=${board.clubNum}">삭제</a>
                                     </button>
                                <%--      <button type="submit" id="btnUp">
                                        <a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>

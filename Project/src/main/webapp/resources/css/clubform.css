@@ -149,6 +149,7 @@ font-size:15px;
 
 .uploadBox{
 	display:flex;
+	margin-bottom: 20px;
 }
 
 .uploadBtn{
