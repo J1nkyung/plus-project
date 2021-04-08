@@ -1,4 +1,9 @@
 /* index.html 새로 만드는 부분 */
+
+	.fixed-top{
+		position:absolute;
+	}
+
 /* navbar */
 .sidebar {
     width: 300px;
