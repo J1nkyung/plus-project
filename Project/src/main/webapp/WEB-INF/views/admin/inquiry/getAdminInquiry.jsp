@@ -19,11 +19,9 @@
 <!-- font -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <style>
 body {
-	font-family: 'NanumSquare', sans-serif;
-	margin-left: 40px;
+	font-family: 'NanumSquare';
 }
 .content-data {
 	padding:30px;
@@ -34,17 +32,20 @@ tr {
 td {
 	padding-left:20px;
 }
+
+.wrapper{
+	margin : 0 auto;
+}
 </style>
 
 
 </head>
 <body>
-<div class="wrapper">
-	<center>
+<!-- <div class="wrapper"> -->
 	<h2>문의 상세보기</h2>
 	<hr>
 
-
+<center>
 	<table border="1" width="70%" height="200">
 		<div class="container">
 			<div class="post">
@@ -118,10 +119,9 @@ td {
 	<!-- <a href="inquiryEditForm.jsp"><button type="submit" class="btn btn-primary" id="editBtn">수정</button></a> -->
 	
 	<a href="adminInquiry"><button type="submit" class="btn btn-primary" id="listBtn">문의 목록</button></a>
-	
+</center>	
 
-	</center>
-</div>
+<!-- </div> -->
 
 <script>
 		$(document).ready(function(){

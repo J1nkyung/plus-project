@@ -92,6 +92,7 @@ float:right;
 			<div class="submit"><a href="adminInquiry">글 목록 가기</a></div>
 		<hr></div>
 	</form> 
+	</div>
 <script>
 
 		$(document).ready(function(){
