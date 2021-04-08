@@ -80,7 +80,7 @@
             <!-- 해시태그 출력부분  -->
             <div id="clubhashtag">
             <c:forEach items="${tags}" var="tag">
-               <span class="label label-info"># ${tag}</span>
+               <span class="badge badge-pill badge-info"># ${tag}</span>
             </c:forEach>
 </div>
    
@@ -118,7 +118,7 @@
 				<c:if test="${club.clubFee > 0 }">
 					<input type="hidden"  name="clubNum" value="${club.clubNum}"/>
 					<input type="hidden"  name="clubLeader" value="${club.clubLeader}"/>
-					<button type="submit" class="btn" id="payBtn">돈내기</button>
+					<button type="submit" class="btn" id="payBtn">신청하기</button>
 				</c:if>
 			</form>
 				
@@ -148,7 +148,7 @@
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = { 
     center: new kakao.maps.LatLng(${club.clubLatitude}, ${club.clubLongitude}), // 지도의 중심좌표
-    level: 5// 지도의 확대 레벨
+    level: 4// 지도의 확대 레벨
 };
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다

@@ -7,26 +7,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
-
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-
-
+<%-- <link rel="stylesheet" type="text/css" href="${path}/resources/css/comm-aside.css"> --%>
 <title>커뮤니티</title>
 
 <style>
 body {
 	font-size: 16px;
-	background-color: #f5f4f0;
-}
+/* 	background-color: #f5f4f0;
+ */}
 
 .communityContainer {
 	margin: 0;
+	margin-left:100px;
 	width: 100%;
 }
 
@@ -219,13 +215,25 @@ textarea {
    border-radius:50%;
    height:50px;
    width:50px;
-   background-color:lightgrey;
+   background-color:#001eff;
+   opacity:0.9;
    color:#333;
    border-style:none;
    }
+   
+
+   
+   #boardForm img{
+max-width:65%;
+height:auto;
+margin-left:3px;
+/* width:50px;
+ */
+}
 
 #boardRegdate{
-  	margin:32px;
+  	margin:37px;
+  	font-size:10pt;
   }
         
 #dropdown {
@@ -301,6 +309,11 @@ height:35px;
 .moreBtn:focus{
 border:0;
 outline:0;
+}
+.newContent{
+padding-bottom:30px;
+}
+
 .reComm-list {
     margin: 40px 0 0 40px;
 }
@@ -311,6 +324,11 @@ outline:0;
 
 	
    <div class="communityContainer">
+    <%--   <input type="button" name="boardForm" id="boardForm"
+         onclick="location.href='${path}/insertBoardForm'"> --%>
+         <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm'">
+         <img src="${path }/resources/img/penwhite.png"></button>
+         
 
  
       <input type="button" name="boardForm" id="boardForm"
@@ -330,7 +348,7 @@ outline:0;
                      <p id="boardNickname">${board.memberNickname}</p>
                      <div id="boardRegdate">
                      	<fmt:formatDate value="${board.boardRegDate}" var="changedDate"
-							pattern="yyyy. MM. dd HH:mm:ss" />
+							pattern="yyyy. MM. dd (HH:mm)" />
 						${changedDate}
                      </div>
 
@@ -344,9 +362,9 @@ outline:0;
                                     <img id="dropmenu" src="${path }/resources/img/menu.png">
                                  </div>
                                  <ul>
-                                    <button type="submit" id="btnUp"><a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>
+                                    <button type="submit" id="btnUp"><a href="${path}/updateView?boardNum=${board.boardNum}&clubNum=${board.clubNum}">수정</a>
                                     </button>
-                                    <button type="submit" id="btnDel"><a href="${path}/deleteBoard?boardNum=${board.boardNum}">삭제</a>
+                                    <button type="submit" id="btnDel"><a href="${path}/deleteBoard?boardNum=${board.boardNum}&clubNum=${board.clubNum}">삭제</a>
                                     </button>
                                <%--      <button type="submit" id="btnUp">
                                        <a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>
@@ -502,6 +520,7 @@ let contentCnt = '${contentCount}'
 				 dataType : "json",
 				 data: JSON.stringify({
 					 clubNum:'${club.clubNum}',
+					/* memberNum:'${user.memberNum}',*/
 					 startIndex:startIndex
 				 }),
 				 contentType: "application/json",

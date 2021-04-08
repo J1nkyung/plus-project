@@ -1,6 +1,7 @@
 package com.project.plus.controller;
 
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,10 +72,19 @@ public class BoardController {
 //	}
 	   //게시판 메인화면 접속 
 	   @RequestMapping("getCommunity")
-	   public String getCommunity(Model model, @RequestParam("clubNum") int clubNum, HttpSession session) {
+	   public String getCommunity(Model model, @RequestParam("clubNum") int clubNum, @RequestParam(value="memberNum", required=false, defaultValue="0") int memberNum,  HttpSession session) {
 		   
-			List<BoardVO> list = boardService.getBoardList(clubNum);
 			List<ApplyVO> apply =  applyService.applyMember(clubNum);
+				List<BoardVO> list = boardService.getBoardList(clubNum);
+
+//List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
+//				for(BoardVO vo : view) {
+//					System.out.println(vo);
+//				}
+//				System.out.println("");
+				
+		    
+
 			
 			//apply 테스트 시 출력방법
 			for(ApplyVO avo : apply) {
@@ -90,9 +100,9 @@ public class BoardController {
 				board.setCommentsCount(result);
 				board.setClubNum(clubNum);
 			}
-	    model.addAttribute("boards", list);
 	    
-	      
+		//콘텐츠 전체보기 
+		model.addAttribute("boards", list);
 	    //content 더보기를 위해서 개수 카운트
 		model.addAttribute("contentCount", boardService.getContentCount(clubNum));
 		//aside를 위한 club정보 가져오기
@@ -115,11 +125,13 @@ public class BoardController {
 		   
 		   int startIndex = Integer.valueOf(param.get("startIndex").toString());
 		   int clubNum = Integer.valueOf(param.get("clubNum").toString());
+		   //int memberNum = Integer.valueOf(param.get("memberNum").toString());
 		   
 
 		   
 		   more.put("startIndex", startIndex);
 		   more.put("clubNum", clubNum);
+		  // more.put("memberNum", memberNum);
 		   
 		   List<BoardVO> newContent = boardService.getMoreContents(more);
 		   
@@ -140,16 +152,12 @@ public class BoardController {
 	   
 	   
 	   @RequestMapping(value="insertBoard", method=RequestMethod.POST)
-	   public String insertBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	   public String insertBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
 	      boardService.insertBoard(board);
 	      log.info("글 번호 : " + board.getBoardNum() + "사진  등록 ");
-	         //알럿창 띄우는 부분
-        response.setContentType("text/html; charset=UTF-8");
-          PrintWriter out = response.getWriter();
-          out.println("<script>alert('성공적으로 게시했습니다');</script>");
-          out.flush();
+
 
 	      return "redirect:getCommunity?clubNum="+board.getClubNum();
 	   }
@@ -160,12 +168,18 @@ public class BoardController {
 	      model.addAttribute("update", boardService.getBoard(board.getBoardNum()));
 	      System.out.println("updateView get메서드 진입");
 	      System.out.println(board.getBoardNum());
+	      System.out.println(board.getClubNum());
 	      return "boardUpdateView.board";
 	   }
 	   //게시글 수정
-	   @RequestMapping(value="updateView", method=RequestMethod.POST)
+	   @RequestMapping(value="updateViewPost", method=RequestMethod.POST)
+//	   public String updateBoard() throws Exception {
+//		   System.out.println("updateBoard()");
+//		   return "";
+	   //
 	   public String updateBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 	      System.out.println("updateView post 메서드 진입");
+	      
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
 	      boardService.updateBoard(board);
@@ -180,6 +194,7 @@ public class BoardController {
 	      System.out.println("delcon 진입");
 	      boardService.deleteBoard(board.getBoardNum());
 	      System.out.println(board.getBoardNum());
+	      System.out.println("클럽넘 확인"+board.getClubNum());
 	      return "redirect:getCommunity?clubNum="+board.getClubNum();
 	   }
 	   

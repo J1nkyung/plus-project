@@ -52,4 +52,8 @@ public class BoardServiceImpl implements BoardService{
 	public int getContentCount(int clubNum) {
 		return mapper.getContentCount(clubNum);
 	}
+	
+	public List<BoardVO> viewMyContents(int clubNum, int memberNum){
+	return mapper.viewMyContents(clubNum, memberNum);
+	}
 }

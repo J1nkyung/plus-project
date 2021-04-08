@@ -58,7 +58,7 @@ margin:1px;
 </style>
 </head>
 <body>
-	<form action="insertBoard" method="post" enctype="multipart/form-data">
+	<form enctype="multipart/form-data" name="insertBoard">
 		<div class="wrap">
 			<h2>게시글 등록하기</h2>
 			<hr>
@@ -78,7 +78,7 @@ margin:1px;
 				<div id="imgViewArea" style="margin-top:10px; display:none;">
 					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/></div>
            	<button type="button" class="removePic" onclick="removePic();">파일삭제</button>
-			<button type="submit" id="submitBtn">등록하기</button><br/>
+			<button type="button" id="submitBtn">등록하기</button><br/>
 	<div class="submit"><a href="getCommunity">글 목록 가기</a></div>
 		<hr></div>
 	</form>
@@ -91,6 +91,20 @@ removePic = function(){
 	$("#picFile").val("");
 }
     )}
+$(document).ready(function(){
+	
+var formObj = $("form[name='insertBoard']");
+	
+	$("#submitBtn").on("click", function(){
+	formObj.attr("action", "insertBoard");
+	formObj.attr("method", "post");
+	formObj.submit();           
+	
+	alert('성공적으로 등록했습니다');
+	})
+	
+});
+
     
 
 $("#picFile").change(function() {

@@ -15,10 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
     <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-    <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <!-- 웹소켓 import -->
@@ -94,8 +91,8 @@
             <c:when test = "${user.memberEmail != null }"> <!-- 로그인 정보가 있으면 -->
                 <li class="nav-right btncolor">
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor"><b>${user.memberNickname }</b>님, 환영합니다
-                        <span class="caret"></span></button>
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" id="btncolor"><b>${user.memberNickname }</b>님, 환영합니다 <span class="dropT">▼</span>
+                        </button>
                         <ul class="dropdown-menu">
                         <form>
 	                        <c:choose>
@@ -104,6 +101,7 @@
 				               </c:when>
 				               <c:otherwise>
 	                        <li class="dropli"><a href="getCurrentClubList?memberNum=${user.memberNum }">My Page</a></li>
+	                         <li class="dropli"><a href="getCurrentClubList?memberNum=${user.memberNum}">My Page</a></li>
 				               </c:otherwise>
 			               </c:choose>
                         </form>
@@ -130,8 +128,6 @@
 
 <script>
 
-// location으로 페이지 이동 
- 
 	
 $(function(){
 	// 세션 연결 
