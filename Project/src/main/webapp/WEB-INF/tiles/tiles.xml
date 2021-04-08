@@ -144,10 +144,10 @@
 				value="/WEB-INF/views/mypage/heart/{1}.jsp" />
 		</definition>
 
-		<definition name="*.inqu" extends="mypage">
+	 	<definition name="*.inqu" extends="mypage">
 			<put-attribute name="body"
 				value="/WEB-INF/views/mypage/inquiry/{1}.jsp" />
-		</definition>
+		</definition> 
 
 		<!-- 관리자페이지 -->
 
@@ -167,16 +167,16 @@
          value="/WEB-INF/views/member/{1}.jsp" />
    </definition>
 
-		<definition name="*.adinqu" extends="admin">
+<!-- 	<definition name="*.adinqu" extends="admin">
 			<put-attribute name="body"
 				value="/WEB-INF/views/admin/inquiry/{1}.jsp" />
-		</definition>
+		</definition>  -->
 
-		<definition name="*.adch" extends="admin">
+<!-- 		<definition name="*.adch" extends="base">
 			<put-attribute name="body"
 				value="/WEB-INF/views/admin/{1}.jsp" />
 		</definition>
-
+ -->
 		<definition name="*.ann" extends="base">
 			<put-attribute name="body"
 				value="/WEB-INF/views/announce/{1}.jsp" />

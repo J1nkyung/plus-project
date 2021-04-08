@@ -117,7 +117,7 @@ public class MemberController {
       pmem.setCriMem(scmem);
       pmem.setTotalCount(memberService.listCount(scmem));
       model.addAttribute("pmem", pmem);
-      return "memberList.adMember";
+      return "member/memberList";
    }
    
    
@@ -134,18 +134,7 @@ public class MemberController {
    System.out.println("memberInfo " + memberService.viewMember(vo.getMemberNum()));
    MemberVO user = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
    
-   
-   if(user.getMemberNum() == 1) {
-	   
-	   return "memberUpdate.adMember";
-	   
-    }else if(user.getMemberNum()!= 1) {
-    	
-    	   return "memberUpdate.member";
-    }
-
-     return "";
-
+   return "memberUpdate.member";
    }
    
 
