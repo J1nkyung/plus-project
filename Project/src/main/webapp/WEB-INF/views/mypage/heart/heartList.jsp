@@ -27,8 +27,10 @@
 <style>
 .heartContainer {
 	margin: 0;
-	/* width: 1140px; */
+	width: 1140px; 
+	 margin-left: 27%;
 }
+
 
 #heartTitle {
 	margin: 4% 6%;
@@ -146,6 +148,11 @@ div {
 	.card:hover {
 	    background-color: #eee;
 	}
+	
+table {
+    border-collapse: collapse;
+    margin-bottom: 20%;
+}
 </style>
 </head>
 
@@ -169,8 +176,7 @@ div {
 						</tr>
 					</table>
 				</div>
-				<div id="fBoxes">
-
+				<div id="fBoxes">	
 					<c:forEach var="freeclub" items="${selectFreeClub}">
 						<div id="cardPadding">
 							<input type="checkbox" class="inputB" id="card1" name="clubNum"
