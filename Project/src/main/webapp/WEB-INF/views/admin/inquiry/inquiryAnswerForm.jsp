@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -99,7 +98,6 @@ float:right;
 
 			$("#answerBtn").on("click", function(){
 				alert("답변이 정상적으로 등록 되었습니다");
-			
 			
 			// 문의글 작성자 번호 
 			let mNum = '${answerInquiryForm.memberNum}'; 

@@ -70,7 +70,7 @@ public class ClubController {
 	
 	@GetMapping("/clubForm")
 	public String getClubForm() {
-		return "clubForm.club";
+		return "club/clubForm";
 	}
 	
 
@@ -235,7 +235,7 @@ public class ClubController {
 	// 수정하기 폼 임시로 설정
 	@GetMapping("/myClubInfo")
 	public String getInfo() {
-		return "club/myClubInfo.club";
+		return "club/myClubInfo";
 	}
 	
 	//20210403 정연추가 현재모임현황페이지

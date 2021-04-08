@@ -1,4 +1,3 @@
-
 package com.project.plus.domain;
 
 public class CriteriaAdmin {
@@ -7,7 +6,6 @@ public class CriteriaAdmin {
 	private int rowStart;
 	private int rowEnd;
 	private int memberNum;
-	
 	
 	
 	public CriteriaAdmin() {

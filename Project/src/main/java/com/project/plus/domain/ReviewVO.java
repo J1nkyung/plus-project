@@ -16,9 +16,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 
+@XmlRootElement(name="selectNotReview")
+@XmlAccessorType(XmlAccessType.FIELD)
+
 @Getter
 @Setter
 public class ReviewVO {
+	@XmlElement(name="review")
+	@XmlAttribute
 	private int reviewNum;
 	private int memberNum;
 	private int clubNum;
@@ -32,6 +37,7 @@ public class ReviewVO {
 	private Date reviewRegDate;
 	
 	/*필요한 VO*/
+	@XmlTransient
 	private String clubThumbPic;
 	@XmlTransient
 	private String clubName;

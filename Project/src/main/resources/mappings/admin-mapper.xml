@@ -32,7 +32,6 @@
 		<id property="clubNum" column="club_num" />
 		<result property="clubName" column="club_name" />
 		<result property="clubLeader" column="club_leader" />
-		<result property="clubTown" column="club_town" /> 
 		<result property="clubKind" column="club_kind" />	<!-- 가치더하기1, 도움더하기2 -->
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />
@@ -163,8 +162,8 @@
 	
 	<!-- 모든 모임  -->
 	<select id="adminClubList" resultMap="adminClubResult" parameterType="com.project.plus.domain.CriteriaAdmin">
-		SELECT club_num, club_category, club_name, club_leader, club_town, club_kind, club_onoff, club_startdate, club_enddate
-		FROM (SELECT club_num, club_category, club_name, club_leader, club_town, club_kind, club_onoff, club_startdate, club_enddate,
+		SELECT club_num, club_category, club_name, club_leader, club_kind, club_onoff, club_startdate, club_enddate
+		FROM (SELECT club_num, club_category, club_name, club_leader, club_kind, club_onoff, club_startdate, club_enddate,
 		row_number() OVER (ORDER BY club_num DESC) AS rNum
 		FROM CLUB) ADCLUB
         WHERE rNum BETWEEN #{rowStart} AND #{rowEnd} ORDER BY club_num DESC

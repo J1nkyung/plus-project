@@ -11,5 +11,5 @@ public interface AnnounceMapper {
 	void deleteAnnounce(AnnounceVO vo);
 	AnnounceVO getAnnounce(AnnounceVO vo);
 	List<AnnounceVO> getAnnounceList(AnnounceVO vo);
-	
+
 }

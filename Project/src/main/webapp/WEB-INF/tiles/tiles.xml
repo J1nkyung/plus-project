@@ -4,149 +4,179 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-<definition name="base" template="/WEB-INF/views/include/template.jsp"> 
-	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" /> 
-	<put-attribute name="body" value="" /> 
-	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
-</definition>
+	<definition name="base"
+		template="/WEB-INF/views/include/template.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/include/footer.jsp" />
+	</definition>
 
 
-<!--    totalList 
-<definition name="base1" template="/WEB-INF/views/include/template2.jsp"> 
-	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" /> 
-	<put-attribute name="body" value="" /> 
-	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
-</definition>
+	<!-- totalList <definition name="base1" template="/WEB-INF/views/include/template2.jsp"> 
+		<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" /> 
+		<put-attribute name="body" value="" /> <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" 
+		/> </definition> <definition name="totalList" extends="base1"> <put-attribute 
+		name="body" value="/WEB-INF/views/main/totalList.jsp" /> </definition> -->
+
+	<!-- totalList -->
+	<definition name="total"
+		template="/WEB-INF/views/include/totaltemplate.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/include/footer.jsp" />
+	</definition>
+
+	<definition name="totalList" extends="total">
+		<put-attribute name="body"
+			value="/WEB-INF/views/main/totalList.jsp" />
+	</definition>
+
+	<!-- 로그인 , 로그아웃 -->
+	<definition name="*.login" extends="base">
+		<put-attribute name="body"
+			value="/WEB-INF/views/login/{1}.jsp" />
+	</definition>
+
+	<!-- 멤버 정보수정, 리스트 조회 -->
+	<definition name="*.member" extends="base">
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/{1}.jsp" />
+	</definition>
+
+	<!-- 리스트 조회 -->
+	<!-- <definition name="memberList" extends="base"> <put-attribute name="body" 
+		value="/WEB-INF/views/member/memberList.jsp" /> </definition> -->
+
+	<!-- 회원가입페이지 특정 헤더 사용 -->
+	<definition name="memberJoin" extends="base">
+		<put-attribute name="header"
+			value="/WEB-INF/views/include/joinHeader.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/member/memberJoin.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/include/footer.jsp" />
+	</definition>
 
 
-    <definition name="totalList" extends="base1"> 
-     <put-attribute name="body" value="/WEB-INF/views/main/totalList.jsp" /> 
-  </definition>
-   -->
-   
-   <!--    totalList -->
-<definition name="total" template="/WEB-INF/views/include/totaltemplate.jsp"> 
-	<put-attribute name="header" value="/WEB-INF/views/include/header.jsp" /> 
-	<put-attribute name="body" value="" /> 
-	<put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
-</definition>
+	<definition name="*.club" extends="base">
+		<put-attribute name="body"
+			value="/WEB-INF/views/club/{1}.jsp" />
+	</definition>
 
-    <definition name="totalList" extends="total"> 
-     <put-attribute name="body" value="/WEB-INF/views/main/totalList.jsp" /> 
-  </definition>
+	<definition name="*.main" extends="base">
+		<put-attribute name="body"
+			value="/WEB-INF/views/main/{1}.jsp" />
+	</definition>
 
-  
-<!-- 로그인 , 로그아웃-->
-    <definition name="*.login" extends="base"> 
-     <put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp" /> 
-  </definition>
+	<!-- 커뮤니티 게시판 관련 페이지 -->
+	<definition name="*.board" extends="base">
+		<put-attribute name="body"
+			value="/WEB-INF/views/community/{1}.jsp" />
+	</definition>
 
-<!-- 멤버 정보수정, 리스트 조회-->
-    <definition name="*.member" extends="base"> 
-     <put-attribute name="body" value="/WEB-INF/views/member/{1}.jsp" /> 
-  </definition>
 
-<!-- 리스트 조회-->
-<!--     <definition name="memberList" extends="base"> 
-     <put-attribute name="body" value="/WEB-INF/views/member/memberList.jsp" /> 
-  </definition> -->
-  
-  <!-- 회원가입페이지 특정 헤더 사용 -->
-    <definition name="memberJoin" extends="base"> 
-      <put-attribute name="header" value="/WEB-INF/views/include/joinHeader.jsp" />   
-     <put-attribute name="body" value="/WEB-INF/views/member/memberJoin.jsp" /> 
-    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />   
-  </definition>
- 
+	<!-- 전문가 페이지 -->
+	<definition name="expert.*"
+		template="/WEB-INF/views/main/expert.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/main/expertPlus.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/include/footer.jsp" />
+	</definition>
 
-  <definition name="*.club" extends="base"> 
-  	<put-attribute name="body" value="/WEB-INF/views/club/{1}.jsp" /> 
-  </definition>
-  
-  <definition name="*.main" extends="base"> 
-  	<put-attribute name="body" value="/WEB-INF/views/main/{1}.jsp" /> 
-  </definition>
-  
-<!-- 커뮤니티 게시판 관련 페이지  -->
-  <definition name="*.board" extends="base"> 
-  	<put-attribute name="body" value="/WEB-INF/views/community/{1}.jsp" /> 
-  </definition>
+	<!-- 마이페이지 -->
 
-   
-<!-- 전문가 페이지 -->
-   <definition name="expert.*" template="/WEB-INF/views/main/expert.jsp"> 		
-    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />	
-<put-attribute name="body" value="/WEB-INF/views/main/expertPlus.jsp" />	
-    <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" />	
-  </definition>	
-  
- <!-- 마이페이지 -->
-<definition name="mypage" template="/WEB-INF/views/include/mytemplate.jsp"> 
-   <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
-   <put-attribute name="aside" value="/WEB-INF/views/mypage/inc/aside.jsp" />
-   <put-attribute name="body" value="" /> 
-   <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
-</definition> 
-  
-  <!-- 커뮤니티 -->
-  <definition name="commLayout" template="/WEB-INF/views/community/inc/layout.jsp">
-    <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
-    <put-attribute name="aside" value="/WEB-INF/views/community/inc/aside.jsp" />
-    <put-attribute name="body" value="" /> 
-  </definition>
+	<definition name="mypage"
+		template="/WEB-INF/views/include/mytemplate.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="aside"
+			value="/WEB-INF/views/mypage/inc/aside.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/include/footer.jsp" />
+	</definition>
 
-  <definition name="*.comm" extends="commLayout"> 
-     <put-attribute name="body" value="/WEB-INF/views/community/{1}.jsp" /> 
-  </definition>
-  
-  
-    
-    <definition name="*.curClub" extends="mypage"> 
-     <put-attribute name="body" value="/WEB-INF/views/mypage/currentClub/{1}.jsp" /> 
-  </definition>
-  
-  <definition name="*.reviews" extends="mypage">  
-     <put-attribute name="body" value="/WEB-INF/views/mypage/reviews/{1}.jsp" /> 
-  </definition>
-  
-  
-   <definition name="*.point" extends="mypage"> 
-     <put-attribute name="body" value="/WEB-INF/views/mypage/point/paymentList.jsp" /> 
-  </definition>
-  
-    <definition name="*.heart" extends="mypage"> 
-     <put-attribute name="body" value="/WEB-INF/views/mypage/heart/{1}.jsp" /> 
-  </definition>
-	
-  <definition name="*.inqu" extends="mypage"> 
-     <put-attribute name="body" value="/WEB-INF/views/mypage/inquiry/{1}.jsp" /> 
-  </definition>
-  
-    <!-- 관리자페이지 -->
-<definition name="admin" template="/WEB-INF/views/include/mytemplate.jsp"> 
-   <put-attribute name="header" value="/WEB-INF/views/include/header.jsp" />
-   <put-attribute name="aside" value="/WEB-INF/views/admin/inc/aside.jsp" />
-   <put-attribute name="body" value="" /> 
-   <put-attribute name="footer" value="/WEB-INF/views/include/footer.jsp" /> 
-</definition>   
+	<!-- 커뮤니티 -->
+	<definition name="commLayout"
+		template="/WEB-INF/views/community/inc/layout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/include/header.jsp" />
+		<put-attribute name="aside"
+			value="/WEB-INF/views/community/inc/aside.jsp" />
+		<put-attribute name="body" value="" />
+	</definition>
 
-  <definition name="*.adinqu" extends="admin">
-    <put-attribute name="body" value="/WEB-INF/views/admin/inquiry/{1}.jsp" /> 
-  </definition>
-  
-  <definition name="*.adch" extends="admin">
-    <put-attribute name="body" value="/WEB-INF/views/admin/{1}.jsp" /> 
-  </definition>
-  
- <definition name="*.ann" extends="base">
- 	<put-attribute name="body" value="/WEB-INF/views/announce/{1}.jsp" />
- </definition>
-  
- <definition name="*.faq" extends="base">
- 	<put-attribute name="body" value="/WEB-INF/views/faq/{1}.jsp" />
- </definition>
-  
- 
+	<definition name="*.comm" extends="commLayout">
+		<put-attribute name="body"
+			value="/WEB-INF/views/community/{1}.jsp" />
+	</definition>
+
+	<!-- 마이페이지 -->
+
+		<definition name="*.curClub" extends="mypage">
+			<put-attribute name="body"
+				value="/WEB-INF/views/mypage/currentClub/{1}.jsp" />
+		</definition>
+
+		<definition name="*.reviews" extends="mypage">  <!-- 나중에 mypage로 바꿔야함 -->
+			<put-attribute name="body"
+				value="/WEB-INF/views/mypage/reviews/{1}.jsp" />
+		</definition>
+
+		<definition name="*.point" extends="mypage">
+			<put-attribute name="body"
+				value="/WEB-INF/views/mypage/point/paymentList.jsp" />
+		</definition>
+
+		<definition name="*.heart" extends="mypage">
+			<put-attribute name="body"
+				value="/WEB-INF/views/mypage/heart/{1}.jsp" />
+		</definition>
+
+		<definition name="*.inqu" extends="mypage">
+			<put-attribute name="body"
+				value="/WEB-INF/views/mypage/inquiry/{1}.jsp" />
+		</definition>
+
+		<!-- 관리자페이지 -->
+
+		<definition name="admin"
+			template="/WEB-INF/views/include/mytemplate.jsp">
+			<put-attribute name="header"
+				value="/WEB-INF/views/include/header.jsp" />
+			<put-attribute name="aside"
+				value="/WEB-INF/views/admin/inc/aside.jsp" />
+			<put-attribute name="body" value="" />
+			<put-attribute name="footer"
+				value="/WEB-INF/views/include/footer.jsp" />
+		</definition>
+
+		<definition name="*.adinqu" extends="admin">
+			<put-attribute name="body"
+				value="/WEB-INF/views/admin/inquiry/{1}.jsp" />
+		</definition>
+
+		<definition name="*.adch" extends="admin">
+			<put-attribute name="body"
+				value="/WEB-INF/views/admin/{1}.jsp" />
+		</definition>
+
+		<definition name="*.ann" extends="base">
+			<put-attribute name="body"
+				value="/WEB-INF/views/announce/{1}.jsp" />
+		</definition>
+
+		<definition name="*.faq" extends="base">
+			<put-attribute name="body"
+				value="/WEB-INF/views/faq/{1}.jsp" />
+		</definition>
 
 
 </tiles-definitions>

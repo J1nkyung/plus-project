@@ -4,6 +4,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMakerAdmin {
+
    private CriteriaAdmin cri;
    private int totalCount; // 총 게시글 수
    private int startPage; // 화면에 보여질 첫번째 페이지 번호, 시작 페이지 번호
@@ -68,5 +69,4 @@ public class PageMakerAdmin {
 
       return uriComponents.toUriString();
    }
-
 }

@@ -81,14 +81,10 @@ height: 15px;
 
 }
 .location{
-	padding-bottom:30px;
+	padding-bottom:10px;
 }
 .clubinfo-form{
-	padding-top:90px; 
-}
-#location-content{
-	color:rgb(0,30,250);
-	font-weight:600;
+	padding-top:30px;
 }
 article{
 position:absolute;
@@ -134,7 +130,6 @@ outline:0;
 color:white;
 background-color: #001eff;
 margin-top:30px;
-font-size:17px;
 
 }
 

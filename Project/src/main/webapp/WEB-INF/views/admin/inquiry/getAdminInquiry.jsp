@@ -41,6 +41,12 @@ td {
 
 </head>
 <body>
+<div class="wrapper">
+	<center>
+	<h2>문의 상세보기</h2>
+	<hr>
+
+
 <!-- <div class="wrapper"> -->
 	<h2>문의 상세보기</h2>
 	<hr>
@@ -119,6 +125,10 @@ td {
 	<!-- <a href="inquiryEditForm.jsp"><button type="submit" class="btn btn-primary" id="editBtn">수정</button></a> -->
 	
 	<a href="adminInquiry"><button type="submit" class="btn btn-primary" id="listBtn">문의 목록</button></a>
+	
+
+	</center>
+</div>
 </center>	
 
 <!-- </div> -->

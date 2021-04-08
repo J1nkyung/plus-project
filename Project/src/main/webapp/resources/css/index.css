@@ -10,12 +10,9 @@
 
 
 a {
-   text-decoration: none;
+   text-decoration: none
+}
 
-}
-i{
-	    color:rgb(0,30,250);
-}
 /* 메인 carousel */
 .carousel-item {
    width: 100%;
@@ -128,11 +125,11 @@ form.box :placeholder {
 
 form.box input[type=text] {
    /* 속성선택자로 type=text인 경우에만 적용되도록 함 */
-   background-color: white;
+   background-color: #D3D5DA;
    margin-top: -1px;
-   width: 380px;
-   padding: 7px;
-   border:solid 2px rgb(0, 30, 250);
+   width: 400px;
+   padding: 8px;
+   border: none;
    border-radius: 20px 0 0 20px;
 }
 form.box input: focus{
@@ -143,11 +140,12 @@ form.box input[type=submit] {
    background-color: rgb(0, 30, 250);
    color: white;
    font-size: 15px;
+   padding: 8px;
    font-weight:700;
    padding: 9px;
    padding-bottom:9px;
    border-radius: 0 20px 20px 0;
-   width: 70px;
+   width: 80px;
    border: none;
    margin-left: -6px;
 }
@@ -164,21 +162,19 @@ form.box input[type=text]::placeholder {
    text-align: center;
    position: relative;
 }
-a.category-btn{
-	 text-decoration: none;
-}
+
 .catagory-btn {
    display: inline-block;
    width: 130px;
    height: 120px;
-   background-color: #ebf0f3;
-   margin: 80px 80px 50px 80px;
+   background-color: rgba(146, 194, 221, 0.123); 
+
+   margin: 20px 60px 20px 20px;
    border-radius: 30%;
-box-shadow: 0 5px 15px -5px #52515170; 
+   box-shadow: 0 5px 15px -5px #52515170;
    color: rgb(0, 30, 250);
    overflow: hidden;
    position: relative;
-    text-decoration: none;
 }
 
 .catagory-btn i {
@@ -188,7 +184,7 @@ box-shadow: 0 5px 15px -5px #52515170;
    margin: -5px;
 }
 
-
+<<<<<<< HEAD
  .catagory-btn p {
         color: rgb(0, 30, 250);
         overflow: hidden;
@@ -278,7 +274,50 @@ box-shadow: 0 5px 15px -5px #52515170;
    left: -10%;
 }
 
+@keyframes aaa { 0% {
+   left: -110%;
+   top: 90%;
+}
 
+50%
+{
+left
+
+
+:
+
+ 
+
+10%;
+top
+
+
+:
+
+ 
+
+-30%;
+}
+100%
+{
+top
+
+
+:
+
+ 
+
+-10%;
+left
+
+
+:
+
+ 
+
+-10%;
+}
+}
 
 /* 검색 카테고리  끝*/
 .gallery-container {
@@ -289,11 +328,13 @@ box-shadow: 0 5px 15px -5px #52515170;
 }
 
 .card-bodyarea {
+
 	padding: 20px 2px 50px 2px;
 }
 
 .card-content {
 	position: relative;
+
    padding: 20px 2px 50px 2px;
 }
 
@@ -343,36 +384,34 @@ box-shadow: 0 5px 15px -5px #52515170;
 
 .subtitle {
    font-size: 14px;
-   font-weight: 200;
+   font-weight: 300;
    color: #9B9EA5;
    padding: 3px 0px 15px 2px;
 }
-.subtitle i{
-	 color: #9B9EA5;
-}
+
 .period {
    font-size: 15px;
    color: #303333;
- 
+   font-weight: 600;
 }
 
 .shutdown {
    font-size: 15px;
    color: #303333;
-
+   font-weight: 600;
 }
 
 .person {
    padding-top: 5px;
    font-size: 15px;
    color: #303333;
-
+   font-weight: 600;
 }
 
 .person b {
    font-size: 17px;
    color: rgb(0, 30, 250);
-   font-weight: 800;
+   font-weight: 900;
 }
 
 .lightbox img {
@@ -381,6 +420,26 @@ box-shadow: 0 5px 15px -5px #52515170;
 	height: 200px;
 	transition: .1s;
 }
+
+
+
+
+/* 페이지 위로가기 버튼 */
+#go-top {
+
+	/* display: none;  */
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0%);
+	outline: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	z-index: 9999;
+	color: rgb(0, 30, 250);
+	margin-bottom:50px;
+}
+/*더하기 등록 버튼*/
 
 
 #bottomarea{
@@ -395,13 +454,27 @@ box-shadow: 0 5px 15px -5px #52515170;
    border: 0;
    cursor: pointer;
    color: rgb(0, 30, 250);
-   background-color:white;
 
  
 }
+/*더하기 등록 버튼*/
+/* .addplus {
+   outline: 0;
+   border: 0;
+   background: transparent;
+   cursor: pointer;
+   position: fixed;
 
-	/* 더하기 등록 버튼 */
+   font-size : 40px;
+ 
+}  */
 .material-icons{
+	    color: rgb(0, 30, 250);
+}
+
+ .material-icons:hover{
+    transform: scale(1.1);
+   color: #ccf2f4; 
 	color:rgb(0, 30, 250);
 	}
 
@@ -409,9 +482,5 @@ box-shadow: 0 5px 15px -5px #52515170;
     color: 
     rgba(0, 30, 250, 0.4);
 } 
- .buttonFixed {
-        position: fixed;
-        top: 85%;
-        right:2%;
-      }
+
 

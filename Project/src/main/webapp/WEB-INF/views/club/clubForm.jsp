@@ -18,7 +18,7 @@
 <header></header>
 <section>
 
-	<form action="insertClub" enctype="multipart/form-data" method="post" id="frm" name="insertform">
+	<form action="insertClub" enctype="multipart/form-data" method="post" id="frm">
 		<div class="selection">
 			<div class="select-kind">
 				<label for="exampleFormControlSelect2">더하기 종류</label> <select
@@ -101,16 +101,15 @@
 		</article>
 </section>
 <aside>
+	<div class="location" >
+		<label for="exampleFormControlSelect2">모임위치</label><br> <img
+			src="${path}/resources/img/mapicon.png"> 지도를 클릭하여 모임의 위치를 선택해주세요
+			</div>
+			<div id="clickLatlng"></div>
+
+<div id="map" style="width:400px;height:300px;"></div>
 
 	<div class="clubinfo-form">
-		<div class="location" >
-		<label for="exampleFormControlSelect2">모임위치</label><br> 
-		<p id=location-content><img src="${path}/resources/img/mapicon.png"> 마커를 움직여 모임의 위치를 등록해주세요.</p>
-<div id="map" style="width:450px;height:300px;"></div>
-
-</div>
-	
-	
 		<label for="exampleFormControlSelect2">모집 종료일 </label>
 		<div class="clubdate">
 			<img class="calanderimg" src="${path}/resources/img/calendar.png" />
@@ -167,10 +166,14 @@
 		</div>
 		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">신청하기</button>
 	</div>
+<<<<<<< HEAD
+	</form>
+=======
 <input type="hidden" name="clubLatitude" id="club-lat" value=""></input>
 <input type="hidden" name="clubLongitude" id="club-lng" value=""></input> 
 <input type="hidden" name="clubLeader" value="${user.memberNickname}"></input> 
 </form>
+>>>>>>> 669f382674aabe17185a8c306c15df18bfafff21
 </aside>
 <footer></footer>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
@@ -180,16 +183,13 @@
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
 <script>
-
-var lat2=0;
-var lng2=0;
-
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
         level: 4 // 지도의 확대 레벨 
     }; 
-
+    
+    
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
@@ -226,18 +226,15 @@ if (navigator.geolocation) {
     
         // 마커 위치를 클릭한 위치로 옮깁니다
         marker.setPosition(latlng);
-
-        // 클릭한 위치의 위도 경도를 담아
-        var lat2 = latlng.getLat();
-        var lng2 = latlng.getLng();
-     
-        // formname.inputname.value로 변수를 넣는다.
-        document.insertform.clubLatitude.value=lat2;
-        document.insertform.clubLongitude.value=lng2;
-
+      
+      var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+        message += '경도는 ' + latlng.getLng() + ' 입니다';
+      
+        var resultDiv = document.getElementById('clickLatlng'); 
+        resultDiv.innerHTML = message;
+        
     });
-
-} else { 
+} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
     
     var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
         message = '위치추적이 허용되지 않은 브라우저입니다.'
@@ -245,7 +242,16 @@ if (navigator.geolocation) {
     displayMarker(locPosition, message);
 }
 
-    // 현재 위치를 나타내는 마커 이미지 변경하기
+/* // 지도에 마커와 인포윈도우를 표시하는 함수입니다
+function displayMarker(locPosition, message) {
+
+	
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({  
+        map: map, 
+        position: locPosition
+    });  */
+    
     function displayMarker(locPosition, message) {
 
 var imageSrc ="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
@@ -262,22 +268,25 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
         image: markerImage // 마커이미지 설정 
     });
 
+    
     var iwContent = message, // 인포윈도우에 표시할 내용
         iwRemoveable = true;
 
-    // 말풍선
+    // 인포윈도우를 생성합니다
     var infowindow = new kakao.maps.InfoWindow({
         content : iwContent,
         removable : iwRemoveable
     });
     
-    // 말풍선을 마커 위에 나타낸다.
+    // 인포윈도우를 마커위에 표시합니다 
     infowindow.open(map, marker);
     
     // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);      
-}   
+}    
 
+<<<<<<< HEAD
+=======
   <!------------지도 끝----------->
   
   
@@ -316,6 +325,7 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 		fileNameSpan.innerText = ""
 		$(fileNameSpan).append(name);
 	}
+>>>>>>> 669f382674aabe17185a8c306c15df18bfafff21
 
 	//파일 삭제
 	function deleteFile(index) {
@@ -333,12 +343,23 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 		if (checkInput()) {
 			if (isNumber()) {
 				if (compareDate()) {
+<<<<<<< HEAD
+<<<<<<< HEAD
+					
+				
+=======
+	/* 	   $('.clubinfo-form').append('<input type="hidden" name="clubLatitude" value="' + lat2 + '"/>');
+			 $('.clubinfo-form').append('<input type="hidden" name="clubLongitude" value="' + lng2 + '"/>');  */
+>>>>>>> e7608280895d9fd2dfe2abf9ce350ac13feeabc3
+=======
+>>>>>>> 669f382674aabe17185a8c306c15df18bfafff21
 					document.getElementById('frm').submit();
 					alert("모임 등록이 완료되었습니다!")
-					}
 				}
 			}
 		}
+
+	}
 
 	//필수 입력란 검사 
 	function checkInput() {
@@ -346,9 +367,16 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 		let max = document.getElementById("club-max");
 		let title = document.getElementById("club-title");
 		let date = document.querySelectorAll(".c-date");
+<<<<<<< HEAD
+
+		/* 
+		 if(title && fee && max){
+		 console.log("존재 ") */
+=======
 		
 		/*  if(title && fee && max){
 		 console.log("존재 ")  */
+>>>>>>> 669f382674aabe17185a8c306c15df18bfafff21
 		if (title.value == "" || fee.value == "" || max.value == ""
 				|| date[0].value == "" || date[1].value == ""
 				|| date[2].value == "") {
@@ -370,11 +398,6 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 
 			}
 
-		/* 	if (lat.value == "") {
-				alert("모임의 위치를 선택해주세요!")
-				return postion.focus()
-
-			} */
 			for (var i = 0; i < date.length; i++) {
 				if (date[i].value == "") {
 					alert("날짜를 입력해주세요!")
