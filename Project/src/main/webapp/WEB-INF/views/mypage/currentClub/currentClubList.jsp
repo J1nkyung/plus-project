@@ -290,7 +290,7 @@ h6{
 								</div>
 							</div>
 							<div id="openClubBtn">
-								<input type="button"onClick="location.href='myClubInfo'" id="extendBtn" value="수정하기"/>
+								<input type="button"onClick="location.href='getMyClubInfo?clubNum=${clubList.clubNum}'" id="extendBtn" value="수정하기"/>
 								<c:if test="${clubList.progressBar >= 70}">
 									<c:if test="${clubList.clubFee == 0}">
 										<input type="button" id="extendBtn" data-toggle="modal" data-target="#myModal${clubList.clubNum}" value="연장하기"
