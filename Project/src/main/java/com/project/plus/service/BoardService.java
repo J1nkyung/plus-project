@@ -13,5 +13,6 @@ public interface BoardService {
 	public void deleteBoard(int boardNum);
 	public List<BoardVO> getMoreContents(Map<String, Integer> map);
 	public int getContentCount(int clubNum);	
+	public List<BoardVO> viewMyContents(int clubNum, int memberNum);
 
 }

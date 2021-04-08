@@ -58,7 +58,7 @@ margin:1px;
 </style>
 </head>
 <body>
-	<form name="updateForm" role="form" action="updateView" method="post">
+	<form name="updateForm" enctype="multipart/form-data">
 		<div class="wrap">
 			<h2>게시글 수정하기</h2>
 			<hr>
@@ -77,7 +77,7 @@ margin:1px;
             <input id="picFile" type="file" name="boardPhoto" value="${board.boardPic }" />
             <button type="button" class="removePic" onclick="removePic();">파일삭제</button>
             
-			<button type="submit" id="BtnUp">저장하기</button><br/>
+			<button type="button" id="BtnUp">저장하기</button><br/>
 	<div class="submit"><a href="getCommunity">글 목록 가기</a></div>
 		<hr></div>
 	</form>
@@ -91,6 +91,22 @@ removePic = function(){
 	$("#picFile").val("");
 }
     )}
+
+
+$(document).ready(function(){
+	
+	var formObj = $("form[name='updateForm']");
+		
+		$("#BtnUp").on("click", function(){
+		formObj.attr("action", "updateView");
+		formObj.attr("method", "post");
+		formObj.submit();           
+		
+		alert('성공적으로 수정했습니다');
+		})
+		
+	});
+
 </script>
 </body>
 </html>

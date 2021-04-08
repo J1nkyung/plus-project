@@ -32,7 +32,7 @@
 		 USING (member_num) WHERE board_num = #{boardNum}
 	</select>
 	
-	<!-- 작성글 목록인데.. 이게 피드에 더 필요할 거 같아 -->
+	<!-- 작성글 목록(피드형식이라서 이게 게시판 화면이 됨) -->
 	<select id="getBoardList" resultMap="boardResult">
 		SELECT member.member_num, member.member_nickname, member.member_pic, 
 				board.board_num, board.board_content, board.board_pic, board.board_regdate
@@ -74,4 +74,15 @@
 	 <delete id="deleteBoard">
 	 	DELETE FROM BOARD WHERE board_num = #{boardNum};
 	 </delete>
+	 
+	 <select id="viewMyContents" resultMap="boardResult" parameterType="map">
+	 SELECT board.*, member_nickname, member_pic
+	 FROM board
+	 JOIN MEMBER
+	 USING (member_num)
+	 WHERE club_num = #{clubNum}
+	 AND member_num = #{memberNum} 
+	 ORDER BY board.board_regdate desc 
+	 </select>
+
 </mapper> 

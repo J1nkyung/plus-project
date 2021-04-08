@@ -20,7 +20,6 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="${path}/resources/css/comm-aside.css">
 <link rel="icon" type="image/png" href="http://example.com/myicon.png"> 
 <style>
 	
@@ -59,10 +58,10 @@
 }
 
 .tr{
-   background-color:lightgrey;
+   /* background-color:lightgrey; */
    text-align:center;
-   margin:0 10px 20px 10px;;
-   border:1px solid lightgrey;
+   margin:0 10px 5px 10px;
+   border-bottom:1px solid lightgrey;
    border-radius:5%;
 }
 
@@ -71,21 +70,53 @@
    font-size:20pt;
    font-weight:bold;
 }
+.clubName a:hover{
+   font-size:20pt;
+   font-weight:bold;
+text-decoration:none;
+color:#001eff;
+border-radius:5%;
+}
 .th{
    font-size:14pt;
    font-weight:bold;
 }
-
-#currMem{
-   min-height:200px;
+.tm{
+/* height:24px;
+width:auto; */
+display:block;
+padding:16px 0 0 0;
+text-align:center;
+}
+.Member{
+   min-height:150px; 
+      display:flex;
+   margin:10px 16px;
+   padding:0 16px 16px 16px;
+   
 }
 .memberThumb{
    height:50px;
    width:50px;
-  /*  background-color:red; */
-  border:1px solid red;
    border-radius:50%;
-   display:inline;
+   display:block;
+}
+.memberNickname{
+width:auto;
+height:auto;
+font-size:12px;
+}
+#viewMine{
+background-color:#001eff;
+color:white;
+border-radius:5px;
+border-style:none;
+padding:5px 20px;
+}
+
+#viewMine a:hover{
+color:white;
+text-decoration:none;
 }
 </style>
 <title>Plus! My page</title>
@@ -101,24 +132,28 @@
                       
                       <div class="navbar-nav flex-column">
                          <div class="tr nav-link p-3">
-                            <span class="clubName">${club.clubName}</span>
+                            <span class="clubName"><a href="${path}/getCommunity?clubNum=${club.clubNum }">${club.clubName}</a></span>
                          </div>
                          
                          <div class="tr nav-link p-3">
                             <span class="th">활동 기간</span><br/>
                            <span class="td">${club.clubStartDate} ~ ${club.clubEndDate}</span>
                          </div>
-                         <div class="tr nav-link p-3 Member">
-                            <span class="th">참여중인 멤버</span><br/>
-                            <div id="currMem">
-                        <c:forEach items="${apply}" var="applys">
-                            <div class="memberThumb"><img class="memberThumb" src="${path}/resources${applys.memberPic}" onerror="this.src='${path}/resources/img/default_pic.png'"/></div>
-                             <div class="memberNickname">${applys.memberNickname }</div> 
-                            
-                           
-                        </c:forEach>
-                            </div>
+                            <span class="th tm">참여중인 멤버</span>
+                      <div class="tr nav-link Member">
+		                        <c:forEach items="${apply}" var="applys">
+                         <div id="currMem">
+		                            <div class="memberThumb"><img class="memberThumb" src="${path}/resources${applys.memberPic}" onerror="this.src='${path}/resources/img/default_pic.png'"/></div>
+		                             <div class="memberNickname">${applys.memberNickname }</div> 
                          </div>
+		                        </c:forEach>
+                      </div>
+                         
+                          <div class="tr nav-link p-3">
+                            
+                            <span class="td"><button type="submit" id="viewMine"><a href="${path}/getCommunity?clubNum=${club.clubNum }&memberNum=${user.memberNum}">내글보기</a></button></span>
+                        </div>
+                         
                          
                          
                       </div><!-- navbar-nav 끝 -->
