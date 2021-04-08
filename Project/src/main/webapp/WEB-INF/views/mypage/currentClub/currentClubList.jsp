@@ -39,7 +39,12 @@
 .fixed-top{
  position: sticky;
 }
-
+.wrap{
+	height:2000px;
+}
+.container {
+    height: 100%;
+}
 
 
 #clubBar {
@@ -225,7 +230,7 @@ h6{
 </head>
 <title>내 모임 관리</title>
 <body>
-	<div class="container">
+	<div class="container" class="clearfix">
 		<div class="row">
 			<!-- 상단의 my progress -->
 			<div class="col-md-4">my progress</div>
@@ -257,7 +262,7 @@ h6{
 		</div>
 		
 		<!-- 개설한 모임 -->
-		<div class="row-middle">
+		<div class="row-middle" >
 			<div class="open-plus">
 				개설한 모임
 				<c:if test="${empty selectCurClubList }">
@@ -277,7 +282,7 @@ h6{
 							<div id="openClubPic">
 <%-- 								<a href="getClub?memberNum=${user.memberNum}"> <img src="${path}/resources/img/books.PNG"
 									width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a> --%>
-								<a href="getCommunity?clubNum=${clubList.memberNum}"> <img src="${path}/resources/img/books.PNG"
+								<a href="getCommunity?clubNum=${clubList.clubNum}"> <img src="${path}/resources/img/books.PNG"
 									width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>
 							</div>
 							<div id="openClubProgress">
