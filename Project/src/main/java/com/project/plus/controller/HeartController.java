@@ -50,6 +50,7 @@ public class HeartController {
 		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(avo));
 		model.addAttribute("selectFreeClub", heartService.selectFreeClub(vo));
 		model.addAttribute("selectNoFreeClub", heartService.selectNoFreeClub(vo));
+
 		return "heartList.heart";
 	}
 
@@ -126,10 +127,12 @@ public class HeartController {
 			} else {
 				// 포인트 부족하지 않으면 모임을 신청하고
 				pvo.setMemberPoint((currentPoint - totalFee));
+				pvo.setPayAmount(vo.getTotalFee());
 				for (int i : clubNumArr) {
 					System.out.println(i);
 					vo.setClubNum(i);
 					pvo.setClubNum(i);
+					System.out.println( "클럽넘버 : " + pvo.getClubNum() + " / 클럽 비용  : " + pvo.getPayAmount());
 					// 모임 신청 -apply 신청테이블에 정보 넣어주기
 					applyService.applyFreeClub(vo); 
 					// 참가자 payment 추가시킨다. 
