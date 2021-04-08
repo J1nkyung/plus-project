@@ -151,8 +151,17 @@ div {
 	
 table {
     border-collapse: collapse;
-    margin-bottom: 20%;
 }
+ #noHeartDiv{
+ 	width: 87%;
+ 	height : 100%;
+    border: 2px solid #eee;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
+ 	padding: 5.9%;
+ 	font-size : 20px;
+ 	text-align : center;
+ }
+
 </style>
 </head>
 
@@ -176,6 +185,9 @@ table {
 						</tr>
 					</table>
 				</div>
+				<c:if test="${ empty selectFreeClub }">
+				 	<p id="noHeartDiv">찜한 모임이 없습니다.🐾<p>
+				</c:if>
 				<div id="fBoxes">	
 					<c:forEach var="freeclub" items="${selectFreeClub}">
 						<div id="cardPadding">
@@ -187,7 +199,7 @@ table {
 									</c:if>
 									<c:if
 										test="${freeclub.clubThumbPic != null || freeclub.clubThumbPic== ''}">
-										<img src="${path}/resources/img/${freeclub.clubThumbPic}" class="card-img-top" alt="Card image" style="width: 100%">
+										<img src="${path}/resources${freeclub.clubThumbPic}" class="card-img-top" alt="Card image" style="width: 100%">
 									</c:if>
 
 									<div class="card-body">
@@ -232,7 +244,9 @@ table {
 						</tr>
 					</table>
 				</div>
-
+				<c:if test="${ empty selectNoFreeClub }">
+				 	<p id="noHeartDiv">찜한 모임이 없습니다.🐾<p>
+				</c:if>
 				<div id="fBoxes">
 
 					<c:forEach var="nofreeclub" items="${selectNoFreeClub}">
@@ -241,16 +255,16 @@ table {
 								value="${nofreeclub.clubNum}"><br> <label
 								for="card">
 								<div class="card" style="width: 400px" onclick="location.href='getClub?clubNum=${nofreeclub.clubNum}'">
-									<c:if
-										test="${nofreeclub.clubThumbPic == null || nofreeclub.clubThumbPic== ''}">
-										<img src="${path}/resources/img/goal.PNG" class="card-img-top"
-											alt="Card image" style="width: 100%">
-									</c:if>
-									<c:if
-										test="${nofreeclub.clubThumbPic != null || nofreeclub.clubThumbPic== ''}">
-										<img src="${path}/resources/img/${freeclub.clubThumbPic}"
+									<%-- <c:if
+										test="${nofreeclub.clubThumbPic == null || nofreeclub.clubThumbPic== ''}"> --%>
+									<%-- 	<img src="${path}/resources/img/goal.PNG" class="card-img-top"
+											alt="Card image" style="width: 100%"> --%>
+									<%-- </c:if> --%>
+									<%-- <c:if
+										test="${nofreeclub.clubThumbPic != null || nofreeclub.clubThumbPic== ''}"> --%>
+										<img src="${path}/resources${freeclub.clubMainPic}"
 											class="card-img-top" alt="Card image" style="width: 100%">
-									</c:if>
+									<%-- </c:if> --%>
 
 									<div class="card-body">
 										<h4 class="card-title">${nofreeclub.clubName }</h4>

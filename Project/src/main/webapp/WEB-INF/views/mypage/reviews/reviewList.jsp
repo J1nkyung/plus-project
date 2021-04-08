@@ -61,6 +61,8 @@
 		        </c:forEach>
 		        </section>
 		        <section id="ReviewContent2" style="margin-bottom:20px;">
+		         <c:if test="${ empty selectNotReview }">
+		        	<p id="noReviewBox">작성한 리뷰가 없습니다! ⛳ <p></c:if>
 		        <c:forEach var="okayRvw" items="${selectOkayReview}">
 		                <!-- float left -->
 		                <div>

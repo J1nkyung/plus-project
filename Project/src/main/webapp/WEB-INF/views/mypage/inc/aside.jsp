@@ -19,7 +19,7 @@
     <!-- themify icon -->
     <link rel="stylesheet" type="text/css" href="${path}/resources/icon/themify-icons/themify-icons.css">
     <!-- fontawesome CSS -->
-  <!--   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous"> -->
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous"> 
     
 <title>Plus! My page</title>
 </head>
@@ -37,15 +37,13 @@
                      <a href="#" class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4">MY PAGE</a>
                      <div class="bottom-border pb-3">
                          <img class="rounded-circle mr-3" src="${path}/resources/img/avatar-6.jpg" alt="" width="200px" height="200px">
-                         <div class="user-name">이름(나중에 처리하실 곳)</div>
-                         <button>설정 🔑<button>
+                        <div class="user-name">${user.memberName} 님<a href="memberUpdate?memberNum=${user.memberNum}">&nbsp;
+                        <i class="fas fa-cog text-white fa-md mr-3"></i></a></div>
                      </div>
                      <ul class="navbar-nav flex-column mt-4">
                         <!-- Mypage -->
                         <li class="nav-item">
-                            <a href="memberUpdate?memberNum=${user.memberNum }" class="nav-link text-white p-3 mb-2 sidebar-link current">
                             <a href="getCurrentClubList" class="nav-link text-white p-3 mb-2 sidebar-link current">
-                            <a href="memberUpdate" class="nav-link text-white p-3 mb-2 sidebar-link current">
                                 <i class="fas fa-user text-white fa-lg mr-3"></i>마이페이지
                             </a>
                         </li>
