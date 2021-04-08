@@ -67,4 +67,6 @@
 		WHERE member_num=#{memberNum}
 		]]>
 	</select>
+
 </mapper>
+

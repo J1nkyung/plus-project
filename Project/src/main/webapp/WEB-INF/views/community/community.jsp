@@ -27,6 +27,7 @@ body {
 
 .communityContainer {
 	margin: 0;
+	margin-left:30px;
 	width: 100%;
 }
 
@@ -219,13 +220,25 @@ textarea {
    border-radius:50%;
    height:50px;
    width:50px;
-   background-color:lightgrey;
+   background-color:#001eff;
+   opacity:0.9;
    color:#333;
    border-style:none;
    }
+   
+
+   
+   #boardForm img{
+max-width:65%;
+height:auto;
+margin-left:3px;
+/* width:50px;
+ */
+}
 
 #boardRegdate{
-  	margin:32px;
+  	margin:37px;
+  	font-size:10pt;
   }
         
 #dropdown {
@@ -301,6 +314,11 @@ height:35px;
 .moreBtn:focus{
 border:0;
 outline:0;
+}
+.newContent{
+padding-bottom:30px;
+}
+
 .reComm-list {
     margin: 40px 0 0 40px;
 }
@@ -311,6 +329,11 @@ outline:0;
 
 	
    <div class="communityContainer">
+    <%--   <input type="button" name="boardForm" id="boardForm"
+         onclick="location.href='${path}/insertBoardForm'"> --%>
+         <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm'">
+         <img src="${path }/resources/img/penwhite.png"></button>
+         
 
  
       <input type="button" name="boardForm" id="boardForm"
@@ -330,7 +353,7 @@ outline:0;
                      <p id="boardNickname">${board.memberNickname}</p>
                      <div id="boardRegdate">
                      	<fmt:formatDate value="${board.boardRegDate}" var="changedDate"
-							pattern="yyyy. MM. dd HH:mm:ss" />
+							pattern="yyyy. MM. dd (HH:mm)" />
 						${changedDate}
                      </div>
 
@@ -502,6 +525,7 @@ let contentCnt = '${contentCount}'
 				 dataType : "json",
 				 data: JSON.stringify({
 					 clubNum:'${club.clubNum}',
+					/* memberNum:'${user.memberNum}',*/
 					 startIndex:startIndex
 				 }),
 				 contentType: "application/json",
@@ -929,7 +953,7 @@ function insertComment(bNum){
 		 					
 		 					let notMessage ="회원님의 게시글에 <b>" + userNickname + "</b>님이 새로운 댓글을 등록했어요!";
 		 					let notType= "댓글";
-		 					let notUrl = "${path}/getCommunity?clubNum=3";
+		 					let notUrl = "${path}/getCommunity?clubNum=" + clubNum;
 		 					  $.ajax({
 		 					        
 		 							type: "post",

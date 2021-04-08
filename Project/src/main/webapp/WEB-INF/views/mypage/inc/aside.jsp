@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -41,34 +40,36 @@
                          <div class="user-name">이름(나중에 처리하실 곳)</div>
                          <button>설정 🔑<button>
                      </div>
-                      <ul class="navbar-nav flex-column mt-4">
+                     <ul class="navbar-nav flex-column mt-4">
                         <!-- Mypage -->
                         <li class="nav-item">
+                            <a href="memberUpdate?memberNum=${user.memberNum }" class="nav-link text-white p-3 mb-2 sidebar-link current">
                             <a href="getCurrentClubList" class="nav-link text-white p-3 mb-2 sidebar-link current">
+                            <a href="memberUpdate" class="nav-link text-white p-3 mb-2 sidebar-link current">
                                 <i class="fas fa-user text-white fa-lg mr-3"></i>마이페이지
                             </a>
                         </li>
                         <!-- Heart -->
                         <li class="nav-item">
-                            <a href="getHeartList" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="getHeartList.do" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-heart text-white fa-lg mr-3"></i>찜하기
                             </a>
                         </li>
                         <!-- Calendar -->
                         <li class="nav-item">
-                            <a href="getClubDate" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="#" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-calendar text-white fa-lg mr-3"></i>캘린더
                             </a>
                         </li>
                         <!-- Point -->
                         <li class="nav-item">
-                            <a href="getPaymentList" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="getPaymentList.do" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-coins text-white fa-lg mr-3"></i>포인트
                             </a>
                         </li>
                         <!-- Review -->
                         <li class="nav-item">
-                            <a href="getReviewList" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="getReviewList.do" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-pencil-alt text-white fa-lg mr-3"></i>리뷰작성
                             </a>
                         </li>

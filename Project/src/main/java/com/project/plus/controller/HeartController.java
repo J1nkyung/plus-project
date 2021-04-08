@@ -50,7 +50,7 @@ public class HeartController {
 		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(avo));
 		model.addAttribute("selectFreeClub", heartService.selectFreeClub(vo));
 		model.addAttribute("selectNoFreeClub", heartService.selectNoFreeClub(vo));
-		return "mypage/heart/heartList";
+		return "heartList.heart";
 	}
 
 	@RequestMapping(value = "/applyFreeClub", produces = "application/text;charset=UTF-8")//.do뺌

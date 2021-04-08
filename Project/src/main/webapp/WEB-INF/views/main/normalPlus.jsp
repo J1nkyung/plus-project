@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/plus.css">
+	href="${path}/resources/css/expert.css">
 
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -24,7 +24,9 @@
 </head>
 
 <body>
-	<!-- 배너 -->
+	<!-- 배너너ㅓ -->
+
+    
 	  <div class="mainbanner">
         <img 
          src="${path}/resources/img/plus1.png"
@@ -32,7 +34,7 @@
          <div class="bannercontent2">
  <h1>가치더하기</h1>
 <h4>같은 목표를 가진 사람들과 함께하는 가치더하기</h4>
-<h4>모든지 같이하면 더욱 가치있어요!</h4>
+<h4>사소하거나 혼자선 힘든 일도 같이하면 즐거움이 2배</h4>
 </div>
     </div>
 
@@ -166,14 +168,12 @@
 	</section>
 
 	
-	 <div class="addplus">
-		<a href="clubForm"><span class="material-icons" style= "font-size:60px;" >
-add_circle
-</span></a>
-	</div> 
-
-	<!-- 푸터와 공백을 위해 지정한 div -->
-	<div id="bottomarea"></div>
+ <button id="addplus">
+		<a href="clubForm.jsp"> <span class="material-icons"
+			style="display: inline-block; font-size: 55px;"> add_circle </span></a>
+	</button> 
+	</div>
+	</div>
 </body>
 
 <!--어썸폰트 아이콘 -->
@@ -195,18 +195,27 @@ add_circle
 
      
 
-        //더하기 등록 버튼 고정
-        $( document ).ready( function() {
-            var jbOffset = $( '.material-icons' ).offset();
-            $( window ).scroll( function() {
-              if ( $( document ).scrollTop() > 300) {
-                $( '.material-icons' ).addClass( 'buttonFixed' );
-              }
-              else {
-                $( '.material-icons' ).removeClass( 'buttonFixed' );
-              }
+        <!------------------스크롤 위로 올리기----------------->
+        var backToTop = () => {
+            // Scroll | button show/hide
+            window.addEventListener('scroll', () => {
+                if (document.querySelector('html').scrollTop > 100) {
+                    document.getElementById('go-top').style.display = "block";
+                } else {
+                    document.getElementById('go-top').style.display = "none";
+                }
             });
-          } );
+            // back to top
+            document.getElementById('go-top').addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+            })
+        };
+        backToTop();
+        
         
         
 

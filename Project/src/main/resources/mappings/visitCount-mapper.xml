@@ -11,5 +11,4 @@
 		INSERT INTO VISIT (V_DATE) VALUES (now())
 	</insert>
 
-	
 </mapper>

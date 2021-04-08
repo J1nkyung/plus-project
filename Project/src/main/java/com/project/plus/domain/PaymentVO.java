@@ -11,7 +11,6 @@ public class PaymentVO {
 	private Date payDate;
 	/*추가한 vo*/
 	private int memberPoint;
-	
 	// 현정 추가 0404
 	private String memberNickname;
 	private String clubName;
@@ -79,6 +78,7 @@ public class PaymentVO {
 	@Override
 	public String toString() {
 		return "PaymentVO [payNum=" + payNum + ", memberNum=" + memberNum + ", clubNum=" + clubNum + ", payAmount="
+				+ payAmount + ", payMethod=" + payMethod + ", payDate=" + payDate + ", memberPoint=" + memberPoint+ ", memberNickname=" + memberNickname + ", clubName=" + clubName
 				+ payAmount + ", payMethod=" + payMethod + ", payDate=" + payDate + ", memberPoint=" + memberPoint + ", memberNickname=" + memberNickname + ", clubName=" + clubName
 				+ "]";
 	}

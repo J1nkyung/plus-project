@@ -13,14 +13,19 @@
 
 }
 .myToast{
+   position:absolute;
+   z-index:999;
+   left:1100px;
+}
+
 	position:absolute;
 	z-index:999;
 	left:1100px;
 }
 
 #toastImg{
-	width:20px;
-	
+   width:20px;
+   
 }
 
 nav {
@@ -43,11 +48,11 @@ nav li {
 }
 
 .login{
-	top:32px;
-	margin-right:30px;
+   top:32px;
+   margin-right:30px;
 }
 .joinbar{
-	position: relative;
+   position: relative;
     top: 12px;
     margin-right: 30px;
 }
@@ -119,6 +124,10 @@ nav li #selected {
 .nav-right{
     float: right;
 }
+.dropT{
+   font-size:10px;
+   padding-bottom:3px;
+   }
 
 .icon{
     padding-right: 0;
@@ -150,6 +159,12 @@ nav li #selected {
    
 }
 
+.dropdown:focus{
+   outline:none;
+}
+.show:focus{
+   outline:0;
+}
 .dropdown-toggle::after {
     display: inline-block;
     margin-left: .255em;

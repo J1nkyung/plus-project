@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -14,7 +15,6 @@
     <link rel="stylesheet" href="${path}/resources/css/admin-aside.css">
 
     <!-- themify icon -->
-   <%--  <link rel="stylesheet" type="text/css" href="${path}/resources/icon/themify-icons/themify-icons.css"> --%>
     <!-- fontawesome CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
   
@@ -63,7 +63,7 @@
                                 <i class="fas fa-question-circle text-white fa-lg mr-3"></i>문의 관리
                             </a>
                         </li>
-                          <!-- 공지 관리 -->
+                        <!-- 공지 관리 -->
                         <li class="nav-item">
                             <a href="announce" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-question-circle text-white fa-lg mr-3"></i>공지 관리
@@ -82,6 +82,7 @@
                                 <i class="fas fa-question-circle text-white fa-lg mr-3"></i>차트 관리
                             </a>
                         </li>
+                        
                         
 
 
@@ -108,6 +109,7 @@
 <!--     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
    <!--  <script src="js/script.js"></script> -->
+    <script src="/resources/js/script.js"></script>
 
 
 </body>

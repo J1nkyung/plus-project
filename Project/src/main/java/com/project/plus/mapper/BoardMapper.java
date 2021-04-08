@@ -3,6 +3,8 @@ package com.project.plus.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.project.plus.domain.BoardVO;
 
 public interface BoardMapper {
@@ -13,7 +15,7 @@ public interface BoardMapper {
 	public int getContentCount(int BoardNum);
 	public void updateBoard(BoardVO board);
 	public void deleteBoard(int BoardNum);
-
+	public List<BoardVO> viewMyContents(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum);
 	
 	
 }

@@ -17,7 +17,7 @@ $(document).ready(function(){
 	
 	
 	$("#btnFind").on("click", function(){
-	//이메일 중복체크 - true
+	
 		if (emailChk()==false){
 			//alert("이메일 오류");
 
@@ -31,17 +31,7 @@ $(document).ready(function(){
 		}
 	})
 })//document ready
-			//alert("이메일 체크 메서드 실행  ");
-	//휴대폰번호 중복체크 - true
-/* 			if(phoneChk()==true){
-				alert("폰번호 체크 메서드 ");
-				sendEmail();
 
-			}else{
-				alert("폰번호 false");
-				return false;				
-			} */
-	
 
 
 
@@ -143,7 +133,7 @@ function sendEmail(){
 		
 			},
 			error : function(data){
-				alert("error" + data)
+				//alert("error" + data)
 			}
 		})
 }

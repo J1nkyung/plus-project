@@ -42,7 +42,7 @@
 			<div class="panel">
 				<span>>&nbsp;&nbsp;&nbsp;FAQ&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;${faq.faqCategory}</span><br />
 				<br />
-				<p>${faq.faqContent}</p>
+				<p style="white-space:pre-line;">${faq.faqContent}</p>
 				<c:if test="${user.memberNum eq 1}">
 					<form action="deleteFaq" method="post"
 						style="display: inline-block; float: right; margin-right: 20px; margin-bottom: 20px">
