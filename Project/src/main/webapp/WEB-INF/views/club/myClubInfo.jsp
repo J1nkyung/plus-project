@@ -60,7 +60,7 @@
 				<label for="exampleFormControlSelect2">카테고리 선택</label> <select
 					class="form-control" name="clubCategory">
 					<option value="운동">운동</option>
-					<option value="공부">공부</option>
+					<option value="학습">학습</option>
 					<option value="습관">습관</option>
 					<option value="취미">취미</option>
 				</select>

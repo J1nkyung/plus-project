@@ -929,7 +929,7 @@ function insertComment(bNum){
 		 					
 		 					let notMessage ="회원님의 게시글에 <b>" + userNickname + "</b>님이 새로운 댓글을 등록했어요!";
 		 					let notType= "댓글";
-		 					let notUrl = "${path}/getCommunity?clubNum=3";
+		 					let notUrl = "${path}/getCommunity?clubNum=" + clubNum;
 		 					  $.ajax({
 		 					        
 		 							type: "post",

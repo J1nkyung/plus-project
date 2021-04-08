@@ -421,14 +421,6 @@ left
 	transition: .1s;
 }
 
-.lightbox img : hover {
-	transform: scale(1.05);
-
-   width: 100%;
-   height: 200px;
-   transition: .1s;
-
-}
 
 
 

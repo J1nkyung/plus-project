@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
     <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
     <!-- 웹소켓 import -->
@@ -68,26 +72,6 @@
     		
    		
     	}
-    	
-    	
-     //	알림 벨 클릭시 
-/*      function getContent(){
-     	$.ajax({
-			type: "post",
-			url: "getNtf", 
-			data: {
-			},
-		     success: function (data) {
-	            	console.log(data);
-			           	if(data){
-			           		console.log("알림 가져오기")
-			           	},
-	            error: function() {
-	            	  alert("메시지 저장 error");
-	            	}
-        });
-    	 
-     } */
     
      
     </script>
@@ -100,7 +84,7 @@
         <!-- navi bar가 사실상 저희 헤더입니다 -->
         <nav>
             <ul class="menu-left">
-                <li id="logo_a"><a href="main.do"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
+                <li id="logo_a"><a href="main"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
                 <li class="hovereffect nav-left"><a href="main">HOME</a></li>
                 <li class="hovereffect nav-left"><a href="normal">가치더하기</a></li>
                   <li class="hovereffect nav-left" id="expert"><a href="expert">도움더하기</a></li>
@@ -123,14 +107,14 @@
 				               </c:otherwise>
 			               </c:choose>
                         </form>
-                      <form action="logout.do" method="get">
+                      <form action="logout" method="get">
                       <!--  onclick="kakaoLogout()" -->
-                        <li class="dropli api-btn"><a href="logout.do">LogOut</a></li>
+                        <li class="dropli api-btn"><a href="logout">LogOut</a></li>
                       </form>
                         </ul>
                     </div>
                 </li>
-              	 <li class="nav-right icon"><a href="chat.do?memberNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/chat.png" class="icons"></a></li>
+              	 <li class="nav-right icon"><a href="chat?memberNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/chat.png" class="icons"></a></li>
                 <li class="nav-right icon"><a href="getNoti?mNum=${user.memberNum}" target="_blank"><img src="${path}/resources/img/images/bell1.png" class="icons" id="bell" ></a></li>
              </c:when>
              <c:otherwise><!-- 로그인 정보가 없으면  -->
