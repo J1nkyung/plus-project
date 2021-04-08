@@ -1,0 +1,302 @@
+body {
+	font-size: 16px;
+	background-color: #f5f4f0;
+}
+
+.communityContainer {
+	margin: 0;
+	margin-left:30px;
+	width: 100%;
+}
+
+.inlineContent {
+	width: 80%;
+	padding: 3% 0 5% 0;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid rgba(0, 0, 0, 0.171);
+	border-radius: 5px;
+	margin:10px;
+}
+
+.contentBox {
+	padding-bottom: 3%;
+}
+
+.userInfo {
+	display: flex;
+
+	/* background-color: tomato; */
+}
+
+.userComment {
+	display: flex;
+	flex-direction: column;
+	font-size: 15px;
+	width: 80%;
+}
+
+.userSpan {
+	display: flex;
+	flex-direction: row;
+}
+
+h1 {
+	margin-bottom: 40px;
+}
+
+p {
+	margin-top: 30px;
+}
+
+/*프로필사진 나오는 곳*/
+#userPic {
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	margin: 20px 20px 50px 30px;
+	box-shadow: 1px 1px 1px #8299d879;
+}
+
+#commentUserPic {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin: 0px 10px 10px 30px;
+	box-shadow: 1px 1px 1px #8299d879;
+}
+
+.certification{
+    margin-left:4%;
+ }
+        /*인증사진 위치 및 내용*/
+        #certificationPic{
+            /* text-align: center; */
+            height: auto;
+            width: 500px;
+            overflow: hidden;
+        }
+        
+        #certificationPic img{
+        max-width:100%;
+        height:auto;
+        }
+
+        #certificationContent{
+            margin: 4% 10% 2% 0%;
+            font-size: 15px;
+        }
+
+
+/*닉네임*/
+#boardNickname {
+	font-size: 22px;
+	font-weight: 700;
+}
+
+#commentNickname {
+	font-weight: 700;
+	margin: 5px 30px 0px 0px;
+	font-size: 17px;
+}
+
+/*댓글*/
+.commentBox {
+	margin: 20px 20px 20px 30px;
+	width: 85%;
+}
+
+textarea {
+	resize: none;
+	font-size: 15px;
+	margin-right: 2%;
+	border-radius: 2%;
+}
+
+.writeComment {
+	display: flex;
+}
+
+
+.reComm-box{
+	margin-left:80px;
+	display:flex;
+} 
+
+#submitCommBtn, #submit-reCommBtn {
+	display: inline-block;
+	padding: 10px 20px;
+	color: #999;
+	background-color: #fdfdfd;
+	border: 0;
+	cursor: pointer;
+	border-radius: 5px;
+	border: 1px solid #eee;
+}
+
+#commContent {
+	margin: 0px 0px 50px 60px;
+}
+
+#commRegdate {
+	margin-top: 10px;
+	color: #6e7c7c;
+	font-size: 12px;
+}
+#editBtn{
+	margin-bottom:30px;
+	color:#6e7c7c;
+}
+
+#delComm, #updateComm{
+	float: right;
+	font-size: 15px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+#showReCommBtn{
+	font-size: 15px;
+	margin-right: 10px;
+	cursor: pointer;
+    margin-left: 60px;
+}
+
+#editText {
+	margin: 0 0 10px 60px;
+}
+
+#editInput {
+	color: #999;
+	width: 100px;
+	height: 46px;
+	background-color: #fdfdfd;
+	border: 0;
+	cursor: pointer;
+	border-radius: 5px;
+	border: 1px solid #eee;
+	float: right;
+}
+
+#commImg {
+	width: 20px;
+	height: 20px;
+}
+
+#showCommBtn {
+	margin: 50px 0 0 4%;
+	cursor: pointer;
+	display: inline;
+	display: flex;
+}
+
+#boardForm{
+   position: fixed;
+   float: right;
+   bottom: 50px;
+   right: 100px;
+   border-radius:50%;
+   height:50px;
+   width:50px;
+   background-color:#001eff;
+   opacity:0.9;
+   color:#333;
+   border-style:none;
+   }
+   
+
+   
+   #boardForm img{
+max-width:65%;
+height:auto;
+margin-left:3px;
+/* width:50px;
+ */
+}
+
+#boardRegdate{
+  	margin:37px;
+  	font-size:10pt;
+  }
+        
+#dropdown {
+	width: 15px;
+	height: 15px;
+	margin: 10px 0 0 300px;
+	cursor: pointer;
+}
+
+   
+.dropbtn {
+  background-color:#f5f4f4;
+  padding: 30px 16px 5px 16px;
+  font-size: 16px;
+  border: none;
+  cursor:pointer;
+/*   clear:both;
+   position:relative;
+   left:300px; */
+}
+
+#dropmenu{
+width:15px;
+height:18px;
+opacity:0.5;
+
+}
+#btnDel, #btnUp{
+padding:3px 5px;
+margin-bottom:1px;
+margin-left:5px;
+border:none;
+box-shadow:1px 1px 1px grey;
+background-color:#001eff;
+opacity:0.8;
+border-radius:5px;
+}
+
+.dropdowns > ul > li {
+      display: inline-block;
+      position: relative;
+    }
+.dropdowns > ul > li > ul {
+  position: absolute;
+  list-style-type: none;
+  padding-left: 0px;
+  display: none;
+}
+.dropdowns > ul > li:hover > ul {
+  display: block;
+}
+.dropdowns > ul > li:active > ul {
+  display: block;
+}
+.dropdowns a{
+color:white;
+}
+.dropdowns a:hover{
+color:white;
+}
+
+.moreBtn{
+margin:20px 0 50px 10%;
+width:60%;
+border-radius:5px;
+border-style:none;
+box-shadow: 1px 1px 1px grey;
+background-color:#001eff;
+color:white !important;
+font-weight:bold;
+height:35px;
+}
+.moreBtn:focus{
+border:0;
+outline:0;
+}
+.newContent{
+padding-bottom:30px;
+}
+
+.reComm-list {
+    margin: 40px 0 0 40px;
+}

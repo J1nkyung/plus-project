@@ -13,20 +13,21 @@
 
 }
 .myToast{
-   position:absolute;
+	
    z-index:999;
    left:1100px;
 }
 
+#toastImg{
+	width:20px;
+	
+}
+.toast{
 	position:absolute;
 	z-index:999;
 	left:1100px;
 }
 
-#toastImg{
-   width:20px;
-   
-}
 
 nav {
    /*  height: 70px; */
