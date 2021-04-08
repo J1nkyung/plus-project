@@ -71,10 +71,9 @@
                    <b>문의:</b> plusprojectofficial@gmail.com<br /><br />
                      Copyright 2021 . All rights reserved.<br /><br />
                 </li>
-                <li></li>
+              <!--   <li></li> -->
             </ul>
       </div>
-
 </body>
 
 </html>

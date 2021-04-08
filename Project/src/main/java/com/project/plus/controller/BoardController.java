@@ -176,6 +176,8 @@ public class BoardController {
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
 	      boardService.updateBoard(board);
+	      log.info("들어오니?");
+	      log.info(board.getBoardContent());
 	      return "redirect:getCommunity?clubNum="+board.getClubNum();
 	   }
 	   

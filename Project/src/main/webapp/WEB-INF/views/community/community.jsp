@@ -7,14 +7,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+
 <title>커뮤니티</title>
+
 <style>
 body {
-	font-size: 16px !important;
+	font-size: 16px;
 	background-color: #f5f4f0;
 }
 
@@ -318,12 +325,20 @@ padding-bottom:30px;
 </style>
 </head>
 <body>
+
+
+	
    <div class="communityContainer">
     <%--   <input type="button" name="boardForm" id="boardForm"
          onclick="location.href='${path}/insertBoardForm'"> --%>
          <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm'">
          <img src="${path }/resources/img/penwhite.png"></button>
          
+
+ 
+      <input type="button" name="boardForm" id="boardForm"
+         onclick="location.href='${path}/insertBoardForm'" value="글쓰기">
+
 <div id="repeatBox">
 
       <c:forEach items="${boards}" var="board">
@@ -601,7 +616,7 @@ $(function(){
 				url: "insertReComments",
 				data: {
 					commentsClass:cNum,
-					memberNum:2,
+					memberNum:mNum,
 					boardNum:boardNum,
 					commentsContent:content,
 					commentsRegdate:today,
@@ -883,7 +898,7 @@ function insertComment(bNum){
 						type: "post",
 						url: "insertComment",
 						data: {
-							memberNum:2,
+							memberNum:mNum,
 							boardNum:bNum,
 							commentsContent:content,
 							commentsRegdate:today,

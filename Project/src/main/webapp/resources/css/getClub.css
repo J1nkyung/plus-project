@@ -189,8 +189,8 @@ article{
     float:left;
 }
 #clubhashtag{
-postion:absoulte;
- top:10%;
+	postion:absoulte;
+ 	top:10%;
 }
 
 
@@ -207,7 +207,19 @@ postion:absoulte;
     font-size:17px;
    
 }
-
+#payBtn{
+    position: absolute;
+    width: 270px;
+    height: 50px;
+    left:-5px;
+  /*   top: 350px; */
+    border: 0;
+    outline:0;
+    color:white;
+    background-color: #001eff;
+    font-size:17px;
+   
+}
 #heartBtn{
     position:absolute;
     width:50px;
@@ -277,11 +289,16 @@ section{
 
 }
 
-#onoff{
-    background-color: #00af91;
+#onoff {
+   background-color: #00af91;
+   color:white;
+    border-radius: 10px;
 }
-#freq{
-    background-color: #ffb26b;
+
+#freq {
+   background-color: #ffb26b;
+   color:white;
+   border-radius: 10px;
 }
 
 h3{

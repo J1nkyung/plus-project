@@ -74,6 +74,9 @@ margin:1px;
 			
 			<textarea name="boardContent" id="content" ></textarea>
             <input id="picFile" type="file" name="boardPhoto" value="${board.boardPic }" />
+             				<!-- 이미지 미리보기 영역  -->
+				<div id="imgViewArea" style="margin-top:10px; display:none;">
+					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/></div>
            	<button type="button" class="removePic" onclick="removePic();">파일삭제</button>
 			<button type="button" id="submitBtn">등록하기</button><br/>
 	<div class="submit"><a href="getCommunity">글 목록 가기</a></div>
@@ -88,6 +91,7 @@ removePic = function(){
 	$("#picFile").val("");
 }
     )}
+<<<<<<< HEAD
 $(document).ready(function(){
 	
 var formObj = $("form[name='insertBoard']");
@@ -102,6 +106,23 @@ var formObj = $("form[name='insertBoard']");
 	
 });
 
+=======
+    
+
+$("#picFile").change(function() {
+	if(  $("#picFile").val() == '' ) {
+		$('#imgArea').attr('src' , '');  
+	}
+	$('#imgViewArea').css({ 'display' : '' });
+	readURL(this);
+});
+
+
+//미리보기 에러시 
+function imgAreaError(){
+$('#imgViewArea').css({ 'display' : 'none' });
+} 
+>>>>>>> 4d18c481e36e422e998514565076a0d05b8b9da5
 
 </script>
 </body>

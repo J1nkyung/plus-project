@@ -23,7 +23,7 @@ public class NormalController {
 	@Autowired
 	private NormalService service;
 
-	@RequestMapping("normal.do")
+	@RequestMapping("normal")
 	public String normalList(Model model, ClubVO vo) {
 	log.info("normal");
 	

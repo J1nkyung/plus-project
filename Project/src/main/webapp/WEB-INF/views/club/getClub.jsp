@@ -109,8 +109,19 @@
             <div id="infoLabel">참가비</div>
             <div class="fstyle" id="amount">${club.clubFee}P</div>
             <br>
-            <button type="button" class="btn" id="applyBtn">신청하기</button>
 
+			<!-- 정연수정 20210403 -->
+			<c:if test="${club.clubFee ==0 }">
+				<button type="button" class="btn" id="applyBtn">신청하기</button>
+			</c:if>
+			<form action="payClub" method="post" >
+				<c:if test="${club.clubFee > 0 }">
+					<input type="hidden"  name="clubNum" value="${club.clubNum}"/>
+					<input type="hidden"  name="clubLeader" value="${club.clubLeader}"/>
+					<button type="submit" class="btn" id="payBtn">돈내기</button>
+				</c:if>
+			</form>
+				
             <!-- 찜버튼 -->
             <button type="button" class="btn" id="heartBtn">
                <c:if test="${isThereHeart eq 0}">
@@ -454,6 +465,5 @@ document.getElementById("heartImg").src = "${path}/resources/img/heart.png";
       });
 	}
 }
-   
 </script>
 </html>

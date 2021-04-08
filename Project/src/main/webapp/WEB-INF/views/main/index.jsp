@@ -106,7 +106,7 @@
 	<div class=search>
 		<form class="box" action="totalList.do" method="get"
 			onsubmit="return inputCheckMain()">
-			<input type="text" name="keyword" size="30"
+			<input type="text" name="keyword" size="30" id="searchbox"
 				placeholder=" 관심있는 더하기를 검색해보세요 🔍"> <input type="submit"
 				value="검색">
 		</form>
@@ -150,7 +150,7 @@
 						<div class="card border-0 transform-on-hover">
 
 							<a class="lightbox"
-								href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+								href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
 
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"
@@ -216,7 +216,7 @@
 						<div class="card border-0 transform-on-hover">
 
 							<a class="lightbox"
-								href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+								href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
 								<img id="clubmainpic"
 								src="${path}/resources${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
