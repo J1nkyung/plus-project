@@ -41,6 +41,7 @@
 
 .footerText li a {
     text-decoration: none;
+    color:#333;
 }
 
 .footerText li a:hover {

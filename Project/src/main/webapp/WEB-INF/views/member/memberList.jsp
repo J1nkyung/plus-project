@@ -158,13 +158,13 @@
 						  <ul class="paging">
 							  
 						  
-						    	<li><a class="span" href="memberList${pmem.makeSearch(pmem.startPage - 1)}">◀</a></li>
+						    	<li><a class="span" href="memberListPage${pmem.makeSearch(pmem.startPage - 1)}">◀</a></li>
 						
 						    <c:forEach begin="${pmem.startPage}" end="${pmem.endPage}" var="idx">
-						    	<li><a href="memberList${pmem.makeSearch(idx)}"><span class="span">${idx}</span></a></li>
+						    	<li><a href="memberListPage${pmem.makeSearch(idx)}"><span class="span">${idx}</span></a></li>
 						    </c:forEach>
 						
-						    	<li><a class="span" href="memberList${pmem.makeSearch(pmem.endPage + 1)}">▶</a></li>
+						    	<li><a class="span" href="memberListPage${pmem.makeSearch(pmem.endPage + 1)}">▶</a></li>
 						  </ul>
 					 </div><!-- pageArea -->
        	 </form>
