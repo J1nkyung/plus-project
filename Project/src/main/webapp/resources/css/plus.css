@@ -16,6 +16,7 @@
     .card-content {
         position: relative;
         padding: 10px 0 40px 3px;
+        
     }
 
     .card-content b {
@@ -68,12 +69,20 @@
 	padding-bottom: 10px;
 }
 
-#onoff {
-	background-color: #00af91;
+#onoff{
+    background-color: rgb(255, 99, 71);
+    color:white;
+    border-radius:10px;
 }
-
-#freq {
-	background-color: #ffb26b;
+#onoff1{
+   background-color:#82B3ED;
+    color:white;
+    border-radius:10px;
+}
+#freq{
+    background-color: rgb(255, 165, 0);
+    color:white;
+    border-radius:10px;
 }
 
 .spanspace {
@@ -177,17 +186,19 @@
 }
 	/* 더하기 등록 버튼 */
 .material-icons{
-	color:rgb(0, 30, 250);
+	color: rgb(0, 30, 250);
 	}
 
  .material-icons:hover{
-    color: rgba(0, 30, 250, 0.4);
+    color: rgba(0, 30, 250,0.4);
+    
 } 
  .buttonFixed {
         position: fixed;
         top: 85%;
         right:2%;
       }
+
 	   #bottomarea{
 	padding-bottom:200px;
 }

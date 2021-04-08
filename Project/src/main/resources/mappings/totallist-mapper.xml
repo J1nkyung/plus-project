@@ -30,24 +30,18 @@
 		<result property="clubLongitude" column="club_longitude" />
 	</resultMap>
 
-
-
-
-
-
-	<sql id="search">
-
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">
-				and (club_name like CONCAT('%',#{keyword},'%')
-				or club_leader like
-				CONCAT('%',#{keyword},'%')
-				or club_content1 like
-				CONCAT('%',#{keyword},'%')
-				or club_hashtag like
-				CONCAT('%',#{keyword},'%'))
-			</if>
-			<if test="searchType == 'w'.toString()">and club_category="운동" and club_name like
+<sql id="search">
+		<if test="searchType != null"> 
+			<if test="searchType == 't'.toString()">and (club_name like CONCAT('%',#{keyword},'%')
+				or club_leader like CONCAT('%',#{keyword},'%')
+				or club_content1 like CONCAT('%',#{keyword},'%')
+				or club_hashtag like CONCAT('%',#{keyword},'%'))</if>
+				
+			<if test="searchType == 'n'.toString()">and club_name like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'l'.toString()">and club_leader like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'c'.toString()">and club_content1 like CONCAT('%',#{keyword},'%')</if>
+			<if test="searchType == 'h'.toString()">and club_hashtag like CONCAT('%',#{keyword},'%')</if>
+				<if test="searchType == 'w'.toString()">and club_category="운동" and club_name like
 				CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType == 's'.toString()">and club_category="공부" and club_name like
 				CONCAT('%',#{keyword},'%')</if>
@@ -55,10 +49,10 @@
 				CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType == 'ha'.toString()">and club_category="습관" and club_name like
 				CONCAT('%',#{keyword},'%')</if>
-
-
-		</if>
+			
+	</if>
 	</sql>
+
 
 
 	<!-- 게시물 목록(페이징 처리) -->

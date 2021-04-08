@@ -128,12 +128,20 @@ input{
 	padding-bottom: 10px;
 }
 
-#onoff {
-	background-color: #00af91;
+#onoff{
+    background-color: rgb(255, 99, 71);
+    color:white;
+    border-radius:10px;
 }
-
-#freq {
-	background-color: #ffb26b;
+#onoff1{
+    background-color:#82B3ED;
+    color:white;
+    border-radius:10px;
+}
+#freq{
+    background-color: rgb(255, 165, 0);
+    color:white;
+    border-radius:10px;
 }
 
 .spanspace {
@@ -206,7 +214,7 @@ input{
         
         .span{
         padding:6px 12px;
-        border: 1px solid lightgray;
+       /*  border: 1px solid lightgray; */
         }
         
      

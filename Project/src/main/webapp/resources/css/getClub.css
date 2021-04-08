@@ -79,8 +79,8 @@ aside{
 }
 
 #clubname{
-    width: 400px;
-    font-size: 30px;
+    width: 410px;
+    font-size: 28px;
     font-weight: 700;
     padding-top:10px;
 
@@ -293,12 +293,17 @@ section{
 }
 
 #onoff{
-    background-color: #00af91;
+    background-color: rgb(255, 99, 71);
+    color:white;
+    border-radius:10px;
+}
+#onoff1{
+      background-color:#82B3ED;
     color:white;
     border-radius:10px;
 }
 #freq{
-    background-color: #ffb26b;
+    background-color: rgb(255, 165, 0);
     color:white;
     border-radius:10px;
 }
