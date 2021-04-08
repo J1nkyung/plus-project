@@ -29,52 +29,50 @@ public class AdminController {
 
 	@Autowired
 	private AdminService ads;
-
 	// 관리자 : 1:1 문의글 상세 조회
-	@GetMapping("/getAdminInquiry")
-	public String getAdminInquiry(InquiryVO vo, Model model) {
-		model.addAttribute("adminInquiry", ads.getAdminInquiry(vo));
-		return "getAdminInquiry.adinqu";
-	}
+		@GetMapping("/getAdminInquiry")
+		public String getAdminInquiry(InquiryVO vo, Model model) {
+			model.addAttribute("adminInquiry", ads.getAdminInquiry(vo));
+			return "admin/inquiry/getAdminInquiry";
+		}
 
-	// 회원 : 1:1 문의 목록 조회 페이징처리 완
-	@RequestMapping(value = "/adminInquiry")
-	public String getAdminInquiryList(Model model, CriteriaAdmin cri) throws Exception {
+		// 회원 : 1:1 문의 목록 조회 페이징처리 완
+		@RequestMapping(value = "/adminInquiry")
+		public String getAdminInquiryList(Model model, CriteriaAdmin cri) throws Exception {
 
-		List<InquiryVO> adminInquiryList = ads.getAdminInquiryList(cri);
-		System.out.println(adminInquiryList);
-		model.addAttribute("adminInquiryList", adminInquiryList);
+			List<InquiryVO> adminInquiryList = ads.getAdminInquiryList(cri);
+			System.out.println(adminInquiryList);
+			model.addAttribute("adminInquiryList", adminInquiryList);
 
-		PageMakerAdmin pgmad = new PageMakerAdmin();
-		pgmad.setCri(cri);
-		pgmad.setTotalCount(ads.adminInquiryListCount(cri));
-		model.addAttribute("pageMakerAdmin", pgmad);
+			PageMakerAdmin pgmad = new PageMakerAdmin();
+			pgmad.setCri(cri);
+			pgmad.setTotalCount(ads.adminInquiryListCount(cri));
+			model.addAttribute("pageMakerAdmin", pgmad);
 
-		return "adminInquiry.adinqu";
-	}
+			return "admin/inquiry/adminInquiry";
+		}
 
-	// 관리자 : 1:1 문의글 삭제
-	@RequestMapping("/deleteAdminInquiry")
-	public String deleteAdminInquiry(InquiryVO vo) {
-		ads.deleteAdminInquiry(vo);
-		return "redirect:adminInquiry";
-	}
+		// 관리자 : 1:1 문의글 삭제
+		@RequestMapping("/deleteAdminInquiry")
+		public String deleteAdminInquiry(InquiryVO vo) {
+			ads.deleteAdminInquiry(vo);
+			return "redirect:adminInquiry";
+		}
 
-	// 관리자 : 1:1 문의글 답변 폼
-	@RequestMapping("/answerInquiryForm")
-	public String answerInquiryForm(InquiryVO vo, Model model) {
-		model.addAttribute("answerInquiryForm", ads.answerInquiryForm(vo));
-		System.out.println("controller의 vo" + vo);
-		System.out.println("문의 멤버 번호 : " + vo.getMemberNum());
-		return "inquiryAnswerForm.adinqu";
-	}
+		// 관리자 : 1:1 문의글 답변 폼
+		@RequestMapping("/answerInquiryForm")
+		public String answerInquiryForm(InquiryVO vo, Model model) {
+			model.addAttribute("answerInquiryForm", ads.answerInquiryForm(vo));
+			System.out.println("controller의 vo" + vo);
+			return "admin/inquiry/inquiryAnswerForm";
+		}
 
-	// 관리자 : 1:1 문의글 답변 등록 메서드
-	@RequestMapping("/answerInquiry")
-	public String answerInquiry(InquiryVO vo) {
-		ads.answerInquiry(vo);
-		return "redirect:adminInquiry";
-	}
+		// 관리자 : 1:1 문의글 답변 등록 메서드
+		@RequestMapping("/answerInquiry")
+		public String answerInquiry(InquiryVO vo) {
+			ads.answerInquiry(vo);
+			return "redirect:adminInquiry";
+		}
 
 	// 관리자 : 차트 페이지
 	@RequestMapping("/adminChart")
@@ -129,7 +127,7 @@ public class AdminController {
 		pgmad.setTotalCount(ads.adminClubListCount(cri));
 		model.addAttribute("pageMakerClub", pgmad);
 
-		return "adminClub.adch";
+		return "/admin/adminClub";
 	}
 	
 	// 관리자 : 모임 삭제

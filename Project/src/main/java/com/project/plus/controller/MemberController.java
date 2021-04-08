@@ -117,7 +117,7 @@ public class MemberController {
       pmem.setCriMem(scmem);
       pmem.setTotalCount(memberService.listCount(scmem));
       model.addAttribute("pmem", pmem);
-      return "memberList.member";
+      return "member/memberList";
    }
    
    
