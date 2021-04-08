@@ -102,7 +102,40 @@
 	#searchType{
 	height:24px;
 	}
+#info{
+color:white;
+}	
+#info:hover{
+color:white;
+}	
+#info:visited{
+color:white;
+}	
+#infoBtn{
+border:none;
+border-radius:5%;
+background-color:#001eff;
+color:white;
+padding:5px;
+padding:5px 10px;
 
+}
+#infoBtn:hover{
+border:none;
+border-radius:5%;
+background-color:#001eff;
+color:white;
+padding:5px;
+padding:5px 10px;
+
+}
+#infoBtn:visited{
+border:none;
+border-radius:5%;
+background-color:#001eff;
+color:white;
+padding:5px 10px;
+}
     </style>
  <script>
     $(function(){
@@ -147,7 +180,7 @@
 		                           <td>${list.memberEmail }</td>
 		                           <td>${list.memberName }</td>
 		                           <td>${list.memberJoindate }</td>
-		                          <td><button><a id="info" href="${path}/memberUpdate?memberNum=${list.memberNum}">상세보기</a></button></td>
+		                          <td><button id="infoBtn"><a id="info" href="${path}/memberUpdate?memberNum=${list.memberNum}">상세보기</a></button></td>
 		                      
 		                        </tr>
 		                     </c:forEach>

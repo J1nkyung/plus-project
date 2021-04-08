@@ -110,7 +110,6 @@ public class MemberController {
       System.out.println("리스트 조회 하고싶다..");
       
       List<MemberVO> list = memberService.memberList(scmem);
-      System.out.println(list);
       model.addAttribute("list", list);
       
       PageMakerMem pmem = new PageMakerMem();
