@@ -72,26 +72,6 @@
     		
    		
     	}
-    	
-    	
-     //	알림 벨 클릭시 
-/*      function getContent(){
-     	$.ajax({
-			type: "post",
-			url: "getNtf", 
-			data: {
-			},
-		     success: function (data) {
-	            	console.log(data);
-			           	if(data){
-			           		console.log("알림 가져오기")
-			           	},
-	            error: function() {
-	            	  alert("메시지 저장 error");
-	            	}
-        });
-    	 
-     } */
     
      
     </script>
