@@ -101,7 +101,6 @@
 				               </c:when>
 				               <c:otherwise>
 	                        <li class="dropli"><a href="getCurrentClubList?memberNum=${user.memberNum }">My Page</a></li>
-	                         <li class="dropli"><a href="getCurrentClubList?memberNum=${user.memberNum}">My Page</a></li>
 				               </c:otherwise>
 			               </c:choose>
                         </form>

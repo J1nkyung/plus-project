@@ -119,9 +119,11 @@
 	</definition>
 
 	<!-- 마이페이지 -->
-	
-	
-
+<definition name="*.member" extends="mypage">
+      <put-attribute name="body"
+         value="/WEB-INF/views/member/{1}.jsp" />
+   </definition>
+   
 		<definition name="*.curClub" extends="mypage">
 			<put-attribute name="body"
 				value="/WEB-INF/views/mypage/currentClub/{1}.jsp" />
@@ -160,10 +162,10 @@
 				value="/WEB-INF/views/include/footer.jsp" />
 		</definition>
 
-		<definition name="*.member" extends="admin">
-		<put-attribute name="body"
-			value="/WEB-INF/views/member/{1}.jsp" />
-	</definition>
+<definition name="*.adMember" extends="admin">
+      <put-attribute name="body"
+         value="/WEB-INF/views/member/{1}.jsp" />
+   </definition>
 
 <!-- 	<definition name="*.adinqu" extends="admin">
 			<put-attribute name="body"

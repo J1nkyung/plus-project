@@ -135,6 +135,17 @@ $(function(){
 		 let notId= $target.parent().siblings('#notId').val();
 		 console.log(notId);
 		 $target.parent().parent().remove();
+		
+		 
+		 // 새로운 알림에 알림이 없으면 
+	/* 	 if(!$(".not-read-wrap").hasClass(".notice")){
+			 console.log($(".not-read-wrap").hasClass(".notice"));
+			 $(".not-read-wrap").append("<h3>새로운 알림이 없습니다</h3>");
+		 }
+		 
+		 if(!$(".read-wrap").hasClass(".notice")){
+			 $(".read-wrap").append("<h3>읽은 알림이 없습니다</h3>");
+		 } */
 		 
 			$.ajax({
 				type: "post",
@@ -164,8 +175,12 @@ $(function(){
 		let notId = input.val();
     	
     	readEle.before(unreadEle);
-   	
-	/*	$.ajax({
+    /* 	
+    	 if($(".read-wrap").hasClass(".notice")){
+			 $(".read-wrap h3").remove();
+		 }
+   	 */
+		$.ajax({
 			type: "post",
 			url: "updateStatus",
 			data: {
@@ -180,7 +195,7 @@ $(function(){
 	    	 error: function(e) {
 	        	  alert("알림 변경 오류" + e);
 	        }
-		});   */
+		});   
 	})
 
 	

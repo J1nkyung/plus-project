@@ -15,20 +15,30 @@
 <title>HeartPage</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 <!--<link rel="stylesheet" href="css/heart.css">  -->
 <style>
+
+/* 진경 추가 */
+.fixed-top{
+	position:sticky;
+}
+
+
+
+
 .heartContainer {
 	margin: 0;
 	width: 1140px; 
-	 margin-left: 27%;
+	/*  margin-left: 27%; */
+	    /*  position: absolute; */
 }
 
 
@@ -280,6 +290,7 @@ table {
 			</section>
 		</div>
 	</div>
+</div>
 	<!-- 아래 임포트 src는 badge 부트스트랩 js  -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script

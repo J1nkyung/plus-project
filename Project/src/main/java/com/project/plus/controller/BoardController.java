@@ -144,10 +144,48 @@ public class BoardController {
 			
 	   }
 	   
+	   //내 글 모아보기 
+	   @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
+	   public String viewMyList(Model model, BoardVO board, @RequestParam("clubNum") int clubNum, @RequestParam("memberNum") int memberNum, HttpSession session) {
+		 
+		   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
+		   List<BoardVO> view =  boardService.viewMyList(clubNum, memberNum);
+//			for(BoardVO vo : view) {
+//				System.out.println(vo);
+//			}
+//			System.out.println("");
+		   
+			model.addAttribute("list", view);
+			model.addAttribute("club", clubService.getClub(clubNum));
+			
+			List<ApplyVO> apply =  applyService.applyMember(clubNum);
+			model.addAttribute("apply", apply);
+
+		   
+		   return "viewMyList.comm";
+	   }
+	   
+	   
+	   //내 글 한개 확인하기 - 댓글도 이거 써야됨 
+	   @RequestMapping(value="viewMyContent", method=RequestMethod.GET)
+	   public String viewMyContents(Model model, int boardNum, HttpSession session) {
+		   
+		   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
+		   BoardVO board = boardService.getBoard(boardNum);
+		   model.addAttribute("board", board);
+			model.addAttribute("club", clubService.getClub(board.getClubNum()));
+			model.addAttribute("apply", applyService.applyMember(board.getClubNum()));
+		   
+		   
+		   return "viewMyContent.comm";
+	   }
+	   
+	   
+	   
 	   
 	   @GetMapping("/insertBoardForm")
 	   public String insertBoardForm() {
-	      return "boardForm.board";
+		   return "boardForm.board";
 	   }
 	   
 	   
@@ -173,10 +211,6 @@ public class BoardController {
 	   }
 	   //게시글 수정
 	   @RequestMapping(value="updateViewPost", method=RequestMethod.POST)
-//	   public String updateBoard() throws Exception {
-//		   System.out.println("updateBoard()");
-//		   return "";
-	   //
 	   public String updateBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 	      System.out.println("updateView post 메서드 진입");
 	      

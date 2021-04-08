@@ -6,9 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<link rel="stylesheet" href="${path}/resources/css/reviewList.css">
-<script type="text/javascript"
-	src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+<%-- <link rel="stylesheet" href="${path}/resources/css/reviewList.css"> --%>
 
 <!DOCTYPE html>
 <html>
@@ -17,20 +15,31 @@
 </head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript"
+	src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
+<!--  <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+	crossorigin="anonymous"> -->
 <!-- font -->
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+<!-- <link rel="stylesheet" type="text/css"
+	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> 
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
 <style>
+
+
+/* 진경 수정 */
 body {
-	font-family: 'NanumSquare', sans-serif;
-	margin-left:40px;
+	font-family: 'NanumSquare';
 }
+
+.fixed-top{
+	position:sticky;
+}
+
+/* 끝 */
 
 a {
 color:inherit;
@@ -120,8 +129,6 @@ text-decoration:none;
 #searchType {
 	height: 24px;
 }
-</style>
-<style type="text/css">
 li {
 	list-style: none;
 	float: left;
@@ -220,25 +227,7 @@ li {
 			<!-- wrapper -->
 
 		</div>
-	</div>
 
-
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-		crossorigin="anonymous"></script>
-	<script src="js/script.js"></script>
 </body>
 
-</html>
-</body>
 </html>

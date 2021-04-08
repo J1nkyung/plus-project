@@ -66,8 +66,8 @@
         #chargeBtn input {
             display: inline-block;
             padding: 18px 26px;
-            color: #999;
-            background-color: #eee;
+            color: white;
+            background-color: #001eff;
             border: 0;
             cursor: pointer;
             border-radius: 5px;
@@ -105,8 +105,9 @@
         }
 
         #tableWrapper table th {
-            background-color: grey;
+            background-color: #001eff;
             padding: 13px;
+            color:white;
         }
     </style>
 </head>
@@ -153,6 +154,7 @@
                 </table>
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html>
