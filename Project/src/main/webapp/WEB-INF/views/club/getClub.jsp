@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
@@ -9,135 +9,132 @@
 <meta charset="UTF-8">
 <title>모임상세보기</title>
 <link rel='stylesheet' type='text/css'
-   href='${path}/resources/css/getClub.css'>
+	href='${path}/resources/css/getClub.css'>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
- 
+
 </head>
 <wrap class="clearfix">
 <section>
-   <input type="hidden" value="${club.clubNum}" name="clubNum" /> <img
-      id="mainImg" src="${path}/resources${club.clubMain_pic}"
-      onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
-   <div class="stickyWrap">
-      <div class="stickyTab">
-         <div id="moreInfoTab">
-            <a href="#moreInfo" class="tabMenu">상세정보</a>
-         </div>
-         <div id="introTab">
-            <a href="#leaderInfo" class="tabMenu">리더소개</a>
-         </div>
-         <div id="reviewTab">
-            <a href="#review" class="tabMenu">후기</a>
-         </div>
-      </div>
-   </div>
-   <article>
-      <div id="moreInfo">
-         <img class="images" src="${path}/resources${club.clubContent1_pic}"
-            onerror="this.style.display='none';" /> ${club.clubContent1}
-      </div>
-      <hr>
-      <h3>리더 소개</h3>
-      <div id="leaderInfo">
-         <img class="images" src="${path}/resources${club.clubContent2_pic}"
-            onerror="this.style.display='none';" /> ${club.clubContent2}
-      </div>
-      <hr>
-      <div class="reviewTitle">
-         <h3>
-            후기<small>(총 ${reviewCount}개)</small>
-         </h3>
-      </div>
-      <div id="review" class="clearfix">
-         <!-- 리뷰 출력 부분  -->
-         <c:forEach items="${reviews}" var="review">
-            <div class="userReview">
-               <strong>${review.members.memberNickname}</strong>
-               <div class="reviewRate">${review.reviewRate}</div>
-               <div id="reviewRegDate">
-                  <fmt:formatDate value="${review.reviewRegDate}" var="changedDate"
-                     pattern="yyyy. MM. dd" />
-                  ${changedDate}
-               </div>
-               <div id="reviewText">${review.reviewContent}</div>
-            </div>
-         </c:forEach>
-         <div class="newList"></div>
-         <button type="button" class="btn" id="moreReviewBtn">더보기</button>
-      </div>
-   </article>
+	<input type="hidden" value="${club.clubNum}" name="clubNum" /> <img
+		id="mainImg" src="${path}/resources${club.clubMain_pic}"
+		onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
+	<div class="stickyWrap">
+		<div class="stickyTab">
+			<div id="moreInfoTab">
+				<a href="#moreInfo" class="tabMenu">상세정보</a>
+			</div>
+			<div id="introTab">
+				<a href="#leaderInfo" class="tabMenu">리더소개</a>
+			</div>
+			<div id="reviewTab">
+				<a href="#review" class="tabMenu">후기</a>
+			</div>
+		</div>
+	</div>
+	<article>
+		<div id="moreInfo">
+			<img class="images" src="${path}/resources${club.clubContent1_pic}"
+				onerror="this.style.display='none';" /> ${club.clubContent1}
+		</div>
+		<hr>
+		<h3>리더 소개</h3>
+		<div id="leaderInfo">
+			<img class="images" src="${path}/resources${club.clubContent2_pic}"
+				onerror="this.style.display='none';" /> ${club.clubContent2}
+		</div>
+		<hr>
+		<div class="reviewTitle">
+			<h3>
+				후기<small>(총 ${reviewCount}개)</small>
+			</h3>
+		</div>
+		<div id="review" class="clearfix">
+			<!-- 리뷰 출력 부분  -->
+			<c:forEach items="${reviews}" var="review">
+				<div class="userReview">
+					<strong>${review.members.memberNickname}</strong>
+					<div class="reviewRate">${review.reviewRate}</div>
+					<div id="reviewRegDate">
+						<fmt:formatDate value="${review.reviewRegDate}" var="changedDate"
+							pattern="yyyy. MM. dd" />
+						${changedDate}
+					</div>
+					<div id="reviewText">${review.reviewContent}</div>
+				</div>
+			</c:forEach>
+			<div class="newList"></div>
+			<button type="button" class="btn" id="moreReviewBtn">더보기</button>
+		</div>
+	</article>
 </section>
 <section id="right_con">
-   <aside>
-      <div class="stickybox">
-         <div id="leaderId">${club.clubLeader}
-            <span class="badge" id="onoff">${club.clubOnOff}</span> <span
-               class="badge" id="freq">${club.clubFreq}</span>
-         </div>
-         
-            <div id="clubname">${club.clubName}</div>
-            <!-- 해시태그 출력부분  -->
-            <div id="clubhashtag">
-            <c:forEach items="${tags}" var="tag">
-               <span class="label label-info"># ${tag}</span>
-            </c:forEach>
-</div>
-   
-         <div class="clubInfoTable">
-            <div id="location">
-               <img src="${path}/resources/img/mapicon.png"></img>
-               <div id="locationText">모임 위치</div>
+	<aside>
+		<div class="stickybox">
+			<div id="leaderId">${club.clubLeader}
+				<span class="badge" id="onoff">${club.clubOnOff}</span> <span
+					class="badge" id="freq">${club.clubFreq}</span>
+			</div>
 
-            </div>
-            <div id="map" style="width: 380px; height: 230px;"></div>
-            <div id="infoLabel">모집종료일</div>
-            <div class="fstyle" id="endDate">${club.clubShutDate}</div>
-            <div id="infoLabel">모임진행기간</div>
-            <div class="fstyle" id="makeDate">${club.clubStartDate}<!-- </div> -->
-               <!-- <div id="tilde">  -->
-               ~
-               <!-- <div class="fstyle" id="shutDate"> -->${club.clubMakeDate}</div>
-            <!-- </div> -->
+			<div id="clubname">${club.clubName}</div>
+			<!-- 해시태그 출력부분  -->
+			<div id="clubhashtag">
+				<c:forEach items="${tags}" var="tag">
+					<span class="label label-info"># ${tag}</span>
+				</c:forEach>
+			</div>
 
-<br>
-            <div id="infoLabel">참가인원</div>
-            <div class="fstyle" id="people">
-               <div id="curNum">${club.clubCurnum}명</div>
-               / ${club.clubMax}명
-            </div>
-            <div id="infoLabel">참가비</div>
-            <div class="fstyle" id="amount">${club.clubFee}P</div>
-            <br>
+			<div class="clubInfoTable">
+				<div id="location">
+					<img src="${path}/resources/img/mapicon.png"></img>
+					<div id="locationText">모임 위치</div>
 
-			<!-- 정연수정 20210403 -->
-			<c:if test="${club.clubFee ==0 }">
-				<button type="button" class="btn" id="applyBtn">신청하기</button>
-			</c:if>
-			<form action="payClub" method="post" >
-				<c:if test="${club.clubFee > 0 }">
-					<input type="hidden"  name="clubNum" value="${club.clubNum}"/>
-					<input type="hidden"  name="clubLeader" value="${club.clubLeader}"/>
-					<button type="submit" class="btn" id="payBtn">돈내기</button>
+				</div>
+				<div id="map" style="width: 380px; height: 230px;"></div>
+				<div id="infoLabel">모집종료일</div>
+				<div class="fstyle" id="endDate">${club.clubShutDate}</div>
+				<div id="infoLabel">모임진행기간</div>
+				<div class="fstyle" id="makeDate">${club.clubStartDate} ~
+					${club.clubMakeDate}</div>
+                 </br></br>
+				<div id="infoLabel">참가인원</div>
+				<div class="fstyle" id="people">
+					<div id="curNum">${club.clubCurnum}명</div>
+					/ ${club.clubMax}명
+				</div>
+				<div id="infoLabel">참가비</div>
+				<div class="fstyle" id="amount">${club.clubFee}P</div>
+				<br>
+
+				<!-- 정연수정 20210403 -->
+				<c:if test="${club.clubFee ==0 }">
+					<button type="button" class="btn" id="applyBtn">신청하기</button>
 				</c:if>
-			</form>
-				
-            <!-- 찜버튼 -->
-            <button type="button" class="btn" id="heartBtn">
-               <c:if test="${isThereHeart eq 0}">
-                  <img src="${path}/resources/img/heart.png" id="heartImg" value=0 />
-               </c:if>
-               <c:if test="${isThereHeart ne 0}">
-                  <img src="${path}/resources/img/blackheart.png" id="heartImg" value=1 />
-               </c:if>
-            </button>
-   <!-- 공유 버튼  -->
-            <button type="button" class="btn" id="shareBtn" onclick="sendLink()">
-               <img id="file" src="${path}/resources/img/share.png">
-            </button>
-         </div>
-      </div>
-   </aside>
+				<form action="payClub" method="post">
+					<c:if test="${club.clubFee > 0 }">
+						<input type="hidden" name="clubNum" value="${club.clubNum}" />
+						<input type="hidden" name="clubLeader" value="${club.clubLeader}" />
+						<button type="submit" class="btn" id="payBtn">신청하기</button>
+					</c:if>
+				</form>
+
+				<!-- 찜버튼 -->
+				<button type="button" class="btn" id="heartBtn">
+					<c:if test="${isThereHeart eq 0}">
+						<img src="${path}/resources/img/heart.png" id="heartImg" value=0 />
+					</c:if>
+					<c:if test="${isThereHeart ne 0}">
+						<img src="${path}/resources/img/blackheart.png" id="heartImg"
+							value=1 />
+					</c:if>
+				</button>
+				<!-- 공유 버튼  -->
+				<button type="button" class="btn" id="shareBtn" onclick="sendLink()">
+					<img id="file" src="${path}/resources/img/share.png">
+				</button>
+			</div>
+		</div>
+	</aside>
 </section>
 </wrap>
 
