@@ -142,7 +142,7 @@ text-decoration:none;
                       <div class="tr nav-link Member">
 		                        <c:forEach items="${apply}" var="applys">
                          <div id="currMem">
-		                            <div class="memberThumb"><img class="memberThumb" src="${path}/resources${applys.memberPic}" onerror="this.src='${path}/resources/img/default_pic.png'"/></div>
+		                            <img class="memberThumb" src="${path}/resources${applys.memberPic}" onerror="this.src='${path}/resources/img/default_pic.png'"/>
 		                             <div class="memberNickname">${applys.memberNickname }</div> 
                          </div>
 		                        </c:forEach>

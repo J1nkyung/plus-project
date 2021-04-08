@@ -330,9 +330,6 @@ padding-bottom:30px;
          <img src="${path }/resources/img/penwhite.png"></button>
          
 
- 
-      <input type="button" name="boardForm" id="boardForm"
-         onclick="location.href='${path}/insertBoardForm'" value="글쓰기">
 
 <div id="repeatBox">
 
