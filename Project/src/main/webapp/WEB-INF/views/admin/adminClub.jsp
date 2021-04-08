@@ -31,6 +31,7 @@
 
 <style>
 body {
+	padding-top:30px;
 	font-family: 'NanumSquare', sans-serif;
 	margin-left: 40px;
 }
@@ -130,8 +131,22 @@ li {
 	float: left;
 	padding: 6px;
 }
+#delBtn a:hover{
+color:white;
+}
+.clubname{
+	width:200px;
+	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.clubleader{
+	width:90px;
+	white-space:nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 </style>
-
 
 <body>
 	<div class="Container">
@@ -145,26 +160,24 @@ li {
 						<table class="useInfo">
 							<thead>
 								<tr>
-									<th>모임번호</th>
+									<!-- <th>모임번호</th> -->
 									<th>카테고리</th>
 									<th>모임이름</th>
 									<th>모임장</th>
-									<th>지역구분</th>
 									<th>시작일</th>
 									<th>종료일</th>
-									<th>온오프라인</th>
+									<th>ON/OFF</th>
 									<th>모임구분</th>
-									<th>모임삭제</th>
+									<th>삭제</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="club" items="${adminClubList}">
 									<tr>
-										<td>${club.clubNum}</td>
+										<%-- <td>${club.clubNum}</td> --%>
 										<td>${club.clubCategory}</td>
-										<td><a href="${path}/getClub?clubNum=${club.clubNum}">${club.clubName}</a></td>
-										<td>${club.clubLeader}</td>
-										<td>${club.clubTown}</td>
+										<td><a href="${path}/getClub?clubNum=${club.clubNum}"><div class="clubname">${club.clubName}</div></a></td>
+										<td><div class="clubleader">${club.clubLeader}</div></td>
 										<fmt:parseDate var="parseRegDate"
 											value="${club.clubStartDate}" pattern="yyyy-MM-dd" />
 										<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
@@ -177,30 +190,31 @@ li {
 										<td class="text-center">${resultRegDt}</td>
 
 										<c:if test="${club.clubOnOff eq '온라인'}">
-											<td class="text-center"><button type="button"
-													class="btn btn-warning btn-sm" style="width: 70px">${club.clubOnOff}</button></td>
+											<td class="text-center">
+											<button type="button" class="btn btn-outline-warning btn-sm" style="width: 70px">ON</button></td>
 										</c:if>
 										<c:if test="${club.clubOnOff eq '오프라인'}">
-											<td class="text-center"><button type="button"
-													class="btn btn-info btn-sm" style="width: 70px">${club.clubOnOff}</button></td>
+											<td class="text-center">
+											<button type="button" class="btn btn-outline-info btn-sm" style="width: 70px">OFF</button></td>
 										</c:if>
 
 										<c:if test="${club.clubKind eq 1}">
-											<td class="text-center"><button type="button"
-													class="btn btn-primary btn-sm"
-													style="width: 70px; font-weight: bold;">가치더하기</button></td>
+											<td class="text-center">
+											<button type="button" class="btn btn-outline-primary btn-sm" style="width: 70px; font-weight: bold;">가치+</button></td>
 										</c:if>
 										<c:if test="${club.clubKind eq 2}">
-											<td class="text-center"><button type="button"
-													class="btn btn-danger btn-sm"
-													style="width: 70px; font-weight: bold;">도움더하기</button></td>
+											<td class="text-center">
+											<button type="button" class="btn btn-outline-danger btn-sm" style="width: 70px; font-weight: bold;">도움+</button></td>
 										</c:if>
 										<form action="deleteAdminClub" method="post">
 											<input type="hidden" name="clubNum" value="${club.clubNum}">
 											<td class="text-center">
-											<a href="deleteAdminClub">
+											
 											<button type="submit" class="btn btn-danger btn-sm" id="delBtn" 
-											style="width: 70px; font-weight: bold;">삭제</button></a></td>
+											style="width: 70px; font-weight: bold;">
+											<a href="${path}/deleteAdminClub?clubNum=${club.clubNum }">삭제</a></button>
+											
+											</td>
 										</form>
 									</tr>
 								</c:forEach>
@@ -212,10 +226,10 @@ li {
 
 						<ul class="paging">
 
-							<c:if test="${pageMakerClub.prev}">
+							<%-- <c:if test="${pageMakerClub.prev}"> --%>
 								<li><a class="span"
 									href="adminClub${pageMakerClub.makeQuery(pageMakerClub.startPage - 1)}">◀</a></li>
-							</c:if>
+							<%-- </c:if> --%>
 
 							<c:forEach begin="${pageMakerClub.startPage}"
 								end="${pageMakerClub.endPage}" var="idx">
@@ -223,10 +237,10 @@ li {
 										class="span">${idx}</span></a></li>
 							</c:forEach>
 
-							<c:if test="${pageMakerClub.next && pageMakerClub.endPage > 0}">
+							<%-- <c:if test="${pageMakerClub.next && pageMakerClub.endPage > 0}"> --%>
 								<li><a class="span"
 									href="adminClub${pageMakerClub.makeQuery(pageMakerClub.endPage + 1)}">▶</a></li>
-							</c:if>
+							<%-- </c:if> --%>
 						</ul>
 
 					</div>

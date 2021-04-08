@@ -321,10 +321,13 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 	function deleteFile(index) {
 		let fileNameSpan = document.getElementById('spanFileName[' + index
 				+ ']')
+		let fileOne = document.getElementById('spanFileName[0]');
 		let nameArr = document.getElementsByName('upload');
 		fileNameSpan.innerText = ""
 		nameArr[index].value = "";
-		$('#imgViewArea').css({ 'display' : 'none' });
+		if(fileNameSpan==fileOne){
+			$('#imgViewArea').css({ 'display' : 'none' });
+		}
 	}
 
 	//버튼 클릭시 유효성 검사 후 제출 

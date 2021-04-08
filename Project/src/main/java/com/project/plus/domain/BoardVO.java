@@ -16,7 +16,6 @@ public class BoardVO {
 	private int boardNum;
 	private int clubNum;
 	private int memberNum;
-	private String boardTitle;
 	private String boardContent;
 	private String boardPic;
 	

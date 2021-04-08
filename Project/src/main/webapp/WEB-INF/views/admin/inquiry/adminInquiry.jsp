@@ -185,9 +185,13 @@ li {
 										<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
 											pattern="yyyy-MM-dd" />
 										<td class="text-center">${resultRegDt}</td>
-										<td class="text-center"><button type="button"
-												class="btn btn-primary btn-sm" style="width: 70px">${inquiry.inquiryState}</button></td>
-
+										<td class="text-center">
+										<c:if test=${inquiry.inquiryState eq '처리중'}">
+										<button type="button" class="btn btn-outline-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button></td>
+										</c:if>
+										<c:if test=${inquiry.inquiryState eq '답변완료'}">
+										<button type="button" class="btn btn-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button></td>
+										</c:if>
 									</tr>
 								</c:forEach>
 							</tbody>

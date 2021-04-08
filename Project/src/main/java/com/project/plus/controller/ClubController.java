@@ -70,7 +70,7 @@ public class ClubController {
 	
 	@GetMapping("/clubForm")
 	public String getClubForm() {
-		return "club/clubForm";
+		return "clubForm.club";
 	}
 	
 

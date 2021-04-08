@@ -1,6 +1,7 @@
 package com.project.plus.controller;
 
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -151,7 +152,7 @@ public class BoardController {
 	   
 	   
 	   @RequestMapping(value="insertBoard", method=RequestMethod.POST)
-	   public String insertBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	   public String insertBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
 	      boardService.insertBoard(board);
@@ -167,12 +168,18 @@ public class BoardController {
 	      model.addAttribute("update", boardService.getBoard(board.getBoardNum()));
 	      System.out.println("updateView get메서드 진입");
 	      System.out.println(board.getBoardNum());
+	      System.out.println(board.getClubNum());
 	      return "boardUpdateView.board";
 	   }
 	   //게시글 수정
-	   @RequestMapping(value="updateView", method=RequestMethod.POST)
+	   @RequestMapping(value="updateViewPost", method=RequestMethod.POST)
+//	   public String updateBoard() throws Exception {
+//		   System.out.println("updateBoard()");
+//		   return "";
+	   //
 	   public String updateBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 	      System.out.println("updateView post 메서드 진입");
+	      
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
 	      boardService.updateBoard(board);

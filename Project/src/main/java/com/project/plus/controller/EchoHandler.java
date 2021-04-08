@@ -33,7 +33,6 @@ public class EchoHandler extends TextWebSocketHandler {
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		int mNum = getMemberNum(session);
 		String msg = message.getPayload();
 		log.info("받은 메시지 : " + msg);
 

@@ -67,8 +67,10 @@
 	<update id="updateBoard">
 		UPDATE BOARD 
 		SET board_content = #{boardContent},
-			board_pic = #{boardPic} 
-		WHERE board_num = #{boardNum};
+			board_pic = #{boardPic},
+			board_regdate = now()
+		WHERE board_num = #{boardNum}
+		AND club_num = #{clubNum};
 	</update>
 	 
 	 <delete id="deleteBoard">
