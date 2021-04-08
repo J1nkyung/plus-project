@@ -80,7 +80,7 @@
             <!-- 해시태그 출력부분  -->
             <div id="clubhashtag">
             <c:forEach items="${tags}" var="tag">
-               <span class="label label-info"># ${tag}</span>
+               <span class="badge badge-pill badge-info"># ${tag}</span>
             </c:forEach>
 </div>
    
