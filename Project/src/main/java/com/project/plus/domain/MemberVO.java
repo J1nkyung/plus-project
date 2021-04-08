@@ -1,9 +1,16 @@
 package com.project.plus.domain;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter
+@Setter
 public class MemberVO {
 	private int memberNum;
 	private String memberPhone;
@@ -15,8 +22,8 @@ public class MemberVO {
 	private int memberPoint;
 	private Date memberJoindate;
 	private String memberMarketing;
-	private Float  memberLatitude;
-	private Float  memberLongitude;
+	private BigDecimal memberLatitude;
+	private BigDecimal  memberLongitude;
 	
 	//조인을 위해 선언한 객체
 	
@@ -81,19 +88,7 @@ public class MemberVO {
 	public void setMemberMarketing(String memberMarketing) {
 		this.memberMarketing = memberMarketing;
 	}
-	public Float getMemberLatitude() {
-		return memberLatitude;
-	}
-	public void setMemberLatitude(Float memberLatitude) {
-		this.memberLatitude = memberLatitude;
-	}
-	public Float getMemberLongitude() {
-		return memberLongitude;
-	}
-	public void setMemberLongitude(Float memberLongitude) {
-		this.memberLongitude = memberLongitude;
-	}
-	
+
 	
 
 	@Override

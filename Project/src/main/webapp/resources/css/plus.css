@@ -177,12 +177,11 @@
 }
 	/* 더하기 등록 버튼 */
 .material-icons{
-	color: #999;
+	color:rgb(0, 30, 250);
 	}
 
  .material-icons:hover{
-    color: rgb(0, 30, 250);
-    
+    color: rgba(0, 30, 250, 0.4);
 } 
  .buttonFixed {
         position: fixed;
