@@ -187,6 +187,7 @@ public class BoardController {
 	      System.out.println("delcon 진입");
 	      boardService.deleteBoard(board.getBoardNum());
 	      System.out.println(board.getBoardNum());
+	      System.out.println("클럽넘 확인"+board.getClubNum());
 	      return "redirect:getCommunity?clubNum="+board.getClubNum();
 	   }
 	   

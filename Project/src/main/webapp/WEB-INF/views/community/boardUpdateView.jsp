@@ -65,8 +65,8 @@ margin:1px;
 			<input type="hidden" name="boardNum" value="${update.boardNum }">
 			<input type="hidden" name="memberPic" value="${update.memberPic }"/>
 			<input type="hidden" name="boardRegDate" value="${update.boardRegDate }"/>
-			<input type="hidden" name="clubNum" value="2"/>
-			<input type="hidden" name="memberNum" value="3"/>
+			<input type="hidden" name="clubNum" value="${update.clubNum}"/>
+			<input type="hidden" name="memberNum" value="${update.memberNum}"/>
 			
 			<!-- <input type="text" class="form-control" id="title"
 				placeholder="제목을 입력해주세요." name="title"> -->
@@ -137,7 +137,6 @@ function imgAreaError(){
 	$('#imgViewArea').css({ 'display' : 'none' });
 } 
 	
->>>>>>> 4d18c481e36e422e998514565076a0d05b8b9da5
 </script>
 </body>
 </html>

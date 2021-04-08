@@ -35,7 +35,7 @@
 	<!-- 작성글 목록(피드형식이라서 이게 게시판 화면이 됨) -->
 	<select id="getBoardList" resultMap="boardResult">
 		SELECT member.member_num, member.member_nickname, member.member_pic, 
-				board.board_num, board.board_content, board.board_pic, board.board_regdate
+				board.board_num, board.club_num, board.board_content, board.board_pic, board.board_regdate
 		FROM MEMBER 
 		NATURAL JOIN BOARD <!-- 공통컬럼 member_num으로 조인가능 -->
 		WHERE board.club_num = #{clubNum}

@@ -91,7 +91,6 @@ removePic = function(){
 	$("#picFile").val("");
 }
     )}
-<<<<<<< HEAD
 $(document).ready(function(){
 	
 var formObj = $("form[name='insertBoard']");
@@ -106,7 +105,6 @@ var formObj = $("form[name='insertBoard']");
 	
 });
 
-=======
     
 
 $("#picFile").change(function() {
@@ -122,7 +120,6 @@ $("#picFile").change(function() {
 function imgAreaError(){
 $('#imgViewArea').css({ 'display' : 'none' });
 } 
->>>>>>> 4d18c481e36e422e998514565076a0d05b8b9da5
 
 </script>
 </body>
