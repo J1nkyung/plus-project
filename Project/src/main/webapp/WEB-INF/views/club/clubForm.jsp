@@ -55,10 +55,13 @@
 			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label>
 			<div class="uploadBox">
 				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
-				<input type="file" style="display: none;" name="upload"
+				<input type="file" style="display: none;" name="upload" id="pInput"
 					onchange="getFileName(0)" />
 				</label> <span id="spanFileName[0]"></span>
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
+							<!-- 이미지 미리보기 영역  -->
+				<div id="imgViewArea" style="margin-top:10px; display:none;">
+					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/></div>
 			</div>
 		</div>
 		<article>
@@ -68,8 +71,7 @@
 				<textarea name="clubContent1"></textarea>
 				<div class="uploadBox">
 					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
-					<input type="file" style="display: none;" name="upload"
-						onchange="getFileName(1)" />
+					<input type="file" style="display: none;" name="upload" onchange="getFileName(1)" />
 					</label> <span id="spanFileName[1]"></span>
 					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
 				</div>
@@ -84,6 +86,7 @@
 						onchange="getFileName(2)" />
 					</label> <span id="spanFileName[2]"></span>
 					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
+			
 				</div>
 			</div>
 			<div class="hashtag-wrap">
@@ -166,6 +169,7 @@
 	</div>
 <input type="hidden" name="clubLatitude" id="club-lat" value=""></input>
 <input type="hidden" name="clubLongitude" id="club-lng" value=""></input> 
+<input type="hidden" name="clubLeader" value="${user.memberNickname}"></input> 
 </form>
 </aside>
 <footer></footer>
@@ -276,6 +280,34 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 
   <!------------지도 끝----------->
   
+  
+  
+  // 모임 프로필 이미지 미리보기 
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('#imgArea').attr('src', e.target.result); 
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+ 	 $("#pInput").change(function() {
+			if(  $("#pInput").val() == '' ) {
+				$('#imgArea').attr('src' , '');  
+			}
+			$('#imgViewArea').css({ 'display' : '' });
+			readURL(this);
+		});
+
+	
+ 	//미리보기 에러시 
+	function imgAreaError(){
+		$('#imgViewArea').css({ 'display' : 'none' });
+	} 
+  
+  
 	//파일 선택시 파일이름 변경 
 	function getFileName(index) {
 		let fileNameSpan = document.getElementById('spanFileName[' + index
@@ -292,7 +324,7 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 		let nameArr = document.getElementsByName('upload');
 		fileNameSpan.innerText = ""
 		nameArr[index].value = "";
-
+		$('#imgViewArea').css({ 'display' : 'none' });
 	}
 
 	//버튼 클릭시 유효성 검사 후 제출 
@@ -301,8 +333,6 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 		if (checkInput()) {
 			if (isNumber()) {
 				if (compareDate()) {
-	/* 	   $('.clubinfo-form').append('<input type="hidden" name="clubLatitude" value="' + lat2 + '"/>');
-			 $('.clubinfo-form').append('<input type="hidden" name="clubLongitude" value="' + lng2 + '"/>');  */
 					document.getElementById('frm').submit();
 					alert("모임 등록이 완료되었습니다!")
 					}
@@ -316,8 +346,6 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 		let max = document.getElementById("club-max");
 		let title = document.getElementById("club-title");
 		let date = document.querySelectorAll(".c-date");
-/*         let lat = document.getElementByid("club-lat")
-        let lng = document.getElementByid("club-lng") */
 		
 		/*  if(title && fee && max){
 		 console.log("존재 ")  */
@@ -454,7 +482,7 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 			let targetSpan = e.target.parentNode;
 			targetSpan.parentNode.removeChild(e.target.parentNode);
 
-			//삭제하려는 해쉬태그 span의 text 가져오기 
+			//삭제하려는 해시태그 span의 text 가져오기 
 			let text = targetSpan.innerText;
 			text = text.split(' ')
 			console.log(text[1])
