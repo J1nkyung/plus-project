@@ -111,6 +111,7 @@ i{
    clear: both;
 }
 
+
 form.box {
    width: 500px;
    position: absolute;
@@ -134,13 +135,16 @@ form.box input[type=text] {
    border:solid 2px rgb(0, 30, 250);
    border-radius: 20px 0 0 20px;
 }
+form.box input: focus{
+  outline:none;
+}
 
 form.box input[type=submit] {
    background-color: rgb(0, 30, 250);
    color: white;
    font-size: 15px;
    font-weight:700;
-   padding: 11px;
+   padding: 9px;
    padding-bottom:9px;
    border-radius: 0 20px 20px 0;
    width: 70px;
@@ -321,19 +325,14 @@ box-shadow: 0 5px 15px -5px #52515170;
 
 #onoff {
    background-color: #00af91;
-   color:white;
-    border-radius: 10px;
 }
 
 #freq {
    background-color: #ffb26b;
-   color:white;
-   border-radius: 10px;
 }
 
 .spanspace {
    padding-bottom: 10px;
-   
 }
 
 .clubtitle {
@@ -403,12 +402,12 @@ box-shadow: 0 5px 15px -5px #52515170;
 
 	/* 더하기 등록 버튼 */
 .material-icons{
-	color: #999;
+	color:rgb(0, 30, 250);
 	}
 
  .material-icons:hover{
-    color: rgb(0, 30, 250);
-    
+    color: 
+    rgba(0, 30, 250, 0.4);
 } 
  .buttonFixed {
         position: fixed;

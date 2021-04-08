@@ -12,14 +12,8 @@
       <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
     <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
    <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
     <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
-  <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
-    <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-	crossorigin="anonymous"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!--  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
@@ -75,6 +69,25 @@
    		
     	}
     	
+    	
+     //	알림 벨 클릭시 
+/*      function getContent(){
+     	$.ajax({
+			type: "post",
+			url: "getNtf", 
+			data: {
+			},
+		     success: function (data) {
+	            	console.log(data);
+			           	if(data){
+			           		console.log("알림 가져오기")
+			           	},
+	            error: function() {
+	            	  alert("메시지 저장 error");
+	            	}
+        });
+    	 
+     } */
     
      
     </script>
@@ -88,9 +101,9 @@
         <nav>
             <ul class="menu-left">
                 <li id="logo_a"><a href="main.do"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
-                <li class="hovereffect nav-left"><a href="main.do">HOME</a></li>
-                <li class="hovereffect nav-left"><a href="normal.do">가치더하기</a></li>
-                  <li class="hovereffect nav-left" id="expert"><a href="expert.do">도움더하기</a></li>
+                <li class="hovereffect nav-left"><a href="main">HOME</a></li>
+                <li class="hovereffect nav-left"><a href="normal">가치더하기</a></li>
+                  <li class="hovereffect nav-left" id="expert"><a href="expert">도움더하기</a></li>
  
  <!-- 로그인정보 없을 때는 로그인버튼 보이게 , 로그인 후에는 채팅, 알람, 드롭다운 버튼 보이게 했습니다   -->
            <c:choose>
@@ -106,7 +119,7 @@
 	                        <li class="dropli"><a href="memberListPage">회원관리</a></li>
 				               </c:when>
 				               <c:otherwise>
-	                        <li class="dropli"><a href="getCurrentClubList?memberNum=${user.memberNum}">My Page</a></li>
+	                        <li class="dropli"><a href="memberUpdate?memberNum=${user.memberNum }">My Page</a></li>
 				               </c:otherwise>
 			               </c:choose>
                         </form>
@@ -127,6 +140,7 @@
             </ul>    
         </nav>
         <div class="myToast">
+
         </div>
 </body>
 
