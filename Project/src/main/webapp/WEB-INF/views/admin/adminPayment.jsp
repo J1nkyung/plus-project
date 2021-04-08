@@ -174,6 +174,10 @@ li {
 											<td class="text-center"><button type="button"
 													class="btn btn-danger btn-sm" style="width: 70px">사용</button></td>
 										</c:if>
+										<c:if test="${payment.payMethod eq '포인트입금'}">
+											<td class="text-center"><button type="button"
+													class="btn btn-info btn-sm" style="width: 70px">입금</button></td>
+										</c:if>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -184,10 +188,10 @@ li {
 
 						<ul class="paging">
 
-							<c:if test="${pageMakerPay.prev}">
+						<%-- 	<c:if test="${pageMakerPay.prev}"> --%>
 								<li><a class="span"
 									href="adminPay${pageMakerPay.makeQuery(pageMakerPay.startPage - 1)}">◀</a></li>
-							</c:if>
+							<%-- </c:if> --%>
 
 							<c:forEach begin="${pageMakerPay.startPage}"
 								end="${pageMakerPay.endPage}" var="idx">
@@ -195,10 +199,10 @@ li {
 										class="span">${idx}</span></a></li>
 							</c:forEach>
 
-							<c:if test="${pageMakerPay.next && pageMakerPay.endPage > 0}">
+							<%-- <c:if test="${pageMakerPay.next && pageMakerPay.endPage > 0}"> --%>
 								<li><a class="span"
 									href="adminPay${pageMakerPay.makeQuery(pageMakerPay.endPage + 1)}">▶</a></li>
-							</c:if>
+							<%-- </c:if> --%>
 						</ul>
 
 					</div>

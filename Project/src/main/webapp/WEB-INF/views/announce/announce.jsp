@@ -45,7 +45,7 @@
 					<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
 						pattern="yyyy-MM-dd" />
 					<span>${resultRegDt}</span><br />
-					<p style="white-space:pre;">${announce.announceContent}</p>
+					<p style="white-space:pre-line;">${announce.announceContent}</p>
 				<c:if test="${user.memberNum eq 1}">
 					 <form action="deleteAnnounce" method="post" style="display:inline-block; float:right; margin-right:20px; margin-bottom:20px">
 		   			 <input type="hidden" value="${announce.announceNum}" name="announceNum">

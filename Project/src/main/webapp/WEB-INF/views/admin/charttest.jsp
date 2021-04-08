@@ -77,7 +77,7 @@
             [ thisWeek[3],  ${getJoin_3}],
             [ thisWeek[2],  ${getJoin_2}],
             [ thisWeek[1],  ${getJoin_1}],
-            [ thisWeek[0],  ${getJoinToday}]
+            [ thisWeek[0],  ${getJoinToday} ]
           ]);
 
           var options = {

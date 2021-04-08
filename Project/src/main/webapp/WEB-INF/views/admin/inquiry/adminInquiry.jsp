@@ -198,10 +198,10 @@ li {
 
 						<ul class="paging">
 
-							<c:if test="${pageMakerAdmin.prev}">
+							<%-- <c:if test="${pageMakerAdmin.prev}"> --%>
 								<li><a class="span"
 									href="adminInquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.startPage - 1)}">◀</a></li>
-							</c:if>
+							<%-- </c:if> --%>
 
 							<c:forEach begin="${pageMakerAdmin.startPage}"
 								end="${pageMakerAdmin.endPage}" var="idx">
@@ -209,10 +209,10 @@ li {
 										class="span">${idx}</span></a></li>
 							</c:forEach>
 
-							<c:if test="${pageMakerAdmin.next && pageMakerAdmin.endPage > 0}">
+							<%-- <c:if test="${pageMakerAdmin.next && pageMakerAdmin.endPage > 0}"> --%>
 								<li><a class="span"
 									href="adminInquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.endPage + 1)}">▶</a></li>
-							</c:if>
+							<%-- </c:if> --%>
 						</ul>
 
 					</div>
