@@ -31,21 +31,40 @@
 	</resultMap>
 
 	<select id="getListExpert" resultMap="club">
-<![CDATA[
-		SELECT * FROM club 
-		WHERE club_kind = '2'
-		AND club_shutdate > NOW()
-		AND club_max > club_curnum
-		ORDER BY club_heart DESC 
+		<![CDATA[
+            SELECT *,
+				(6371*acos(cos(radians(37.552333))*cos(radians(club_latitude))*cos(radians(club_longitude)
+				-radians(126.937782))+sin(radians(37.552333))*sin(radians(club_latitude))))
+				AS distance 
+            FROM
+                club
+                
+            HAVING
+				distance < 10
+			AND club_kind = '2'
+	    	ORDER BY club_heart DESC
+                LIMIT 0,1000
 	]]>
+	
+
 	</select>
 
 	<select id="getListExpertBest" resultMap="club">
- 	SELECT * FROM club 
-		WHERE club_kind = '2'
-		AND club_shutdate > NOW()
-		AND club_max > club_curnum
-	ORDER BY club_num DESC
+ 		<![CDATA[
+            SELECT *,
+				(6371*acos(cos(radians(37.552333))*cos(radians(club_latitude))*cos(radians(club_longitude)
+				-radians(126.937782))+sin(radians(37.552333))*sin(radians(club_latitude))))
+				AS distance 
+            FROM
+                club
+                
+            HAVING
+				distance < 10
+			AND club_kind = '2'
+	    	ORDER BY club_makedate DESC
+                LIMIT 0,1000
+	]]>
+	
 	</select>
 
 

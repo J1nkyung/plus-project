@@ -49,7 +49,7 @@
 
 				<div class="row">
 				<c:forEach items="${expert2}" var="club" varStatus="status" begin="0"
-					end="11">
+					end="5">
 					<div class="col-md-6 col-lg-4">
 						<div class="card border-0 transform-on-hover">
 

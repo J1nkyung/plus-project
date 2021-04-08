@@ -23,7 +23,7 @@ public class ExpertController {
 	@Autowired
 	private ExpertService service;
 
-	@RequestMapping("expert.do")
+	@RequestMapping("expert")
 	public String expertList(Model model, ClubVO vo) {
 	log.info("expert");
 	

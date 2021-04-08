@@ -54,8 +54,8 @@
 <!-- 	<sql id="location"> 
 	<![CDATA[
             SELECT *,
-				(6371*acos(cos(radians(37))*cos(radians(club_latitude))*cos(radians(club_longitude)
-				-radians(127))+sin(radians(37))*sin(radians(club_latitude))))
+				(6371*acos(cos(radians(37.552333))*cos(radians(club_latitude))*cos(radians(club_longitude)
+				-radians(126.937782))+sin(radians(37.552333))*sin(radians(club_latitude))))
 				AS distance 
             FROM
                 club
@@ -69,13 +69,13 @@
 	<select id="getListBest" resultMap="clubResult" >
 		<![CDATA[
             SELECT *,
-				(6371*acos(cos(radians(37))*cos(radians(club_latitude))*cos(radians(club_longitude)
-				-radians(127))+sin(radians(37))*sin(radians(club_latitude))))
+				(6371*acos(cos(radians(37.552333))*cos(radians(club_latitude))*cos(radians(club_longitude)
+				-radians(126.937782))+sin(radians(37.552333))*sin(radians(club_latitude))))
 				AS distance 
             FROM
                 club
             HAVING
-				distance < 100
+				distance < 10
 	    	ORDER BY club_heart DESC
                 LIMIT 0,1000
 	]]>
@@ -91,16 +91,16 @@
 	</select>
 
 	<select id="getListDeadline" resultMap="clubResult">
-	<![CDATA[
+			<![CDATA[
             SELECT *,
-				(6371*acos(cos(radians(37))*cos(radians(club_latitude))*cos(radians(club_longitude)
-				-radians(127))+sin(radians(37))*sin(radians(club_latitude))))
+				(6371*acos(cos(radians(37.552333))*cos(radians(club_latitude))*cos(radians(club_longitude)
+				-radians(126.937782))+sin(radians(37.552333))*sin(radians(club_latitude))))
 				AS distance 
             FROM
                 club
             HAVING
-				distance < 100
-	    	ORDER BY club_shutdate DESC
+				distance < 10
+	    	ORDER BY distance ASC
                 LIMIT 0,1000
 	]]>
 	</select>

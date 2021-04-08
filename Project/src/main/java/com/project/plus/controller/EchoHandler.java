@@ -35,25 +35,23 @@ public class EchoHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		int mNum = getMemberNum(session);
 		String msg = message.getPayload();
-		log.info("텍스트메시지로 왔네" + msg);
+		log.info("받은 메시지 : " + msg);
 
 		if(msg != null) {
 			String[] str = msg.split(",");
 			String notType = str[0];
-			// member = 게시글 작성자 , mNum = 지금 접속한 유저 (댓글쓴이)
+			// member = 알림 보낼 사람 
 			int member = Integer.parseInt(str[1]);
 			String notMessage = str[2];
 			String notUrl = str[3];
 			
-			// 댓글을 등록한 사람과 접속한 유저가 다른 사람이면 알림 보냄  
-			// if조건에 mNum!=member 추가해야함! 
 			if(str!=null) {
-				WebSocketSession userSession = users.get(mNum);
+				WebSocketSession userSession = users.get(member);
 				TextMessage text = new TextMessage("<a target='_blank' href='"+ notUrl +"'>[<b>" + notType + "알림" + "</b>]<div class=\"content\">" + notMessage + "</div></a>" );
 				userSession.sendMessage(text);
-				log.info("멤버번호 : " + mNum + ", 헤더로 메시지 보냈음");
+				log.info("멤버번호 : " + member + ", 헤더로 메시지 받기");
 				log.info(notType);
-			}
+			} 
 		} else {
 			log.info("전달받은 메시지 오류");
 		}

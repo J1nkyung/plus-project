@@ -108,6 +108,7 @@ a {
    clear: both;
 }
 
+
 form.box {
    width: 500px;
    position: absolute;
@@ -131,12 +132,18 @@ form.box input[type=text] {
    border: none;
    border-radius: 20px 0 0 20px;
 }
+form.box input: focus{
+  outline:none;
+}
 
 form.box input[type=submit] {
    background-color: rgb(0, 30, 250);
    color: white;
    font-size: 15px;
    padding: 8px;
+   font-weight:700;
+   padding: 9px;
+   padding-bottom:9px;
    border-radius: 0 20px 20px 0;
    width: 80px;
    border: none;
@@ -476,6 +483,12 @@ left
  .material-icons:hover{
     transform: scale(1.1);
    color: #ccf2f4; 
+	color:rgb(0, 30, 250);
+	}
+
+ .material-icons:hover{
+    color: 
+    rgba(0, 30, 250, 0.4);
 } 
 
 

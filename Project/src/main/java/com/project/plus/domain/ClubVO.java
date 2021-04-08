@@ -1,6 +1,8 @@
 package com.project.plus.domain;
 
+import java.math.BigDecimal;
 import java.sql.Date;
+import java.text.DecimalFormat;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -34,9 +36,11 @@ public class ClubVO {
 	
 	private int clubCurnum;
 	private int clubHeart;
-	private String clubLatitude;
-	private String clubLongitude;
+	private BigDecimal clubLatitude;
+	private BigDecimal clubLongitude;
 
+	private BigDecimal memberLatitude;
+	private BigDecimal memberLongitude;
 	// 20210403 정연 추가 
 		private int memberNum;
 		private int progressBar;
