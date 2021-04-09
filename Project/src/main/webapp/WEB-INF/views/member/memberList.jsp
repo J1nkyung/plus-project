@@ -218,12 +218,28 @@ color:white;
 font-size:12px;
 padding-top:30px;
 }
+.infoBtn{
+border:1px solid #001eff;
+border-radius:5%;
+background-color:white;
+}
+.infoBtn:hover{
+border:1px solid #001eff;
+border-radius:5%;
+background-color:#001eff;
+opacity:0.8;
+color:white;
+}
+
+.infoBtn a:hover{
+color:white;
+}
 </style>
 <script>
 	$(function() {
 		$('#searchBtn').click(
 				function() {
-					self.location = "memberList" + '${pmem.makeQuery(1)}'
+					self.location = "memberListPage" + '${pmem.makeQuery(1)}'
 							+ "&searchType="
 							+ $("select option:selected").val() + "&keyword="
 							+ encodeURIComponent($('#keywordInput').val());
@@ -270,7 +286,7 @@ padding-top:30px;
 									<td>${list.memberEmail }</td>
 									<td>${list.memberName }</td>
 									<td>${list.memberJoindate }</td>
-									<td><button>
+									<td><button class="infoBtn">
 											<a id="info"
 												href="${path}/memberUpdate?memberNum=${list.memberNum}">상세보기</a>
 										</button></td>

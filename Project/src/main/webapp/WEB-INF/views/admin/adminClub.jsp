@@ -288,7 +288,7 @@ padding-top:30px;
 									
 											<!-- 회원 관리 -->
 											<li class="nav-item"><a href="memberListPage"
-												class="nav-link text-white p-3 mb-2 sidebar-link current">
+												class="nav-link text-white p-3 mb-2 sidebar-link">
 													<i class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
 											</a></li>
 											<!-- 모임 관리 -->
@@ -365,6 +365,29 @@ padding-top:30px;
 				alert("모임이 삭제되었습니다");
 			});
 		});
+		
+		window.onload = function(){
+			selectNav();
+		}
+
+		function selectNav(){ 
+			// 지금 접속해있는 주소 얻어서 now에 넣어줌
+			var now = window.location.href;
+			// className이 ()인 값을 nav에 넣어줌
+				var nav = document.getElementsByClassName("nav-link text-white p-3 mb-2 sidebar-link");
+			// 주소에 포함되어야 하는 단어 배열로 선언
+				var arr = ["ListPage", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
+			
+
+			//기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
+				for (var i = 0; i < arr.length; i++) {
+					if(now.includes(arr[i])){
+				nav[i].setAttribute("class", "nav-link text-white p-3 mb-2 sidebar-link current");
+					}
+				}
+			
+		}
+
 	</script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
