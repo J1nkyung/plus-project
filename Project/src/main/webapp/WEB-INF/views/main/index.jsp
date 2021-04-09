@@ -315,8 +315,8 @@
 
 
 	<div class="addplus">
-		<a href="clubForm"><span class="material-icons"
-			style="font-size: 55px;"> add_circle </span></a>
+		<span class="material-icons"
+			style="font-size: 55px;"> add_circle </span>
 	</div>
 
 	</div>
@@ -366,6 +366,9 @@ $('.addplus').on('click',function(){
 if(! '${user.memberNum}'){
    alert("로그인해주세요!");
    return;
+} else {
+	window.location.href="clubForm";
+	
 }
 });
     
