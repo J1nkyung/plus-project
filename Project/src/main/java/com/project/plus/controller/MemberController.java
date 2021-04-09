@@ -61,7 +61,7 @@ public class MemberController {
       memberService.joinMember(vo);
       System.out.println(vo);
       log.info("회원 번호 : " + vo.getMemberNum() + "멤버프로필사진  등록 ");
-      return "redirect:main"; //?
+      return "redirect:login";
          
    }
    
@@ -186,7 +186,7 @@ public class MemberController {
    @RequestMapping(value="memberDelete", method=RequestMethod.POST)
    public String delete(MemberVO vo) throws Exception{
       memberService.deleteMember(vo.getMemberNum());
-      return "redirect:memberList";
+      return "redirect:memberListPage";
    }
    
    public static final Logger logger = LoggerFactory.getLogger(MemberController.class);

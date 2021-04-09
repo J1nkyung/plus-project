@@ -8,7 +8,7 @@ import lombok.Setter;
 /* Criteria
  * 특정 페이지 조회를 위한 클래스
  */
-public class CriteriaMem {
+public class CriteriaBoardList {
 		
 		/* 현재 페이지 */
 		private int page;
@@ -22,22 +22,37 @@ public class CriteriaMem {
 		/* 페이지에서 끝나는넘버  */
 		private int rowEnd;
 		
-		/* 검색어 키워드 */
-		private String keyword;
-		
-		/* 검색 타입 */
-		private String type;
-		private String memberName;
-		private String memberEmail;
+		private int memberNum;
+
+		private int clubNum;
 		
 		
+		public int getMemberNum() {
+			return memberNum;
+		}
+
+
+		public void setMemberNum(int memberNum) {
+			this.memberNum = memberNum;
+		}
+
+
+		public int getClubNum() {
+			return clubNum;
+		}
+
+
+		public void setClubNum(int clubNum) {
+			this.clubNum = clubNum;
+		}
+
 		
 		
 		/* 검색 타입 배열 */
 		private String[] typeArr;
 		
 		/* 기본 생성자 -> 기봅 세팅 : pageNum = 1, amount = 10 */
-		public CriteriaMem() {
+		public CriteriaBoardList() {
 			this.page = 1;
 			this.perPageNum = 10;
 		}

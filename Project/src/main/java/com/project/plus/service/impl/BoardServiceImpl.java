@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.plus.domain.BoardVO;
+import com.project.plus.domain.CriteriaBoardList;
 import com.project.plus.mapper.BoardMapper;
 import com.project.plus.service.BoardService;
 
@@ -53,7 +54,7 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.getContentCount(clubNum);
 	}
 	
-	public List<BoardVO> viewMyList(int clubNum, int memberNum){
-	return mapper.viewMyList(clubNum, memberNum);
+	public List<BoardVO> viewMyList(CriteriaBoardList cb){
+	return mapper.viewMyList(cb);
 	}
 }

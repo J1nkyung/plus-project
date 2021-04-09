@@ -1,13 +1,10 @@
 package com.project.plus.controller;
 
-import java.io.PrintWriter;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.ApplyVO;
 import com.project.plus.domain.BoardVO;
+import com.project.plus.domain.CriteriaBoardList;
 import com.project.plus.service.ApplyService;
 import com.project.plus.service.BoardService;
 import com.project.plus.service.ClubService;
@@ -77,21 +75,15 @@ public class BoardController {
 			List<ApplyVO> apply =  applyService.applyMember(clubNum);
 				List<BoardVO> list = boardService.getBoardList(clubNum);
 
-//List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
-//				for(BoardVO vo : view) {
-//					System.out.println(vo);
-//				}
-//				System.out.println("");
-				
 		    
 
 			
-			//apply 테스트 시 출력방법
-			for(ApplyVO avo : apply) {
-				System.out.println(avo.getMemberNickname());
-				System.out.println(avo.getMemberNickname());
-			}
-			
+//			//apply 테스트 시 출력방법
+//			for(ApplyVO avo : apply) {
+//				System.out.println(avo.getMemberNickname());
+//				System.out.println(avo.getMemberNickname());
+//			}
+//			
 			
 			
 			for(BoardVO board : list) {
@@ -146,10 +138,10 @@ public class BoardController {
 	   
 	   //내 글 모아보기 
 	   @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
-	   public String viewMyList(Model model, BoardVO board, @RequestParam("clubNum") int clubNum, @RequestParam("memberNum") int memberNum, HttpSession session) {
+	   public String viewMyList(CriteriaBoardList cb, Model model, BoardVO board, @RequestParam("clubNum") int clubNum, @RequestParam("memberNum") int memberNum, HttpSession session) {
 		 
 		   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
-		   List<BoardVO> view =  boardService.viewMyList(clubNum, memberNum);
+		   List<BoardVO> view =  boardService.viewMyList(cb);
 //			for(BoardVO vo : view) {
 //				System.out.println(vo);
 //			}
@@ -194,6 +186,8 @@ public class BoardController {
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
 	      boardService.insertBoard(board);
+	      System.out.println("사진 확인" +board.getBoardPic());
+	      System.out.println("글번호 확인"+board.getBoardNum()+"사진??"+board.getBoardPic());
 	      log.info("글 번호 : " + board.getBoardNum() + "사진  등록 ");
 
 
@@ -205,8 +199,11 @@ public class BoardController {
 	   public String updateView(BoardVO board, Model model) {
 	      model.addAttribute("update", boardService.getBoard(board.getBoardNum()));
 	      System.out.println("updateView get메서드 진입");
-	      System.out.println(board.getBoardNum());
-	      System.out.println(board.getClubNum());
+	      System.out.println("boardNum "+board.getBoardNum());
+	      System.out.println("clubNum "+board.getClubNum());
+	      
+	     // board.setBoardPic(board.getBoardPic());
+	      System.out.println("업데이트get메서드 사진확인"+board.getBoardPic());
 	      return "boardUpdateView.board";
 	   }
 	   //게시글 수정
@@ -216,6 +213,11 @@ public class BoardController {
 	      
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
+	      
+	    
+	      
+	      
+	      System.out.println(board.getBoardPic());
 	      boardService.updateBoard(board);
 	      log.info("들어오니?");
 	      log.info(board.getBoardContent());

@@ -416,7 +416,7 @@ function goSubmit() {
             <div>
                 <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                 <span class="box int_pass">
-                    <input type="password" name="memberPassword"  id="pswd1" onchange="isPw1()" class="int psscolor" maxlength="20" value="${user.memberPassword }" required>
+                    <input type="password" name="memberPassword"  id="pswd1" onchange="isPw1()" class="int psscolor" maxlength="20" value="${user.memberPassword }" placeholder="영문과 숫자, 특수문자를 포함해주세요" required>
                     <span id="alertTxt"></span>
     
                 </span>
@@ -427,7 +427,7 @@ function goSubmit() {
             <div>
                 <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                 <span class="box int_pass_check">
-                    <input type="password" id="pswd2" onchange="checkPw()" class="int psscolor" maxlength="20" value="${user.memberPassword }" required>
+                    <input type="password" id="pswd2" onchange="checkPw()" class="int psscolor" maxlength="20" value="${user.memberPassword }" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
                     <span id="alertTxt1"></span>
                 </span>
                 <span class="error_next_box"></span>
