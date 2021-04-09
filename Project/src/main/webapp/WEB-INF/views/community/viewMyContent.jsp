@@ -245,7 +245,6 @@ margin-left:3px;
 
    
 .dropbtn {
-  background-color:#f5f4f4;
   padding: 30px 16px 5px 16px;
   font-size: 16px;
   border: none;
@@ -820,8 +819,8 @@ function insertComment(bNum){
 		 					
 		 					
 							// 알림 저장 & 서버로 메세지 전송 
-						
-							let clubNum= '${boards[0].clubNum}';
+							// 20210409 진경수정 
+							let clubNum= '${board.clubNum}';
 		 					console.log('클럽번호 : ' + clubNum);
 		 					
 		 					let notMessage ="회원님의 게시글에 <b>" + userNickname + "</b>님이 새로운 댓글을 등록했어요!";

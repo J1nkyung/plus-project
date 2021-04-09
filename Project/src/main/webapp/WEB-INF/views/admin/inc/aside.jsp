@@ -37,7 +37,7 @@ function selectNav(){
 	// className이 ()인 값을 nav에 넣어줌
 		var nav = document.getElementsByClassName("nav-link text-white p-3 mb-2 sidebar-link");
 	// 주소에 포함되어야 하는 단어 배열로 선언
-		var arr = ["memberListPage", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
+		var arr = ["ListPage", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
 	
 
 	//기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
@@ -133,7 +133,7 @@ function selectNav(){
 <!--     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
    <!--  <script src="js/script.js"></script> -->
-    <script src="/resources/js/script.js"></script>
+    <script src="${path}/resources/js/script.js"></script>
 
 
 </body>

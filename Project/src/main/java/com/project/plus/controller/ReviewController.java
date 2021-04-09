@@ -50,10 +50,12 @@ public class ReviewController {
 	}
 	
 	
-	@RequestMapping("/writeReview.do") // 모임 값 꺼내는 컨트롤러 
+	@RequestMapping("/writeReview") // 모임 값 꺼내는 컨트롤러 
 	public String writeReview(ReviewVO vo, Model model) {
 		System.out.println("MemberNum 넘버 확인 ***** " + vo.getMemberNum());
 		System.out.println("ClubNum넘버 확인 ***** " + vo.getClubNum());
+		System.out.println("ReviewContent넘버 확인 ***** " + vo.getReviewContent());
+		System.out.println("ReviewRate넘버 확인 ***** " + vo.getReviewRate());
 		reviewService.insertReview(vo);
 
 		return "redirect:getReviewList";

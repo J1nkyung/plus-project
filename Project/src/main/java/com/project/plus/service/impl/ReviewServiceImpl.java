@@ -32,7 +32,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public void insertReview(ReviewVO vo) {
-		
+		reviewMapper.insertReview(vo);
 	}
 	
 	

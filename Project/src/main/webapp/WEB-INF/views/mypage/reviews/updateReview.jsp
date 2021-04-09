@@ -113,6 +113,19 @@
 	float: right;
 	margin-top: 3%;
 }
+
+#deleteBtn{
+	padding: 10px 20px;
+	color: #999;
+	border: 0;
+	cursor: pointer;
+	border-radius: 5px;
+	float: right;
+	margin-top: 3%;
+	margin-right : 3px;
+}
+
+
 #backBtn{
 	border-radius: 5px;
 	color: #999;
@@ -189,7 +202,7 @@
 			<form action="deleteReview" method="get">
 				<input type="hidden" name="clubNum" value="${readReview.clubNum}"/>
 				<input type="hidden" name="memberNum" value="${readReview.memberNum}"/>
-				<input type="submit" id="deleteBtn" value="삭제하기">
+				<input type="submit" id="deleteBtn" onclick="return confirm('리뷰가 삭제됩니다. 페이지를 나가시겠습니까?');" value="삭제하기"/> 
 			</form>
 		</div>
 	</div>

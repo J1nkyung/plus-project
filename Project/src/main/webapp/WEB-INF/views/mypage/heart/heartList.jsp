@@ -31,13 +31,10 @@
 	position:sticky;
 }
 
-
-
-
 .heartContainer {
 	margin: 0;
 	width: 1140px; 
-	/*  margin-left: 27%; */
+	margin-left: 7%;
 	    /*  position: absolute; */
 }
 

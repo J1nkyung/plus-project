@@ -41,7 +41,7 @@
 			                      <img src="${path}/resources/img/${noRvw.clubThumbPic}" class="clubPic" title="image">
 			                    </c:if> 
 		                    
-		                       <div class="title_text">
+		                       <div class="title_text"><a href="getClub?clubNum=${noRvw.clubNum }" class="aTagg" style="text-decoration-line : none;">
 		                            <h2 title="모임타이틀 ">${noRvw.clubName}</h2>
 									<fmt:formatDate value="${noRvw.startDate}" var="startDateFmt" pattern="yyyy-MM-dd hh:mm"/>
 									<fmt:formatDate value="${noRvw.endDate}" var="endDateFmt" pattern="yyyy-MM-dd hh:mm"/>
@@ -55,6 +55,7 @@
 					                       		후기작성
 					                       </button>
 			                       	</form>
+			                   </a>
 		                       </div>
 		                    </div>
 		                </div>
@@ -73,14 +74,14 @@
 			                    <c:if test="${okayRvw.clubThumbPic != null || okayRvw.clubThumbPic == ''}">                   
 			                     <img src="${path}/resources/img/${okayRvw.clubThumbPic}" class="clubPic" title="image">
 			                    </c:if> 
-		                        <div class="title_text">
+		                        <div class="title_text"><a href="getClub?clubNum=${okayRvw.clubNum }" class="aTagg" style="text-decoration-line : none;">
 		                             <h2 title="모임타이틀">${okayRvw.clubName}</h2>
 		                             
 		                            <fmt:formatDate value="${okayRvw.startDate}" var="startDateFmt2" pattern="yyyy-MM-dd hh:mm"/>
 									<fmt:formatDate value="${okayRvw.endDate}" var="endDateFmt2" pattern="yyyy-MM-dd hh:mm"/>
 		                            
 		                            <h4>📆모임기간 : ${startDateFmt2} ~ ${endDateFmt2}</h4>
-		                        </div>
+		                        </a></div>
 		                        <div class="reviewBtn">
 			                        <form id="frm" name="frm" action="readReview.do">
 			                        	<input name="clubNum" type="hidden" value="${okayRvw.clubNum}"/>
