@@ -32,6 +32,14 @@ tr {
 td {
 	padding-left:20px;
 }
+.wrap {
+    width: 100%;
+    height: 1000px;
+    position: relative;
+    display: flex;
+    padding-left: 300px;
+    padding-top: 50px;
+    }
 </style>
 
 </head>

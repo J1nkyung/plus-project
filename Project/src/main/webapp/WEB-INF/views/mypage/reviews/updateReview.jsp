@@ -154,7 +154,7 @@
 				</c:if>
 				<c:if
 					test="${selectClub.clubThumb_pic != null || selectClub.clubThumb_pic == ''}">
-					<img src="${path}/resources/img/${selectClub.clubThumb_pic}"
+					<img src="${path}/resources/img/tmpImg/${selectClub.clubThumb_pic}"
 						class="createClubPic" title="image">
 				</c:if>
 				<div class="clubTitle">

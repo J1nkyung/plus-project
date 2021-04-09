@@ -16,8 +16,9 @@
 </head>
 <wrap class="clearfix">
 <section>
-   <input type="hidden" value="${club.clubNum}" name="clubNum" /> <img
-      id="mainImg" src="${path}/resources${club.clubMain_pic}"
+   <input type="hidden" value="${club.clubNum}" name="clubNum" /> 
+   <img
+      id="mainImg" src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
       onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
    <div class="stickyWrap">
       <div class="stickyTab">
@@ -33,14 +34,14 @@
       </div>
    </div>
    <article>
-      <div id="moreInfo">
-         <img class="images" src="${path}/resources${club.clubContent1_pic}"
+      <div id="moreInfo" style="height:auto; white-space:pre-line;">
+         <img class="images" style="height:400px;" src="${path}/resources${club.clubContent1_pic}"
             onerror="this.style.display='none';" /> ${club.clubContent1}
       </div>
       <hr>
       <h3>리더 소개</h3>
-      <div id="leaderInfo">
-         <img class="images" src="${path}/resources${club.clubContent2_pic}"
+      <div id="leaderInfo" style="height:auto;  white-space:pre-line;">
+         <img class="images" style="height:400px;" src="${path}/resources${club.clubContent2_pic}"
             onerror="this.style.display='none';" /> ${club.clubContent2}
       </div>
       <hr>
@@ -172,7 +173,7 @@ marker.setMap(map);
 </script>
 <script>
 // 카카오 링크 api 
-
+let cNum = '${club.clubNum}'
 Kakao.init('c727ac6af8f4ea892e4524df5eed6359');
 Kakao.isInitialized();
 
@@ -185,8 +186,8 @@ Kakao.isInitialized();
         imageUrl:
           'https://postfiles.pstatic.net/MjAyMTAzMjFfMTYy/MDAxNjE2MzMxNjMzMTQy.AqxK620MPDQyOyUWo0DQaD2gX7k63f360KEStS_8LhUg.2HGpYONTIq7XJd6uKdSkvOCEsJu70nUTujm9HSGnXG8g.PNG.jk940816/logo.png?type=w966',
         link: {
-          mobileWebUrl: 'http://localhost:9999/plus/getClub',
-          webUrl: 'http://localhost:9999/plus/getClub',
+          mobileWebUrl: 'http://localhost:9999/plus/getClub?clubNum='+ cNum,
+          webUrl: 'http://localhost:9999/plus/getClub?clubNum='+ cNum,
         },
       },
       social: {
@@ -197,15 +198,15 @@ Kakao.isInitialized();
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: 'http://localhost:9999/plus/getClub',
-            webUrl: 'http://localhost:9999/plus/getClub',
+            mobileWebUrl: 'http://localhost:9999/plus/getClub?clubNum='+ cNum,
+            webUrl: 'http://localhost:9999/plus/getClub?clubNum='+ cNum,
           },
         },
         {
           title: '앱으로 보기',
           link: {
-            mobileWebUrl: 'http://localhost:9999/plus/getClub',
-            webUrl: 'http://localhost:9999/plus/getClub',
+            mobileWebUrl: 'http://localhost:9999/plus/getClub?clubNum='+ cNum,
+            webUrl:'http://localhost:9999/plus/getClub?clubNum='+ cNum,
           },
         },
       ],
