@@ -121,12 +121,11 @@
 	</div> -->
 	<div class=search>
 	<div class=searchbox>
-	<form class="box" action="totalList" method="get"
-			onsubmit="return inputCheckMain()">
+	
 	 <input type="text" name="keyword" id="keywordInput" size="40"
 						value="${scri.keyword}" placeholder=" 관심있는 더하기를 검색해보세요 🔍"/>
 					<button id="searchBtn" type="button">검색</button>
-					</form>
+				
 					</div>
 					</div>
 					<script>
@@ -138,7 +137,7 @@
         });
       });   
  
-       <!------------------검색창----------------->
+      /*  <!------------------검색창----------------->
               const inputCheckMain = function(){
                   // 공백을 제거한 뒤에 개수를 세던지 한다.
                   let headerKeyword = $.trim($("[name=keyword]").val());
@@ -149,7 +148,7 @@
                      return false;
                   }
                }; 
-           
+            */
                
     </script>	
 		
