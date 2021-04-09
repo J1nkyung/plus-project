@@ -10,6 +10,7 @@
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />
 		<result property="clubThumb_pic" column="club_thumb_pic" />
+		<result property="clubMain_pic" column="club_main_pic" />
 		<result property="clubMax" column="club_max" />
 		<result property="clubFreq" column="club_freq" />
 		<result property="clubContent1" column="club_content1" />

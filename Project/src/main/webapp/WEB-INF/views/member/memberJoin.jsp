@@ -16,18 +16,18 @@
  
 /* //입력양식 전체 유효성 검사 후 제출 
 function goSubmit() {
-	//비밀번호 일치
-	if (checkPw()) {
-		//이메일코드 확인
-		if (emailcode()) {
-			//필수항목 동의 여부
-			if (chk_ess()) {
-				
-				document.getElementById('form').submit();
-				alert("더하기에 오신 것을 환영합니다 !")
-			}
-		}
-	}
+   //비밀번호 일치
+   if (checkPw()) {
+      //이메일코드 확인
+      if (emailcode()) {
+         //필수항목 동의 여부
+         if (chk_ess()) {
+            
+            document.getElementById('form').submit();
+            alert("더하기에 오신 것을 환영합니다 !")
+         }
+      }
+   }
 
 } */
 
@@ -37,28 +37,28 @@ function goSubmit() {
     isMobile = function(){
         var phoneVal = $("#mobile").val();
         /*  var regExp = /^\d{11}$/;*/
-      	var regExp = /^\d{3}-\d{3,4}-\d{4}$/; 
+         var regExp = /^\d{3}-\d{3,4}-\d{4}$/; 
         if(phoneVal.match(regExp) != null){
           // alert('형식에 맞는 번호입니다')
            
          //  $('#chkMobile').on("click", function(){
-        	   var memberPhone = $('#mobile').val();
-        	   var data = {memberPhone : memberPhone}
-        	   
-        	   $.ajax({
-        		   type: "post",
-        		   url : "memberPhoneCheck",
-        		   data : data,
-        		   success : function(result){
-        			   console.log("성공 여부"+result);
-        		 	if(result !='fail'){
-        		 		alert("사용 가능한 휴대폰번호입니다.")
-        		 	}else{
-        		 		alert("이미 등록된 휴대폰번호입니다. 다시 한 번 확인해주세요.")
-        		 	}
-        		   
-        		   }//success종료
-        	   }); //ajax종료
+              var memberPhone = $('#mobile').val();
+              var data = {memberPhone : memberPhone}
+              
+              $.ajax({
+                 type: "post",
+                 url : "memberPhoneCheck",
+                 data : data,
+                 success : function(result){
+                    console.log("성공 여부"+result);
+                  if(result !='fail'){
+                     alert("사용 가능한 휴대폰번호입니다.")
+                  }else{
+                     alert("이미 등록된 휴대폰번호입니다. 다시 한 번 확인해주세요.")
+                  }
+                 
+                 }//success종료
+              }); //ajax종료
           // })
         }else{
             alert("입력 형식에 맞지 않습니다. '010-0000-0000'의 형태로 입력해주세요.")
@@ -75,10 +75,10 @@ function goSubmit() {
         if(pwVal.match(regExp) != null){
             document.getElementById('alertTxt').innerHTML = "적합한 비밀번호입니다.";
         }else{
-        	alert("영문과 숫자, 특수문자를 조합한 8~16자의 비밀번호를 사용하세요.")
-        	  $('#pswd1').focus();
-//		    document.getElementById('pswd1').autofocus;
-        	document.getElementById('alertTxt').innerHTML = "";
+           alert("영문과 숫자, 특수문자를 조합한 8~16자의 비밀번호를 사용하세요.")
+             $('#pswd1').focus();
+//          document.getElementById('pswd1').autofocus;
+           document.getElementById('alertTxt').innerHTML = "";
             document.getElementById('alertTxt').style.display = 'block';
 
         }
@@ -89,13 +89,13 @@ function goSubmit() {
         var p1 = document.getElementById('pswd1').value;
         var p2 = document.getElementById('pswd2').value;
         if( p1 != p2 ) {
-        	alert("비밀번호가 일치하지 않습니다")
-        	        	  $('#pswd2').focus();
-        	document.getElementById('alertTxt1').innerHTML = "";
+           alert("비밀번호가 일치하지 않습니다")
+                        $('#pswd2').focus();
+           document.getElementById('alertTxt1').innerHTML = "";
 
           return false;
         } else{
-        	 document.getElementById('alertTxt1').innerHTML = "비밀번호가 일치합니다";
+            document.getElementById('alertTxt1').innerHTML = "비밀번호가 일치합니다";
              document.getElementById('alertTxt1').style.display = 'block';
 
           return true;
@@ -106,15 +106,15 @@ function goSubmit() {
 
 
     function setThumbnail(event){
-		var reader = new FileReader();
-		reader.onload = function(event){
-			var target = document.querySelector("div#image_container");
-			var img = document.createElement("img");
-			img.setAttribute("src", event.target.result);
+      var reader = new FileReader();
+      reader.onload = function(event){
+         var target = document.querySelector("div#image_container");
+         var img = document.createElement("img");
+         img.setAttribute("src", event.target.result);
                         target.innerHTML = '';
-			target.append(img);
-		};
-		reader.readAsDataURL(event.target.files[0]);
+         target.append(img);
+      };
+      reader.readAsDataURL(event.target.files[0]);
     }
     
 
@@ -150,19 +150,19 @@ function goSubmit() {
         if (emailVal.match(regExp) != null) {
            // alert("적합한 메일 형식입니다.")
 
-        	   
+              
        var memberEmail = $('#email').val();
- 	   var data = {memberEmail : memberEmail}
- 	   
- 	   $.ajax({
- 		   type: "post",
- 		   url : "memberEmailCheck",
- 		   data : data,
- 		   success : function(result){
- 			   console.log("성공 여부"+result);
- 		 	if(result !='fail'){
- 		 	  alert("입력하신 메일로 인증번호가 발송되었습니다. 메일함을 확인해주세요.")
-          	$('#mail_check_input').focus();
+       var data = {memberEmail : memberEmail}
+       
+       $.ajax({
+          type: "post",
+          url : "memberEmailCheck",
+          data : data,
+          success : function(result){
+             console.log("성공 여부"+result);
+           if(result !='fail'){
+             alert("입력하신 메일로 인증번호가 발송되었습니다. 메일함을 확인해주세요.")
+             $('#mail_check_input').focus();
           var email = $(".mail_input").val();        // 입력한 이메일
           var cehckBox = $(".mail_check_input");        // 인증번호 입력란
            var boxWrap = $(".mail_check_input_box"); 
@@ -176,29 +176,29 @@ function goSubmit() {
                        }
                    });
                    
- 		 	}else{
- 		       if(confirm("이미 등록된 이메일입니다.\n확인 버튼을 클릭하시면 비밀번호 찾기로 이동합니다") == true){
- 		    	   location="findPw";
- 		    	   return true;
- 		       }
- 		        else{
- 		            return false;
- 		        }
- 		 	}
- 		   
- 		   }//success종료
- 	   }); //ajax종료
-		  //      alert("형식에 맞는 닉네임입니다")
+           }else{
+              if(confirm("이미 등록된 이메일입니다.\n확인 버튼을 클릭하시면 비밀번호 찾기로 이동합니다") == true){
+                 location="findPw";
+                 return true;
+              }
+               else{
+                   return false;
+               }
+           }
+          
+          }//success종료
+       }); //ajax종료
+        //      alert("형식에 맞는 닉네임입니다")
                   
-		  
-		  
-	
+        
+        
+   
        
        
        
         } else {
             alert('형식에 맞게 입력해주세요 ex)plus@plus.com')
-      	  $('#email').focus();
+           $('#email').focus();
 
         }        
     };
@@ -215,7 +215,7 @@ function goSubmit() {
                     isCertification = true;
                 } else {                                            // 일치하지 않을 경우
                     alert("코드가 일치하지 않습니다. 다시 입력해주세요.")
-              	  $('#mail_check_input').focus();
+                   $('#mail_check_input').focus();
 
                     isCertification = false;
                 }    
@@ -226,37 +226,37 @@ function goSubmit() {
 
    
 /*    function submitCheck(){
-	   if (isCertification==false){
-		   alert("메일 인증이 완료되지 않았습니다.");
-			return false;
-		}else
-			true;
-	   } */
+      if (isCertification==false){
+         alert("메일 인증이 완료되지 않았습니다.");
+         return false;
+      }else
+         true;
+      } */
   
    
    
  
    //코드 불일치하면 가입 안되게 하고싶은데...
 /*    function emailCodeCheck(){
-	   if($("#mail_check_input").is(":true")){
-		   return true;
-	   }else
-		   return false;
+      if($("#mail_check_input").is(":true")){
+         return true;
+      }else
+         return false;
    } */
    
    /*  function changeAttr() {
-	   alert("양식 제출")
-		if (emailcode()==true){
-			   alert("버튼타입 submit으로 변경")
-			   
-			   document.getElementById('btnJoin').setAttribute('type','submit');
+      alert("양식 제출")
+      if (emailcode()==true){
+            alert("버튼타입 submit으로 변경")
+            
+            document.getElementById('btnJoin').setAttribute('type','submit');
 
-		}
-		else{
-			   alert("false")
-	
-		}
-	}  */
+      }
+      else{
+            alert("false")
+   
+      }
+   }  */
   
    
 
@@ -301,59 +301,59 @@ function goSubmit() {
             });
     }
 
-	//등록한 사진 삭제하는 버튼
+   //등록한 사진 삭제하는 버튼
     removePic = function(){
         $('.removePic').click(function(){
                $("#image_container").empty()
-    	$("#picFile").val("");
+       $("#picFile").val("");
     }
         )}
-	
-	
-	
+   
+   
+   
 //닉네임 중복 및 유효성 검사
     chNickname = function(){
-	    for (var i=0; i<$("#nickname").val().length; i++)  { 
-	
-		        var chk = $("#nickname").val().substring(i,i+1); 
-		
-		        if(chk.match(/([^가-힣a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ\x20])/i)){
-		        	alert("특수문자는 사용할 수 없습니다");
-		            return;
-		       	}
-			    if ($("#nickname").val().length > 8) {
-			    	alert("8자를 초과하였습니다");
-			    	return;
-			    }
-		        if($("#nickname").val() == " "){
-		        	alert("공백은 입력할 수 없습니다");
-		            return;
-		        }
-		        
-		        
-		        
-	    } 
-	    
-	    var memberNickname = $('#nickname').val();
- 	   var data = {memberNickname : memberNickname}
- 	   
- 	   $.ajax({
- 		   type: "post",
- 		   url : "memberNickCheck",
- 		   data : data,
- 		   success : function(result){
- 			   console.log("성공 여부"+result);
- 		 	if(result !='fail'){
- 		 		alert("사용 가능한 닉네임입니다.")
- 		 	}else{
- 		 		alert("이미 등록된 닉네임입니다. 다른 닉네임을 사용해주세요.")
- 		 	}
- 		   
- 		   }//success종료
- 	   }); //ajax종료
-		  //      alert("사용 가능한 닉네임입니다")
+       for (var i=0; i<$("#nickname").val().length; i++)  { 
+   
+              var chk = $("#nickname").val().substring(i,i+1); 
+      
+              if(chk.match(/([^가-힣a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ\x20])/i)){
+                 alert("특수문자는 사용할 수 없습니다");
+                  return;
+                }
+             if ($("#nickname").val().length > 8) {
+                alert("8자를 초과하였습니다");
+                return;
+             }
+              if($("#nickname").val() == " "){
+                 alert("공백은 입력할 수 없습니다");
+                  return;
+              }
+              
+              
+              
+       } 
+       
+       var memberNickname = $('#nickname').val();
+       var data = {memberNickname : memberNickname}
+       
+       $.ajax({
+          type: "post",
+          url : "memberNickCheck",
+          data : data,
+          success : function(result){
+             console.log("성공 여부"+result);
+           if(result !='fail'){
+              alert("사용 가능한 닉네임입니다.")
+           }else{
+              alert("이미 등록된 닉네임입니다. 다른 닉네임을 사용해주세요.")
+           }
+          
+          }//success종료
+       }); //ajax종료
+        //      alert("사용 가능한 닉네임입니다")
     }
-	
+   
 </script>
 
 
@@ -467,7 +467,7 @@ function goSubmit() {
                 </div>
                 <label class="picbutton" for="picFile"><span class="picbutton1">사진첨부하기</span></label>
                 <input id="picFile" type="file" name="memberPhoto" accept="image/*" onchange="setThumbnail(event);"/>
-            	<button type="button" class="removePic" onclick="removePic();">취소</button>
+               <button type="button" class="removePic" onclick="removePic();">취소</button>
             </div>
 
         </div>

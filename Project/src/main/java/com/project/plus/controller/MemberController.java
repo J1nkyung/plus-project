@@ -52,6 +52,8 @@ public class MemberController {
    return "memberJoin";
    }
    
+ 
+   
    @RequestMapping(value="memberJoin", method=RequestMethod.POST)
    public String memberJoin(MemberVO vo, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
       System.out.println("회원가입 컨트롤러 진입");
@@ -134,7 +136,18 @@ public class MemberController {
    System.out.println("memberInfo " + memberService.viewMember(vo.getMemberNum()));
    MemberVO user = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
    
-   return "memberUpdate.member";
+   
+   if(user.getMemberNum() == 1) {
+      
+      return "memberUpdate.adMember";
+      
+    }else if(user.getMemberNum()!= 1) {
+       
+          return "memberUpdate.member";
+    }
+
+     return "";
+
    }
    
 
