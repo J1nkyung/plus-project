@@ -175,7 +175,7 @@ public class BoardController {
 		   model.addAttribute("board", board);
 			model.addAttribute("club", clubService.getClub(board.getClubNum()));
 			model.addAttribute("apply", applyService.applyMember(board.getClubNum()));
-		   
+			model.addAttribute("commCount", commService.getCommentsCount(boardNum));
 		   
 		   return "viewMyContent.comm";
 	   }

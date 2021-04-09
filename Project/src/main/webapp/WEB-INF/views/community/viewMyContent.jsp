@@ -393,7 +393,7 @@ margin-right:230px;
 
                <div id="showCommBtn">
                   <img id="commImg" src="${path}/resources/img/message.png" />
-                  <div id="commList" onclick="getComments(${board.boardNum})">댓글(${board.commentsCount}개)</div>
+                  <div id="commList" onclick="getComments(${board.boardNum})">댓글(${commCount}개)</div>
                </div>
             <!-- 댓글 가져오기  -->
             </div><!--contentBox  -->

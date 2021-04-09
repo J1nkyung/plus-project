@@ -362,7 +362,7 @@
 <!--구글맵 api-->
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
- <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 <script>
 <!--메인 carousel 2초-->
 /* $('.carousel').carousel({ interval: 2000 }); */
