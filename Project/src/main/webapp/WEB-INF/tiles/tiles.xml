@@ -98,9 +98,7 @@
 			value="/WEB-INF/views/include/header.jsp" />
 		<put-attribute name="aside"
 			value="/WEB-INF/views/mypage/inc/aside.jsp" />
-		<put-attribute name="body" value="" />
-		<put-attribute name="footer"
-			value="/WEB-INF/views/include/footer.jsp" />
+
 	</definition>
 
 	<!-- 커뮤니티 -->

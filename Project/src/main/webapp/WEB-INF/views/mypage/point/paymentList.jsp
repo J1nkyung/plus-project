@@ -109,6 +109,9 @@
             padding: 13px;
             color:white;
         }
+        .useInfo th{
+        	text-align :center;
+        }
     </style>
 </head>
 

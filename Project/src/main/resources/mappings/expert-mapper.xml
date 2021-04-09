@@ -6,7 +6,6 @@
 		<id property="clubNum" column="club_num" />
 		<result property="clubName" column="club_name" />
 		<result property="clubLeader" column="club_leader" />
-		<result property="clubTown" column="club_town" />
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />

@@ -223,7 +223,7 @@ padding-top:30px;
 	$(function() {
 		$('#searchBtn').click(
 				function() {
-					self.location = "memberList" + '${pmem.makeQuery(1)}'
+					self.location = "memberListPage" + '${pmem.makeQuery(1)}'
 							+ "&searchType="
 							+ $("select option:selected").val() + "&keyword="
 							+ encodeURIComponent($('#keywordInput').val());

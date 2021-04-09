@@ -60,7 +60,7 @@ function selectNav(){
 	// className이 ()인 값을 nav에 넣어줌
 		var nav = document.getElementsByClassName("nav-link text-white p-3 mb-2 sidebar-link");
 	// 주소에 포함되어야 하는 단어 배열로 선언
-		var arr = ["CurrentClubList", "Heart", "Calendar", "getPaymentList", "Review", "inquiry"];
+		var arr = ["CurrentClubList", "Heart", "getClubDate", "getPaymentList", "Review", "inquiry"];
 	
 
 	//기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
@@ -97,25 +97,25 @@ function selectNav(){
                         </li>
                         <!-- Heart -->
                         <li class="nav-item">
-                            <a href="getHeartList.do" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="getHeartList" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-heart text-white fa-lg mr-3"></i>찜하기
                             </a>
                         </li>
                         <!-- Calendar -->
                         <li class="nav-item">
-                            <a href="Calendar" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="getClubDate" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-calendar text-white fa-lg mr-3"></i>캘린더
                             </a>
                         </li>
                         <!-- Point -->
                         <li class="nav-item">
-                            <a href="getPaymentList.do" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="getPaymentList" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-coins text-white fa-lg mr-3"></i>포인트
                             </a>
                         </li>
                         <!-- Review -->
                         <li class="nav-item">
-                            <a href="getReviewList.do" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="getReviewList" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-pencil-alt text-white fa-lg mr-3"></i>리뷰작성
                             </a>
                         </li>
