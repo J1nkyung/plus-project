@@ -121,12 +121,11 @@
 	</div> -->
 	<div class=search>
 	<div class=searchbox>
-	<form class="box" action="totalList" method="get"
-			onsubmit="return inputCheckMain()">
+	
 	 <input type="text" name="keyword" id="keywordInput" size="40"
 						value="${scri.keyword}" placeholder=" 관심있는 더하기를 검색해보세요 🔍"/>
 					<button id="searchBtn" type="button">검색</button>
-					</form>
+				
 					</div>
 					</div>
 					<script>
@@ -138,7 +137,7 @@
         });
       });   
  
-       <!------------------검색창----------------->
+      /*  <!------------------검색창----------------->
               const inputCheckMain = function(){
                   // 공백을 제거한 뒤에 개수를 세던지 한다.
                   let headerKeyword = $.trim($("[name=keyword]").val());
@@ -149,7 +148,7 @@
                      return false;
                   }
                }; 
-           
+            */
                
     </script>	
 		
@@ -363,7 +362,7 @@
 <!--구글맵 api-->
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
- <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 <script>
 <!--메인 carousel 2초-->
 /* $('.carousel').carousel({ interval: 2000 }); */

@@ -220,7 +220,7 @@ li {
 				</form>
 				</div>
 						<button class="btn btn-primary pull-right">
-							<a href="${path}/inquiryForm.jsp">문의</a>
+							<a href="${path}/inquiryForm?memberNum=${user.memberNum}">문의</a>
 						</button>
 					</div>
 			</div>
