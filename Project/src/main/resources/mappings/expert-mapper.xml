@@ -5,8 +5,6 @@
 	<resultMap id="club" type="club">
 		<id property="clubNum" column="club_num" />
 		<result property="clubName" column="club_name" />
-		<result property="clubLeader" column="club_leader" />
-		<result property="clubTown" column="club_town" />
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />
@@ -42,7 +40,7 @@
             HAVING
 				distance < 10
 			AND club_kind = '2'
-	    	ORDER BY club_heart DESC
+	    	ORDER BY club_makedate DESC 
                 LIMIT 0,1000
 	]]>
 	
@@ -61,7 +59,7 @@
             HAVING
 				distance < 10
 			AND club_kind = '2'
-	    	ORDER BY club_makedate DESC
+	    	ORDER BY club_heart DESC
                 LIMIT 0,1000
 	]]>
 	
