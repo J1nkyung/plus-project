@@ -76,8 +76,8 @@
 	</insert>
 	
 	<update id="updateClub">
-		UPDATE club SET club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, club_main_pic=#{clubMain_pic}, 
-		club_thumb_pic=#{clubThumb_pic}, club_content1=#{clubContent1},club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, 
+		UPDATE club SET club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, 
+		club_content1=#{clubContent1},club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, 
 		club_content2_pic=#{clubContent2_pic}, club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, 
 		club_enddate=#{clubEndDate}, club_fee=#{clubFee}, club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}, club_latitude=#{clubLatitude}, club_longitude=#{clubLongitude}
 		WHERE club_num = #{clubNum}

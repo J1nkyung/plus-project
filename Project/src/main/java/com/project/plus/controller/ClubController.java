@@ -173,21 +173,21 @@ public class ClubController {
 	public String getMyClubInfo(@RequestParam("clubNum") int clubNum, ClubVO vo, Model model) {
 		vo = clubService.getMyClubInfo(clubNum);
 
-		// 경로를 자르고 파일명+확장자만 set
-		if (vo.getClubMain_pic() != null) {
-			String formatName = vo.getClubMain_pic().substring(vo.getClubMain_pic().lastIndexOf("_") + 1);
-			vo.setClubMain_pic(formatName);
-		}
-
-		if (vo.getClubContent1_pic() != null) {
-			String formatName = vo.getClubMain_pic().substring(vo.getClubContent1_pic().lastIndexOf("_") + 1);
-			vo.setClubMain_pic(formatName);
-		}
-
-		if (vo.getClubContent2_pic() != null) {
-			String formatName = vo.getClubMain_pic().substring(vo.getClubContent2_pic().lastIndexOf("_") + 1);
-			vo.setClubMain_pic(formatName);
-		}
+//		// 경로를 자르고 파일명+확장자만 set
+//		if (vo.getClubMain_pic() != null) {
+//			String formatName = vo.getClubMain_pic().substring(vo.getClubMain_pic().lastIndexOf("_") + 1);
+//			vo.setClubMain_pic(formatName);
+//		}
+//
+//		if (vo.getClubContent1_pic() != null) {
+//			String formatName = vo.getClubMain_pic().substring(vo.getClubContent1_pic().lastIndexOf("_") + 1);
+//			vo.setClubMain_pic(formatName);
+//		}
+//
+//		if (vo.getClubContent2_pic() != null) {
+//			String formatName = vo.getClubMain_pic().substring(vo.getClubContent2_pic().lastIndexOf("_") + 1);
+//			vo.setClubMain_pic(formatName);
+//		}
 
 		model.addAttribute("club", vo);
 		log.info("모임 수정 폼 : " + vo.getClubNum());
