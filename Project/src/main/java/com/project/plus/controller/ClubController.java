@@ -144,18 +144,17 @@ public class ClubController {
 			hvo.setMemberNum(user.getMemberNum());
 		}
 		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
-		System.out.println("heart" + hvo.getClubNum() +" " +  hvo.getMemberNum());
 		int resultClub = heartService.selectHeartNum(hvo);
-		System.out.println("resultClub 얼만지확인  : " + resultClub);
 		model.addAttribute("isThereHeart", resultClub);
 		avo.setClubNum(clubNum);
-		int result = clubService.getOneApply(avo);
+		avo.setMemberNum(user.getMemberNum());
+		Integer result = clubService.getOneApply(avo);
 		
 		/*이미 신청한 모임인지 아닌지 getClub jsp에서 확인 이거 사용 안할 듯 ,, */
-		if(result==1) {
-			model.addAttribute("yesNo", 1);
-		} else {
+		if(result.equals(0)) {
 			model.addAttribute("yesNo", 0);
+		} else {
+			model.addAttribute("yesNo", 1);
 		}
 		// 2021045  여기위 까지
 		
@@ -397,19 +396,8 @@ public class ClubController {
 			System.out.println(cvo.getClubNum());
 			System.out.println(avo.getClubNum());
 			
-//			Integer result = clubService.getOneApply(avo);
-//			/*이미 신청한 모임인지 아닌지 getClub jsp에서 확인*/
-//			String rst = "";
-//			if(result != null) {
-//				rst =  "forward:/getClub";
-//				model.addAttribute("yesNo", "이미 참여중인 모임입니다.");
-//				System.out.println("이미 있다 ");
-//			} else {
-//				rst = "club/payClub"; 
-				
-				System.out.println("없다 ");
-				ClubVO cvoSend = clubService.selectClub(cvo);
-				model.addAttribute("cvoSend", cvoSend);
+			ClubVO cvoSend = clubService.selectClub(cvo);
+			model.addAttribute("cvoSend", cvoSend);
 			return "club/payClub"; 
 		}
 		

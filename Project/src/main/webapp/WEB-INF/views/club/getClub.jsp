@@ -327,9 +327,10 @@ $(function(){
                    alert("모집 인원이 마감되어 신청하실 수 없습니다");
                    return;
                 }
-/*                 if('${yesNo}' != ''){
-                    alert('${yesNo}');
-                } */
+                if('${yesNo}' == 1){
+                    alert("이미 신청한 모임입니다!");
+                    return false;
+                }
             });
             
              // 신청하기 버튼 클릭시 
