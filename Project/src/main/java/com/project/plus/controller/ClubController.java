@@ -146,6 +146,7 @@ public class ClubController {
 		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
 		System.out.println("heart" + hvo.getClubNum() +" " +  hvo.getMemberNum());
 		int resultClub = heartService.selectHeartNum(hvo);
+		System.out.println("resultClub 얼만지확인  : " + resultClub);
 		model.addAttribute("isThereHeart", resultClub);
 		avo.setClubNum(clubNum);
 		int result = clubService.getOneApply(avo);

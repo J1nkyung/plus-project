@@ -104,7 +104,7 @@
             <div class="fstyle" id="makeDate">${club.clubStartDate}<!-- </div> -->
                <!-- <div id="tilde">  -->
                ~
-               <!-- <div class="fstyle" id="shutDate"> -->${club.clubMakeDate}</div>
+               <!-- <div class="fstyle" id="shutDate"> -->${club.clubEndDate}</div>
             <!-- </div> -->
 
 <br>
@@ -131,14 +131,14 @@
 				
             <!-- 찜버튼 -->
             <button type="button" class="btn" id="heartBtn">
-               <c:if test="${isThereHeart eq 0}">
-                  <img src="${path}/resources/img/heart.png" id="heartImg" value=0 />
+               <c:if test="${isThereHeart == 0}">
+                  <img src="${path}/resources/img/heart.png" class="heartImg" id ="dd"/>
                </c:if>
-               <c:if test="${isThereHeart ne 0}">
-                  <img src="${path}/resources/img/blackheart.png" id="heartImg" value=1 />
+               <c:if test="${isThereHeart != 0}">
+                  <img src="${path}/resources/img/blackheart.png" class="heartImg" id ="dd" />
                </c:if>
             </button>
-   <!-- 공유 버튼  -->
+  		 <!-- 공유 버튼  -->
             <button type="button" class="btn" id="shareBtn" onclick="sendLink()">
                <img id="file" src="${path}/resources/img/share.png">
             </button>
@@ -414,62 +414,64 @@ if('${msg}' != ''){
 }
 
 /*찜 수정 20210401*/
-var state = document.getElementById("heartImg").value; 
+//var state = document.getElementById("heartImg"); //und
+//var state = document.getElementsByClassName("heartImg");
+var state = '${isThereHeart}';
 $('#heartBtn').on('click',function(){
- // 로그인 검사 
-if(! '${user.memberNum}'){
-   alert("로그인해주세요!");
-   return;
-}else{
-	toggleImg();
-	console.log('여기까지 ~~~');
-}
+	 // 로그인 검사 
+	if(! '${user.memberNum}'){
+	   alert("로그인해주세요!");
+	   return;
+	}else{
+		
+		toggleImg();
+		console.log('여기까지 ~~~');
+	}
 });
 function toggleImg(){
-
-
-console.log(state);
-if(state==0){
- state=1;
-document.getElementById("heartImg").src = "${path}/resources/img/blackheart.png"; 
-$.ajax({
-type: "post",
-data: {   
-   clubNum:'${club.clubNum}',
-   memberNum:'${user.memberNum}',
-   clubName: '${club.clubName}'
-},
-url: 'insertHeart',
-  success: function (result) {
-     console.log(result);
-      console.log(result)
-        alert(result);
-      console.log(state)
-     },
-  error: function() {
-       alert("error");
-     }
-});
-}else{
-state=0; 
-document.getElementById("heartImg").src = "${path}/resources/img/heart.png";
- 
- $.ajax({
-      type: "post",
-      data: {
-         clubNum:'${club.clubNum}',
-         memberNum:"${user.memberNum}"
-      },
-      url: 'deleteHeartOne',
-        success: function (result) {
-           console.log(result);
-            console.log(result)
-              alert(result);
-           },
-        error: function() {
-             alert("error");
-           }
-      });
+	console.log(state);
+	if(state==0){
+		state=1;
+		//document.getElementsByClassName("heartImg").src = "${path}/resources/img/blackheart.png"; -- 클래스 이름으로 사진 변경 시 에러 
+		//document.getElementById("dd").src = "${path}/resources/img/blackheart.png"; -- 얘는 되지만 id/ class 값을 다 들고 있어야해서 안씀 
+		$(".heartImg").attr("src", "${path}/resources/img/blackheart.png"); 
+		$.ajax({
+		type: "post",
+		data: {   
+		   clubNum:'${club.clubNum}',
+		   memberNum:'${user.memberNum}',
+		   clubName: '${club.clubName}'
+		},
+		url: 'insertHeart',
+		  success: function (result) {
+		     console.log(result);
+		        alert(result);
+		      console.log(state)
+		     },
+		  error: function() {
+		       alert("error");
+		     }
+		});
+	}else{
+		state=0; 
+		//document.getElementsByClassName("heartImg").src = "${path}/resources/img/heart.png";
+		 $(".heartImg").attr("src", "${path}/resources/img/heart.png");
+		 //document.getElementById("dd").src = "${path}/resources/img/heart.png"; 
+		 $.ajax({
+		      type: "post",
+		      data: {
+		         clubNum:'${club.clubNum}',
+		         memberNum:"${user.memberNum}"
+		      },
+		      url: 'deleteHeartOne',
+		        success: function (result) {
+		            console.log(result)
+		              alert(result);
+		           },
+		        error: function() {
+		             alert("error");
+		           }
+	      });
 	}
 }
 </script>
