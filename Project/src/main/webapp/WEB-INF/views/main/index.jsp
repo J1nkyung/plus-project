@@ -315,8 +315,8 @@
 
 
 	<div class="addplus">
-		<a href="clubForm"><span class="material-icons"
-			style="font-size: 55px;"> add_circle </span></a>
+		<span class="material-icons"
+			style="font-size: 55px;"> add_circle </span>
 	</div>
 
 	</div>
@@ -361,7 +361,16 @@
 <script>
 <!--메인 carousel 2초-->
 /* $('.carousel').carousel({ interval: 2000 }); */
-
+$('.addplus').on('click',function(){
+ // 로그인 검사 
+if(! '${user.memberNum}'){
+   alert("로그인해주세요!");
+   return;
+} else {
+	window.location.href="clubForm";
+	
+}
+});
     
 
         <!------------------스크롤 위로 올리기----------------->
