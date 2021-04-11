@@ -190,12 +190,13 @@
 			<label for="exampleFormControlSelect2">참가비용</label> <input
 				type="text" class="form-control" id="club-fee" name="clubFee">
 		</div>
-		<input name="clubNum" type="hidden" value="${club.clubNum}" /> <input
+		<input name="clubNum" type="hidden" value="
+		${club.clubNum}" /> <input
 			name="clubMakeDate" type="hidden" value="${club.clubMakeDate}" /> <input
 			name="clubCurnum" type="hidden" value="${club.clubCurnum}" /> <input
 			name="clubKind" type="hidden" value="${club.clubKind}" /> <input
-			name="clubLatitude" type="hidden" id="club-lat" value=""></input> <input
-			name="clubLongitude" type="hidden" id="club-lng" value=""></input>
+			name="clubLatitude" type="hidden" id="club-lat" value="${club.clubLatitude}"></input> <input
+			name="clubLongitude" type="hidden" id="club-lng" value="${club.clubLongitude}"></input>
 		<button type="button" class="btn" id="modifyBtn" onclick="goSubmit()">수정하기</button>
 		</form>
 		<button type="button" class="btn" id="delBtn" onclick="deleteClub()">삭제하기</button>
