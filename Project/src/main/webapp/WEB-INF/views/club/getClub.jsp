@@ -377,7 +377,6 @@ $(function(){
                     		alert("모집이 종료된 모임입니다!");
                     		return;
                     	}
-                    	
                            if(data==1){
                               alert("모임 신청이 완료되었습니다!");
                               //신청이 성공한 다음 인원 수를 update해야함 
