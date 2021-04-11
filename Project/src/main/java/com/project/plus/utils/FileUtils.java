@@ -66,13 +66,6 @@ public class FileUtils {
 				}
 			}
 
-//			} else {
-//				// 넘어온 파일이 없다면 == 사진 수정시 main pic을 삭제했을 때 썸네일 컬럼을 null로 update
-//				if(i==0) {
-//					
-//					vo.setClubMain_pic("");
-//					}
-//			}
 			log.info("업로드 파일이 없습니다" + i );
 		}
 		return vo;

@@ -104,6 +104,7 @@ public class ClubController {
 		log.info(uploadPath);
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		
+		// 파일 수정시 파일을 삭제했을 경우 
 		if(vo.getFileStatus()!=null) {
 			for(int i=0; i<vo.getFileStatus().length; i++) {
 				String status = vo.getFileStatus()[i].substring(vo.getFileStatus()[i].lastIndexOf("_") + 1);
@@ -120,7 +121,7 @@ public class ClubController {
 				}
 			}
 		} else {
-			log.info("파일 변경 사항 없음");
+			log.info("파일 삭제 없음");
 		}
 		
 		clubService.updateClub(vo);

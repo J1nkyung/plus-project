@@ -39,4 +39,9 @@ public class NotificationServiceImpl implements NotificationService {
 		return mapper.updateStatus(noti);
 	}
 
+	@Override
+	public int getTimeDiff(int notId) {
+		return mapper.getTimeDiff(notId);
+	}
+
 }
