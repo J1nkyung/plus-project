@@ -66,22 +66,35 @@
 
 	<insert id="insertClub">
 	<![CDATA[
-		INSERT INTO club(club_name, club_leader,club_kind, club_category, club_main_pic, club_thumb_pic,
+		INSERT INTO club(club_name, club_leader,club_kind, club_category, club_main_pic,
 		club_onoff, club_max, club_freq, club_content1, club_content1_pic, club_content2, club_content2_pic,
 		club_makedate, club_shutdate, club_startdate, club_enddate, club_fee, club_hashtag, club_curnum, club_heart, club_latitude, club_longitude)
-		VALUES(#{clubName}, #{clubLeader}, #{clubKind}, #{clubCategory}, #{clubMain_pic}, #{clubThumb_pic},
+		VALUES(#{clubName}, #{clubLeader}, #{clubKind}, #{clubCategory}, #{clubMain_pic},
 		#{clubOnOff}, #{clubMax}, #{clubFreq}, #{clubContent1}, #{clubContent1_pic}, #{clubContent2}, #{clubContent2_pic},
 		NOW(), #{clubShutDate}, #{clubStartDate}, #{clubEndDate}, #{clubFee}, #{clubHashtag}, #{clubCurnum}, 0, #{clubLatitude}, #{clubLongitude})
 	]]> 
 	</insert>
 	
 	<update id="updateClub">
-		UPDATE club SET club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, 
-		club_content1=#{clubContent1},club_content1_pic=#{clubContent1_pic}, club_content2=#{clubContent2}, 
-		club_content2_pic=#{clubContent2_pic}, club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, 
-		club_enddate=#{clubEndDate}, club_fee=#{clubFee}, club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}, club_latitude=#{clubLatitude}, club_longitude=#{clubLongitude}
+		UPDATE club
+		<trim prefix="SET" suffixOverrides=",">
+		club_category=#{clubCategory}, club_max=#{clubMax}, club_freq=#{clubFreq}, 
+		club_content1=#{clubContent1}, club_content2=#{clubContent2}, 
+		club_makedate=#{clubMakeDate}, club_shutdate=#{clubShutDate}, club_startdate=#{clubStartDate}, 
+		club_enddate=#{clubEndDate}, club_fee=#{clubFee}, club_hashtag=#{clubHashtag}, club_curnum=#{clubCurnum}, club_latitude=#{clubLatitude}, club_longitude=#{clubLongitude},
+		<if test="clubMain_pic != null">
+			club_main_pic=#{clubMain_pic},
+		</if>
+		<if test="clubContent1_pic != null">
+			club_content1_pic=#{clubContent1_pic},
+		</if>
+		<if test="clubContent2_pic != null">
+			club_content2_pic=#{clubContent2_pic},
+		</if>
+		</trim>
 		WHERE club_num = #{clubNum}
 	</update>
+	
 	
 	<delete id="deleteClub">
 		DELETE FROM club WHERE club_num = #{clubNum}

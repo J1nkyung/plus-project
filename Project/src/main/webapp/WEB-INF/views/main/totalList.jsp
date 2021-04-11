@@ -33,50 +33,51 @@
 
 <body>
 
-	<from role="form" method="get"> <!--------------상세검색 영역--------------->
+<from role="form" method="get">
+
+	<!--------------상세검색 영역--------------->
 	<div class="jumbotron">
-		<div class="search">
+	<div class="search">
 			<h3>
 				<b>🔎 상세 검색 </b>
 			</h3>
 			<hr class="my-4">
 
-			<select name="searchType">
-				<option value="t"
-					<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>전체</option>
-				<option value="n"
-					<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>모임명</option>
-				<option value="l"
-					<c:out value="${scri.searchType eq 'l' ? 'selected' : ''}"/>>리더명</option>
-				<option value="c"
-					<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-				<option value="h"
-					<c:out value="${scri.searchType eq 'h' ? 'selected' : ''}"/>>해시태그</option>
-			</select> <input type="text" name="keyword" id="keywordInput" size="40"
-				value="${scri.keyword}" autocomplete='off' />
-			<button id="searchBtn" type="button">검색</button>
-			<script>
-				$(function() {
-					$('#searchBtn').click(
-							function() {
-								self.location = "totalList"
-										+ '${pageMaker.makeQuery(1)}'
-										+ "&searchType="
-										+ $("select option:selected").val()
-										+ "&keyword="
-										+ encodeURIComponent($('#keywordInput')
-												.val());
-							});
-				});
-			</script>
-		</div>
-	</div>
+				<select name="searchType">
+						<option value="t"
+							<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>전체</option>
+						<option value="n"
+							<c:out value="${scri.searchType eq 'n' ? 'selected' : ''}"/>>모임명</option>
+						<option value="l"
+							<c:out value="${scri.searchType eq 'l' ? 'selected' : ''}"/>>리더명</option>
+						<option value="c"
+							<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+						<option value="h"
+							<c:out value="${scri.searchType eq 'h' ? 'selected' : ''}"/>>해시태그</option>
+					</select> <input type="text" name="keyword" id="keywordInput" size="40"
+						value="${scri.keyword}" />
+					<button id="searchBtn" type="button">검색</button>
+					<script>
+					
+
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "totalList" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>	
+    </div>
+</div>
 
 	<%-- <input type="hidden" name="userLatitude"
 		value='<c:out value="${pageMaker.cri.userLatitude}"/>'>
 	<input type="hidden" name="userLongitude"
 		value='<c:out value="${pageMaker.cri.userLongitude}"/>'>
-	</form> --%> <!----------------더하기 리스트------------------>
+	</form> --%>
+
+
+
+	<!----------------더하기 리스트------------------>
 	<section class="gallery-block ca
 		rds-gallery">
 		<div class="gallery-container">
@@ -91,32 +92,29 @@
 								<div class="card border-0 transform-on-hover">
 
 									<a class="lightbox"
-										href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
-										<img id="clubmainpic"
-										src="${path}/resources${club.clubMain_pic}"
-										onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
-
+										href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
+										<img id="clubmainpic" src="${path}/resources${club.clubMain_pic}"
+											  onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
 									</a>
 									<div class="card-bodyarea">
 										<div class=spanspace>
-											<c:if test="${club.clubOnOff eq '온라인'}">
-												<span class="badge" id="onoff">${club.clubOnOff}</span>
-											</c:if>
-											<c:if test="${club.clubOnOff eq '오프라인'}">
-												<span class="badge" id="onoff1">${club.clubOnOff}</span>
-											</c:if>
-
-											<span class="badge" id="freq">${club.clubFreq}</span>
+										 <c:if test="${club.clubOnOff eq '온라인'}">
+        	  <span class="badge" id="onoff">${club.clubOnOff}</span> 
+         </c:if>
+          <c:if test="${club.clubOnOff eq '오프라인'}">
+        	  <span class="badge" id="onoff1" >${club.clubOnOff}</span> 
+         </c:if>
+           
+            <span class="badge" id="freq">${club.clubFreq}</span>
 
 										</div>
 										<div class=clubtitle>
 											<a class=clubtitle
-												href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+												href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
 												${club.clubName} </a>
 										</div>
 										<div class=subtitle>
-											<i class="fas fa-heart"> ${club.clubHeart}</i>&nbsp;&nbsp; <i
-												class="fab fa-product-hunt">&nbsp;${club.clubFee}</i>
+											<i class="fas fa-heart"> ${club.clubHeart}</i>
 
 										</div>
 
@@ -145,27 +143,25 @@
 							</div>
 						</c:forEach>
 			</section>
-			<!-- -페이징 버튼-  -->
-
-			<div id="pageArea">
-				<ul class="paging">
-					<li><a class="span"
-						href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}"><<</a></li>
-
-					<c:forEach begin="${pageMaker.startPage}"
-						end="${pageMaker.endPage}" var="idx">
-						<li><a href="totalList${pageMaker.makeSearch(idx)}"><span
-								class="span">${idx}</span></a></li>
-					</c:forEach>
-
-					<li><a class="span"
-						href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">>></a></li>
-				</ul>
-			</div>
+		<!-- -페이징 버튼-  -->
+			
+						 <div id="pageArea">
+						  <ul class="paging">
+						    	<li ><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}"><<</a></li>
+						
+						    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+						    	<li><a href="totalList${pageMaker.makeSearch(idx)}"><span class="span" >${idx}</span></a></li>
+						    </c:forEach>
+						
+						    	<li><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">>></a></li>
+						  </ul>
+					 </div>
 
 		</div>
 
 		<script src="https://kit.fontawesome.com/831a4ab0db.js"
 			crossorigin="anonymous"></script>
+
+
 </body>
 </html>

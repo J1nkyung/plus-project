@@ -16,7 +16,8 @@
 </head>
 <wrap class="clearfix">
 <section>
-   <input type="hidden" value="${club.clubNum}" name="clubNum" /> <img
+   <input type="hidden" value="${club.clubNum}" name="clubNum" /> 
+   <img
       id="mainImg" src="${path}/resources${club.clubMain_pic}"
       onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
    <div class="stickyWrap">
@@ -33,14 +34,14 @@
       </div>
    </div>
    <article>
-      <div id="moreInfo">
-         <img class="images" src="${path}/resources${club.clubContent1_pic}"
+      <div id="moreInfo" style="height:auto; white-space:pre-line;">
+         <img class="images" style="height:400px;" src="${path}/resources${club.clubContent1_pic}"
             onerror="this.style.display='none';" /> ${club.clubContent1}
       </div>
       <hr>
       <h3>리더 소개</h3>
-      <div id="leaderInfo">
-         <img class="images" src="${path}/resources${club.clubContent2_pic}"
+      <div id="leaderInfo" style="height:auto;  white-space:pre-line;">
+         <img class="images" style="height:400px;" src="${path}/resources${club.clubContent2_pic}"
             onerror="this.style.display='none';" /> ${club.clubContent2}
       </div>
       <hr>
@@ -103,7 +104,7 @@
             <div class="fstyle" id="makeDate">${club.clubStartDate}<!-- </div> -->
                <!-- <div id="tilde">  -->
                ~
-               <!-- <div class="fstyle" id="shutDate"> -->${club.clubMakeDate}</div>
+               <!-- <div class="fstyle" id="shutDate"> -->${club.clubEndDate}</div>
             <!-- </div> -->
 
 <br>
@@ -130,14 +131,14 @@
 				
             <!-- 찜버튼 -->
             <button type="button" class="btn" id="heartBtn">
-               <c:if test="${isThereHeart eq 0}">
-                  <img src="${path}/resources/img/heart.png" id="heartImg" value=0 />
+               <c:if test="${isThereHeart == 0}">
+                  <img src="${path}/resources/img/heart.png" class="heartImg" id ="dd"/>
                </c:if>
-               <c:if test="${isThereHeart ne 0}">
-                  <img src="${path}/resources/img/blackheart.png" id="heartImg" value=1 />
+               <c:if test="${isThereHeart != 0}">
+                  <img src="${path}/resources/img/blackheart.png" class="heartImg" id ="dd" />
                </c:if>
             </button>
-   <!-- 공유 버튼  -->
+  		 <!-- 공유 버튼  -->
             <button type="button" class="btn" id="shareBtn" onclick="sendLink()">
                <img id="file" src="${path}/resources/img/share.png">
             </button>
@@ -172,7 +173,7 @@ marker.setMap(map);
 </script>
 <script>
 // 카카오 링크 api 
-
+let cNum = '${club.clubNum}'
 Kakao.init('c727ac6af8f4ea892e4524df5eed6359');
 Kakao.isInitialized();
 
@@ -185,8 +186,8 @@ Kakao.isInitialized();
         imageUrl:
           'https://postfiles.pstatic.net/MjAyMTAzMjFfMTYy/MDAxNjE2MzMxNjMzMTQy.AqxK620MPDQyOyUWo0DQaD2gX7k63f360KEStS_8LhUg.2HGpYONTIq7XJd6uKdSkvOCEsJu70nUTujm9HSGnXG8g.PNG.jk940816/logo.png?type=w966',
         link: {
-          mobileWebUrl: 'http://localhost:9999/plus/getClub',
-          webUrl: 'http://localhost:9999/plus/getClub',
+          mobileWebUrl: 'http://localhost:9999/plus/getClub?clubNum='+ cNum,
+          webUrl: 'http://localhost:9999/plus/getClub?clubNum='+ cNum,
         },
       },
       social: {
@@ -197,15 +198,15 @@ Kakao.isInitialized();
         {
           title: '웹으로 보기',
           link: {
-            mobileWebUrl: 'http://localhost:9999/plus/getClub',
-            webUrl: 'http://localhost:9999/plus/getClub',
+            mobileWebUrl: 'http://localhost:9999/plus/getClub?clubNum='+ cNum,
+            webUrl: 'http://localhost:9999/plus/getClub?clubNum='+ cNum,
           },
         },
         {
           title: '앱으로 보기',
           link: {
-            mobileWebUrl: 'http://localhost:9999/plus/getClub',
-            webUrl: 'http://localhost:9999/plus/getClub',
+            mobileWebUrl: 'http://localhost:9999/plus/getClub?clubNum='+ cNum,
+            webUrl:'http://localhost:9999/plus/getClub?clubNum='+ cNum,
           },
         },
       ],
@@ -326,9 +327,10 @@ $(function(){
                    alert("모집 인원이 마감되어 신청하실 수 없습니다");
                    return;
                 }
-/*                 if('${yesNo}' != ''){
-                    alert('${yesNo}');
-                } */
+                if('${yesNo}' == 1){
+                    alert("이미 신청한 모임입니다!");
+                    return false;
+                }
             });
             
              // 신청하기 버튼 클릭시 
@@ -413,62 +415,64 @@ if('${msg}' != ''){
 }
 
 /*찜 수정 20210401*/
-var state = document.getElementById("heartImg").value; 
+//var state = document.getElementById("heartImg"); //und
+//var state = document.getElementsByClassName("heartImg");
+var state = '${isThereHeart}';
 $('#heartBtn').on('click',function(){
- // 로그인 검사 
-if(! '${user.memberNum}'){
-   alert("로그인해주세요!");
-   return;
-}else{
-	toggleImg();
-	console.log('여기까지 ~~~');
-}
+	 // 로그인 검사 
+	if(! '${user.memberNum}'){
+	   alert("로그인해주세요!");
+	   return;
+	}else{
+		
+		toggleImg();
+		console.log('여기까지 ~~~');
+	}
 });
 function toggleImg(){
-
-
-console.log(state);
-if(state==0){
- state=1;
-document.getElementById("heartImg").src = "${path}/resources/img/blackheart.png"; 
-$.ajax({
-type: "post",
-data: {   
-   clubNum:'${club.clubNum}',
-   memberNum:'${user.memberNum}',
-   clubName: '${club.clubName}'
-},
-url: 'insertHeart',
-  success: function (result) {
-     console.log(result);
-      console.log(result)
-        alert(result);
-      console.log(state)
-     },
-  error: function() {
-       alert("error");
-     }
-});
-}else{
-state=0; 
-document.getElementById("heartImg").src = "${path}/resources/img/heart.png";
- 
- $.ajax({
-      type: "post",
-      data: {
-         clubNum:'${club.clubNum}',
-         memberNum:"${user.memberNum}"
-      },
-      url: 'deleteHeartOne',
-        success: function (result) {
-           console.log(result);
-            console.log(result)
-              alert(result);
-           },
-        error: function() {
-             alert("error");
-           }
-      });
+	console.log(state);
+	if(state==0){
+		state=1;
+		//document.getElementsByClassName("heartImg").src = "${path}/resources/img/blackheart.png"; -- 클래스 이름으로 사진 변경 시 에러 
+		//document.getElementById("dd").src = "${path}/resources/img/blackheart.png"; -- 얘는 되지만 id/ class 값을 다 들고 있어야해서 안씀 
+		$(".heartImg").attr("src", "${path}/resources/img/blackheart.png"); 
+		$.ajax({
+		type: "post",
+		data: {   
+		   clubNum:'${club.clubNum}',
+		   memberNum:'${user.memberNum}',
+		   clubName: '${club.clubName}'
+		},
+		url: 'insertHeart',
+		  success: function (result) {
+		     console.log(result);
+		        alert(result);
+		      console.log(state)
+		     },
+		  error: function() {
+		       alert("error");
+		     }
+		});
+	}else{
+		state=0; 
+		//document.getElementsByClassName("heartImg").src = "${path}/resources/img/heart.png";
+		 $(".heartImg").attr("src", "${path}/resources/img/heart.png");
+		 //document.getElementById("dd").src = "${path}/resources/img/heart.png"; 
+		 $.ajax({
+		      type: "post",
+		      data: {
+		         clubNum:'${club.clubNum}',
+		         memberNum:"${user.memberNum}"
+		      },
+		      url: 'deleteHeartOne',
+		        success: function (result) {
+		            console.log(result)
+		              alert(result);
+		           },
+		        error: function() {
+		             alert("error");
+		           }
+	      });
 	}
 }
 </script>

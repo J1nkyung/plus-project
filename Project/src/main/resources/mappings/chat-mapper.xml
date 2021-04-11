@@ -38,7 +38,7 @@
 	
 	<!-- 채팅내역 불러오기 -->
 	<select id="getMessages" resultMap="chatResult">
-		SELECT c.club_num, date_format(chat_sendtime,'%Y.%m.%d | %h:%i:%s %p') as chat_string_sendtime, chat_message, m.member_nickname 
+		SELECT c.club_num, date_format(chat_sendtime, '%b %d | %H:%i:%s') as chat_string_sendtime, chat_message, m.member_nickname 
 		FROM chat c, member m WHERE c.member_num = m.member_num AND c.club_num = #{clubNum}
 	</select> 
 	

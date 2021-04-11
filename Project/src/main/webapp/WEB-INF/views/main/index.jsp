@@ -120,16 +120,15 @@
     </script>	
 	</div> -->
 	<div class=search>
-		<div class=searchbox>
-
-			<input type="text" name="keyword" id="keywordInput" size="40"
-				autocomplete='off' value="${scri.keyword}"
-				placeholder=" 관심있는 더하기를 검색해보세요 🔍" />
-			<button id="searchBtn" type="button">검색</button>
-
-		</div>
-	</div>
-	<script>
+	<div class=searchbox>
+	
+	 <input type="text" name="keyword" id="keywordInput" size="40"
+						value="${scri.keyword}" placeholder=" 관심있는 더하기를 검색해보세요 🔍"/>
+					<button id="searchBtn" type="button">검색</button>
+				
+					</div>
+					</div>
+					<script>
 					
 
       $(function(){
@@ -151,9 +150,9 @@
                }; 
             */
                
-    </script>
-
-
+    </script>	
+		
+    
 
 	<!--검색 카테고리 -->
 	<div class="middle">
@@ -191,34 +190,31 @@
 					end="11">
 					<div class="col-md-6 col-lg-3">
 						<div class="card border-0 transform-on-hover">
-							<!-- 더하기 기본 정보 -->
+
 							<a class="lightbox"
-								href='getClub?clubNum=<c:out value="${club.clubNum}" />'> <img
-								id="clubmainpic"
-								src="${path}/resources${club.clubMain_pic}"
-								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
+								href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
+									<img id="clubmainpic" src="${path}/resources${club.clubMain_pic}"
+									onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
 							</a>
 							<div class="card-bodyarea">
 								<div class=spanspace>
-									<c:if test="${club.clubOnOff eq '온라인'}">
-										<span class="badge" id="onoff">${club.clubOnOff}</span>
-									</c:if>
-									<c:if test="${club.clubOnOff eq '오프라인'}">
-										<span class="badge" id="onoff1">${club.clubOnOff}</span>
-									</c:if>
-
-									<span class="badge" id="freq">${club.clubFreq}</span>
+								 <c:if test="${club.clubOnOff eq '온라인'}">
+        	  <span class="badge" id="onoff">${club.clubOnOff}</span> 
+         </c:if>
+          <c:if test="${club.clubOnOff eq '오프라인'}">
+        	  <span class="badge" id="onoff1" >${club.clubOnOff}</span> 
+         </c:if>
+           
+            <span class="badge" id="freq">${club.clubFreq}</span>
 
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-										href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+										href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
-									<i class="fas fa-heart"> ${club.clubHeart}</i>&nbsp;&nbsp;
-									
-                                   <i class="fab fa-product-hunt">&nbsp;${club.clubFee}</i>
+									<i class="fas fa-heart"> ${club.clubHeart}</i>
 								</div>
 
 								<!-- 더하기 상세 정보 -->
@@ -233,8 +229,8 @@
 									<fmt:formatDate var="endDay" value='${club.clubEndDate}'
 										pattern="yyyyMMdd" />
 									<span class="period">📅 ${club.clubStartDate} ~
-										${club.clubEndDate}</span></br> <span class="shutdown"> 
-										🔒 모집 마감까지 D - <c:out value="${shutDay-today}" />
+										${club.clubEndDate}</span></br> <span class="shutdown"> 🔒 모집 마감까지
+										D - <c:out value="${shutDay-today}" />
 									</span></br> <span class="person">현재<b> ${club.clubCurnum}</b> /
 										${club.clubMax}명 참여중!
 									</span></br>
@@ -264,35 +260,32 @@
 						<div class="card border-0 transform-on-hover">
 
 							<a class="lightbox"
-								href='getClub?clubNum=<c:out value="${club.clubNum}" />'> <img
-								id="clubmainpic"
-								src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
+								href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
+									<img id="clubmainpic" src="${path}/resources${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
 
 
 							</a>
 							<div class="card-bodyarea">
 								<div class=spanspace>
-									<c:if test="${club.clubOnOff eq '온라인'}">
-										<span class="badge" id="onoff">${club.clubOnOff}</span>
-									</c:if>
-									<c:if test="${club.clubOnOff eq '오프라인'}">
-										<span class="badge" id="onoff1">${club.clubOnOff}</span>
-									</c:if>
-
-									<span class="badge" id="freq">${club.clubFreq}</span>
+								 <c:if test="${club.clubOnOff eq '온라인'}">
+        	  <span class="badge" id="onoff">${club.clubOnOff}</span> 
+         </c:if>
+          <c:if test="${club.clubOnOff eq '오프라인'}">
+        	  <span class="badge" id="onoff1" >${club.clubOnOff}</span> 
+         </c:if>
+           
+            <span class="badge" id="freq">${club.clubFreq}</span>
 
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-										href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+										href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
-									<i class="fas fa-heart"> ${club.clubHeart}</i>&nbsp;&nbsp;
-									
-                                   <i class="fab fa-product-hunt">&nbsp;${club.clubFee}</i>
-                                   
+									<i class="fas fa-heart"> ${club.clubHeart}</i>
+
 								</div>
 
 								<!-- 더하기 상세 정보 -->
@@ -322,8 +315,8 @@
 
 
 	<div class="addplus">
-		<span class="material-icons" style="font-size: 55px;">
-			add_circle </span>
+		<span class="material-icons"
+			style="font-size: 55px;"> add_circle </span>
 	</div>
 
 	</div>
@@ -404,6 +397,20 @@ if(! '${user.memberNum}'){
         
         
         
+/*         <!------------------검색창----------------->
+        const inputCheckMain = function(){
+            // 공백을 제거한 뒤에 개수를 세던지 한다.
+            let headerKeyword = $.trim($("[name=keyword]").val());
+            $('[name=keyword]').val(keyword);
+            console.log(keyword.length);
+            if (keyword.length >= 30) {
+               alert("30자 이하로 검색해주세요.");
+               return false;
+            }
+         }; */
+     
+         
+  
          $( document ).ready( function() {
              
          	var lat2;
@@ -476,6 +483,8 @@ if(! '${user.memberNum}'){
           } );
   
   
+   
+         
          //더하기 등록 버튼 고정
          $( document ).ready( function() {
         	 var jbOffset = $( '.material-icons' ).offset();

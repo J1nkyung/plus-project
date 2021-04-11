@@ -233,8 +233,9 @@ let roomId = 0;
 		today = new Date();   
 		myMessage = '<div class="mymessage-box">';
         myMessage += '<div class="mymessage">' + msg + '</div>';
-        myMessage += '<div class="time-date" id="send-date">' + today.toLocaleDateString() +  ' | ' 
-        			+ today.toLocaleTimeString("en-US") + '</div></div>';
+        myMessage += '<div class="time-date" id="send-date">' + today.toLocaleString('en-us', { month: 'long' }) + ' ' +today.getDate() + ' | ' 
+        			+ today.getHours()+':' + (today.getMinutes()<10?'0':'')+today.getMinutes() + ':' 
+        			+ (today.getSeconds()<10?'0':'') + today.getSeconds() + '</div></div>';
         $('.message-wrap').append(myMessage);
 		$('#message').val('');
 		$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
@@ -338,8 +339,9 @@ let roomId = 0;
 				otherMessage = '<div class="other-message-box">';
 				otherMessage += '<div id="othername">' + id + '</div>';
 				otherMessage += '<div class="others-message">' + words + '</div>';
-				otherMessage += '<div class="time-date" id="receive-date">' + today.toLocaleDateString() 
-							+  ' | ' + today.toLocaleTimeString("en-US") + '</div></div>';
+				otherMessage += '<div class="time-date" id="receive-date">' + today.toLocaleString('en-us', { month: 'long' }) + ' ' +today.getDate() + ' | ' 
+    			+ today.getHours()+':' + (today.getMinutes()<10?'0':'')+today.getMinutes() + ':' 
+    			+ (today.getSeconds()<10?'0':'') + today.getSeconds() +'</div></div>';
 			    $('.message-wrap').append(otherMessage);
 				$('.message-wrap').scrollTop($('.message-wrap')[0].scrollHeight);
 			} else {
