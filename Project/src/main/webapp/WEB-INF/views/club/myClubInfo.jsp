@@ -93,7 +93,12 @@
 				</div>
 			</div>
 			<div id="write-checkinfo">
+			<c:if test="${club.clubKind eq 1}">
+				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을 설명해주세요!</label>
+			</c:if>
+			<c:if test="${club.clubKind eq 2}">
 				<label for="exampleFormControlFile1" id="intro">모임의 리더가 되고싶은 회원님은 어떤사람인가요?</label>
+			</c:if>
 				<textarea name="clubContent2">${club.clubContent2}</textarea>
 				<div class="uploadBox">
 					<!-- <input type="file" class="form-control-file"
@@ -185,8 +190,7 @@
 			<label for="exampleFormControlSelect2">참가비용</label> <input
 				type="text" class="form-control" id="club-fee" name="clubFee">
 		</div>
-		<input name="clubNum" type="hidden" value="
-		${club.clubNum}" /> <input
+		<input name="clubNum" type="hidden" value="${club.clubNum}" /> <input
 			name="clubMakeDate" type="hidden" value="${club.clubMakeDate}" /> <input
 			name="clubCurnum" type="hidden" value="${club.clubCurnum}" /> <input
 			name="clubKind" type="hidden" value="${club.clubKind}" /> <input
@@ -234,6 +238,7 @@ function getFileName(index){
   fileNameSpan.innerText = "";
   $(fileNameSpan).append(name); 
   
+  // 해당하는 index로 파일 삭제시 생성된 input이 있을 경우 remove 
   if($('.status['+index+']')){
 	  console.log($('.status['+index+']'));
 	  $('.status['+index+']').remove();
