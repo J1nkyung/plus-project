@@ -219,11 +219,14 @@ li {
 					<!-- pageArea -->
 				</form>
 				</div>
-						<button class="btn btn-primary pull-right">
-							<a href="${path}/inquiryForm?memberNum=${user.memberNum}">문의</a>
-						</button>
-					</div>
-			</div>
+						<div class="col-12">
+            <input type="hidden" name="memberNum" value="${user.memberNum}">
+            <input type="hidden" name="inquiryType" value="${inquiry.inquiryType}">
+            <button class="btn btn-primary pull-right">
+               <a href="${path}/inquiryForm?memberNum=${user.memberNum}">문의</a>
+            </button>
+         </div>
+      </div>
 			<!-- wrapper -->
 
 		</div>

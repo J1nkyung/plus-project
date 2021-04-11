@@ -168,6 +168,14 @@ table {
  	font-size : 20px;
  	text-align : center;
  }
+ 
+ .card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+    width: 100%;
+    height: 320px;
+}
 
 </style>
 </head>
@@ -206,7 +214,7 @@ table {
 									</c:if>
 									<c:if
 										test="${freeclub.clubThumbPic != null || freeclub.clubThumbPic== ''}">
-										<img src="${path}/resources${freeclub.clubThumbPic}" class="card-img-top" alt="Card image" style="width: 100%">
+										<img src="${path}/resources/img/tmpImg/${freeclub.clubThumbPic}" class="card-img-top" alt="Card image" style="width: 100%">
 									</c:if>
 
 									<div class="card-body">
@@ -269,7 +277,7 @@ table {
 									<%-- </c:if> --%>
 									<%-- <c:if
 										test="${nofreeclub.clubThumbPic != null || nofreeclub.clubThumbPic== ''}"> --%>
-										<img src="${path}/resources${freeclub.clubMainPic}"
+										<img src="${path}/resources/img/tmpImg/${nofreeclub.clubThumbPic}"
 											class="card-img-top" alt="Card image" style="width: 100%">
 									<%-- </c:if> --%>
 

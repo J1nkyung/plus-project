@@ -97,7 +97,7 @@ public class AdminController {
 		model.addAttribute("getJoin_4", ads.getJoin_4(mvo));
 		model.addAttribute("getJoin_5", ads.getJoin_5(mvo));
 		model.addAttribute("getJoin_6", ads.getJoin_6(mvo));
-		return "charttest.adch";
+		return "/admin/charttest";
 	}
 	
 	// 관리자 : 모든 회원들의 결제내역 목록 조회
@@ -111,7 +111,7 @@ public class AdminController {
 		pgmad.setCri(cri);
 		pgmad.setTotalCount(ads.adminPayListCount(cri));
 		model.addAttribute("pageMakerPay", pgmad);
-		return "adminPayment.adch";
+		return "/admin/adminPayment";
 	}
 
 	// 관리자 : 모든 모임 목록 조회	

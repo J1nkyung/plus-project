@@ -66,23 +66,22 @@
 				</select>
 			</div>
 		</div>
-		<label for="exampleFormControlFile1">모임 이름</label> <input type="text"
+ 	<label for="exampleFormControlFile1">모임 이름</label> <input type="text"
 			maxlength='16' class="form-control" id="club-title"
-			placeholder="최대 16글자로 입력해주세요" value="${club.clubName}" readonly>
-
-		<div class="form-group">
-			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label>
-			<!-- <div class="img-form">
+			placeholder="최대 16글자로 입력해주세요" value="${club.clubName}" readonly> 
+	<%-- 	<div class="form-group">
+			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label> -->
+			 <div class="img-form">
                   
-              </div> -->
+              </div> 
 			<div class="uploadBox">
 				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
-					type="file" style="display: none;" name="upload"
+					type="file" style="display: none;" 
 					onchange="getFileName(0)" />
 				</label> <span id="spanFileName[0]">${club.clubMain_pic}</span>
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
 			</div>
-		</div>
+		</div> --%>
 		<article>
 			<div id="write-clubinfo">
 				<label for="exampleFormControlFile1">개설하고자 하는 모임의 성격을
@@ -97,8 +96,7 @@
 				</div>
 			</div>
 			<div id="write-checkinfo">
-				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을
-					설명해주세요!</label>
+				<label for="exampleFormControlFile1" id="intro">모임의 리더가 되고싶은 회원님은 어떤사람인가요?</label>
 				<textarea name="clubContent2">${club.clubContent2}</textarea>
 				<div class="uploadBox">
 					<!-- <input type="file" class="form-control-file"

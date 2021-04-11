@@ -55,10 +55,8 @@
 
 							<a class="lightboxbest"
 									href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
-								<img id="clubmainpic"
-								src="${path}/resources${club.clubMain_pic}"
+								<img id="clubmainpic"src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
-
 
 							</a>
 							<div class="card-bodyarea">
@@ -126,11 +124,8 @@
 
 							<a class="lightbox"
 							href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
-								<img id="clubmainpic"
-								src="${path}/resources${club.clubMain_pic}"
+								<img id="clubmainpic"src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
-
-
 							</a>
 							<div class="card-bodyarea">
 								<div class=spanspace>
