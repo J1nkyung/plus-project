@@ -185,7 +185,8 @@
 			<label for="exampleFormControlSelect2">참가비용</label> <input
 				type="text" class="form-control" id="club-fee" name="clubFee">
 		</div>
-		<input name="clubNum" type="hidden" value="${club.clubNum}" /> <input
+		<input name="clubNum" type="hidden" value="
+		${club.clubNum}" /> <input
 			name="clubMakeDate" type="hidden" value="${club.clubMakeDate}" /> <input
 			name="clubCurnum" type="hidden" value="${club.clubCurnum}" /> <input
 			name="clubKind" type="hidden" value="${club.clubKind}" /> <input
