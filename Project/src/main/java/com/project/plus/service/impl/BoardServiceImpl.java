@@ -54,7 +54,14 @@ public class BoardServiceImpl implements BoardService{
 		return mapper.getContentCount(clubNum);
 	}
 	
+//	public List<BoardVO> viewMyList(CriteriaBoardList cb, int memberNum, int clubNum){
+//	return mapper.viewMyList(cb, memberNum, clubNum);
+//	}
 	public List<BoardVO> viewMyList(CriteriaBoardList cb){
-	return mapper.viewMyList(cb);
+		return mapper.viewMyList(cb);
+	}
+	
+	public int myListCount(CriteriaBoardList cb) {
+		return mapper.myListCount(cb);
 	}
 }

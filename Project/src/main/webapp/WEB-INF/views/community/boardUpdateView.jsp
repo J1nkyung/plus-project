@@ -78,7 +78,8 @@ margin:1px;
              
             <input id="picFile" type="file" name="boardPhoto" />
             <img src="${path }/resources${update.boardPic }">
-            <input type="hidden" name="boardPic" value="${update.boardPic }">
+            <input type="hidden" name="old_file" value="${update.boardPic }">
+            <input type="text" name="old_file" value="${update.boardPic }">
             			
 				<div id="imgViewArea" style="margin-top:10px; display:none;">
 					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/></div>

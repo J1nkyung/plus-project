@@ -98,7 +98,7 @@ public class CriteriaBoardList {
 
 		@Override
 		public String toString() {
-			return "CriteriaMem [page=" + page + ", perPageNum=" + perPageNum + ", rowStart=" + rowStart + ", rowEnd=" + rowEnd
+			return "CriteriaBoardList [page=" + page + ", perPageNum=" + perPageNum + ", rowStart=" + rowStart + ", rowEnd=" + rowEnd
 					+ "]";
 		}
 		

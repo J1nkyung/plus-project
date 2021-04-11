@@ -35,6 +35,8 @@ public interface MemberService {
 
 	public List<MemberVO> memberList(SearchCriteriaMem scmem);
 	public int listCount(SearchCriteriaMem scmem);
+	
+	public boolean checkPw(String memberEmail, String memberPassword);
 
 	//정연 하단 추가 20210403 
 	void updateMemberPoint (MemberVO vo);

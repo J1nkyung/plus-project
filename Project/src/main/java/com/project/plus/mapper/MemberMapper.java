@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.project.plus.domain.CriteriaMem;
+import org.apache.ibatis.annotations.Param;
+
 import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.SearchCriteriaMem;
 
@@ -31,7 +32,8 @@ public interface MemberMapper {
 	public List<MemberVO> memberList(SearchCriteriaMem scmem);
 	public int listCount(SearchCriteriaMem scmem);
 	public MemberVO viewMember(int memberNum);
-
+	public int checkPw(@Param("memberEmail") String memberEmail, @Param("memberPassword") String memberPassword);
+	public int changePw(@Param("memberEmail") String memberEmail, @Param("memberPassword") String memberPassword);
 	
 	//정연 하단 추가 20210326
 

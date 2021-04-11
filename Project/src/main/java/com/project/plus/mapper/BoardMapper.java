@@ -3,6 +3,7 @@ package com.project.plus.mapper;
 import java.util.List;
 import java.util.Map;
 
+
 import com.project.plus.domain.BoardVO;
 import com.project.plus.domain.CriteriaBoardList;
 
@@ -15,6 +16,6 @@ public interface BoardMapper {
 	public void updateBoard(BoardVO board);
 	public void deleteBoard(int BoardNum);
 	public List<BoardVO> viewMyList(CriteriaBoardList cb);
-	
+	public int myListCount(CriteriaBoardList cb);
 	
 }
