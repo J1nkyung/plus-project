@@ -75,6 +75,7 @@
                 club
             HAVING
 				distance < 10
+				AND club_shutdate>NOW()
 	    	ORDER BY club_heart DESC
                 LIMIT 0,1000
 	]]>

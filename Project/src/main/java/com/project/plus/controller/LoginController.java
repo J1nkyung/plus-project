@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -50,18 +52,33 @@ public class LoginController {
 	//로그인 버튼 클릭했을 때 실행되는 컨트롤러
 
 	@RequestMapping(value="login", method=RequestMethod.POST) 
-	public String login(MemberVO vo, HttpSession session, Model model, HttpServletResponse response) throws Exception {
+	public String login(MemberVO vo, HttpSession session, HttpServletRequest request, Model model, HttpServletResponse response) throws Exception {
 	System.out.println("로그인 컨트롤러 접속");
-		try {
+	
+	String saveId = request.getParameter("saveId");
+	String memberEmail = request.getParameter("memberEmail");
+	System.out.println("로그인 확인"+memberEmail);
+	try {
 			//로그인 성공했을 때
 			MemberVO user = memberService.login(vo);
-			session.setAttribute("user", user);
-			model.addAttribute("userInfo", user);
+		
 			System.out.println(user.getMemberEmail());
 			System.out.println(user.getMemberPassword());
 			System.out.println(user.getMemberNum());
-			System.out.println(user.getMemberNum());
 			System.out.println(user + "일반로그인 유저정보 획득");
+			
+			if(saveId!=null) {
+				Cookie c = new Cookie("saveId", memberEmail);
+				c.setMaxAge(60*60*24*7); //7일간 저장
+				response.addCookie(c);
+			}else {
+				Cookie c = new Cookie("saveId", memberEmail);
+				c.setMaxAge(0);
+				response.addCookie(c);
+			}
+			session.setAttribute("user", user);
+			model.addAttribute("userInfo", user);
+			
 			return "redirect:main";
 			
 		} catch(Exception e) {

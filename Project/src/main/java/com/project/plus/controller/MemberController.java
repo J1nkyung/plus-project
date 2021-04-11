@@ -72,7 +72,7 @@ public class MemberController {
    @RequestMapping(value = "memberPhoneCheck", method = RequestMethod.POST)
    @ResponseBody public String memberPChk(String memberPhone) throws Exception{ 
       int result = memberService.memberPChk(memberPhone); 
-      logger.info("모바일 결과값 = " + result); 
+      log.info("모바일 결과값 = " + result); 
       if(result != 0) { 
          return "fail"; // 중복 폰번호 존재
          } else { 
@@ -85,7 +85,7 @@ public class MemberController {
    @RequestMapping(value = "memberNickCheck", method = RequestMethod.POST)
    @ResponseBody public String memberNickChk(String memberNickname) throws Exception{ 
       int result = memberService.memberNChk(memberNickname); 
-      logger.info("닉네임 결과값 = " + result); 
+      log.info("닉네임 결과값 = " + result); 
       if(result != 0) { 
          return "fail"; // 중복 닉네임이 존재 
          } else { 
@@ -96,7 +96,7 @@ public class MemberController {
    @RequestMapping(value = "memberEmailCheck", method = RequestMethod.POST)
    @ResponseBody public String memberEmailChk(String memberEmail) throws Exception{ 
 	   int result = memberService.memberEChk(memberEmail); 
-	   logger.info("이메일 결과값 = " + result); 
+	   log.info("이메일 결과값 = " + result); 
 	   if(result != 0) { 
 		   return "fail"; // 중복 닉네임이 존재 
 	   } else { 
@@ -196,14 +196,18 @@ public class MemberController {
 
    }
    
+   @RequestMapping(value="changePw", method=RequestMethod.GET)
+   public String changePw(MemberVO vo) throws Exception{
+     // memberService.deleteMember(vo.getMemberNum());
+      return "changePw.member";
+   }
+
    @RequestMapping(value="memberDelete", method=RequestMethod.POST)
    public String delete(MemberVO vo) throws Exception{
-      memberService.deleteMember(vo.getMemberNum());
-      return "redirect:memberListPage";
+	   memberService.deleteMember(vo.getMemberNum());
+	   return "redirect:memberListPage";
    }
    
-   public static final Logger logger = LoggerFactory.getLogger(MemberController.class);
-    
    
    //회원가입 시 인증메일 보내는 메서드
    @RequestMapping(value="mailCheck", method=RequestMethod.GET)
@@ -213,12 +217,12 @@ public class MemberController {
       System.out.println("메일함수 진입");
       
         /* 뷰(View)로부터 넘어온 데이터 확인 */
-        logger.info("이메일 데이터 전송 확인");
-        logger.info("인증번호 : " + email);
+        log.info("이메일 데이터 전송 확인");
+        log.info("인증번호 : " + email);
         
         Random random = new Random();
         int checkNum = random.nextInt(888888);
-        logger.info("인증번호 " + checkNum);
+        log.info("인증번호 " + checkNum);
 
         /* 이메일 보내기 */
         String setFrom = "plusprojectofficial@gmail.com";

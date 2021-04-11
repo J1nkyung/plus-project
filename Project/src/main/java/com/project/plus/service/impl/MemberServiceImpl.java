@@ -1,13 +1,14 @@
 package com.project.plus.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.SearchCriteriaMem;
 import com.project.plus.mapper.MemberMapper;
@@ -86,6 +87,18 @@ public class MemberServiceImpl implements MemberService {
 		return membermapper.viewMember(memberNum);
 	}
 
+	public boolean checkPw(String memberEmail, String memberPassword) {
+		boolean result = false;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("memberEmail", memberEmail);
+		map.put("memberPassword", memberPassword);
+		int count = membermapper.checkPw(memberEmail, memberPassword);
+		if(count == 1) result = true;
+		return result;
+	}
+
+	
+	
 	@Override
 	   public void updateMemberPoint(MemberVO vo) {
 	      membermapper.updateMemberPoint(vo);

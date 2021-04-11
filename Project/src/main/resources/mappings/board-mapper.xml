@@ -78,13 +78,28 @@
 	 </delete>
 	 
 	 <select id="viewMyList" resultMap="boardResult" parameterType="map">
-	 SELECT board.*, member_nickname, member_pic
-	 FROM board
-	 JOIN MEMBER
-	 USING (member_num)
-	 WHERE club_num = #{clubNum}
-	 AND member_num = #{memberNum} 
-	 ORDER BY board.board_regdate desc 
+	SELECT *
+    FROM 
+	      (SELECT board.*, member_nickname, member_pic,
+	      row_number() over(order by board.board_regdate desc) as rNum
+		  FROM BOARD
+	      JOIN MEMBER
+		  USING (member_num)
+ 	   	  WHERE club_num = #{clubNum}
+		  AND member_num = #{memberNum} 
+	      								)myList
+	where club_num = #{clubNum}
+		  AND member_num = #{memberNum}  
+	and rNum BETWEEN #{rowStart} and #{rowEnd} 
+	ORDER BY board_regdate DESC;
+	 </select>
+	 
+	 <select id="myListCount" resultType="int">
+	 	<![CDATA[
+		SELECT COUNT(board_num)
+		  FROM board
+		 WHERE board_num > 0
+	]]>
 	 </select>
 
 </mapper> 
