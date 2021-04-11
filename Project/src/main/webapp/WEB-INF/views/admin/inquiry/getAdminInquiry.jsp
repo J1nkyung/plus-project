@@ -23,7 +23,7 @@
 body {
 	font-family: 'NanumSquare';
 }
-.content-data {
+/* .content-data {
 	padding:30px;
 	white-space:pre;
 }
@@ -35,70 +35,92 @@ td {
 
 .wrapper{
 	margin : 0 auto;
+} */
+tbody {
+border-top:2px gray solid;
 }
+th {
+background-color:#eee;
+border-bottom:1px #bbb solid;
+padding-left:15px;
+padding-right:15px;
+}
+tr td {
+height:45px;
+border:1px #bbb solid;
+border-right:1px #bbb solid;
+padding-left:15px;
+}
+.content {
+height: auto;
+white-space:pre;
+padding-left:15px;
+padding-right:15px;
+padding-top:15px;
+padding-bottom:15px;
+}
+
 </style>
 
 
 </head>
 <body>
-<div class="wrapper">
-	<center>
+<!-- new 게시판 양식 -->
+ <table class="board_view" style="border:1px solid #ccc" >
+
 	<h2>문의 상세보기</h2>
-	<hr>
-
-
-<center>
-	<table border="1" width="70%" height="200">
-		<div class="container">
-			<div class="post">
-				<tr>
-					<th width="10%"><center>제목</center></th>
-					<td>${adminInquiry.inquiryTitle}</td>
-				</tr>	
-				<tr>
-					<th width="10%"><center>닉네임</center></th>
-					<td>${adminInquiry.memberNickname}</td>
-				</tr>
-				<tr>
-					<th><center>이메일</center></th>
-					<td>${adminInquiry.memberEmail}</td>
-				</tr>
-				<tr>
-					<th><center>카테고리</center></th>
-					<td>${adminInquiry.inquiryType}</td>
-				</tr>	
-				<tr>
-					<th><center>문의일자</center></th>
-					<fmt:parseDate var="parseRegDate" value="${adminInquiry.inquiryRegDate}"
+        <colgroup>
+            <col width="15%">
+            <col width="35%">
+            <col width="15%">
+            <col width="*">
+        </colgroup>
+         
+        <tbody>
+            <tr>
+                <th>제목</th>
+                <td>${adminInquiry.inquiryTitle}</td>
+                <th>작성시간</th>
+                <fmt:parseDate var="parseRegDate" value="${adminInquiry.inquiryRegDate}"
 							pattern="yyyy-MM-dd" />
 						<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
 							pattern="yyyy-MM-dd" />
-						<td style="padding-left:20px;">${resultRegDt}</td>
-				</tr>
-				<tr>
-					<th><center>내용</center></th>
-					<td class="content-data" style="white-space:pre;">${adminInquiry.inquiryContent}</td>
-				</tr>
-			</div>
-		</div>
-	</table>
-	
-	<hr>
-	
+                <td>${resultRegDt}</td>
+                
+            </tr>
+            <tr>
+                <th>작성자</th>
+                <td>${adminInquiry.memberNickname}</td>
+                <th>이메일</th>
+                <td>${adminInquiry.memberEmail}</td>
+            </tr>
+            <tr class="content">
+                <th>내용</th>
+                <td colspan="3">
+                   ${adminInquiry.inquiryContent}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  
+
+	<br/><br/>
 <c:set var="inquiryAnswer" value="${adminInquiry.inquiryAnswer}" />
 
 <c:if test="${not empty inquiryAnswer}">
-	<h2>답변 출력</h2>
-	<table border="1" width="70%" height="auto">
-	<tr height="25">
-    <th><center>답변 날짜</center></th>
+	<h2>답변</h2>
+	<table style="border:1px solid #ccc">
+	
+	<table border="1" width="60%" height="auto">
+	<tr>
+    <th>답변 날짜</th>
     <fmt:parseDate var="parseRegDate" value="${adminInquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
 	<fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd" />
 	<td style="text-indent:20px;"><c:out value="${resultRegDt}"/></td>
     </tr>
-    <tr height="50">
- 	<th><center>답변 내용</center></th>
-    <td style="text-indent:20px"><c:out value="${adminInquiry.inquiryAnswer}"/></td>
+    <tr>
+ 	<th>답변 내용</th>
+    <td class="content"><c:out value="${adminInquiry.inquiryAnswer}"/></td>
     </tr>
     </table>
     <hr>
@@ -123,9 +145,9 @@ td {
 	<a href="adminInquiry"><button type="submit" class="btn btn-primary" id="listBtn">문의 목록</button></a>
 	
 
-	</center>
+	
 </div>
-</center>	
+
 
 <!-- </div> -->
 

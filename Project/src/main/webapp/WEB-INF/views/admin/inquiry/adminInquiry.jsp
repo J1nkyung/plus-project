@@ -70,9 +70,16 @@ a:hover {
 	border-collapse: collapse;
 }
 
+#tableWrapper table th:first-child {
+	border-radius:10px 0px 0px 0px;
+}
+#tableWrapper table th:last-child {
+	border-radius:0px 10px 0px 0px;
+}
+
 #tableWrapper table th {
 	text-align: center;
-	background-color: grey;
+/* 	background-color: grey; */
 	height: 19.6px;
 	padding: 13px;
 	background-color: #001eff;

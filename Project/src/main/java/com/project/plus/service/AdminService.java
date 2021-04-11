@@ -7,6 +7,7 @@ import com.project.plus.domain.CriteriaAdmin;
 import com.project.plus.domain.InquiryVO;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.PaymentVO;
+import com.project.plus.domain.SearchCriteriaAdmin;
 import com.project.plus.domain.VisitCountVO;
 
 public interface AdminService {
@@ -45,12 +46,19 @@ public interface AdminService {
 	int getJoin_5(MemberVO mvo);
 	int getJoin_6(MemberVO mvo);
 
-	public List<PaymentVO> adminPayList(CriteriaAdmin cri) throws Exception;
-	public int adminPayListCount(CriteriaAdmin cri) throws Exception;
+//	public List<PaymentVO> adminPayList(CriteriaAdmin cri) throws Exception;
+//	public int adminPayListCount(CriteriaAdmin cri) throws Exception;
+	
+	public List<PaymentVO> adminPayList(SearchCriteriaAdmin cri) throws Exception;
+	public int adminPayListCount(SearchCriteriaAdmin cri) throws Exception;
 	
 	void deleteAdminClub(ClubVO cvo);
 
 	public List<ClubVO> adminClubList(CriteriaAdmin cri) throws Exception;
 	public int adminClubListCount(CriteriaAdmin cri) throws Exception;
+	int adminClubListCount(ClubVO cvo);
+	
+//	public List<PaymentVO> payList(SearchCriteriaAdmin scad);
+//	public int payListCount(SearchCriteriaAdmin scad);
 	
 }

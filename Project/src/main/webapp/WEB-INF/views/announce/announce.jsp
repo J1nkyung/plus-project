@@ -68,7 +68,7 @@
 	<c:if test="${user.memberNum eq 1}">
 	<div class="announce-write" style="margin-bottom:40px; float:center;">
 		<form action="insertAnnounce" method="post">
-		<button type="submit" class="btn btn-primary pull-right"><a href="announceForm">글 등록하기</a></button>
+		<button type="submit" class="btn btn-primary"><a href="announceForm">글 등록하기</a></button>
 		</form>
 	</div>
 	</c:if>

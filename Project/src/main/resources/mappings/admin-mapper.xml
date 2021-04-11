@@ -183,5 +183,20 @@
 		SELECT * FROM INQUIRY WHERE
 		INQUIRY_TYPE=#{inquiryType}
 	</select>-->
+	
+	<!-- 결제내역 페이징에 필요한 쿼리 전체글 세는 갯수-->
+<select id="payListCount" resultType="int" parameterType="com.project.plus.domain.SearchCriteriaAdmin">
+		SELECT *
+		  FROM payment
+		<include refid="search"></include>	
+</select>
+<sql id="search">
+	<if test="searchType != null">
+		<if test="searchType == 'cn'.toString()" >WHERE club_name LIKE ( '%', #{keyword}, '%')</if>
+		<if test="searchType == 'n'.toString()" >WHERE member_nickname LIKE ('%', #{keyword},'%')</if>
+		<if test="searchType == 'm'.toString()" >WHERE pay_method LIKE ('%', #{keyword},'%')</if>
+<!-- 		<if test="searchType == 'd'.toString()" >AND pay_date LIKE CONCAT ('%', #{keyword},'%')</if> -->
+	</if>
+</sql>
 
 </mapper>

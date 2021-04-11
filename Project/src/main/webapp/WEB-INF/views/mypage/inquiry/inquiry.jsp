@@ -4,6 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link rel="stylesheet" href="${path}/resources/css/reviewList.css">
@@ -29,15 +30,15 @@
 <style>
 body {
 	font-family: 'NanumSquare', sans-serif;
-	margin-left:40px;
+	margin-left: 40px;
 }
 
 a {
-color:inherit;
+	color: inherit;
 }
 
 a:hover {
-text-decoration:none;
+	text-decoration: none;
 }
 
 .Container {
@@ -66,9 +67,17 @@ text-decoration:none;
 	border-collapse: collapse;
 }
 
+#tableWrapper table th:first-child {
+	border-radius:10px 0px 0px 0px;
+}
+#tableWrapper table th:last-child {
+	border-radius:0px 10px 0px 0px;
+}
+
+
 #tableWrapper table th {
 	text-align: center;
-	background-color: grey;
+	/* background-color: grey; */
 	height: 19.6px;
 	padding: 13px;
 	background-color: #001eff;
@@ -167,22 +176,38 @@ li {
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="inquiry" items="${inquiryList}">
-									<tr>
-										<td>${inquiry.inquiryType}</td>
-										<td><a
-											href="${path}/getInquiry?inquiryNum=${inquiry.inquiryNum}"
-											class="inquiry-title">${inquiry.inquiryTitle}</a></td>
-										<fmt:parseDate var="parseRegDate"
-											value="${inquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
-										<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
-											pattern="yyyy-MM-dd" />
-										<td class="text-center">${resultRegDt}</td>
-										<td class="text-center"><button type="button"
-												class="btn btn-primary btn-sm" style="width: 70px">${inquiry.inquiryState}</button></td>
+								<c:choose>
+									<c:when test="${fn:length(inquiryList) > 0}">
+										<c:forEach var="inquiry" items="${inquiryList}">
+											<tr>
+												<td>${inquiry.inquiryType}</td>
+												<td><a
+													href="${path}/getInquiry?inquiryNum=${inquiry.inquiryNum}"
+													class="inquiry-title">${inquiry.inquiryTitle}</a></td>
+												<fmt:parseDate var="parseRegDate"
+													value="${inquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
+												<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
+													pattern="yyyy-MM-dd" />
+												<td class="text-center">${resultRegDt}</td>
+												<td class="text-center"><%-- <button type="button"
+														class="btn btn-primary btn-sm" style="width: 70px">${inquiry.inquiryState}</button></td> --%>
+														<c:if test="${inquiry.inquiryState eq '처리중'}">
+										<button type="button" class="btn btn-outline-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button></td>
+										</c:if>
+										<c:if test="${inquiry.inquiryState eq '답변완료'}">
+										<button type="button" class="btn btn-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button></td>
+										</c:if>
 
-									</tr>
-								</c:forEach>
+											</tr>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<tr>
+											<td colspan="4">조회된 결과가 없습니다.</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
+
 							</tbody>
 						</table>
 					</div>
@@ -190,10 +215,10 @@ li {
 					<div id="pageArea">
 
 						<ul class="paging">
-						
+
 							<c:if test="${pageMakerAdmin.prev}">
-							<li><a class="span"
-								href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.startPage - 1)}">◀</a></li>
+								<li><a class="span"
+									href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.startPage - 1)}">◀</a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMakerAdmin.startPage}"
@@ -203,23 +228,26 @@ li {
 							</c:forEach>
 
 							<c:if test="${pageMakerAdmin.next && pageMakerAdmin.endPage > 0}">
-							<li><a class="span"
-								href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.endPage + 1)}">▶</a></li>
+								<li><a class="span"
+									href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.endPage + 1)}">▶</a></li>
 							</c:if>
 						</ul>
 
 					</div>
 					<!-- pageArea -->
 				</form>
-				</div>
-						<button class="btn btn-primary pull-right">
-							<a href="${path}/inquiryForm.jsp">문의</a>
-						</button>
-					</div>
 			</div>
-			<!-- wrapper -->
-
+			<div class="col-12">
+				<input type="hidden" name="memberNum" value="${user.memberNum}">
+				<input type="hidden" name="inquiryType" value="${inquiry.inquiryType}">
+				<button class="btn btn-primary pull-right">
+					<a href="${path}/inquiryForm?memberNum=${user.memberNum}">문의</a>
+				</button>
+			</div>
 		</div>
+		<!-- wrapper -->
+
+	</div>
 	</div>
 
 

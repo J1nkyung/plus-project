@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.CriteriaAdmin;
@@ -16,6 +17,7 @@ import com.project.plus.domain.InquiryVO;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.PageMakerAdmin;
 import com.project.plus.domain.PaymentVO;
+import com.project.plus.domain.SearchCriteriaAdmin;
 import com.project.plus.domain.VisitCountVO;
 import com.project.plus.service.AdminService;
 
@@ -78,7 +80,7 @@ public class AdminController {
 
 	// 관리자 : 차트 페이지
 	@RequestMapping("/adminChart")
-	public String getAdminChart(MemberVO mvo, VisitCountVO vcvo, Model model) {
+	public String getAdminChart(ClubVO cvo, MemberVO mvo, VisitCountVO vcvo, Model model) {
 		model.addAttribute("adminChart", ads.getAdminChart(mvo));
 		model.addAttribute("adminTotalVisit", ads.getAdminVisit(vcvo));
 		model.addAttribute("adminTodayVisit", ads.getAdminDayVisit(vcvo));
@@ -99,22 +101,37 @@ public class AdminController {
 		model.addAttribute("getJoin_4", ads.getJoin_4(mvo));
 		model.addAttribute("getJoin_5", ads.getJoin_5(mvo));
 		model.addAttribute("getJoin_6", ads.getJoin_6(mvo));
-		return "charttest.adch";
+		model.addAttribute("adminClubListCount", ads.adminClubListCount(cvo));
+		return "/admin/charttest";
 	}
 	
+//	// 관리자 : 모든 회원들의 결제내역 목록 조회
+//	@RequestMapping("/adminPay")
+//	public String adminPayList(CriteriaAdmin cri, Model model) throws Exception {
+//		List<PaymentVO> adminPayList = ads.adminPayList(cri);
+//		System.out.println(adminPayList);
+//		model.addAttribute("adminPayList",adminPayList);
+//		
+//		PageMakerAdmin pgmad = new PageMakerAdmin();
+//		pgmad.setCri(cri);
+//		pgmad.setTotalCount(ads.adminPayListCount(cri));
+//		model.addAttribute("pageMakerPay", pgmad);
+//		return "/admin/adminPayment";
+//	} 일단은 검색 할동안 잠시..
+	
 	// 관리자 : 모든 회원들의 결제내역 목록 조회
-	@RequestMapping("/adminPay")
-	public String adminPayList(CriteriaAdmin cri, Model model) throws Exception {
-		List<PaymentVO> adminPayList = ads.adminPayList(cri);
-		System.out.println(adminPayList);
-		model.addAttribute("adminPayList",adminPayList);
-		
-		PageMakerAdmin pgmad = new PageMakerAdmin();
-		pgmad.setCri(cri);
-		pgmad.setTotalCount(ads.adminPayListCount(cri));
-		model.addAttribute("pageMakerPay", pgmad);
-		return "adminPayment.adch";
-	}
+		@RequestMapping(value="/adminPay", method=RequestMethod.GET)
+		public String adminPayList(SearchCriteriaAdmin scad, Model model) throws Exception {
+			List<PaymentVO> adminPayList = ads.adminPayList(scad);
+			System.out.println(adminPayList);
+			model.addAttribute("adminPayList",adminPayList);
+			
+			PageMakerAdmin pgmad = new PageMakerAdmin();
+			pgmad.setCri(scad);
+			pgmad.setTotalCount(ads.adminPayListCount(scad));
+			model.addAttribute("pageMakerPay", pgmad);
+			return "/admin/adminPayment";
+		}
 
 	// 관리자 : 모든 모임 목록 조회	
 	@RequestMapping("/adminClub")

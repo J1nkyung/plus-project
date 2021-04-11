@@ -69,10 +69,16 @@ a:hover {
 	width: 100%;
 	border-collapse: collapse;
 }
+#tableWrapper table th:first-child {
+	border-radius:10px 0px 0px 0px;
+}
+#tableWrapper table th:last-child {
+	border-radius:0px 10px 0px 0px;
+}
 
 #tableWrapper table th {
 	text-align: center;
-	background-color: grey;
+	/* background-color: grey; */
 	height: 19.6px;
 	padding: 13px;
 	background-color: #001eff;
@@ -146,6 +152,37 @@ color:white;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.btn-outline-primary {
+    border-color: #A9BCF5;
+    color: #A9BCF5; }
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    border-color: #819FF7;
+    background-color: #819FF7;
+    color: #FFF; }
+.btn-outline-primary:active,
+.btn-outline-primary:visited,
+.btn-outline-primary:active:focus,
+.btn-outline-primary:active:hover {
+    border-color: #CED8F6;
+    background-color: #819FF7;
+    color: #FFF; }
+    
+.btn-outline-danger {
+    border-color: #E2A9F3;
+    color: #E2A9F3; }
+.btn-outline-danger:hover,
+.btn-outline-danger:focus {
+    border-color: #D0A9F5;
+    background-color: #D0A9F5;
+    color: #FFF; }
+.btn-outline-danger:active,
+.btn-outline-danger:visited,
+.btn-outline-danger:active:focus,
+.btn-outline-danger:active:hover {
+    border-color: #F2E0F7;
+    background-color: #E2A9F3;
+    color: #FFF; }
 </style>
 
 <body>
@@ -191,27 +228,27 @@ color:white;
 
 										<c:if test="${club.clubOnOff eq '온라인'}">
 											<td class="text-center">
-											<button type="button" class="btn btn-outline-warning btn-sm" style="width: 70px">ON</button></td>
+											<button type="button" class="btn btn-outline-warning btn-sm" style="width: 50px">ON</button></td>
 										</c:if>
 										<c:if test="${club.clubOnOff eq '오프라인'}">
 											<td class="text-center">
-											<button type="button" class="btn btn-outline-info btn-sm" style="width: 70px">OFF</button></td>
+											<button type="button" class="btn btn-outline-info btn-sm" style="width: 50px">OFF</button></td>
 										</c:if>
 
 										<c:if test="${club.clubKind eq 1}">
 											<td class="text-center">
-											<button type="button" class="btn btn-outline-primary btn-sm" style="width: 70px; font-weight: bold;">가치+</button></td>
+											<button type="button" class="btn btn-outline-primary btn-sm" style="width: 60px; font-weight: bold;">가치+</button></td>
 										</c:if>
 										<c:if test="${club.clubKind eq 2}">
 											<td class="text-center">
-											<button type="button" class="btn btn-outline-danger btn-sm" style="width: 70px; font-weight: bold;">도움+</button></td>
+											<button type="button" class="btn btn-outline-danger btn-sm" style="width: 60px; font-weight: bold;">도움+</button></td>
 										</c:if>
 										<form action="deleteAdminClub" method="post">
 											<input type="hidden" name="clubNum" value="${club.clubNum}">
 											<td class="text-center">
 											
 											<button type="submit" class="btn btn-danger btn-sm" id="delBtn" 
-											style="width: 70px; font-weight: bold;">
+											style="width: 50px; font-weight: bold;">
 											<a href="${path}/deleteAdminClub?clubNum=${club.clubNum }">삭제</a></button>
 											
 											</td>
