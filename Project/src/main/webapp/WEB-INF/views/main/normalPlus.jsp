@@ -55,7 +55,7 @@
 
 							<a class="lightboxbest"
 									href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
-								<img id="clubmainpic"src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
+								<img id="clubmainpic"src="${path}/resources${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
 
 							</a>
@@ -77,7 +77,9 @@
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
-									<i class="fas fa-heart"> ${club.clubHeart}</i>
+									<i class="fas fa-heart"> ${club.clubHeart}</i>&nbsp;&nbsp;
+									
+                                   <i class="fab fa-product-hunt">&nbsp;${club.clubFee}</i>
 
 								</div>
 
@@ -124,7 +126,7 @@
 
 							<a class="lightbox"
 							href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
-								<img id="clubmainpic"src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
+								<img id="clubmainpic"src="${path}/resources${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
 							</a>
 							<div class="card-bodyarea">
@@ -145,7 +147,9 @@
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
-									<i class="fas fa-heart"> ${club.clubHeart}</i>
+									<i class="fas fa-heart"> ${club.clubHeart}</i>&nbsp;&nbsp;
+									
+                                   <i class="fab fa-product-hunt">&nbsp;${club.clubFee}</i>
 
 								</div>
 
