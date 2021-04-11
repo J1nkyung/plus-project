@@ -30,6 +30,7 @@
 
 
 <title>더하기+ 같이해서 더 가치있는 모임</title>
+
 </head>
 
 <body>
@@ -103,14 +104,55 @@
 	<div id="current-location"></div>
 
 	<!--검색창 -->
-	<div class=search>
-		<form class="box" action="totalList.do" method="get"
+	<!-- <div class=search>
+		<form class="box" action="totalList" method="get"
 			onsubmit="return inputCheckMain()">
-			<input type="text" name="keyword" size="30" id="searchbox"
-				placeholder=" 관심있는 더하기를 검색해보세요 🔍"> <input type="submit"
-				value="검색">
+			<input type="text" name="keyword" size="30" id="searchbox" 
+				placeholder=" 관심있는 더하기를 검색해보세요 🔍"> 
+				<input type="submit" id="searchBtn" value="검색">
 		</form>
-	</div>
+		<script>
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "totalList" + '${pageMaker.makeQuery(1)}' + "&searchType=t" + "&keyword=" + encodeURIComponent($('#searchbox').val());
+        });
+      });   
+    </script>	
+	</div> -->
+	<div class=search>
+	<div class=searchbox>
+	
+	 <input type="text" name="keyword" id="keywordInput" size="40"
+						value="${scri.keyword}" placeholder=" 관심있는 더하기를 검색해보세요 🔍"/>
+					<button id="searchBtn" type="button">검색</button>
+				
+					</div>
+					</div>
+					<script>
+					
+
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "totalList" + '?page=1&perPageNum=20' + "&searchType=t" + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+ 
+      /*  <!------------------검색창----------------->
+              const inputCheckMain = function(){
+                  // 공백을 제거한 뒤에 개수를 세던지 한다.
+                  let headerKeyword = $.trim($("[name=keyword]").val());
+                  $('[name=keyword]').val(keyword);
+                  console.log(keyword.length);
+                  if (keyword.length = 0) {
+                     alert("검색어를 입력해주세요.");
+                     return false;
+                  }
+               }; 
+            */
+               
+    </script>	
+		
+    
 
 	<!--검색 카테고리 -->
 	<div class="middle">
@@ -151,22 +193,24 @@
 
 							<a class="lightbox"
 								href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
-
-								<img id="clubmainpic"
-								src="${path}/resources${club.clubMain_pic}"
-								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
-
-
+									<img id="clubmainpic" src="${path}/resources${club.clubMain_pic}"
+									onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
 							</a>
 							<div class="card-bodyarea">
 								<div class=spanspace>
-									<span class="badge" id="onoff">${club.clubOnOff}</span> <span
-										class="badge" id="freq">${club.clubFreq}</span>
+								 <c:if test="${club.clubOnOff eq '온라인'}">
+        	  <span class="badge" id="onoff">${club.clubOnOff}</span> 
+         </c:if>
+          <c:if test="${club.clubOnOff eq '오프라인'}">
+        	  <span class="badge" id="onoff1" >${club.clubOnOff}</span> 
+         </c:if>
+           
+            <span class="badge" id="freq">${club.clubFreq}</span>
 
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-										href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+										href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
@@ -217,21 +261,26 @@
 
 							<a class="lightbox"
 								href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
-								<img id="clubmainpic"
-								src="${path}/resources${club.clubMain_pic}"
+									<img id="clubmainpic" src="${path}/resources${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
 
 
 							</a>
 							<div class="card-bodyarea">
 								<div class=spanspace>
-									<span class="badge" id="onoff">${club.clubOnOff}</span> <span
-										class="badge" id="freq">${club.clubFreq}</span>
+								 <c:if test="${club.clubOnOff eq '온라인'}">
+        	  <span class="badge" id="onoff">${club.clubOnOff}</span> 
+         </c:if>
+          <c:if test="${club.clubOnOff eq '오프라인'}">
+        	  <span class="badge" id="onoff1" >${club.clubOnOff}</span> 
+         </c:if>
+           
+            <span class="badge" id="freq">${club.clubFreq}</span>
 
 								</div>
 								<div class=clubtitle>
 									<a class=clubtitle
-										href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+										href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
@@ -266,8 +315,8 @@
 
 
 	<div class="addplus">
-		<a href="clubForm"><span class="material-icons"
-			style="font-size: 55px;"> add_circle </span></a>
+		<span class="material-icons"
+			style="font-size: 55px;"> add_circle </span>
 	</div>
 
 	</div>
@@ -308,11 +357,20 @@
 <!--구글맵 api-->
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.js"></script> -->
+
 <script>
 <!--메인 carousel 2초-->
 /* $('.carousel').carousel({ interval: 2000 }); */
-
+$('.addplus').on('click',function(){
+ // 로그인 검사 
+if(! '${user.memberNum}'){
+   alert("로그인해주세요!");
+   return;
+} else {
+	window.location.href="clubForm";
+	
+}
+});
     
 
         <!------------------스크롤 위로 올리기----------------->
@@ -339,7 +397,7 @@
         
         
         
-        <!------------------검색창----------------->
+/*         <!------------------검색창----------------->
         const inputCheckMain = function(){
             // 공백을 제거한 뒤에 개수를 세던지 한다.
             let headerKeyword = $.trim($("[name=keyword]").val());
@@ -349,8 +407,9 @@
                alert("30자 이하로 검색해주세요.");
                return false;
             }
-         };
+         }; */
      
+         
   
          $( document ).ready( function() {
              
@@ -430,7 +489,7 @@
          $( document ).ready( function() {
         	 var jbOffset = $( '.material-icons' ).offset();
              $( window ).scroll( function() {
-               if ( $( document ).scrollTop() > 500) {
+               if ( $( document ).scrollTop() > 300) {
                  $( '.material-icons' ).addClass( 'buttonFixed' );
                }
                else {

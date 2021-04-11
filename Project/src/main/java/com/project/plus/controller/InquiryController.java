@@ -33,11 +33,14 @@ public class InquiryController {
 	// 회원 : 1:1 문의글 작성 폼
 	@RequestMapping(value = "/inquiryForm", method = RequestMethod.GET)
 	public String inquiryForm(InquiryVO vo, MemberVO mvo, HttpSession session) throws Exception {
+<<<<<<< HEAD
 		/*
 		 * MemberVO user = (MemberVO) session.getAttribute("user");
 		 * vo.setMemberNum(user.getMemberNum()); is.inquiryForm(vo);
 		 * System.out.println("inquiryForm" + vo);
 		 */
+=======
+>>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 		return "inquiryForm.inqu";
 	}
 

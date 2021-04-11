@@ -245,7 +245,6 @@ margin-left:3px;
 
    
 .dropbtn {
-  background-color:#f5f4f4;
   padding: 30px 16px 5px 16px;
   font-size: 16px;
   border: none;
@@ -330,9 +329,6 @@ padding-bottom:30px;
          <img src="${path }/resources/img/penwhite.png"></button>
          
 
- 
-      <input type="button" name="boardForm" id="boardForm"
-         onclick="location.href='${path}/insertBoardForm'" value="글쓰기">
 
 <div id="repeatBox">
 
@@ -573,7 +569,6 @@ let contentCnt = '${contentCount}'
 	
 	
 	
-// 나중에 session 멤버 번호를 가져와야함 
 let mNum = '${user.memberNum}';
 let userNickname = '${user.memberNickname}';
 let boardNum = 0;
@@ -948,7 +943,7 @@ function insertComment(bNum){
 		 					
 		 					let notMessage ="회원님의 게시글에 <b>" + userNickname + "</b>님이 새로운 댓글을 등록했어요!";
 		 					let notType= "댓글";
-		 					let notUrl = "${path}/getCommunity?clubNum=" + clubNum;
+		 					let notUrl = "${path}/viewMyContent?boardNum=" + bNum;
 		 					  $.ajax({
 		 					        
 		 							type: "post",

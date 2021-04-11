@@ -14,6 +14,7 @@ public class ClubVO {
 	private int clubNum;
 	private String clubMain_pic;
 	private String clubThumb_pic;
+	private String clubThumbpic;
 	private String clubName;
 	private String clubLeader;
 	private int clubKind;
@@ -27,7 +28,7 @@ public class ClubVO {
 	private String clubContent2_pic;
 	private Date clubStartDate;
 	private Date clubEndDate;
-	private Date clubMakeDate;
+	private Date clubMakeDate;	
 	private Date clubShutDate;
 	private int clubFee;
 	private String clubHashtag;

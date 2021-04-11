@@ -42,7 +42,7 @@ public class TotalListController {
 		
 		List<ClubVO> list = service.getListPaging(scri);
 		model.addAttribute("list", list);
-
+	
 		PageMakerDTO pageMaker = new PageMakerDTO();
 		pageMaker.setCriteria(scri);
 		pageMaker.setTotalCount(service.getTotal(scri));

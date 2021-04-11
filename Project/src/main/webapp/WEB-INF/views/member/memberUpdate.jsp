@@ -184,7 +184,7 @@ $(document).ready(function(){
 <body>
     <!-- header -->
     <div id="header">
-        <h1>회원정보수정</h1>
+        <!-- <h1>회원정보수정</h1> -->
         <!-- <img src="../images/logo.png" id="logo"> -->
     </div>
 

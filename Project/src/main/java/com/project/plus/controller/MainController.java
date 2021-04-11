@@ -38,6 +38,14 @@ public class MainController {
 		
 		// service.getListBest(인기더하기)를 main이라는 이름을 통해 뷰에 보내준다.
 		model.addAttribute("main", service.getListBest(cvo));
+//		
+//		int i=0;
+//		
+//		for(ClubVO cv : (ClubVO)service.getListBest(cvo).get(i)) {
+//			i++;
+//			log.info(cv.getClubMain_pic());
+//		}
+		
 		// service.getListDeadline(마감임박 더하기)를 main2이라는 이름을 통해 뷰에 보내준다.
 		model.addAttribute("main2", service.getListDeadline(cvo));
 		return "index.main";

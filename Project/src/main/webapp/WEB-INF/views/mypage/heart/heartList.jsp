@@ -15,20 +15,29 @@
 <title>HeartPage</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 <!--<link rel="stylesheet" href="css/heart.css">  -->
 <style>
+
+/* 진경 추가 */
+.fixed-top{
+	position:sticky;
+}
+
 .heartContainer {
 	margin: 0;
-	/* width: 1140px; */
+	width: 1140px; 
+	margin-left: 7%;
+	    /*  position: absolute; */
 }
+
 
 #heartTitle {
 	margin: 4% 6%;
@@ -146,6 +155,28 @@ div {
 	.card:hover {
 	    background-color: #eee;
 	}
+	
+table {
+    border-collapse: collapse;
+}
+ #noHeartDiv{
+ 	width: 87%;
+ 	height : 100%;
+    border: 2px solid #eee;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
+ 	padding: 5.9%;
+ 	font-size : 20px;
+ 	text-align : center;
+ }
+ 
+ .card-img-top {
+    width: 100%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+    width: 100%;
+    height: 320px;
+}
+
 </style>
 </head>
 
@@ -169,8 +200,10 @@ div {
 						</tr>
 					</table>
 				</div>
-				<div id="fBoxes">
-
+				<c:if test="${ empty selectFreeClub }">
+				 	<p id="noHeartDiv">찜한 모임이 없습니다.🐾<p>
+				</c:if>
+				<div id="fBoxes">	
 					<c:forEach var="freeclub" items="${selectFreeClub}">
 						<div id="cardPadding">
 							<input type="checkbox" class="inputB" id="card1" name="clubNum"
@@ -181,7 +214,7 @@ div {
 									</c:if>
 									<c:if
 										test="${freeclub.clubThumbPic != null || freeclub.clubThumbPic== ''}">
-										<img src="${path}/resources/img/${freeclub.clubThumbPic}" class="card-img-top" alt="Card image" style="width: 100%">
+										<img src="${path}/resources/img/tmpImg/${freeclub.clubThumbPic}" class="card-img-top" alt="Card image" style="width: 100%">
 									</c:if>
 
 									<div class="card-body">
@@ -226,7 +259,9 @@ div {
 						</tr>
 					</table>
 				</div>
-
+				<c:if test="${ empty selectNoFreeClub }">
+				 	<p id="noHeartDiv">찜한 모임이 없습니다.🐾<p>
+				</c:if>
 				<div id="fBoxes">
 
 					<c:forEach var="nofreeclub" items="${selectNoFreeClub}">
@@ -235,16 +270,16 @@ div {
 								value="${nofreeclub.clubNum}"><br> <label
 								for="card">
 								<div class="card" style="width: 400px" onclick="location.href='getClub?clubNum=${nofreeclub.clubNum}'">
-									<c:if
-										test="${nofreeclub.clubThumbPic == null || nofreeclub.clubThumbPic== ''}">
-										<img src="${path}/resources/img/goal.PNG" class="card-img-top"
-											alt="Card image" style="width: 100%">
-									</c:if>
-									<c:if
-										test="${nofreeclub.clubThumbPic != null || nofreeclub.clubThumbPic== ''}">
-										<img src="${path}/resources/img/${freeclub.clubThumbPic}"
+									<%-- <c:if
+										test="${nofreeclub.clubThumbPic == null || nofreeclub.clubThumbPic== ''}"> --%>
+									<%-- 	<img src="${path}/resources/img/goal.PNG" class="card-img-top"
+											alt="Card image" style="width: 100%"> --%>
+									<%-- </c:if> --%>
+									<%-- <c:if
+										test="${nofreeclub.clubThumbPic != null || nofreeclub.clubThumbPic== ''}"> --%>
+										<img src="${path}/resources/img/tmpImg/${nofreeclub.clubThumbPic}"
 											class="card-img-top" alt="Card image" style="width: 100%">
-									</c:if>
+									<%-- </c:if> --%>
 
 									<div class="card-body">
 										<h4 class="card-title">${nofreeclub.clubName }</h4>
@@ -274,6 +309,7 @@ div {
 			</section>
 		</div>
 	</div>
+</div>
 	<!-- 아래 임포트 src는 badge 부트스트랩 js  -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script

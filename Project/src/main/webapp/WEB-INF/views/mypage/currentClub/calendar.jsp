@@ -4,13 +4,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link rel="stylesheet" href="${path}/resources/css/calenderMain.css">
 
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset='utf-8' />
+<link rel="stylesheet" href="${path}/resources/css/calenderMain.css">
 <script src="${path}/resources/js/calendar.js"></script>
 <script>
 	var datee = new Date(); //오늘날짜 지목
@@ -83,7 +83,8 @@ function setInfo() {
 </head>
 <body>
 
-  <div id='calendar'></div>
+  <div id='calendar'>
+  </div>
 
 </body>
 </html>

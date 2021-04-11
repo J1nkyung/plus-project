@@ -19,19 +19,27 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
+
+<!-- font -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="${path}/resources/css/admin-aside.css">
 
-<!-- font -->
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+<!-- themify icon -->
+<!-- fontawesome CSS -->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+	integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+	crossorigin="anonymous">
 
 <style>
 body {
-	padding-top:30px;
+	padding-top: 30px;
 	font-family: 'NanumSquare', sans-serif;
 	margin-left: 40px;
 }
@@ -50,13 +58,17 @@ a:hover {
 }
 
 .Content {
-	padding: 40px 60px;
+	position: absolute;
+	left: 25%;
+	width: 70%;
 	height: 100vh;
 }
 
 #tableWrapper {
 	width: 85%;
 	height: 415.550px;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 #block {
@@ -97,9 +109,9 @@ a:hover {
 }
 
 .paging {
-	margin-top: 10px;
+	margin-top: 40px;
 	position: absolute;
-	left: 45%;
+	left: 37%;
 }
 
 .paging>li {
@@ -137,21 +149,25 @@ li {
 	float: left;
 	padding: 6px;
 }
-#delBtn a:hover{
-color:white;
+
+#delBtn a:hover {
+	color: white;
 }
-.clubname{
-	width:200px;
-	white-space:nowrap;
+
+.clubname {
+	width: 200px;
+	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.clubleader{
-	width:90px;
-	white-space:nowrap;
+
+.clubleader {
+	width: 90px;
+	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+<<<<<<< HEAD
 .btn-outline-primary {
     border-color: #A9BCF5;
     color: #A9BCF5; }
@@ -183,12 +199,30 @@ color:white;
     border-color: #F2E0F7;
     background-color: #E2A9F3;
     color: #FFF; }
+=======
+
+.nav-item {
+	font-size: 13px;
+	padding: 0px;
+	padding-left: 35px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	margin: 0;
+	padding: 5px;
+}
+#gomain{
+color:white; 
+font-size:12px;
+padding-top:30px;
+}
+>>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 </style>
 
 <body>
 	<div class="Container">
 		<div class="Content">
-			<h1>모임 관리</h1>
+			<h4>모임 관리</h4>
 
 			<div id="tableWrapper">
 				<form role="form" method="get" id="form">
@@ -213,7 +247,8 @@ color:white;
 									<tr>
 										<%-- <td>${club.clubNum}</td> --%>
 										<td>${club.clubCategory}</td>
-										<td><a href="${path}/getClub?clubNum=${club.clubNum}"><div class="clubname">${club.clubName}</div></a></td>
+										<td><a href="${path}/getClub?clubNum=${club.clubNum}"><div
+													class="clubname">${club.clubName}</div></a></td>
 										<td><div class="clubleader">${club.clubLeader}</div></td>
 										<fmt:parseDate var="parseRegDate"
 											value="${club.clubStartDate}" pattern="yyyy-MM-dd" />
@@ -228,29 +263,62 @@ color:white;
 
 										<c:if test="${club.clubOnOff eq '온라인'}">
 											<td class="text-center">
+<<<<<<< HEAD
 											<button type="button" class="btn btn-outline-warning btn-sm" style="width: 50px">ON</button></td>
 										</c:if>
 										<c:if test="${club.clubOnOff eq '오프라인'}">
 											<td class="text-center">
 											<button type="button" class="btn btn-outline-info btn-sm" style="width: 50px">OFF</button></td>
+=======
+												<button type="button" class="btn btn-outline-warning btn-sm"
+													style="width: 70px">ON</button>
+											</td>
+										</c:if>
+										<c:if test="${club.clubOnOff eq '오프라인'}">
+											<td class="text-center">
+												<button type="button" class="btn btn-outline-info btn-sm"
+													style="width: 70px">OFF</button>
+											</td>
+>>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 										</c:if>
 
 										<c:if test="${club.clubKind eq 1}">
 											<td class="text-center">
+<<<<<<< HEAD
 											<button type="button" class="btn btn-outline-primary btn-sm" style="width: 60px; font-weight: bold;">가치+</button></td>
 										</c:if>
 										<c:if test="${club.clubKind eq 2}">
 											<td class="text-center">
 											<button type="button" class="btn btn-outline-danger btn-sm" style="width: 60px; font-weight: bold;">도움+</button></td>
+=======
+												<button type="button" class="btn btn-outline-primary btn-sm"
+													style="width: 70px; font-weight: bold;">가치+</button>
+											</td>
+										</c:if>
+										<c:if test="${club.clubKind eq 2}">
+											<td class="text-center">
+												<button type="button" class="btn btn-outline-danger btn-sm"
+													style="width: 70px; font-weight: bold;">도움+</button>
+											</td>
+>>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 										</c:if>
 										<form action="deleteAdminClub" method="post">
 											<input type="hidden" name="clubNum" value="${club.clubNum}">
 											<td class="text-center">
+<<<<<<< HEAD
 											
 											<button type="submit" class="btn btn-danger btn-sm" id="delBtn" 
 											style="width: 50px; font-weight: bold;">
 											<a href="${path}/deleteAdminClub?clubNum=${club.clubNum }">삭제</a></button>
 											
+=======
+
+												<button type="submit" class="btn btn-danger btn-sm"
+													id="delBtn" style="width: 70px; font-weight: bold;">
+													<a href="${path}/deleteAdminClub?clubNum=${club.clubNum }">삭제</a>
+												</button>
+
+>>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 											</td>
 										</form>
 									</tr>
@@ -258,14 +326,80 @@ color:white;
 							</tbody>
 						</table>
 					</div>
+
+					<!--  사이드 바 추가 -->
+					<nav class="navbar navbar-expand-md navbar-light">
+						<div class="col-lg-3 sidebar fixed-top">
+							<button class="navbar-toggler ml-auto mb-2 bg-light"
+								type="button" data-toggle="collapse" data-target="#sidebar">
+								<span class="navbar-toggle-icon"></span>
+							</button>
+							<div class="collapse navbar-collapse" id="sidebar">
+								<div class="container-fluid">
+									<div class="row">
+										<!-- sidebar -->
+										<a href="#"
+											class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4">ADMIN
+											PAGE</a>
+										<!--  <div class="bottom-border pb-3"> -->
+										<img class="rounded-circle mr-3"
+											src="${path}/resources/img/admin.jpg" alt="" width="200px"
+											height="200px">
+
+									</div>
+									<div class="navcontent">
+										<ul class="navbar-nav flex-column mt-4">
+									
+											<!-- 회원 관리 -->
+											<li class="nav-item"><a href="memberListPage"
+												class="nav-link text-white p-3 mb-2 sidebar-link">
+													<i class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
+											</a></li>
+											<!-- 모임 관리 -->
+											<li class="nav-item"><a href="adminClub"
+												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+													class="fas fa-plus text-white fa-lg mr-3"></i>모임 관리
+											</a></li>
+
+											<!-- 문의 관리 -->
+											<li class="nav-item"><a href="adminInquiry"
+												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+													class="fas fa-question-circle text-white fa-lg mr-3"></i>문의
+													관리
+											</a></li>
+											<!-- 공지 관리 -->
+											<li class="nav-item"><a href="announce"
+												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+													class="fas fa-question-circle text-white fa-lg mr-3"></i>공지
+													관리
+											</a></li>
+											<!-- 결제내역 관리 -->
+											<li class="nav-item"><a href="adminPay"
+												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+													class="fas fa-coins text-white fa-lg mr-3"></i>결제내역 관리
+											</a></li>
+											<!-- 관리자 차트 -->
+											<li class="nav-item"><a href="adminChart"
+												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+													class="fas fa-question-circle text-white fa-lg mr-3"></i>차트
+													관리
+											</a></li>
+	<p id="gomain"><a href="main"><i class="fas fa-home"></i> 메인으로 가기 </a></p>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</nav>
+
 					<!-- pagenation -->
 					<div id="pageArea">
 
 						<ul class="paging">
 
 							<%-- <c:if test="${pageMakerClub.prev}"> --%>
-								<li><a class="span"
-									href="adminClub${pageMakerClub.makeQuery(pageMakerClub.startPage - 1)}">◀</a></li>
+							<li><a class="span"
+								href="adminClub${pageMakerClub.makeQuery(pageMakerClub.startPage - 1)}">◀</a></li>
 							<%-- </c:if> --%>
 
 							<c:forEach begin="${pageMakerClub.startPage}"
@@ -275,8 +409,8 @@ color:white;
 							</c:forEach>
 
 							<%-- <c:if test="${pageMakerClub.next && pageMakerClub.endPage > 0}"> --%>
-								<li><a class="span"
-									href="adminClub${pageMakerClub.makeQuery(pageMakerClub.endPage + 1)}">▶</a></li>
+							<li><a class="span"
+								href="adminClub${pageMakerClub.makeQuery(pageMakerClub.endPage + 1)}">▶</a></li>
 							<%-- </c:if> --%>
 						</ul>
 
@@ -295,6 +429,29 @@ color:white;
 				alert("모임이 삭제되었습니다");
 			});
 		});
+		
+		window.onload = function(){
+			selectNav();
+		}
+
+		function selectNav(){ 
+			// 지금 접속해있는 주소 얻어서 now에 넣어줌
+			var now = window.location.href;
+			// className이 ()인 값을 nav에 넣어줌
+				var nav = document.getElementsByClassName("nav-link text-white p-3 mb-2 sidebar-link");
+			// 주소에 포함되어야 하는 단어 배열로 선언
+				var arr = ["ListPage", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
+			
+
+			//기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
+				for (var i = 0; i < arr.length; i++) {
+					if(now.includes(arr[i])){
+				nav[i].setAttribute("class", "nav-link text-white p-3 mb-2 sidebar-link current");
+					}
+				}
+			
+		}
+
 	</script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -310,6 +467,8 @@ color:white;
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		crossorigin="anonymous"></script>
 	<script src="js/script.js"></script>
+	<script src="/resources/js/script.js"></script>
+
 </body>
 
 </html>

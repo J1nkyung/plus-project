@@ -29,7 +29,7 @@ public class FileUtils {
 				
 				// 파일의 원본 이름을 얻고
 				String orgFileName = file[i].getOriginalFilename();
-
+				log.info(orgFileName + i + "번째 파일 이름 " );
 				// 파일명 중복을 피하기 위해 고유한 id 생성 
 				UUID uid = UUID.randomUUID();
 
@@ -44,28 +44,44 @@ public class FileUtils {
 					file[i].transferTo(new File(uploadPath + datePath + File.separator + newFileName));
 					
 					if(i==0) {	// 프로필 사진 = 메인사진 
-						vo.setClubMain_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
-						String tPath = FileUtils.makeThumbnail(uploadPath, datePath, newFileName);
-						vo.setClubThumb_pic(File.separator + "uploadImg" + tPath);
-						
-					} else if (i==1) {	// 상세정보 사진 
+//						if(vo.getClubMain_pic().equals("deleted")) {
+//							vo.setClubMain_pic(null);
+//						}
+//						if(vo.getClubContent1_pic().equals("deleted")) {
+//							vo.setClubContent1_pic(null);
+//						}
+//						if(vo.getClubContent2_pic().equals("deleted")) {
+//							vo.setClubContent2_pic(null);
+//						}
+						 vo.setClubMain_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName); 
+						 log.info(vo.getClubMain_pic());
+						//썸네일 생성 
+						// String tPath = FileUtils.makeThumbnail(uploadPath, datePath, newFileName); 
+						// vo.setClubThumb_pic(File.separator + "uploadImg" + tPath);
+						 
+					} else if (i==1) {	
+						// 상세정보 사진 
 						vo.setClubContent1_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
-					} else {	// 리더소개 사진 
+						log.info(vo.getClubContent1_pic());
+					} else if (i==2) {
 						vo.setClubContent2_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);
+						log.info(vo.getClubContent2_pic());
+						
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					log.info("파일 업로드 오류");
 				}
-
-			} else {
-				if(i==0) {
-					// 사진 수정시 main pic을 삭제했을 때 썸네일 컬럼을 null로 update
-					vo.setClubMain_pic("");
-					vo.setClubThumb_pic("");
-					}
 			}
-			log.info("업로드 파일이 없습니다");
+
+//			} else {
+//				// 넘어온 파일이 없다면 == 사진 수정시 main pic을 삭제했을 때 썸네일 컬럼을 null로 update
+//				if(i==0) {
+//					
+//					vo.setClubMain_pic("");
+//					}
+//			}
+			log.info("업로드 파일이 없습니다" + i );
 		}
 		return vo;
 	}//

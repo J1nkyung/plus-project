@@ -9,7 +9,6 @@
 	fmt:formatDate : Date 형을 받아서 원하는 포멧으로 날짜 형태를 변경시켜 준다.-->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!-- 그래서 path 써주고 그 아래 소스 파일 이름 지정해주면 된다 ! 이건 진경언니가 준거 !   -->
-<link rel="stylesheet" href="${path}/resources/css/reviewList.css">
 
 <!DOCTYPE html>
 <html>
@@ -18,6 +17,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>모임리뷰리스트</title> 
+<link rel="stylesheet" href="${path}/resources/css/reviewList.css">
 </head>
 <body>	
 		<div class="reviewContainer">
@@ -38,10 +38,10 @@
 			                      <img src="${path}/resources/img/goal.PNG" class="clubPic" title="image">
 			                    </c:if> 
 			                    <c:if test="${noRvw.clubThumbPic != null || noRvw.clubThumbPic== ''}">                   
-			                      <img src="${path}/resources/img/${noRvw.clubThumbPic}" class="clubPic" title="image">
+			                      <img src="${path}/resources/img/tmpImg/${noRvw.clubThumbPic}" class="clubPic" title="image">
 			                    </c:if> 
 		                    
-		                       <div class="title_text">
+		                       <div class="title_text"><a href="getClub?clubNum=${noRvw.clubNum }" class="aTagg" style="text-decoration-line : none;">
 		                            <h2 title="모임타이틀 ">${noRvw.clubName}</h2>
 									<fmt:formatDate value="${noRvw.startDate}" var="startDateFmt" pattern="yyyy-MM-dd hh:mm"/>
 									<fmt:formatDate value="${noRvw.endDate}" var="endDateFmt" pattern="yyyy-MM-dd hh:mm"/>
@@ -55,12 +55,15 @@
 					                       		후기작성
 					                       </button>
 			                       	</form>
+			                   </a>
 		                       </div>
 		                    </div>
 		                </div>
 		        </c:forEach>
 		        </section>
 		        <section id="ReviewContent2" style="margin-bottom:20px;">
+		         <c:if test="${ empty selectNotReview }">
+		        	<p id="noReviewBox">작성한 리뷰가 없습니다! ⛳ <p></c:if>
 		        <c:forEach var="okayRvw" items="${selectOkayReview}">
 		                <!-- float left -->
 		                <div>
@@ -68,17 +71,17 @@
 		                    	<c:if test="${okayRvw.clubThumbPic == null || okayRvw.clubThumbPic == ''}">                   
 			                      <img src="${path}/resources/img/goal.PNG" class="clubPic" title="image">
 			                    </c:if> 
-			                    <c:if test="${okayRvw.clubThumbPic != null || okayRvw.clubThumbPic == ''}">                   
-			                     <img src="${path}/resources/img/${okayRvw.clubThumbPic}" class="clubPic" title="image">
+			                    <c:if test="${okayRvw.clubThumbPic != null || okayRvw.clubThumbPic != ''}">                   
+			                     <img src="${path}/resources/img/tmpImg/${okayRvw.clubThumbPic}" class="clubPic" title="image">
 			                    </c:if> 
-		                        <div class="title_text">
+		                        <div class="title_text"><a href="getClub?clubNum=${okayRvw.clubNum }" class="aTagg" style="text-decoration-line : none;">
 		                             <h2 title="모임타이틀">${okayRvw.clubName}</h2>
 		                             
 		                            <fmt:formatDate value="${okayRvw.startDate}" var="startDateFmt2" pattern="yyyy-MM-dd hh:mm"/>
 									<fmt:formatDate value="${okayRvw.endDate}" var="endDateFmt2" pattern="yyyy-MM-dd hh:mm"/>
 		                            
 		                            <h4>📆모임기간 : ${startDateFmt2} ~ ${endDateFmt2}</h4>
-		                        </div>
+		                        </a></div>
 		                        <div class="reviewBtn">
 			                        <form id="frm" name="frm" action="readReview.do">
 			                        	<input name="clubNum" type="hidden" value="${okayRvw.clubNum}"/>
@@ -94,6 +97,6 @@
 		        </section> 
 		    </div>        
 		</div>
-	
+	</div>
 </body>
 </html>

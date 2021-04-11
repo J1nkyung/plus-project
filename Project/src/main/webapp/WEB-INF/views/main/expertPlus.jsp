@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/expert.css">
+	href="${path}/resources/css/plus.css">
 
 <!-- 구글 아이콘 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -55,16 +55,21 @@
 
 							<a class="lightboxbest"
 									href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
-								<img id="clubmainpic"
-								src="${path}/resources${club.clubMain_pic}"
+								<img id="clubmainpic"src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
 
 
 							</a>
 							<div class="card-bodyarea">
 								<div class=spanspace>
-									<span class="badge" id="onoff">${club.clubOnOff}</span> <span
-										class="badge" id="freq">${club.clubFreq}</span>
+									 <c:if test="${club.clubOnOff eq '온라인'}">
+        	  <span class="badge" id="onoff">${club.clubOnOff}</span> 
+         </c:if>
+          <c:if test="${club.clubOnOff eq '오프라인'}">
+        	  <span class="badge" id="onoff1" >${club.clubOnOff}</span> 
+         </c:if>
+           
+            <span class="badge" id="freq">${club.clubFreq}</span>
 
 								</div>
 								<div class=clubtitle>
@@ -120,16 +125,20 @@
 
 							<a class="lightbox"
 							href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
-								<img id="clubmainpic"
-								src="${path}/resources${club.clubMain_pic}"
+								<img id="clubmainpic"src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
-
 
 							</a>
 							<div class="card-bodyarea">
 								<div class=spanspace>
-									<span class="badge" id="onoff">${club.clubOnOff}</span> <span
-										class="badge" id="freq">${club.clubFreq}</span>
+								 <c:if test="${club.clubOnOff eq '온라인'}">
+        	  <span class="badge" id="onoff">${club.clubOnOff}</span> 
+         </c:if>
+          <c:if test="${club.clubOnOff eq '오프라인'}">
+        	  <span class="badge" id="onoff1" >${club.clubOnOff}</span> 
+         </c:if>
+           
+            <span class="badge" id="freq">${club.clubFreq}</span>
 
 								</div>
 								<div class=clubtitle>
@@ -168,11 +177,11 @@
 	</section>
 
 	
- <button id="addplus">
-		<a href="clubForm.jsp"> <span class="material-icons"
-			style="display: inline-block; font-size: 55px;"> add_circle </span></a>
-	</button> 
+<div class="addplus">
+		<a href="clubForm"><span class="material-icons"
+			style="font-size: 55px;"> add_circle </span></a>
 	</div>
+	<div id="bottomarea">
 	</div>
 </body>
 
@@ -194,29 +203,22 @@
 <script>
 
      
+//더하기 등록 버튼 고정
+$( document ).ready( function() {
+	 var jbOffset = $( '.material-icons' ).offset();
+    $( window ).scroll( function() {
+      if ( $( document ).scrollTop() > 300) {
+        $( '.material-icons' ).addClass( 'buttonFixed' );
+      }
+      else {
+        $( '.material-icons' ).removeClass( 'buttonFixed' );
+      }
+    });
 
-        <!------------------스크롤 위로 올리기----------------->
-        var backToTop = () => {
-            // Scroll | button show/hide
-            window.addEventListener('scroll', () => {
-                if (document.querySelector('html').scrollTop > 100) {
-                    document.getElementById('go-top').style.display = "block";
-                } else {
-                    document.getElementById('go-top').style.display = "none";
-                }
-            });
-            // back to top
-            document.getElementById('go-top').addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: 'smooth'
-                });
-            })
-        };
-        backToTop();
+  } );
         
         
+       
         
 
     </script>

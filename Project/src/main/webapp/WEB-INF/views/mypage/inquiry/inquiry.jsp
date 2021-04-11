@@ -7,9 +7,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<link rel="stylesheet" href="${path}/resources/css/reviewList.css">
-<script type="text/javascript"
-	src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+<%-- <link rel="stylesheet" href="${path}/resources/css/reviewList.css"> --%>
 
 <!DOCTYPE html>
 <html>
@@ -18,20 +16,36 @@
 </head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript"
+	src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
+<!--  <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+	crossorigin="anonymous"> -->
 <!-- font -->
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+<!-- <link rel="stylesheet" type="text/css"
+	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> 
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
 <style>
+
+
+/* 진경 수정 */
 body {
+<<<<<<< HEAD
 	font-family: 'NanumSquare', sans-serif;
 	margin-left: 40px;
+=======
+	font-family: 'NanumSquare';
+>>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 }
+
+.fixed-top{
+	position:sticky;
+}
+
+/* 끝 */
 
 a {
 	color: inherit;
@@ -129,8 +143,6 @@ a:hover {
 #searchType {
 	height: 24px;
 }
-</style>
-<style type="text/css">
 li {
 	list-style: none;
 	float: left;
@@ -236,6 +248,7 @@ li {
 					</div>
 					<!-- pageArea -->
 				</form>
+<<<<<<< HEAD
 			</div>
 			<div class="col-12">
 				<input type="hidden" name="memberNum" value="${user.memberNum}">
@@ -265,8 +278,21 @@ li {
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 		crossorigin="anonymous"></script>
 	<script src="js/script.js"></script>
+=======
+				</div>
+						<div class="col-12">
+            <input type="hidden" name="memberNum" value="${user.memberNum}">
+            <input type="hidden" name="inquiryType" value="${inquiry.inquiryType}">
+            <button class="btn btn-primary pull-right">
+               <a href="${path}/inquiryForm?memberNum=${user.memberNum}">문의</a>
+            </button>
+         </div>
+      </div>
+			<!-- wrapper -->
+
+		</div>
+
+>>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 </body>
 
-</html>
-</body>
 </html>

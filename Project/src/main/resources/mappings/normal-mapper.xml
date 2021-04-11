@@ -6,11 +6,11 @@
 		<id property="clubNum" column="club_num" />
 		<result property="clubName" column="club_name" />
 		<result property="clubLeader" column="club_leader" />
-		<result property="clubTown" column="club_town" />
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />
 		<result property="clubThumb_pic" column="club_thumb_pic" />
+		<result property="clubMain_pic" column="club_main_pic" />
 		<result property="clubMax" column="club_max" />
 		<result property="clubFreq" column="club_freq" />
 		<result property="clubContent1" column="club_content1" />
@@ -42,7 +42,7 @@
             HAVING
 				distance < 10
 			AND club_kind = '1'
-	    	ORDER BY club_heart DESC
+	    	ORDER BY club_makedate DESC 
                 LIMIT 0,1000
 	]]>
 	</select>
@@ -59,7 +59,7 @@
             HAVING
 				distance < 10
 			AND club_kind = '1'
-	    	ORDER BY club_makedate DESC
+	    	ORDER BY club_heart DESC
                 LIMIT 0,1000
 	]]>
 	</select>

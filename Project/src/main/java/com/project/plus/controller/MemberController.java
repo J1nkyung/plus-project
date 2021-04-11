@@ -49,6 +49,8 @@ public class MemberController {
    return "memberJoin";
    }
    
+ 
+   
    @RequestMapping(value="memberJoin", method=RequestMethod.POST)
    public String memberJoin(MemberVO vo, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
       System.out.println("회원가입 컨트롤러 진입");
@@ -58,7 +60,7 @@ public class MemberController {
       memberService.joinMember(vo);
       System.out.println(vo);
       log.info("회원 번호 : " + vo.getMemberNum() + "멤버프로필사진  등록 ");
-      return "redirect:main"; //?
+      return "redirect:login";
          
    }
    
@@ -114,7 +116,11 @@ public class MemberController {
       pmem.setCriMem(scmem);
       pmem.setTotalCount(memberService.listCount(scmem));
       model.addAttribute("pmem", pmem);
+<<<<<<< HEAD
       return "memberList.adMember";
+=======
+      return "member/memberList";
+>>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
    }
    
    //로그인하고 내정보확인 페이지 들어가면 정보 뿌려주는 메서드
@@ -130,6 +136,22 @@ public class MemberController {
    System.out.println("memberInfo " + memberService.viewMember(vo.getMemberNum()));
    MemberVO user = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
    
+<<<<<<< HEAD
+=======
+   
+   if(user.getMemberNum() == 1) {
+      
+      return "memberUpdate.adMember";
+      
+    }else if(user.getMemberNum()!= 1) {
+       
+          return "memberUpdate.member";
+    }
+
+     return "";
+
+   }
+>>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
    
    if(user.getMemberNum() == 1) {
       
@@ -191,7 +213,7 @@ public class MemberController {
    @RequestMapping(value="memberDelete", method=RequestMethod.POST)
    public String delete(MemberVO vo) throws Exception{
       memberService.deleteMember(vo.getMemberNum());
-      return "redirect:memberList";
+      return "redirect:memberListPage";
    }
    
    public static final Logger logger = LoggerFactory.getLogger(MemberController.class);

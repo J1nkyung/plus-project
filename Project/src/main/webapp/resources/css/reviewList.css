@@ -36,6 +36,7 @@
      width: 600px; 
      margin:12px 25px 12px 25px ;
      text-align: left;
+      padding-top: 20px;
  }
 
  .reviewBtn{
@@ -91,3 +92,15 @@
  	font-size : 20px;
  	text-align : center;
  }
+ 
+ .h4, h4 {
+    padding-top: 3%;
+}
+
+
+.aTagg{
+	text-decoration-line : none;
+	color : black;
+}
+
+

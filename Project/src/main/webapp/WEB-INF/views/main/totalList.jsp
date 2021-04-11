@@ -92,21 +92,25 @@
 								<div class="card border-0 transform-on-hover">
 
 									<a class="lightbox"
-										href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
-										<img id="clubmainpic"
-										src="${path}/resources${club.clubMain_pic}"
-										onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
-
+										href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
+										<img id="clubmainpic" src="${path}/resources${club.clubMain_pic}"
+											  onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
 									</a>
 									<div class="card-bodyarea">
 										<div class=spanspace>
-											<span class="badge" id="onoff">${club.clubOnOff}</span> <span
-												class="badge" id="freq">${club.clubFreq}</span>
+										 <c:if test="${club.clubOnOff eq '온라인'}">
+        	  <span class="badge" id="onoff">${club.clubOnOff}</span> 
+         </c:if>
+          <c:if test="${club.clubOnOff eq '오프라인'}">
+        	  <span class="badge" id="onoff1" >${club.clubOnOff}</span> 
+         </c:if>
+           
+            <span class="badge" id="freq">${club.clubFreq}</span>
 
 										</div>
 										<div class=clubtitle>
 											<a class=clubtitle
-												href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+												href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
 												${club.clubName} </a>
 										</div>
 										<div class=subtitle>
@@ -143,13 +147,13 @@
 			
 						 <div id="pageArea">
 						  <ul class="paging">
-						    	<li ><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}">◀</a></li>
+						    	<li ><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.startPage - 1)}"><<</a></li>
 						
 						    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 						    	<li><a href="totalList${pageMaker.makeSearch(idx)}"><span class="span" >${idx}</span></a></li>
 						    </c:forEach>
 						
-						    	<li><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">▶</a></li>
+						    	<li><a class="span" href="totalList${pageMaker.makeSearch(pageMaker.endPage + 1)} ">>></a></li>
 						  </ul>
 					 </div>
 

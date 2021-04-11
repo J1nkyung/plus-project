@@ -14,7 +14,8 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script>
 
 <style>
 body {
@@ -88,14 +89,18 @@ float:right;
 			<%-- <input type="hidden" value="${answerInquiryForm.inquiryAnswer}" name="inquiryAnswer"> --%>
 			<input type="hidden" value="${answerInquiryForm.inquiryNum}" name="inquiryNum">
 			<!--  회원번호 진경 알림에게 넘겨주기  -->
-			<button type="submit" class="btn btn-primary" id="answerBtn">답변 등록</button>
+			<button type="button" class="btn btn-primary" id="answerBtn">답변 등록</button>
 			<div class="submit"><a href="adminInquiry">글 목록 가기</a></div>
 		<hr></div>
 	</form> 
 	</div>
 <script>
 
+
+
+
 		$(document).ready(function(){
+			connect();
 
 			$("#answerBtn").on("click", function(){
 				alert("답변이 정상적으로 등록 되었습니다");
@@ -137,6 +142,20 @@ float:right;
 			});
 			
 		});
+		
+		
+		let sock;
+		function connect(){
+			sock = new SockJS("http://localhost:9999/plus/echo");
+			sock.onopen = onopen;
+			console.log("세션 생성");
+		}
+
+		function onopen() {
+		    console.log('info: connection opened');
+		   }
+		 
+
 		
 		
 </script>
