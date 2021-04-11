@@ -99,10 +99,9 @@ public class AdminController {
 		model.addAttribute("getJoin_4", ads.getJoin_4(mvo));
 		model.addAttribute("getJoin_5", ads.getJoin_5(mvo));
 		model.addAttribute("getJoin_6", ads.getJoin_6(mvo));
-<<<<<<< HEAD
+
 		model.addAttribute("adminClubListCount", ads.adminClubListCount(cvo));
-=======
->>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
+
 		return "/admin/charttest";
 	}
 	
@@ -121,7 +120,7 @@ public class AdminController {
 //	} 일단은 검색 할동안 잠시..
 	
 	// 관리자 : 모든 회원들의 결제내역 목록 조회
-<<<<<<< HEAD
+
 		@RequestMapping(value="/adminPay", method=RequestMethod.GET)
 		public String adminPayList(SearchCriteriaAdmin scad, Model model) throws Exception {
 			List<PaymentVO> adminPayList = ads.adminPayList(scad);
@@ -134,20 +133,7 @@ public class AdminController {
 			model.addAttribute("pageMakerPay", pgmad);
 			return "/admin/adminPayment";
 		}
-=======
-	@RequestMapping("/adminPay")
-	public String adminPayList(CriteriaAdmin cri, Model model) throws Exception {
-		List<PaymentVO> adminPayList = ads.adminPayList(cri);
-		System.out.println(adminPayList);
-		model.addAttribute("adminPayList",adminPayList);
-		
-		PageMakerAdmin pgmad = new PageMakerAdmin();
-		pgmad.setCri(cri);
-		pgmad.setTotalCount(ads.adminPayListCount(cri));
-		model.addAttribute("pageMakerPay", pgmad);
-		return "/admin/adminPayment";
-	}
->>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
+
 
 	// 관리자 : 모든 모임 목록 조회	
 	@RequestMapping("/adminClub")

@@ -1,13 +1,10 @@
 package com.project.plus.controller;
 
-import java.io.PrintWriter;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,28 +140,33 @@ public class BoardController {
 			
 			
 	   }
-	   
-	   //내 글 모아보기 
-	   @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
-	   public String viewMyList(Model model, BoardVO board, @RequestParam("clubNum") int clubNum, @RequestParam("memberNum") int memberNum, HttpSession session) {
-		 
-		   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
-		   List<BoardVO> view =  boardService.viewMyList(clubNum, memberNum);
-//			for(BoardVO vo : view) {
-//				System.out.println(vo);
-//			}
-//			System.out.println("");
-		   
-			model.addAttribute("list", view);
-			model.addAttribute("club", clubService.getClub(clubNum));
-			
-			List<ApplyVO> apply =  applyService.applyMember(clubNum);
-			model.addAttribute("apply", apply);
+	      //내 글 모아보기 
+	      @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
+	      public String viewMyList(CriteriaBoardList cb, Model model) {
+	       
+	         //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
+//	         List<BoardVO> view =  boardService.viewMyList(cb, memberNum, clubNum);
+	         List<BoardVO> view =  boardService.viewMyList(cb);
+//	         for(BoardVO vo : view) {
+//	            System.out.println(vo);
+//	         }
+//	         System.out.println("");
+	         
+	         model.addAttribute("list", view);
+	         
+	         PageMakerBoardList pmem = new PageMakerBoardList();
+	            pmem.setCb(cb);
+	            pmem.setTotalCount(boardService.myListCount(cb));
+	            model.addAttribute("pmem", pmem);
+	         
+	            System.out.println("club 받는지 확인"+cb.getClubNum());
+	         
+	         
 
-		   
-		   return "viewMyList.comm";
-	   }
-	   
+	         
+	         //return "viewMyList?clubNum="+cb.getClubNum()+"memberNum="+cb.getMemberNum();
+	         return "viewMyList.comm";
+	      }
 	   
 	   //내 글 한개 확인하기 - 댓글도 이거 써야됨 
 	   @RequestMapping(value="viewMyContent", method=RequestMethod.GET)
