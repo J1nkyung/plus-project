@@ -22,6 +22,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.ApplyVO;
 import com.project.plus.domain.BoardVO;
+import com.project.plus.domain.CriteriaBoardList;
+import com.project.plus.domain.PageMakerBoardList;
 import com.project.plus.service.ApplyService;
 import com.project.plus.service.BoardService;
 import com.project.plus.service.ClubService;
@@ -74,21 +76,15 @@ public class BoardController {
 			List<ApplyVO> apply =  applyService.applyMember(clubNum);
 				List<BoardVO> list = boardService.getBoardList(clubNum);
 
-//List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
-//				for(BoardVO vo : view) {
-//					System.out.println(vo);
-//				}
-//				System.out.println("");
-				
 		    
 
 			
-			//apply 테스트 시 출력방법
-			for(ApplyVO avo : apply) {
-				System.out.println(avo.getMemberNickname());
-				System.out.println(avo.getMemberNickname());
-			}
-			
+//			//apply 테스트 시 출력방법
+//			for(ApplyVO avo : apply) {
+//				System.out.println(avo.getMemberNickname());
+//				System.out.println(avo.getMemberNickname());
+//			}
+//			
 			
 			
 			for(BoardVO board : list) {
@@ -140,6 +136,7 @@ public class BoardController {
 			
 			
 	   }
+<<<<<<< HEAD
 	      //내 글 모아보기 
 	      @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
 	      public String viewMyList(CriteriaBoardList cb, Model model) {
@@ -167,6 +164,40 @@ public class BoardController {
 	         //return "viewMyList?clubNum="+cb.getClubNum()+"memberNum="+cb.getMemberNum();
 	         return "viewMyList.comm";
 	      }
+=======
+	   
+	   //내 글 모아보기 
+	   @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
+	   public String viewMyList(CriteriaBoardList cb, Model model) {
+		 
+		   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
+//		   List<BoardVO> view =  boardService.viewMyList(cb, memberNum, clubNum);
+		   List<BoardVO> view =  boardService.viewMyList(cb);
+//			for(BoardVO vo : view) {
+//				System.out.println(vo);
+//			}
+//			System.out.println("");
+		   
+			model.addAttribute("list", view);
+			
+			PageMakerBoardList pmem = new PageMakerBoardList();
+		      pmem.setCb(cb);
+		      pmem.setTotalCount(boardService.myListCount(cb));
+		      model.addAttribute("pmem", pmem);
+			
+		      System.out.println("club 받는지 확인"+cb.getClubNum());
+			
+			
+
+		   
+		   //return "viewMyList?clubNum="+cb.getClubNum()+"memberNum="+cb.getMemberNum();
+		   return "viewMyList.comm";
+	   }
+	   
+>>>>>>> 3c4bfa5d0f1f5ddb1243e310a5c50c9294c3faf0
+	   
+	   
+
 	   
 	   //내 글 한개 확인하기 - 댓글도 이거 써야됨 
 	   @RequestMapping(value="viewMyContent", method=RequestMethod.GET)
@@ -196,6 +227,9 @@ public class BoardController {
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
 	      boardService.insertBoard(board);
+	      System.out.println("사진 확인" +board.getBoardPic());
+	      System.out.println("사진 확인11" + request.getParameter("boardPhoto"));
+	      System.out.println("글번호 확인"+board.getBoardNum()+"사진??"+board.getBoardPic());
 	      log.info("글 번호 : " + board.getBoardNum() + "사진  등록 ");
 
 
@@ -207,8 +241,11 @@ public class BoardController {
 	   public String updateView(BoardVO board, Model model) {
 	      model.addAttribute("update", boardService.getBoard(board.getBoardNum()));
 	      System.out.println("updateView get메서드 진입");
-	      System.out.println(board.getBoardNum());
-	      System.out.println(board.getClubNum());
+	      System.out.println("boardNum "+board.getBoardNum());
+	      System.out.println("clubNum "+board.getClubNum());
+	      
+	     // board.setBoardPic(board.getBoardPic());
+	      System.out.println("업데이트get메서드 사진확인"+board.getBoardPic());
 	      return "boardUpdateView.board";
 	   }
 	   //게시글 수정
@@ -216,8 +253,22 @@ public class BoardController {
 	   public String updateBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 	      System.out.println("updateView post 메서드 진입");
 	      
-	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+	      String uploadPath ;
+	      
+	      if(request.getParameter("boardPhoto")!=null) {
+	      uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
+	      }else {
+	    	  uploadPath = board.getOld_file();
+	    	  board = ProfileUtils.boardPic(board, uploadPath, file);
+	    	  
+	      }
+	    
+	      //String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+	      //board = ProfileUtils.boardPic(board, uploadPath, file);
+	      
+	      
+	      System.out.println(board.getBoardPic());
 	      boardService.updateBoard(board);
 	      log.info("들어오니?");
 	      log.info(board.getBoardContent());

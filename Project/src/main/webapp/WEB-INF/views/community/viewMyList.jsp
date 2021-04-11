@@ -39,34 +39,53 @@
   
 #block{
    /*    border: 1px solid rgba(189, 186, 186, 0.829); */
-      border-radius: 2%;
- 		min-height:443.2px;
-  }
+    border-radius: 2%;
+	min-height:443.2px;
+}
+
+
+#tableWrapper table {
+    width: 100%;
+    border-collapse: collapse;  
+}
+
+
+
+#tableWrapper table th {
+    text-align: center;
+    background-color: grey;
+    height:20x;
+    padding: 13px;
+    background-color:#001eff;
+    color:white;
+}
+
+
+ #tableWrapper table td {
+    text-align: center;
+    padding: 7px;
+       border-bottom: 1px solid rgba(189, 186, 186, 0.829);
+
+} 
   
+.title{
+  width:350px; 
+ white-space:nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+         color:#333;
+    height: 40px;
+}
+.title:hover{
+color:#001eff;}
 
-  #tableWrapper table {
-      width: 100%;
-      border-collapse: collapse;  
-  }
-  
+.title p{
+margin:10px;
+}
 
 
-  #tableWrapper table th {
-      text-align: center;
-      background-color: grey;
-      height:19.6px;
-      padding: 13px;
-      background-color:#001eff;
-      color:white;
-  }
 
-  #tableWrapper table td {
-      text-align: center;
-      padding: 7px;
-      max-height:17px;
-         border-bottom: 1px solid rgba(189, 186, 186, 0.829);
 
-  }
   #pageArea{
   margin:0 auto;
   position:relative;
@@ -91,6 +110,7 @@
   
   #info, .paging >li :hover{
   text-decoration:none;
+      text-align: center;
 }
 
 	#keywordInput{
@@ -104,15 +124,7 @@
 	#searchType{
 	height:24px;
 	}
-.title{
-   width:auto;
-   white-space:nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
-           color:#333;
-}
-.title:hover{
-color:#001eff;}
+
     </style>
  <script>
     $(function(){
@@ -145,7 +157,7 @@ color:#001eff;}
     <div id="block"> 
 		              <table class="useInfo">
 		                  <tr>
-		                  	<th>글내용</th>
+		                  	<th class="title">글내용</th>
 		                      <th>작성자</th>
 		                      <th>작성날짜</th>
 		                  </tr>
@@ -171,13 +183,13 @@ color:#001eff;}
 						  <ul class="paging">
 							  
 						  
-						    	<li><a class="span" href="memberList${pmem.makeSearch(pmem.startPage - 1)}">◀</a></li>
+						    	<li><a class="span" href="viewMyList${pmem.makeQuery(pmem.startPage - 1)}">◀</a></li>
 						
 						    <c:forEach begin="${pmem.startPage}" end="${pmem.endPage}" var="idx">
-						    	<li><a href="memberList${pmem.makeSearch(idx)}"><span class="span">${idx}</span></a></li>
+						    	<li><a href="viewMyList${pmem.makeQuery(idx)}"><span class="span">${idx}</span></a></li>
 						    </c:forEach>
 						
-						    	<li><a class="span" href="memberList${pmem.makeSearch(pmem.endPage + 1)}">▶</a></li>
+						    	<li><a class="span" href="viewMyList${pmem.makeQuery(pmem.endPage + 1)}">▶</a></li>
 						  </ul>
 					 </div><!-- pageArea -->
        	 </form>

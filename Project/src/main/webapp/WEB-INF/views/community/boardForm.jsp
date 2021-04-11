@@ -65,7 +65,7 @@ margin:1px;
 			<input type="hidden" name="memberPic" value="${user.memberPic }"/>
 			<input type="hidden" name="clubNum" value="2"/><!-- ${board.clubNum}으로 가져오는건가?? -->
 			<input type="hidden" name="memberNum" value="${user.memberNum}"/>
-			<input type="hidden" name="boardPic" value=""/>
+			<input type="hidden" name="boardPic" value="${board.boardPic }"/>
 			
 			<!-- <input type="text" class="form-control" id="title"
 				placeholder="제목을 입력해주세요." name="title"> -->
@@ -73,7 +73,7 @@ margin:1px;
 			<input type="text" id="memberNickname" name="memberNickname" value="작성자 : ${user.memberNickname }" readonly/>
 			
 			<textarea name="boardContent" id="content" ></textarea>
-            <input id="picFile" type="file" name="boardPhoto" value="${board.boardPic }" />
+            <input id="picFile" type="file" name="boardPhoto" />
              				<!-- 이미지 미리보기 영역  -->
 				<div id="imgViewArea" style="margin-top:10px; display:none;">
 					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/></div>

@@ -63,7 +63,7 @@ function setThumbnail(event){
 
 	
 	//비밀번호 유효성 검사
-isPw1 = function(){
+function isPw1(){
     var pwVal = $("#pswd1").val();
                              //특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
 var regExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
@@ -79,7 +79,7 @@ if(pwVal.match(regExp) != null){
 
 
 //비밀번호 재확인 시 일치하는지 여부
-checkPw = function() {
+function checkPw() {
     var p1 = document.getElementById('pswd1').value;
     var p2 = document.getElementById('pswd2').value;
     if( p1 != p2 ) {
@@ -159,17 +159,17 @@ $(document).ready(function(){
 
 	//관리자의 수정버튼 - CSS때문에 분리 
 	$("#btnUp").on("click", function(){
-		alert("수정되었습니다~~~");
+		alert("회원정보 수정 완료");
 		formObj.attr("action", "memberUpdate").submit();
 		formObj.attr("method", "post");
 	//	formObj.submit();				
 	})
 	
 	//회원의 수정버튼 
-	$("#btnJoin").on("click", function(){
-		alert("회원님의 정보가 수정되었습니다");
+	$("#btnUpMem").on("click", function(){
 		formObj.attr("action", "memberUpdate").submit();
 		formObj.attr("method", "post");
+		alert("회원님의 정보가 수정되었습니다");
 //		formObj.submit();				
 	})
 
@@ -250,18 +250,7 @@ $(document).ready(function(){
                 </div>
 
 
-                <!-- PW1 -->
-                <div>
-                    <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
-                    <span class="box int_pass">
-                        <input type="password" name="memberPassword" id="pswd1" onchange="isPw1()" class="int" maxlength="20" value="${memberInfo.memberPassword }">
-                        <span id="alertTxt"></span>
-
-                    </span>
-                    <span class="error_next_box"></span>
-                </div>
-
-                <!-- PW2 -->
+                <%-- <!-- PW2 -->
                 <div>
                     <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                     <span class="box int_pass_check">
@@ -269,7 +258,7 @@ $(document).ready(function(){
 		                    <span id="alertTxt1"></span>
                     </span>
                     <span class="error_next_box"></span>
-                </div>
+                </div> --%>
 
                 <!-- 보유 포인트 -->
                 <div>
@@ -282,18 +271,24 @@ $(document).ready(function(){
  		<c:if test="${user.memberNum eq 1}">
              <input type="text" name="memberPoint" id="point" class="int" maxlength="20" value="${memberInfo.memberPoint }">
         </c:if>
-                    
-                    
                     </span>
-                    <span class="error_next_box"></span>
                 </div>
 
+                           	<c:if test="${user.memberNum ne 1}">
+                 <div>
+                    <span class="box int_pass1">
+			<button id="btnPw" type="button" onclick="location.href='changePw'"><span>비밀번호 수정</span></button> 
+                        <span id="alertTxt"></span>
+
+                    </span>
+                    <span class="error_next_box"></span>
+                </div> 
+        </c:if>
 
                 <div class="btn_area">
                 
        	<c:if test="${user.memberNum ne 1}">
-			<!--  버튼명만 join이고 수정버튼! -->
-			<button id="btnJoin" type="submit"><span>수정하기</span></button> 
+			<button id="btnUpMem" type="submit"><span>내정보 수정하기</span></button> 
         </c:if>
  		<c:if test="${user.memberNum eq 1}">
 			<button id="btnUp" type="submit"><span>수정하기</span></button>

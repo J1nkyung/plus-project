@@ -37,7 +37,7 @@ function selectNav(){
 	// className이 ()인 값을 nav에 넣어줌
 		var nav = document.getElementsByClassName("nav-link text-white p-3 mb-2 sidebar-link");
 	// 주소에 포함되어야 하는 단어 배열로 선언
-		var arr = ["ListPage", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
+		var arr = ["member", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
 	
 
 	//기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 

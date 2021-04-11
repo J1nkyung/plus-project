@@ -121,6 +121,20 @@ function kakaoLogin(){
         System.out.println(state);
         System.out.println("login.jsp에서 네이버 로그인 시도");
      %>
+     
+     <%
+    String msg = (String)request.getAttribute("msg");
+    Cookie[] c = request.getCookies();
+    String cookieVal="";
+    if(c!=null){
+        for(Cookie i:c){
+            if(i.getName().equals("saveId")){
+                cookieVal=i.getValue();
+            }
+        }
+    }
+    
+%>
 
         <!-- 본문영역시작 -->
         <section>
@@ -138,14 +152,14 @@ function kakaoLogin(){
            <form action="login.do" method="post">
                 <section class="login-input-section-wrap">
                     <div class="login-input-wrap" data-validate = "Valid email is: a@b.c">	
-                        <input name="memberEmail" value="${user.memberEmail}" placeholder=" 이메일을 입력해주세요" type="text" required autofocus></input>
+                        <input name="memberEmail" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder=" 이메일을 입력해주세요" type="text" required autofocus></input>
                     </div>
                     <div class="login-input-wrap password-wrap">	
-                        <input name="memberPassword" value="${user.memberPassword}" placeholder=" 비밀번호를 입력해주세요" type="password" required></input>
+                        <input name="memberPassword" placeholder=" 비밀번호를 입력해주세요" type="password" required></input>
                     </div>
                     <div class="login-stay-sign-in">
                        
-                        <label><input type="checkbox" class="remember_me"> <span>Remember me</span></label>
+                        <label class="keepLogin"><input type="checkbox" class="remember_me keepLogin" id="checkbox" name="saveId" <%=cookieVal!=""?"checked" : ""%>> <span>Remember me</span></label>
                     </div>
                     <div class="login-button-wrap">
                         <input class="loginbutton" type="submit" value="로그인">
