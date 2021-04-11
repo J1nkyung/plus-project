@@ -82,7 +82,7 @@ float:right;
 			
 			<input type="text" class="form-control" id="answer-title" value="[RE]: 문의 답변입니다." readonly>
 				
-			<textarea name="inquiryAnswer">[문의 내용]${answerInquiryForm.inquiryContent} 안녕하세요  ${answerInquiryForm.memberNickname} 회원님</textarea>		
+			<textarea name="inquiryAnswer" placeholder="[문의 내용]${answerInquiryForm.inquiryContent}"></textarea>		
 			
 			<%-- <input type="hidden" value="${answerInquiryForm.inquiryAnswer}" name="inquiryAnswer"> --%>
 			<input type="hidden" value="${answerInquiryForm.inquiryNum}" name="inquiryNum">

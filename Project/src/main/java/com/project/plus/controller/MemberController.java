@@ -1,7 +1,5 @@
 package com.project.plus.controller;
 
-import java.io.PrintWriter;
-
 import java.util.List;
 import java.util.Random;
 
@@ -17,7 +15,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -117,9 +114,8 @@ public class MemberController {
       pmem.setCriMem(scmem);
       pmem.setTotalCount(memberService.listCount(scmem));
       model.addAttribute("pmem", pmem);
-      return "memberList.member";
+      return "memberList.adMember";
    }
-   
    
    //로그인하고 내정보확인 페이지 들어가면 정보 뿌려주는 메서드
    @RequestMapping(value="memberUpdate", method=RequestMethod.GET)
@@ -134,11 +130,20 @@ public class MemberController {
    System.out.println("memberInfo " + memberService.viewMember(vo.getMemberNum()));
    MemberVO user = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
    
-   return "memberUpdate.member";
-   }
    
+   if(user.getMemberNum() == 1) {
+      
+      return "memberUpdate.adMember";
+      
+    }else if(user.getMemberNum()!= 1) {
+       
+          return "memberUpdate.member";
+    }
 
-   
+     return "";
+
+   }
+    
    //회원 정보 업데이트하는 메서드 
    @RequestMapping(value="memberUpdate", method=RequestMethod.POST)
    public String memberUpdate(MemberVO vo, HttpSession session, Model model, 

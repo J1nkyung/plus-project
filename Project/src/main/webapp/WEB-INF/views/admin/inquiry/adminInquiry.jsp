@@ -186,10 +186,10 @@ li {
 											pattern="yyyy-MM-dd" />
 										<td class="text-center">${resultRegDt}</td>
 										<td class="text-center">
-										<c:if test=${inquiry.inquiryState eq '처리중'}">
+										<c:if test="${inquiry.inquiryState eq '처리중'}">
 										<button type="button" class="btn btn-outline-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button></td>
 										</c:if>
-										<c:if test=${inquiry.inquiryState eq '답변완료'}">
+										<c:if test="${inquiry.inquiryState eq '답변완료'}">
 										<button type="button" class="btn btn-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button></td>
 										</c:if>
 									</tr>

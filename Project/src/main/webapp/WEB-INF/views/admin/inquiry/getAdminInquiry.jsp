@@ -47,10 +47,6 @@ td {
 	<hr>
 
 
-<!-- <div class="wrapper"> -->
-	<h2>문의 상세보기</h2>
-	<hr>
-
 <center>
 	<table border="1" width="70%" height="200">
 		<div class="container">
