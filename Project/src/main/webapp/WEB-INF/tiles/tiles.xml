@@ -160,10 +160,10 @@
 				value="/WEB-INF/views/include/footer.jsp" />
 		</definition>
 
-<definition name="*.adMember" extends="admin">
-      <put-attribute name="body"
-         value="/WEB-INF/views/member/{1}.jsp" />
-   </definition>
+		<definition name="*.adMember" extends="admin">
+	      <put-attribute name="body"
+	         value="/WEB-INF/views/member/{1}.jsp" />
+	   </definition>
 
 <!-- 	<definition name="*.adinqu" extends="admin">
 			<put-attribute name="body"

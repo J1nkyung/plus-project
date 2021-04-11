@@ -48,7 +48,7 @@
 		</div>
 		
 		<label for="exampleFormControlFile1">모임의 제목을 입력해주세요</label> <input
-			type="text" maxlength='16' class="form-control" id="club-title"
+			type="text" maxlength='16' class="form-control" id="club-title" autocomplete="off"
 			placeholder="최대 16글자로 입력해주세요" name="clubName">
 
 		<div class="form-group">
@@ -91,7 +91,7 @@
 			</div>
 			<div class="hashtag-wrap">
 
-				<input type="text" class="form-control" id="write-hashtag"
+				<input type="text" class="form-control" id="write-hashtag" autocomplete="off"
 					onkeypress="onKeyDown()" maxlength='10'
 					placeholder="해쉬태그를 입력해주세요! (최대 5개)"> 
 				<input type="text" style="display:none" id="add-hashtag" name="clubHashtag" />
@@ -114,7 +114,7 @@
 		<label for="exampleFormControlSelect2">모집 종료일 </label>
 		<div class="clubdate">
 			<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-			<input type="text" class="form-control c-date" id="shut-date"
+			<input type="text" class="form-control c-date" id="shut-date"  autocomplete="off"
 				name="clubShutDate" />
 		</div>
 		<label for="exampleFormControlSelect2">모임 진행 기간 </label>
@@ -122,7 +122,7 @@
 			<div class="col">
 				<div class="clubdate">
 					<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-					<input type="text" class="form-control c-date" id="start-date"
+					<input type="text" class="form-control c-date" id="start-date"  autocomplete="off"
 						name="clubStartDate" />
 				</div>
 			</div>
@@ -130,14 +130,14 @@
 			<div class="col">
 				<div class="clubdate">
 					<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-					<input type="text" class="form-control c-date" id="end-date"
-						name="clubEndDate" />
+					<input type="text" class="form-control c-date" id="end-date"  autocomplete="off"
+						name="clubEndDate" autocomplete="off" />
 				</div>
 			</div>
 		</div>
 		<div class="people">
 			<label for="exampleFormControlSelect2">참가인원</label> <input
-				type="text" class="form-control" maxlength="2" placeholder="최대 50명"
+				type="text" class="form-control" maxlength="2" placeholder="최대 50명" autocomplete="off"
 				id="club-max" name="clubMax">
 		</div>
 
@@ -162,8 +162,8 @@
 		</div>
 		<div class="clubfeeBox">
 			<label for="exampleFormControlSelect2">참가비용</label> <input
-				type="text" class="form-control" id="club-fee" name="clubFee"
-				maxlength="6">
+				type="text" class="form-control" id="club-fee" name="clubFee"  autocomplete="off"
+				maxlength="6" >
 		</div>
 		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">등록하기</button>
 	</div>

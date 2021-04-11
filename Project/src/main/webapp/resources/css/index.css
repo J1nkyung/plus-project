@@ -350,13 +350,14 @@ box-shadow: 0 5px 15px -5px #52515170;
 }
 
 .subtitle {
-   font-size: 14px;
-   font-weight: 200;
-   color: #9B9EA5;
+   font-size: 12px;
+   font-weight:500;
+  color: #9B9EA5;
    padding: 3px 0px 15px 2px;
 }
 .subtitle i{
 	 color: #9B9EA5;
+ font-weight:600;
 }
 .period {
    font-size: 15px;

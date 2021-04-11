@@ -12,16 +12,15 @@
 		<result property="notMessage" column="not_message" />
 		<result property="notUrl" column="not_url" />
 		<result property="notSendtime" column="not_sendtime" />
-		<result property="notSendtime" column="not_sendtime" />
 		<result property="notCheck" column="not_check" />
 	</resultMap>
 
 <select id="getReadNoti" resultMap="notiResult">
-	SELECT * FROM notification WHERE member_num=#{memberNum} AND not_check = 1;
+	SELECT * FROM notification WHERE member_num=#{memberNum} AND not_check = 1 ORDER BY not_sendtime DESC;
 </select>
 
 <select id="getUnreadNoti" resultMap="notiResult">
-	SELECT * FROM notification WHERE member_num=#{memberNum} AND not_check = 0;
+	SELECT * FROM notification WHERE member_num=#{memberNum} AND not_check = 0 ORDER BY not_sendtime DESC;
 </select>
 
 <insert id="insertCommNoti">
