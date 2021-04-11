@@ -18,7 +18,7 @@
 <section>
    <input type="hidden" value="${club.clubNum}" name="clubNum" /> 
    <img
-      id="mainImg" src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
+      id="mainImg" src="${path}/resources${club.clubMain_pic}"
       onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
    <div class="stickyWrap">
       <div class="stickyTab">

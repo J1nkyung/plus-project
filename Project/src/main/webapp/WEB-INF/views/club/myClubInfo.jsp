@@ -69,19 +69,16 @@
  	<label for="exampleFormControlFile1">모임 이름</label> <input type="text"
 			maxlength='16' class="form-control" id="club-title"
 			placeholder="최대 16글자로 입력해주세요" value="${club.clubName}" readonly> 
-	<%-- 	<div class="form-group">
-			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label> -->
-			 <div class="img-form">
-                  
-              </div> 
+		<div class="form-group">
+			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label> 
 			<div class="uploadBox">
 				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
-					type="file" style="display: none;" 
+					type="file" style="display: none;" name="upload"
 					onchange="getFileName(0)" />
 				</label> <span id="spanFileName[0]">${club.clubMain_pic}</span>
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
 			</div>
-		</div> --%>
+		</div> 
 		<article>
 			<div id="write-clubinfo">
 				<label for="exampleFormControlFile1">개설하고자 하는 모임의 성격을
@@ -241,7 +238,7 @@ function deleteFile(index){
   let fileNameSpan = document.getElementById('spanFileName['+index+']')
   let nameArr = document.getElementsByName('upload');
   fileNameSpan.innerText = ""
-  nameArr[index].value = "";
+  nameArr[index].value = "deleted";
 
 }
 

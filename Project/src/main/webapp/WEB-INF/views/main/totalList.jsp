@@ -92,10 +92,9 @@
 								<div class="card border-0 transform-on-hover">
 
 									<a class="lightbox"
-										href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
-										<img id="clubmainpic"src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
-								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
-
+										href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
+										<img id="clubmainpic" src="${path}/resources${club.clubMain_pic}"
+											  onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
 									</a>
 									<div class="card-bodyarea">
 										<div class=spanspace>
@@ -111,7 +110,7 @@
 										</div>
 										<div class=clubtitle>
 											<a class=clubtitle
-												href='getClub.do?clubNum=<c:out value="${club.clubNum}" />'>
+												href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
 												${club.clubName} </a>
 										</div>
 										<div class=subtitle>
