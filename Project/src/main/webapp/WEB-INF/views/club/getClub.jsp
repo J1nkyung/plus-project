@@ -318,6 +318,10 @@ $(function(){
 
             // 결제가 필요한 모임 신청하기 버튼 클릭시 이미 신청 내역이라면 alert 창 띄우기 
             $("#payBtn").on('click',function(){
+            	if(!checkLeader()){
+            		alert("개설한 모임은 신청하실 수 없습니다!");
+            		return;
+            	}
                console.log('${yesNo}');
                if(!'${user.memberNum}'){
                    alert("로그인해주세요!");
@@ -335,6 +339,10 @@ $(function(){
             
              // 신청하기 버튼 클릭시 
              $("#applyBtn").on('click',function(){
+            		if(!checkLeader()){
+                		alert("개설한 모임은 신청하실 수 없습니다!");
+                		return;
+                	}
                 console.log('${user.memberNum}');
                 
                 if(!'${user.memberNum}'){
@@ -345,7 +353,20 @@ $(function(){
                 if(${club.clubCurnum} >= ${club.clubMax}){
                    alert("모집 인원이 마감되어 신청하실 수 없습니다");
                    return;
-                }
+              }
+                
+                // 개설한 모임은 신청 x 
+              function checkLeader(){
+            	  let user = '${user.memberNickname}';
+            	  let leader = '${club.clubLeader}';
+            	  console.log("리더 : " + leader);
+            	  if(user===leader){
+            		  return false;
+            	  } else {
+            		  return true;
+            	  }
+            	  
+              }
                   
             
              //날짜 비교 메서드 
