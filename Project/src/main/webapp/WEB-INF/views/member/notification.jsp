@@ -105,7 +105,7 @@
 	                        </button>
 	            		     	 <b>[${unread.notType}알림]</b>
 		                        <div class="content"><a target="_blank" href="${unread.notUrl}" class="url">${unread.notMessage}</a>
-		                        <div id="sendtime">${unread.notSendtime}</div>
+		                        <div id="sendtime">${unread.timeDiff}</div>
 	                        </div>
 	                    </div>
                     </c:forEach>
@@ -124,7 +124,7 @@
 		                        </button>
 		            		      <b>[${read.notType}알림]</b>
 			                        <div class="content"><a target="_blank" href="${read.notUrl}">${read.notMessage}</a>
-			                        <div id="sendtime">${read.notSendtime}</div>
+			                        <div id="sendtime">${read.timeDiff}</div>
 		                        </div>
 		                    </div>
                    	 </c:forEach>

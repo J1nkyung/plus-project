@@ -66,8 +66,7 @@
 	</definition>
 
 	<definition name="*.main" extends="base">
-		<put-attribute name="body"
-			value="/WEB-INF/views/main/{1}.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/main/{1}.jsp" />
 	</definition>
 
 	<!-- 커뮤니티 게시판 관련 페이지 -->

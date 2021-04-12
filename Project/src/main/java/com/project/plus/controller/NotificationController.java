@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.plus.domain.NotificationVO;
 import com.project.plus.service.NotificationService;
+import com.project.plus.utils.CalcTime;
 
 import lombok.extern.log4j.Log4j;
 
@@ -33,16 +34,24 @@ public class NotificationController {
 		
 		List<NotificationVO> unreadList = notiService.getUnreadNoti(memberNum);
 		List<NotificationVO> readList = notiService.getReadNoti(memberNum);
+		CalcTime ct = new CalcTime();
 		
 		for(NotificationVO vo : unreadList) {
-			log.info(vo.getMemberNum());
-			log.info(vo.getNotMessage());
+			// 시간 차이 구하기 
+			String result = ct.calculateTime(notiService.getTimeDiff(vo.getNotId()));
+			vo.setTimeDiff(result);
 		}
 		
+		for(NotificationVO vo : readList) {
+			// 시간 차이 구하기 
+			String result = ct.calculateTime(notiService.getTimeDiff(vo.getNotId()));
+			vo.setTimeDiff(result);
+		}
 		model.addAttribute("unreadList",unreadList);
 		model.addAttribute("readList",readList);
 		return "member/notification";
 	}
+	
 	
 	@RequestMapping("deleteNoti")
 	@ResponseBody

@@ -16,5 +16,6 @@ public class NotificationVO {
 	private String notMessage;
 	private String notUrl;
 	private String notSendtime;
+	private String timeDiff;
 	private int notCheck;
 }
