@@ -2,6 +2,8 @@ package com.project.plus.domain;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class PaymentVO {
 	private int payNum;
 	private int memberNum;

@@ -325,10 +325,10 @@ padding-bottom:30px;
    <div class="communityContainer">
     <%--   <input type="button" name="boardForm" id="boardForm"
          onclick="location.href='${path}/insertBoardForm'"> --%>
-         <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm'">
+         <!-- 정연 추가 20210410 링크에 ${clubNum }추가 -->
+         <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm?clubNum=${clubNum }'">
          <img src="${path }/resources/img/penwhite.png"></button>
          
-
 
 <div id="repeatBox">
 

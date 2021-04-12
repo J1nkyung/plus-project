@@ -84,7 +84,6 @@
 							</h3>
 						</div>
 					</div>
-					fo
 				</div>
 			</div>
 			<!-- 화살표 버튼 -->
@@ -194,7 +193,7 @@
 							<a class="lightbox"
 								href='getClub?clubNum=<c:out value="${club.clubNum}" />'>
 									<img id="clubmainpic"src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
-									onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
+									onerror="this.src=null; this.src='${path}/resources/img/img1.jpg'" />
 							</a>
 							<div class="card-bodyarea">
 								<div class=spanspace>

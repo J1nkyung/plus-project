@@ -80,7 +80,7 @@ public class ClubController {
 			throws Exception {
 
 		// 파일을 저장할 절대 경로 지정
-		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/u 	ploadImg");
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.insertClub(vo); // DB에 저장
 		log.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
@@ -137,26 +137,29 @@ public class ClubController {
 	// 모임 상세정보 
 	@RequestMapping("/getClub")
 	public String getClub(@RequestParam("clubNum") int clubNum, ApplyVO avo, HeartVO hvo, HttpSession session, Model model) {
-		
-		//정연 추가 20210405
 		MemberVO user = (MemberVO) session.getAttribute("user");
-		if (user != null) {
-			hvo.setMemberNum(user.getMemberNum());
-		}
 		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
-		int resultClub = heartService.selectHeartNum(hvo);
-		model.addAttribute("isThereHeart", resultClub);
-		avo.setClubNum(clubNum);
-		avo.setMemberNum(user.getMemberNum());
-		Integer result = clubService.getOneApply(avo);
-		
-		/*이미 신청한 모임인지 아닌지 getClub jsp에서 확인 이거 사용 안할 듯 ,, */
-		if(result.equals(0)) {
-			model.addAttribute("yesNo", 0);
-		} else {
-			model.addAttribute("yesNo", 1);
+//		//정연 추가 20210405
+			if (user != null) {
+			hvo.setMemberNum(user.getMemberNum());
+			hvo.setClubNum(clubNum);
+			int resultClub = heartService.selectHeartNum(hvo);
+			model.addAttribute("isThereHeart", resultClub);
+			System.out.println("resultClub 얼마나오니 : " + resultClub);
+			avo.setClubNum(clubNum);
+			avo.setMemberNum(user.getMemberNum());
+			Integer result = clubService.getOneApply(avo);
+			
+			/*이미 신청한 모임인지 아닌지 getClub jsp에서 확인 이거 사용 안할 듯 ,, */
+			if(result.equals(0)) {
+				model.addAttribute("yesNo", 0);
+			} else {
+				model.addAttribute("yesNo", 1);
+			}
+		}else { 
+			model.addAttribute("isThereHeart", 0);
 		}
-		// 2021045  여기위 까지
+//		// 2021045  여기위 까지
 		
 		// 미리 보여줄 5개 리뷰 
 		model.addAttribute("reviews", reviewService.getReviews(clubNum));
@@ -300,6 +303,16 @@ public class ClubController {
 			}
 			model.addAttribute("selectAttendClubList", resultTwo);
 			
+			//종료된 모임 20210411 추가
+			List<ClubVO> finishList = new ArrayList();
+			
+			List<ClubVO> data1 = clubService.selectFinishClubList(vo);
+			List<ClubVO> data2 = clubService.selectFinishMyClubList(vo);
+			finishList.add(data1.get(0));
+			finishList.add(data2.get(0));
+			
+			model.addAttribute("finishList",finishList);
+					
 			int clubCnt = clubService.clubCnt(vo);
 			model.addAttribute("clubCnt", clubCnt);
 			

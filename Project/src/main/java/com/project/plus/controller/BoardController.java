@@ -1,13 +1,10 @@
 package com.project.plus.controller;
 
-import java.io.PrintWriter;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +22,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.ApplyVO;
 import com.project.plus.domain.BoardVO;
+import com.project.plus.domain.CommentsVO;
+import com.project.plus.domain.CriteriaMem;
+import com.project.plus.domain.PageMakerMem;
 import com.project.plus.service.ApplyService;
 import com.project.plus.service.BoardService;
 import com.project.plus.service.ClubService;
@@ -109,8 +109,8 @@ public class BoardController {
 		model.addAttribute("club", clubService.getClub(clubNum));
 		//aside 참여중인 멤버 가져오기
 		model.addAttribute("apply", apply);
-		
-
+		//정연추가 20210410 단일 clubNum 받아오기 -추가o 지운것 없음 
+		model.addAttribute("clubNum" , clubNum);
 	    
 		return "community.comm";
 	   }
@@ -146,21 +146,41 @@ public class BoardController {
 	   
 	   //내 글 모아보기 
 	   @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
-	   public String viewMyList(Model model, BoardVO board, @RequestParam("clubNum") int clubNum, @RequestParam("memberNum") int memberNum, HttpSession session) {
+	   public String viewMyList(Model model, CommentsVO cvo , BoardVO board, CriteriaMem cri, @RequestParam("clubNum") int clubNum, @RequestParam("memberNum") int memberNum, HttpSession session) throws Exception {
 		 
-		   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
-		   List<BoardVO> view =  boardService.viewMyList(clubNum, memberNum);
-//			for(BoardVO vo : view) {
-//				System.out.println(vo);
-//			}
-//			System.out.println("");
-		   
-			model.addAttribute("list", view);
-			model.addAttribute("club", clubService.getClub(clubNum));
+			// 정연  
+			model.addAttribute("clubNum", clubNum);
+			model.addAttribute("memberNum", memberNum);
+			// 정연 끝
 			
-			List<ApplyVO> apply =  applyService.applyMember(clubNum);
+			int rowStart = cri.getRowStart(); //1
+			int rowEnd = cri.getRowEnd();//10
+		   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
+		   List<BoardVO> view =  boardService.viewMyList(clubNum, memberNum ,rowStart , rowEnd);
+			model.addAttribute("list", view);
+			int totalListCount = boardService.viewMyListCount(clubNum, memberNum);
+			PageMakerMem pmem = new PageMakerMem();
+			pmem.setCriMem(cri);
+			pmem.setTotalCount(totalListCount);
+			model.addAttribute("pmem", pmem);
+			
+			model.addAttribute("club", clubService.getClub(clubNum)); // 사이드바 - 클럽활동기간
+			List<ApplyVO> apply =  applyService.applyMember(clubNum); // 사이드바  - 참여중인 멤버
 			model.addAttribute("apply", apply);
+			
+			
+			/* 20210410 정연하단 추가*/
+//			int rowStart = cri.getRowStart(); //1
+//			int rowEnd = cri.getRowEnd();//10
+			List<CommentsVO> cmts = commService.selectMyCommentsList(clubNum, memberNum, rowStart, rowEnd); // 댓글 꺼내오기 
+			model.addAttribute("cmts" , cmts); // 값 모델로 보내기 
+			System.out.println(" 20210410 commentsList : " + cmts);
 
+			int totalCount = commService.selectMyCommentsListCount(clubNum, memberNum);  
+			PageMakerMem pgmm = new PageMakerMem();
+			pgmm.setCriMem(cri);
+			pgmm.setTotalCount(totalCount);
+			model.addAttribute("PageMakerComments" , pgmm);
 		   
 		   return "viewMyList.comm";
 	   }
@@ -184,14 +204,19 @@ public class BoardController {
 	   
 	   
 	   @GetMapping("/insertBoardForm")
-	   public String insertBoardForm() {
-		   return "boardForm.board";
+	   public String insertBoardForm(@RequestParam("clubNum") int clubNum, Model model ) {
+		   /*정연추가 20210410 매개변수 clubNum 그리고 model 받아오기 추가, 하단 추가*/
+		   System.out.println("****인서트 컨트롤러 clubNum: " + clubNum);
+		   model .addAttribute("clubNum", clubNum);
+		   /*여기 위까지 추가 20210410 지운거 없음 */
+		   return "boardForm.board"; 
 	   }
 	   
 	   
 	   @RequestMapping(value="insertBoard", method=RequestMethod.POST)
-	   public String insertBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
+	   public String insertBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file,@RequestParam("clubNum") int clubNum, HttpServletRequest request) throws Exception {
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+	      board.setClubNum(clubNum);
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
 	      boardService.insertBoard(board);
 	      log.info("글 번호 : " + board.getBoardNum() + "사진  등록 ");

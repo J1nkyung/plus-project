@@ -63,9 +63,11 @@ margin:1px;
 			<h2>게시글 등록하기</h2>
 			<hr>
 			<input type="hidden" name="memberPic" value="${user.memberPic }"/>
-			<input type="hidden" name="clubNum" value="2"/><!-- ${board.clubNum}으로 가져오는건가?? -->
+			<!-- 정연추가 20210410 하단 value="2" 주석처리 and 그 밑 input에 "${clubNum }" 추가 주석처리 이외 지운것 없음 -->
+			<!-- <input type="hidden" name="clubNum" value="2"/> --><!-- ${board.clubNum}으로 가져오는건가?? -->
+			<input type="hidden" name="clubNum" value="${clubNum }"/> 
 			<input type="hidden" name="memberNum" value="${user.memberNum}"/>
-			<input type="hidden" name="boardPic" value=""/>
+			<input type="hidden" name="boardPic" value=""/> 
 			
 			<!-- <input type="text" class="form-control" id="title"
 				placeholder="제목을 입력해주세요." name="title"> -->

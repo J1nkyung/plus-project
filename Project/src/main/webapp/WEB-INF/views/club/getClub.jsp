@@ -213,10 +213,12 @@ Kakao.isInitialized();
     })
   }
 
+  
 
 // 본문 function 
 $(function(){
    
+	
    /* 탭메뉴  */
     var $selectMenu = null;
     $(".tabMenu").click(function(){
@@ -317,15 +319,15 @@ $(function(){
                }
 
             // 결제가 필요한 모임 신청하기 버튼 클릭시 이미 신청 내역이라면 alert 창 띄우기 
-            $("#payBtn").on('click',function(){
+            $("#payBtn").on('click',function(){ 
                console.log('${yesNo}');
                if(!'${user.memberNum}'){
                    alert("로그인해주세요!");
                    return false;
-                }
+                } 
                 if(${club.clubCurnum} >= ${club.clubMax} ){
                    alert("모집 인원이 마감되어 신청하실 수 없습니다");
-                   return;
+                   return false;
                 }
                 if('${yesNo}' == 1){
                     alert("이미 신청한 모임입니다!");
@@ -346,7 +348,7 @@ $(function(){
                    alert("모집 인원이 마감되어 신청하실 수 없습니다");
                    return;
                 }
-                  
+                   
              // 모임신청 
              function apply(){
                  return new Promise(function(resolve, reject){
@@ -410,10 +412,10 @@ $(function(){
  }); 
 
 /*정연수정 20210405*/
-if('${msg}' != ''){
+ if('${msg}' != ''){
     alert('${msg}');
-}
-
+} 
+  
 /*찜 수정 20210401*/
 //var state = document.getElementById("heartImg"); //und
 //var state = document.getElementsByClassName("heartImg");

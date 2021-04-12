@@ -78,13 +78,40 @@
 	 </delete>
 	 
 	 <select id="viewMyList" resultMap="boardResult" parameterType="map">
-	 SELECT board.*, member_nickname, member_pic
+<!-- 	 SELECT board.*, member_nickname, member_pic
 	 FROM board
 	 JOIN MEMBER
 	 USING (member_num)
 	 WHERE club_num = #{clubNum}
 	 AND member_num = #{memberNum} 
-	 ORDER BY board.board_regdate desc 
+	 ORDER BY board.board_regdate desc  -->
+	   SELECT myList.*
+	    FROM (
+	    	SELECT board.*, 
+	    		   member_nickname, 
+	    		   member_pic,
+			       ROW_NUMBER() OVER(order by board.board_regdate DESC) AS RNUM
+			FROM BOARD 
+			JOIN MEMBER USING (member_num)
+			WHERE club_num = #{clubNum}
+			AND member_num = #{memberNum} 
+	         )myList
+	   WHERE RNUM BETWEEN #{rowStart} and #{rowEnd} 
+	   ORDER BY board_regdate DESC
 	 </select>
+	 
+	 <select id="viewMyListCount" resultType="int">
+	 	   SELECT count(*)
+	  	  FROM (
+	    	SELECT board.*, 
+	    		   member_nickname, 
+	    		   member_pic,
+			       ROW_NUMBER() OVER(order by board.board_regdate DESC) AS RNUM
+			FROM BOARD 
+			JOIN MEMBER USING (member_num)
+			WHERE club_num = #{clubNum}
+			AND member_num = #{memberNum} 
+	         )myList
+  	 </select>
 
 </mapper> 

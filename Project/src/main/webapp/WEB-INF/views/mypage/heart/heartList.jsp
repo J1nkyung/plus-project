@@ -379,6 +379,7 @@ table {
     
     function deleteHeart() {
     	var param = [];// 변수 값 생성 
+    	var memberNum = ${user.memberNum};
     	// 체크 된 체크박스 name 값을 가져와 그 안의 value를 배열에 넣어줌 
     	$("input[name='clubNum']:checked").each(function(i) { // input의 name이 clubNum 인 값들이 체크 되면 
     		param.push($(this).val()); //배열에 값을 추가함. this의 value 값을 추가. 
@@ -390,7 +391,8 @@ table {
   			traditional : true,
   			/* contentType: 'application/json' // 보내는 데이터 json 일때 필수 옵션 */
   			/* dataType : 'json', */
-  			data : {'clubNumArr' : param},
+  			data : {'clubNumArr' : param,
+  					'memberNum' :memberNum},
   			success : function(result) {
   				console.log(result)
   				alert(result);
