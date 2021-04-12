@@ -68,7 +68,7 @@
 		) memPage
 		WHERE rNum between #{rowStart} and #{rowEnd}
 		ORDER BY
-		club_heart DESC
+		club_shutdate DESC
 	</select>
 
 
