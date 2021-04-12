@@ -12,7 +12,7 @@
  <script type="text/javascript" src="${path}resources/js/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			alert("로그아웃 되었습니다.");
+			alert("로그아웃 되었습니다 \n원활한 이용을 원하시면 다시 로그인해주세요");
 		location.href = "main.do" ;
 		
 

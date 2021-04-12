@@ -4,7 +4,7 @@ package com.project.plus.domain;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-public class PageMakerBoardList {
+public class PageMakerBoardList00 {
 
 	private int totalCount;
 	private int startPage;
@@ -12,14 +12,14 @@ public class PageMakerBoardList {
 	private boolean prev;
 	private boolean next;
 	private int displayPageNum = 5;
-	private CriteriaBoardList cb;
+	private CriteriaBoardList00 cb;
 	
 	
 	
-	public void setCb(CriteriaBoardList cb) {
+	public void setCb(CriteriaBoardList00 cb) {
 		this.cb = cb;
 	}
-	public void getCb(CriteriaBoardList cb) {
+	public void getCb(CriteriaBoardList00 cb) {
 		this.cb = cb;
 	}
 	

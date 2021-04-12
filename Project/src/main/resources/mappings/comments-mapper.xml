@@ -74,5 +74,67 @@
 	<select id="getMemberNickname">
 		SELECT member_nickname FROM member WHERE member_num = #{memberNum}
 	</select> -->
+	<select id="selectMyCommentsList" resultType="com.project.plus.domain.CommentsVO">
+		SELECT paging.*  
+		FROM ( 
+		        SELECT comments.comments_num as commentsNum ,
+					   comments.member_num as memberNum ,
+					   comments.board_num as boardNum , 
+					   comments.comments_class as commentsClass ,
+					   comments.comments_regdate as commentsRegdate , 
+					   comments.comments_content as commentsContent ,
+					   board.board_content as boardContent , 
+					   board.board_regdate as boardRegdate,
+		               ROW_NUMBER() OVER(ORDER BY comments_regdate DESC) AS RNUM
+		         FROM comments , board 
+		         WHERE comments.board_num = board.board_num 
+					   AND comments.member_num = #{memberNum}
+					   AND board.board_num = (select board.board_num
+												from club
+												where board.club_num = club.club_num
+												and board.club_num =#{clubNum}) 
+		      ) paging
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY commentsNum DESC
+		
+		<!-- SELECT comments.comments_num as commentsNum ,
+			   comments.member_num as memberNum ,
+			   comments.board_num as boardNum , 
+			   comments.comments_class as commentsClass ,
+			   comments.comments_regdate as commentsRegdate , 
+			   comments.comments_content as commentsContent ,
+			   board.board_content as boardContent , 
+			   board.board_regdate as boardRegdate
+		FROM comments , board
+		WHERE comments.board_num = board.board_num 
+		AND comments.member_num = #{memberNum}
+		AND board.board_num = (select board.board_num
+									from club
+									where board.club_num = club.club_num
+									and board.club_num =#{clubNum}) 
+		ORDER BY comments_regdate DESC; -->
+	</select>
 	
+	<!-- 페이징용 전체 문의글 개수 세기 -->
+	<select id="selectMyCommentsListCount" resultType="int">
+		SELECT count(*)
+		FROM ( 
+		        SELECT comments.comments_num as commentsNum ,
+					   comments.member_num as memberNum ,
+					   comments.board_num as boardNum , 
+					   comments.comments_class as commentsClass ,
+					   comments.comments_regdate as commentsRegdate , 
+					   comments.comments_content as commentsContent ,
+					   board.board_content as boardContent , 
+					   board.board_regdate as boardRegdate,
+		               ROW_NUMBER() OVER(ORDER BY comments_regdate DESC) AS RNUM
+		         FROM comments , board 
+		         WHERE comments.board_num = board.board_num 
+					   AND comments.member_num = #{memberNum}
+					   AND board.board_num = (select board.board_num
+												from club
+												where board.club_num = club.club_num
+												and board.club_num =#{clubNum}) 
+		      ) paging
+	</select>
 </mapper>

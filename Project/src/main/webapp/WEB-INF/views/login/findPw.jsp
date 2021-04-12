@@ -126,14 +126,14 @@ function sendEmail(){
 				memberPhone : $("#mobile").val()
 			},
 			success : function(data) {
-		        alert("입력하신 이메일로 비밀번호가 전송되었습니다")
+		        alert("입력하신 이메일로 임시 비밀번호가 전송되었습니다")
 
  			   console.log("성공 여부"+data);
 				location.href=data;
 		
 			},
 			error : function(data){
-				//alert("error" + data)
+				alert('다시 시도해주세요')
 			}
 		})
 }
@@ -147,11 +147,12 @@ function sendEmail(){
 <!--  action="findPw" method="post" -->
     <form name="getPw" role="form" method="post">
     
-  <div id="wrapper">
+  <div id="wrapper" style="height:500px;">
             <!-- content1-->
             <div class="findPw">      
-                <div class="logo-wrap">
-                   <img id="logo" src="${path}/resources/img/images/logo.png">
+                <div class="logo-wrap" style="margin-bottom:40px; margin-left:100px;">
+                   <%-- <img id="logo" src="${path}/resources/img/images/logo.png"> --%>
+       		<a style="font-size:20px; "><b>회원님의 정보를 입력해주세요</b></a> 
 
                 </div>
                     <!-- ID(Email) -->
