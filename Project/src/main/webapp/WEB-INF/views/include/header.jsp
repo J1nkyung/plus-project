@@ -97,7 +97,7 @@
                         <form>
 	                        <c:choose>
 				                <c:when test = "${user.memberNum == 1 }">
-	                        <li class="dropli"><a href="memberListPage">회원관리</a></li>
+	                        <li class="dropli"><a href="memberListPage">Admin</a></li>
 				               </c:when>
 				               <c:otherwise>
 	                        <li class="dropli"><a href="getCurrentClubList?memberNum=${user.memberNum }">My Page</a></li>

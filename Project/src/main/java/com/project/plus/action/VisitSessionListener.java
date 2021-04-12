@@ -18,7 +18,7 @@ public class VisitSessionListener implements HttpSessionListener {
 		System.out.println("세션 크리에이티드 접속");
 		// 세션이 새로 생성되면 execute() 실행한다.
 		if (sessionEve.getSession().isNew()) {
-			System.out.println("세션실행되니?");
+			System.out.println("세션 새로 생성 되었습니다");
 			execute(sessionEve);
 		}
 	}
@@ -31,7 +31,7 @@ public class VisitSessionListener implements HttpSessionListener {
 
 	private void execute(HttpSessionEvent sessionEve) {
 		// VisitCountController cntr = VisitCountController.getInstance();
-		System.out.println("execute 실행되었니?");
+		System.out.println("execute 실행되고 있습니다");
 		total = vcs.getTotalCount();
 		today = vcs.getTodayCount();
 

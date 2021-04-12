@@ -33,7 +33,6 @@
    position: relative;
    display:flex;
 }
-
 .sidebar {
    position: sticky;
    width: 300px;
@@ -42,18 +41,15 @@
    background-repeat: no-repeat;
    background-size: cover;
 }
-
 .user-name a:hover{
 color:white;
 text-decoration:none;
 }
 </style>
 <script>
-
 window.onload = function(){
 	selectNav();
 }
-
 function selectNav(){ 
 	// 지금 접속해있는 주소 얻어서 now에 넣어줌
 	var now = window.location.href;
@@ -62,7 +58,6 @@ function selectNav(){
 	// 주소에 포함되어야 하는 단어 배열로 선언
 		var arr = ["CurrentClubList", "Heart", "getClubDate", "getPaymentList", "Review", "inquiry"];
 	
-
 	//기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
 		for (var i = 0; i < arr.length; i++) {
 			if(now.includes(arr[i])){
@@ -71,10 +66,6 @@ function selectNav(){
 		}
 	
 }
-
-
-
-
 </script>
 </head>
 <body>
@@ -120,8 +111,13 @@ function selectNav(){
                             </a>
                         </li>
                         <!-- 1:1 Inquiry -->
-                        <li class="nav-item">
+                      <%--   <li class="nav-item">
                             <a href="inquiry?memberNum=${user.memberNum}" class="nav-link text-white p-3 mb-2 sidebar-link">
+                                <i class="fas fa-question-circle text-white fa-lg mr-3"></i>1:1문의
+                            </a>
+                        </li> --%>
+                          <li class="nav-item">
+                            <a href="inquiry" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-question-circle text-white fa-lg mr-3"></i>1:1문의
                             </a>
                         </li>
@@ -186,14 +182,10 @@ function selectNav(){
                                 <i class="fas fa-question-circle text-white fa-lg mr-3"></i>1:1문의
                             </a>
                         </li>
-
-
                      </ul>
-
                     </div> 
                     <!-- end of sidebar -->
                     
-
                 </div>
             </div>
         </div>

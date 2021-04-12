@@ -72,18 +72,19 @@ body {
     margin-right: 40px;
     font-size:21px;
     font-weight:bold;
-    padding:15px 17px 15px 17px;
+    padding:19px 17px 20px 17px;
 }
 
 .notisubmenu a:hover {
   background:#001eff21;
   border-bottom:3px solid #001eff;
+    padding-bottom:16px;
 }
 
 .notisubmenu a:nth-child(2){
     color:#001eff;
     border-bottom:3px solid #001eff;
-    padding-bottom: 15px;
+    padding-bottom: 16px;
 }
 
 /* 아코디언  */
@@ -112,6 +113,9 @@ body {
     border-left:3px solid #fff;   
     line-height: 30px; 
   }
+.accordion:focus{
+ outline: -webkit-focus-ring-color auto 0px;
+}
 
 .accordion:first-child{
 	border-top:1px solid #999;
@@ -168,6 +172,7 @@ body {
   }
   .active:after {
     content: "\2212";
+    /* outline:none; */
   }
   
   .panel {

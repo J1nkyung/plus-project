@@ -76,6 +76,8 @@ public class PageMakerMem {
 		return uriComponents.toUriString();
 	}
 	
+	
+	
 	//검색할 때 page, perPageNum, searchType, keyword를 url로 사용할수 있게 하기 위해 만든 메서드
 	public String makeSearch(int page) {
 		

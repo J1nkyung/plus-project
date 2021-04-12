@@ -43,45 +43,43 @@ body {
 	font-family: 'NanumSquare', sans-serif;
 	margin-left: 40px;
 }
-
 a {
 	color: inherit;
 }
-
 a:hover {
 	text-decoration: none;
 }
-
 .Container {
 	margin: 0;
 	width: 1140px;
 }
-
 .Content {
 	position: absolute;
 	left: 25%;
 	width: 70%;
 	height: 100vh;
 }
-
 #tableWrapper {
 	width: 85%;
 	height: 415.550px;
 	padding-top: 30px;
 	padding-bottom: 30px;
 }
-
 #block {
 	border: 1px solid rgba(189, 186, 186, 0.829);
 	border-radius: 2%;
 	min-height: 443.2px;
 }
-
 #tableWrapper table {
 	width: 100%;
 	border-collapse: collapse;
 }
-
+#tableWrapper table th:first-child {
+	border-radius:10px 0px 0px 0px;
+}
+#tableWrapper table th:last-child {
+	border-radius:0px 10px 0px 0px;
+}
 #tableWrapper table th {
 	text-align: center;
 	background-color: grey;
@@ -90,49 +88,40 @@ a:hover {
 	background-color: #001eff;
 	color: white;
 }
-
 #tableWrapper table td {
 	text-align: center;
 	padding: 7px;
 	max-height: 17px;
 }
-
 #pageArea {
 	margin: 0 auto;
 	position: relative;
 }
-
 .paging {
 	margin-top: 40px;
 	position: absolute;
 	left: 37%;
 }
-
 .paging>li {
 	list-style: none;
 	float: left;
 	padding: 6px 1px;
 }
-
 .span {
 	padding: 6px 12px;
 	border: 1px solid lightgray;
 }
-
 #info, .paging>li :hover {
 	text-decoration: none;
 }
-
 #keywordInput {
 	display: inline;
 }
-
 .search {
 	float: right;
 	margin-bottom: 3px;
 	margin-right: 3px;
 }
-
 #searchType {
 	height: 24px;
 }
@@ -143,31 +132,57 @@ li {
 	float: left;
 	padding: 6px;
 }
-
 #delBtn a:hover {
 	color: white;
 }
-
 .clubname {
 	width: 200px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
 .clubleader {
 	width: 90px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
+.btn-outline-primary {
+    border-color: #A9BCF5;
+    color: #A9BCF5; }
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    border-color: #819FF7;
+    background-color: #819FF7;
+    color: #FFF; }
+.btn-outline-primary:active,
+.btn-outline-primary:visited,
+.btn-outline-primary:active:focus,
+.btn-outline-primary:active:hover {
+    border-color: #CED8F6;
+    background-color: #819FF7;
+    color: #FFF; }
+    
+.btn-outline-danger {
+    border-color: #E2A9F3;
+    color: #E2A9F3; }
+.btn-outline-danger:hover,
+.btn-outline-danger:focus {
+    border-color: #D0A9F5;
+    background-color: #D0A9F5;
+    color: #FFF; }
+.btn-outline-danger:active,
+.btn-outline-danger:visited,
+.btn-outline-danger:active:focus,
+.btn-outline-danger:active:hover {
+    border-color: #F2E0F7;
+    background-color: #E2A9F3;
+    color: #FFF; }
 .nav-item {
 	font-size: 13px;
 	padding: 0px;
 	padding-left: 35px;
 }
-
 .navbar-light .navbar-nav .nav-link {
 	margin: 0;
 	padding: 5px;
@@ -246,17 +261,17 @@ padding-top:30px;
 													style="width: 70px; font-weight: bold;">도움+</button>
 											</td>
 										</c:if>
-										<form action="deleteAdminClub" method="post">
+									<form action="deleteAdminClub" method="post">
 											<input type="hidden" name="clubNum" value="${club.clubNum}">
 											<td class="text-center">
 
-												<button type="submit" class="btn btn-danger btn-sm"
-													id="delBtn" style="width: 70px; font-weight: bold;">
-													<a href="${path}/deleteAdminClub?clubNum=${club.clubNum }">삭제</a>
+												<button type="submit"  class="btn btn-danger btn-sm"
+													id="delBtn" style="width: 70px; font-weight: bold;">삭제
+													<%-- <a href="${path}/deleteAdminClub?clubNum=${club.clubNum}">삭제</a> --%>
 												</button>
 
 											</td>
-										</form>
+									 </form>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -285,11 +300,11 @@ padding-top:30px;
 									</div>
 									<div class="navcontent">
 										<ul class="navbar-nav flex-column mt-4">
-									
+
 											<!-- 회원 관리 -->
 											<li class="nav-item"><a href="memberListPage"
-												class="nav-link text-white p-3 mb-2 sidebar-link">
-													<i class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
+												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+													class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
 											</a></li>
 											<!-- 모임 관리 -->
 											<li class="nav-item"><a href="adminClub"
@@ -306,7 +321,7 @@ padding-top:30px;
 											<!-- 공지 관리 -->
 											<li class="nav-item"><a href="announce"
 												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-question-circle text-white fa-lg mr-3"></i>공지
+													class="far fa-flag text-white fa-lg mr-3"></i>공지
 													관리
 											</a></li>
 											<!-- 결제내역 관리 -->
@@ -317,10 +332,12 @@ padding-top:30px;
 											<!-- 관리자 차트 -->
 											<li class="nav-item"><a href="adminChart"
 												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-question-circle text-white fa-lg mr-3"></i>차트
+													class="fas fa-chart-line text-white fa-lg mr-3"></i>차트
 													관리
 											</a></li>
-	<p id="gomain"><a href="main"><i class="fas fa-home"></i> 메인으로 가기 </a></p>
+											<p id="gomain">
+												<a href="main"><i class="fas fa-home"></i> 메인으로 가기 </a>
+											</p>
 										</ul>
 									</div>
 								</div>
@@ -360,16 +377,22 @@ padding-top:30px;
 	</div>
 	<!-- end of table -->
 	<script>
-		$(document).ready(function() {
-			$("#delBtn").on("click", function() {
-				alert("모임이 삭제되었습니다");
+	
+	$(document).ready(function(){
+				 
+			$(function(){
+				$(document).on('click','#delBtn',function(){
+					if(confirm("모임을 삭제하시겠습니까?") == true){
+					}else{
+						return false;
+					}
+				})
 			});
-		});
+	})
 		
 		window.onload = function(){
 			selectNav();
 		}
-
 		function selectNav(){ 
 			// 지금 접속해있는 주소 얻어서 now에 넣어줌
 			var now = window.location.href;
@@ -378,7 +401,6 @@ padding-top:30px;
 			// 주소에 포함되어야 하는 단어 배열로 선언
 				var arr = ["ListPage", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
 			
-
 			//기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
 				for (var i = 0; i < arr.length; i++) {
 					if(now.includes(arr[i])){
@@ -387,7 +409,8 @@ padding-top:30px;
 				}
 			
 		}
-
+		
+		
 	</script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

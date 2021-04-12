@@ -1,7 +1,6 @@
 package com.project.plus.controller;
 
 import java.io.PrintWriter;
-
 import java.util.List;
 import java.util.Random;
 
@@ -10,14 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,6 +40,9 @@ public class MemberController {
    
    @Autowired
     private JavaMailSender mailSender;
+   
+   @Autowired
+   BCryptPasswordEncoder pwdEncoder;
 
 
 
@@ -55,8 +55,15 @@ public class MemberController {
  
    
    @RequestMapping(value="memberJoin", method=RequestMethod.POST)
-   public String memberJoin(MemberVO vo, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
-      System.out.println("회원가입 컨트롤러 진입");
+   public String memberJoin(MemberVO vo, HttpServletResponse response, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
+      
+      
+      //비밀번호 암호화
+      String inputPass = vo.getMemberPassword();
+      String memberPassword = pwdEncoder.encode(inputPass);
+      vo.setMemberPassword(memberPassword);
+      
+      
       // 파일을 저장할 절대 경로 지정
       String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
       vo = ProfileUtils.profile(vo, uploadPath, file);
@@ -119,9 +126,10 @@ public class MemberController {
       pmem.setCriMem(scmem);
       pmem.setTotalCount(memberService.listCount(scmem));
       model.addAttribute("pmem", pmem);
+
       return "member/memberList";
+
    }
-   
    
    //로그인하고 내정보확인 페이지 들어가면 정보 뿌려주는 메서드
    @RequestMapping(value="memberUpdate", method=RequestMethod.GET)
@@ -135,7 +143,7 @@ public class MemberController {
    System.out.println("멤버업데이트 get메서드"+vo); //null나와 ... 
    System.out.println("memberInfo " + memberService.viewMember(vo.getMemberNum()));
    MemberVO user = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
-   
+
    
    if(user.getMemberNum() == 1) {
       
@@ -149,9 +157,8 @@ public class MemberController {
      return "";
 
    }
-   
 
-   
+    
    //회원 정보 업데이트하는 메서드 
    @RequestMapping(value="memberUpdate", method=RequestMethod.POST)
    public String memberUpdate(MemberVO vo, HttpSession session, Model model, 
@@ -196,12 +203,52 @@ public class MemberController {
 
    }
    
+   
+   //비밀번호 변경  get 메서드 
    @RequestMapping(value="changePw", method=RequestMethod.GET)
-   public String changePw(MemberVO vo) throws Exception{
-     // memberService.deleteMember(vo.getMemberNum());
+   public String changePwPage(MemberVO vo) throws Exception{
       return "changePw.member";
    }
 
+   //비밀번호 변경 post 메서드 
+   @RequestMapping(value="changePw", method=RequestMethod.POST)
+   public String changePw(MemberVO vo, @RequestParam("ori_pswd")String ori_pswd, HttpSession session, HttpServletResponse response) throws Exception{
+	  
+	   
+	   MemberVO user = (MemberVO) session.getAttribute("user");
+	   System.out.println(user.getMemberEmail());
+	
+	   
+	   Boolean pwdMatch = pwdEncoder.matches(ori_pswd, user.getMemberPassword());
+	   System.out.println("ori_pswd확인" + ori_pswd); //예전 비밀번호 확인 
+	   System.out.println(vo.getMemberPassword());//새로운 비밀번호 받아옴
+		if(pwdMatch == true) {
+			System.out.println("true 진입??"); //진입 완료 
+		    
+			String inputPass = vo.getMemberPassword();
+		      String memberPassword = pwdEncoder.encode(inputPass);
+		      
+		      
+		      //여기서 user의 정보에다가 새로운 암호를 set해주는거같아 
+		      user.setMemberPassword(memberPassword); 
+		      
+		    //그래서 여기도 user인거..? 위의 정보로 비밀번호 바꿔줘야하니까
+			memberService.changePw(user); 
+			return "redirect:logout";
+		}else {
+			
+			 response.setContentType("text/html; charset=UTF-8");
+	            PrintWriter out = response.getWriter();
+	            
+	            out.println("<script>alert('비밀번호를 확인해주세요'); history.go(-1);</script>");
+	            out.flush();
+			return "changePw.member";
+		}
+   }
+
+   
+   
+   
    @RequestMapping(value="memberDelete", method=RequestMethod.POST)
    public String delete(MemberVO vo) throws Exception{
 	   memberService.deleteMember(vo.getMemberNum());

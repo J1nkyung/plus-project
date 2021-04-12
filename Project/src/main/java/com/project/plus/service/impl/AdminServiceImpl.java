@@ -10,6 +10,7 @@ import com.project.plus.domain.CriteriaAdmin;
 import com.project.plus.domain.InquiryVO;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.PaymentVO;
+import com.project.plus.domain.SearchCriteriaAdmin;
 import com.project.plus.domain.VisitCountVO;
 import com.project.plus.mapper.AdminMapper;
 import com.project.plus.service.AdminService;
@@ -156,14 +157,26 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.getJoin_6(mvo);
 	}
 
+//	@Override
+//	public List<PaymentVO> adminPayList(CriteriaAdmin cri) throws Exception {
+//		return mapper.adminPayList(cri);
+//	}
+//	
+//	@Override
+//	public int adminPayListCount(CriteriaAdmin cri) throws Exception {
+//		return mapper.adminPayListCount(cri);
+//	}
+	
 	@Override
-	public List<PaymentVO> adminPayList(CriteriaAdmin cri) throws Exception {
-		return mapper.adminPayList(cri);
+	public List<PaymentVO> adminPayList(SearchCriteriaAdmin scad) throws Exception {
+		List<PaymentVO> list = null;
+		list = mapper.adminPayList(scad);
+		return list;
 	}
 	
 	@Override
-	public int adminPayListCount(CriteriaAdmin cri) throws Exception {
-		return mapper.adminPayListCount(cri);
+	public int adminPayListCount(SearchCriteriaAdmin scad) throws Exception {
+		return mapper.adminPayListCount(scad);
 	}
 
 	@Override
@@ -181,5 +194,32 @@ public class AdminServiceImpl implements AdminService {
 	public int adminClubListCount(CriteriaAdmin cri) throws Exception {
 		return mapper.adminClubListCount(cri);
 	}
+
+	@Override
+	public int adminClubListCount(ClubVO cvo) {
+		return mapper.adminClubListCount(cvo);
+	}
+
+	@Override
+	public InquiryVO answerInquiryEditForm(InquiryVO vo) {
+		return mapper.answerInquiryEditForm(vo);
+	}
+
+	@Override
+	public void answerEditInquiry(InquiryVO vo) {
+		mapper.answerEditInquiry(vo);
+	}
+
+//	@Override
+//	public List<PaymentVO> payList(SearchCriteriaAdmin scad) {
+//		List<PaymentVO> list = null;
+//		list = mapper.payList(scad);
+//		return list;
+//	}
+
+//	@Override
+//	public int payListCount(SearchCriteriaAdmin scad) {
+//		return mapper.payListCount(scad);
+//	}
 
 }
