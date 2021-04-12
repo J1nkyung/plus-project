@@ -22,8 +22,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.ApplyVO;
 import com.project.plus.domain.BoardVO;
-import com.project.plus.domain.CriteriaBoardList;
-import com.project.plus.domain.PageMakerBoardList;
+import com.project.plus.domain.CommentsVO;
+import com.project.plus.domain.CriteriaMem;
+import com.project.plus.domain.PageMakerMem;
 import com.project.plus.service.ApplyService;
 import com.project.plus.service.BoardService;
 import com.project.plus.service.ClubService;
@@ -139,24 +140,31 @@ public class BoardController {
 	   
 	   //내 글 모아보기 
 	   @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
-	   public String viewMyList(CriteriaBoardList cb, Model model) {
+	   public String viewMyList(Model model, BoardVO board, CriteriaMem cri, @RequestParam("clubNum") int clubNum, @RequestParam("memberNum") int memberNum, HttpSession session) throws Exception {
 		 
 		   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
 //		   List<BoardVO> view =  boardService.viewMyList(cb, memberNum, clubNum);
-		   List<BoardVO> view =  boardService.viewMyList(cb);
-//			for(BoardVO vo : view) {
-//				System.out.println(vo);
-//			}
-//			System.out.println("");
+		   System.out.println("memberNum : " + memberNum);
+		   System.out.println("clubNum : " + clubNum);
 		   
+		   model.addAttribute("memberNum", memberNum);
+		   model.addAttribute("clubNum", clubNum);
+		   
+//		   memberNum = board.getMemberNum();
+		   
+		   int rowStart = cri.getRowStart(); //1
+		   int rowEnd = cri.getRowEnd(); //10
+
+		   List<BoardVO> view =  boardService.viewMyList(clubNum, memberNum, rowStart, rowEnd);
 			model.addAttribute("list", view);
 			
-			PageMakerBoardList pmem = new PageMakerBoardList();
-		      pmem.setCb(cb);
-		      pmem.setTotalCount(boardService.myListCount(cb));
+			
+			PageMakerMem pmem = new PageMakerMem();
+		      pmem.setCriMem(cri);
+		      pmem.setTotalCount(boardService.myListCount(board.getBoardNum()));
 		      model.addAttribute("pmem", pmem);
 			
-		      System.out.println("club 받는지 확인"+cb.getClubNum());
+		    //  System.out.println("club 받는지 확인"+cri.getClubNum());
 			
 			
 

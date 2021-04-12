@@ -54,7 +54,7 @@
 #tableWrapper table th {
     text-align: center;
     background-color: grey;
-    height:20x;
+    height:20px;
     padding: 13px;
     background-color:#001eff;
     color:white;
@@ -183,13 +183,15 @@ margin:10px;
 						  <ul class="paging">
 							  
 						  
-						    	<li><a class="span" href="viewMyList${pmem.makeQuery(pmem.startPage - 1)}">◀</a></li>
+						    	<li><a class="span" href="viewMyList${pmem.makeQuery(pmem.startPage - 1)}&clubNum=${clubNum}&memberNum=${memberNum}">◀</a></li>
 						
 						    <c:forEach begin="${pmem.startPage}" end="${pmem.endPage}" var="idx">
-						    	<li><a href="viewMyList${pmem.makeQuery(idx)}"><span class="span">${idx}</span></a></li>
+						    	<li>
+						    	<a href="viewMyList${pmem.makeQuery(idx)}&clubNum=${clubNum}&memberNum=${memberNum}">
+						    	<span class="span">${idx}</span></a></li>
 						    </c:forEach>
 						
-						    	<li><a class="span" href="viewMyList${pmem.makeQuery(pmem.endPage + 1)}">▶</a></li>
+						    	<li><a class="span" href="viewMyList${pmem.makeQuery(pmem.endPage + 1)}&clubNum=${clubNum}&memberNum=${memberNum}">▶</a></li>
 						  </ul>
 					 </div><!-- pageArea -->
        	 </form>

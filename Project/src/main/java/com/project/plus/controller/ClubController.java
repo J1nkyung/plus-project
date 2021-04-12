@@ -148,23 +148,23 @@ public class ClubController {
 	public String getClub(@RequestParam("clubNum") int clubNum, ApplyVO avo, HeartVO hvo, HttpSession session, Model model) {
 		
 		//정연 추가 20210405
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		if (user != null) {
-			hvo.setMemberNum(user.getMemberNum());
-		}
+//		MemberVO user = (MemberVO) session.getAttribute("user");
+//		if (user != null) {
+//			hvo.setMemberNum(user.getMemberNum());
+//		}
 		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
-		int resultClub = heartService.selectHeartNum(hvo);
-		model.addAttribute("isThereHeart", resultClub);
-		avo.setClubNum(clubNum);
-		avo.setMemberNum(user.getMemberNum());
-		Integer result = clubService.getOneApply(avo);
-		
-		/*이미 신청한 모임인지 아닌지 getClub jsp에서 확인 이거 사용 안할 듯 ,, */
-		if(result.equals(0)) {
-			model.addAttribute("yesNo", 0);
-		} else {
-			model.addAttribute("yesNo", 1);
-		}
+//		int resultClub = heartService.selectHeartNum(hvo);
+//		model.addAttribute("isThereHeart", resultClub);
+//		avo.setClubNum(clubNum);
+//		avo.setMemberNum(user.getMemberNum());
+//		Integer result = clubService.getOneApply(avo);
+//		
+//		/*이미 신청한 모임인지 아닌지 getClub jsp에서 확인 이거 사용 안할 듯 ,, */
+//		if(result.equals(0)) {
+//			model.addAttribute("yesNo", 0);
+//		} else {
+//			model.addAttribute("yesNo", 1);
+//		}
 		// 2021045  여기위 까지
 		
 		// 미리 보여줄 5개 리뷰 

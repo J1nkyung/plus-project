@@ -39,7 +39,7 @@
         SELECT *
           FROM MEMBER
          WHERE member_email = #{memberEmail}
-           AND member_password = #{memberPassword}
+          <!--  AND member_password = #{memberPassword} -->
     </select>
     
     

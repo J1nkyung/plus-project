@@ -2,6 +2,7 @@ package com.project.plus.mapper;
 
 import java.util.List;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
@@ -33,7 +34,7 @@ public interface MemberMapper {
 	public int listCount(SearchCriteriaMem scmem);
 	public MemberVO viewMember(int memberNum);
 	public int checkPw(@Param("memberEmail") String memberEmail, @Param("memberPassword") String memberPassword);
-	public int changePw(@Param("memberEmail") String memberEmail, @Param("memberPassword") String memberPassword);
+	public int changePw(MemberVO vo);
 	
 	//정연 하단 추가 20210326
 

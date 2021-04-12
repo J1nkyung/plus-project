@@ -3,9 +3,9 @@ package com.project.plus.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 
 import com.project.plus.domain.BoardVO;
-import com.project.plus.domain.CriteriaBoardList;
 
 public interface BoardMapper {
 	public int insertBoard(BoardVO board);
@@ -15,7 +15,6 @@ public interface BoardMapper {
 	public int getContentCount(int BoardNum);
 	public void updateBoard(BoardVO board);
 	public void deleteBoard(int BoardNum);
-	public List<BoardVO> viewMyList(CriteriaBoardList cb);
-	public int myListCount(CriteriaBoardList cb);
-	
+	public List<BoardVO> viewMyList(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum,  @Param("rowStart") int rowStart, @Param("rowEnd") int rowEnd);
+	public int myListCount(int boardNum);
 }

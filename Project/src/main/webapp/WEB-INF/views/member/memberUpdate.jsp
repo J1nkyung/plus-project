@@ -62,7 +62,7 @@ function setThumbnail(event){
 
 
 	
-	//비밀번호 유효성 검사
+/* 	//비밀번호 유효성 검사
 function isPw1(){
     var pwVal = $("#pswd1").val();
                              //특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
@@ -94,7 +94,7 @@ function checkPw() {
       return true;
     }
 
-  }
+  } */
   
 //등록한 사진 삭제하는 버튼
 removePic = function(){
@@ -215,7 +215,6 @@ $(document).ready(function(){
                         <input type="text" name="memberEmail" id="email" class="int1" maxlength="20" value="${memberInfo.memberEmail }" readonly>
                         <!-- <input type="button" class="check" value="중복체크"> -->
                     </span>
-                    <span class="error_next_box"></span>
                 </div>
                 
             <!-- NAME -->
@@ -225,7 +224,6 @@ $(document).ready(function(){
                     <input type="text" name="memberName" id="name" class="int1" maxlength="16" value="${memberInfo.memberName }" readonly>
                     <!-- <input type="button" class="check" value="중복체크하기"> -->
                 </span>
-                <span class="error_next_box"></span>
             </div>
 
 
@@ -236,7 +234,6 @@ $(document).ready(function(){
                         <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="16" value="${memberInfo.memberNickname }" placeholder="8자 이내의 닉네임을 지어주세요" >
                         <input type="button" id="chkNickname" class="check" value="중복체크하기" onclick="chNickname()" >
                     </span>
-                    <span class="error_next_box"></span>
                 </div>
 
                 <!-- MOBILE -->
@@ -246,7 +243,6 @@ $(document).ready(function(){
                         <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈'-'을 포함해 입력해주세요" value="${memberInfo.memberPhone }">
                         <input type="button" id="chkMobile" class="check" onclick="isMobile()" value="중복검사하기">
                     </span>
-                    <span class="error_next_box"></span>
                 </div>
 
 
@@ -278,7 +274,6 @@ $(document).ready(function(){
                  <div>
                     <span class="box int_pass1">
 			<button id="btnPw" type="button" onclick="location.href='changePw'"><span>비밀번호 수정</span></button> 
-                        <span id="alertTxt"></span>
 
                     </span>
                     <span class="error_next_box"></span>

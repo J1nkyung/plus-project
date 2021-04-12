@@ -1,9 +1,6 @@
 package com.project.plus.domain;
 
-import java.util.Arrays;
 
-import lombok.Getter;
-import lombok.Setter;
 
 /* Criteria
  * 특정 페이지 조회를 위한 클래스
@@ -32,6 +29,30 @@ public class CriteriaMem {
 		
 		
 		
+		//boardList에서 필요한 정보
+		private int memberNum;
+		private int clubNum;
+		
+		
+		public int getMemberNum() {
+			return memberNum;
+		}
+
+
+		public void setMemberNum(int memberNum) {
+			this.memberNum = memberNum;
+		}
+
+
+		public int getClubNum() {
+			return clubNum;
+		}
+
+
+		public void setClubNum(int clubNum) {
+			this.clubNum = clubNum;
+		}
+
 		
 		/* 검색 타입 배열 */
 		private String[] typeArr;
@@ -80,6 +101,58 @@ public class CriteriaMem {
 			rowEnd = rowStart + perPageNum - 1;
 			return rowEnd;
 		}
+
+		
+		
+		public String getKeyword() {
+			return keyword;
+		}
+
+
+		public void setKeyword(String keyword) {
+			this.keyword = keyword;
+		}
+
+
+		public String getType() {
+			return type;
+		}
+
+
+		public void setType(String type) {
+			this.type = type;
+		}
+
+
+		public String getMemberName() {
+			return memberName;
+		}
+
+
+		public void setMemberName(String memberName) {
+			this.memberName = memberName;
+		}
+
+
+		public String getMemberEmail() {
+			return memberEmail;
+		}
+
+
+		public void setMemberEmail(String memberEmail) {
+			this.memberEmail = memberEmail;
+		}
+
+
+		public String[] getTypeArr() {
+			return typeArr;
+		}
+
+
+		public void setTypeArr(String[] typeArr) {
+			this.typeArr = typeArr;
+		}
+
 
 		@Override
 		public String toString() {

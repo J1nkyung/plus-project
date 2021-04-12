@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.project.plus.domain.BoardVO;
-import com.project.plus.domain.CriteriaBoardList;
+import com.project.plus.domain.CriteriaBoardList00;
+import com.project.plus.domain.CriteriaMem;
 
 public interface BoardService {
 	public int insertBoard(BoardVO board);
@@ -15,7 +16,7 @@ public interface BoardService {
 	public List<BoardVO> getMoreContents(Map<String, Integer> map);
 	public int getContentCount(int clubNum);	
 //	public List<BoardVO> viewMyList(CriteriaBoardList cb, int memberNum, int club);
-	public List<BoardVO> viewMyList(CriteriaBoardList cb);
-	public int myListCount(CriteriaBoardList cb);
+	public int myListCount(int boardNum);
+	public List<BoardVO> viewMyList(int clubNum, int memberNum, int rowStart, int rowEnd);
 
 }

@@ -8,7 +8,7 @@ import lombok.Setter;
 /* Criteria
  * 특정 페이지 조회를 위한 클래스
  */
-public class CriteriaBoardList {
+public class CriteriaBoardList00 {
 		
 		/* 현재 페이지 */
 		private int page;
@@ -52,7 +52,7 @@ public class CriteriaBoardList {
 		private String[] typeArr;
 		
 		/* 기본 생성자 -> 기봅 세팅 : pageNum = 1, amount = 10 */
-		public CriteriaBoardList() {
+		public CriteriaBoardList00() {
 			this.page = 1;
 			this.perPageNum = 10;
 		}

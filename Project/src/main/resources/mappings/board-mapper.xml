@@ -78,7 +78,7 @@
 	 </delete>
 	 
 	 <select id="viewMyList" resultMap="boardResult" parameterType="map">
-	SELECT *
+	SELECT myList.*
     FROM 
 	      (SELECT board.*, member_nickname, member_pic,
 	      row_number() over(order by board.board_regdate desc) as rNum
@@ -88,10 +88,10 @@
  	   	  WHERE club_num = #{clubNum}
 		  AND member_num = #{memberNum} 
 	      								)myList
-	where club_num = #{clubNum}
-		  AND member_num = #{memberNum}  
-	and rNum BETWEEN #{rowStart} and #{rowEnd} 
-	ORDER BY board_regdate DESC;
+<!-- 	where club_num = #{clubNum}
+		  AND member_num = #{memberNum}   -->
+	WHERE rNum BETWEEN #{rowStart} and #{rowEnd} 
+	ORDER BY board_regdate DESC
 	 </select>
 	 
 	 <select id="myListCount" resultType="int">

@@ -253,16 +253,16 @@ h3 {
     display: none;
 }
 
-#alertTxt {
+
+#alertTxt1 {
     position: absolute;
     top: 19px;
     right: 38px;
     font-size: 12px;
-    color: red;
+    color: green;
     display: none;
 }
-
-#alertTxt1 {
+#alertTxt2 {
     position: absolute;
     top: 19px;
     right: 38px;
@@ -345,10 +345,19 @@ color:white;
 }
 #btnFind {
 height:35px;
-width:90px;
+width:100px;
 border:none;
 background-color:#001EFF;
 color:white;
 border-radius:5px;
 margin-left:140px;
+}
+#btnch {
+height:35px;
+width:100px;
+border:none;
+background-color:#001EFF;
+color:white;
+border-radius:5px;
+margin-left:135px;
 }
