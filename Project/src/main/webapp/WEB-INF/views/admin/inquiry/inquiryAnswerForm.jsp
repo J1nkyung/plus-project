@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -83,12 +84,12 @@ float:right;
 			
 			<input type="text" class="form-control" id="answer-title" value="[RE]: 문의 답변입니다." readonly>
 				
-			<textarea name="inquiryAnswer">[문의 내용]${answerInquiryForm.inquiryContent} 안녕하세요  ${answerInquiryForm.memberNickname} 회원님</textarea>		
+			<textarea name="inquiryAnswer" placeholder="[문의 내용]${answerInquiryForm.inquiryContent}"></textarea>		
 			
 			<%-- <input type="hidden" value="${answerInquiryForm.inquiryAnswer}" name="inquiryAnswer"> --%>
 			<input type="hidden" value="${answerInquiryForm.inquiryNum}" name="inquiryNum">
 			<!--  회원번호 진경 알림에게 넘겨주기  -->
-			<button type="button" class="btn btn-primary" id="answerBtn">답변 등록</button>
+			<button type="submit" class="btn btn-primary" id="answerBtn">답변 등록</button>
 			<div class="submit"><a href="adminInquiry">글 목록 가기</a></div>
 		<hr></div>
 	</form> 

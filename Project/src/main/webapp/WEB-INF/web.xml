@@ -34,6 +34,7 @@
         <listener-class>com.project.plus.action.VisitSessionListener</listener-class>
     </listener>
 
+
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>action</servlet-name>

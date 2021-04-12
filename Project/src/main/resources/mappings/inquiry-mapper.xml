@@ -23,11 +23,11 @@
 		VALUES (#{memberNum}, #{inquiryTitle}, #{inquiryContent}, #{inquiryType}, NOW())
 	</insert>
 	
-	<select id="inquiryForm" resultMap="inquiryResult">
+	<!-- <select id="inquiryForm" resultMap="inquiryResult">
 		SELECT inquiry_num, inquiry_title, MEMBER.member_num, inquiry_content, inquiry_type, inquiry_state, inquiry_answer, inquiry_regdate, member_email, member_nickname
 		FROM INQUIRY JOIN MEMBER USING (member_num)
 		WHERE MEMBER_NUM=#{memberNum}
-	</select>
+	</select> -->
 	
 	<!--  회원 : 문의글 수정 -->
 	<update id="editInquiry">

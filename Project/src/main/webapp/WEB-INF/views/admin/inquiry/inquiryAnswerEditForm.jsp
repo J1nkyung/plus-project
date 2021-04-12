@@ -49,7 +49,7 @@ textarea {
     border: 1px solid #dddddd;
 }
 
-#inquiryBtn {
+#editBtn {
     width: 710px;
     height: 50px;
     border: 0;
@@ -64,28 +64,25 @@ float:right;
 </style>
 </head>
 <body>
-    <form action="editInquiry" method="post">
+    <form action="answerEditInquiry" method="post">
         <div class="inquiry-wrap">
-            <h1>1:1문의 수정</h1>
+            <h1>1:1문의 답변수정</h1>
             <hr>
             <div class="inquiry-category">
                 <label for="exampleFormControlSelect2">카테고리 선택</label>
-                <select name="inquiryType" id="id_select" class="form-control">
-                    <option value="회원문의" <c:if test="${inquiryForm.inquiryType == '회원문의'}">selected</c:if>>회원문의</option>
-                    <option value="모임문의" <c:if test="${inquiryForm.inquiryType == '모임문의'}">selected</c:if>>모임문의</option>
-                    <option value="결제문의" <c:if test="${inquiryForm.inquiryType == '결제문의'}">selected</c:if>>결제문의</option>
-                    <option value="기타문의" <c:if test="${inquiryForm.inquiryType == '기타문의'}">selected</c:if>>기타문의</option>
+                <select name="inquiryType" id="id_select" class="form-control" readonly>
+                    <option value="회원문의" <c:if test="${answerInquiryEditForm.inquiryType == '회원문의'}">selected</c:if>>회원문의</option>
+                    <option value="모임문의" <c:if test="${answerInquiryEditForm.inquiryType == '모임문의'}">selected</c:if>>모임문의</option>
+                    <option value="결제문의" <c:if test="${answerInquiryEditForm.inquiryType == '결제문의'}">selected</c:if>>결제문의</option>
+                    <option value="기타문의" <c:if test="${answerInquiryEditForm.inquiryType == '기타문의'}">selected</c:if>>기타문의</option>
                 </select>
             </div>
-            <input type="hidden" value="${inquiryForm.inquiryNum}" name="inquiryNum">
-            <input type="hidden" value="${inquiryForm.memberNum}" name="memberNum">
-            <input type="text" class="form-control" id="inquiry-title"
-                name="inquiryTitle" value="${inquiryForm.inquiryTitle}">
-            <textarea name="inquiryContent" style="white-space:pre-line;">${inquiryForm.inquiryContent}</textarea>
-            <button type="submit" id="inquiryBtn">수정하기</button><br/>
-      </div>
+            <input type="hidden" value="${answerInquiryEditForm.inquiryNum}" name="inquiryNum">
+            <textarea name="inquiryAnswer" style="white-space:pre-line;">${answerInquiryEditForm.inquiryAnswer}</textarea>
+            <button type="submit" id="editBtn">수정하기</button><br/>
+      </div>    
       </form>
-            <div class="submit"><a href="inquiry">글 목록 가기</a></div>
+            <div class="submit"><a href="adminInquiry">글 목록 가기</a></div>
         <hr>
     
     
@@ -93,8 +90,8 @@ float:right;
 
         $(document).ready(function(){
 
-            $("#inquiryBtn").on("click", function(){
-                alert("문의가 정상적으로 수정 되었습니다");
+            $("#editBtn").on("click", function(){
+                alert("답변이 정상적으로 수정 되었습니다");
             });
         });
 </script>

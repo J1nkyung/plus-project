@@ -28,25 +28,21 @@
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> 
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
 <style>
-
-
 /* 진경 수정 */
 body {
 	font-family: 'NanumSquare';
 }
 
-.fixed-top{
-	position:sticky;
+.fixed-top {
+	position: sticky;
 }
-
 /* 끝 */
-
 a {
-color:inherit;
+	color: inherit;
 }
 
 a:hover {
-text-decoration:none;
+	text-decoration: none;
 }
 
 .Container {
@@ -74,7 +70,12 @@ text-decoration:none;
 	width: 100%;
 	border-collapse: collapse;
 }
-
+#tableWrapper table th:first-child {
+	border-radius:10px 0px 0px 0px;
+}
+#tableWrapper table th:last-child {
+	border-radius:0px 10px 0px 0px;
+}
 #tableWrapper table th {
 	text-align: center;
 	background-color: grey;
@@ -129,11 +130,11 @@ text-decoration:none;
 #searchType {
 	height: 24px;
 }
-li {
+/* li {
 	list-style: none;
 	float: left;
 	padding: 6px;
-}
+} */
 </style>
 
 <body>
@@ -177,7 +178,7 @@ li {
 								<c:forEach var="inquiry" items="${inquiryList}">
 									<tr>
 										<td>${inquiry.inquiryType}</td>
-										<td><a
+										<td style="text-align:left;"><a
 											href="${path}/getInquiry?inquiryNum=${inquiry.inquiryNum}"
 											class="inquiry-title">${inquiry.inquiryTitle}</a></td>
 										<fmt:parseDate var="parseRegDate"
@@ -197,11 +198,11 @@ li {
 					<div id="pageArea">
 
 						<ul class="paging">
-						
-							<c:if test="${pageMakerAdmin.prev}">
+
+							<%-- <c:if test="${pageMakerAdmin.prev}"> --%>
 							<li><a class="span"
 								href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.startPage - 1)}">◀</a></li>
-							</c:if>
+							<%-- 	</c:if> --%>
 
 							<c:forEach begin="${pageMakerAdmin.startPage}"
 								end="${pageMakerAdmin.endPage}" var="idx">
@@ -209,27 +210,31 @@ li {
 										class="span">${idx}</span></a></li>
 							</c:forEach>
 
-							<c:if test="${pageMakerAdmin.next && pageMakerAdmin.endPage > 0}">
+							<%-- <c:if test="${pageMakerAdmin.next && pageMakerAdmin.endPage > 0}"> --%>
 							<li><a class="span"
 								href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.endPage + 1)}">▶</a></li>
-							</c:if>
+							<%-- </c:if> --%>
 						</ul>
 
 					</div>
 					<!-- pageArea -->
+					
 				</form>
-				</div>
-						<div class="col-12">
-            <input type="hidden" name="memberNum" value="${user.memberNum}">
-            <input type="hidden" name="inquiryType" value="${inquiry.inquiryType}">
-            <button class="btn btn-primary pull-right">
-               <a href="${path}/inquiryForm?memberNum=${user.memberNum}">문의</a>
-            </button>
-         </div>
-      </div>
-			<!-- wrapper -->
-
+				<div class="col-12" style="margin-left:780px; margin-top:0px;"> 
+				<input type="hidden" name="memberNum" value="${user.memberNum}">
+				<input type="hidden" name="inquiryType"
+					value="${inquiry.inquiryType}">
+				<button class="btn btn-primary pull-right">
+					<a href="${path}/inquiryForm?memberNum=${user.memberNum}">문의</a>
+				</button>
+			 </div>
+			</div>
+			 
 		</div>
+		<!-- content -->
+
+	</div>
+	<!-- Container -->
 
 </body>
 
