@@ -15,6 +15,8 @@ public interface BoardMapper {
 	public int getContentCount(int BoardNum);
 	public void updateBoard(BoardVO board);
 	public void deleteBoard(int BoardNum);
-	public List<BoardVO> viewMyList(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum,  @Param("rowStart") int rowStart, @Param("rowEnd") int rowEnd);
-	public int myListCount(int boardNum);
+	public List<BoardVO> viewMyList(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum, @Param("rowStart") int rowStart, @Param("rowEnd") int rowEnd) throws Exception;
+	public int viewMyListCount(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum) throws Exception;
+
+	
 }

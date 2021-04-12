@@ -2,10 +2,12 @@ package com.project.plus.service.impl;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.plus.domain.CommentsVO;
+import com.project.plus.domain.CriteriaMem;
 import com.project.plus.mapper.CommentsMapper;
 import com.project.plus.service.CommentsService;
 
@@ -61,8 +63,16 @@ public class CommentsServiceImpl implements CommentsService {
 		return mapper.getBoardWriter(bNum);
 	}
 
+	/*정연 추가 내가쓴 댓글 보기 - 페이징 20210410*/
+	@Override
+	public List<CommentsVO> selectMyCommentsList(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum, @Param("rowStart") int rowStart, @Param("rowEnd") int rowEnd) throws Exception {
+		return mapper.selectMyCommentsList(clubNum, memberNum, rowStart, rowEnd);
+	}
 
+	@Override
+	public int selectMyCommentsListCount(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum) throws Exception {
+		return mapper.selectMyCommentsListCount(clubNum, memberNum);
+	}
 
-	
 	
 }

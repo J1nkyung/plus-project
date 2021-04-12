@@ -325,10 +325,10 @@ padding-bottom:30px;
    <div class="communityContainer">
     <%--   <input type="button" name="boardForm" id="boardForm"
          onclick="location.href='${path}/insertBoardForm'"> --%>
-         <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm'">
+         <!-- 정연 추가 20210410 링크에 ${clubNum }추가 -->
+         <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm?clubNum=${clubNum }'">
          <img src="${path }/resources/img/penwhite.png"></button>
          
-
 
 <div id="repeatBox">
 
@@ -456,12 +456,10 @@ padding-bottom:30px;
 					
 	}) */
 
-$(document).ready(function(){
+$(function(){
 	var formObj = $("form[name='updateForm']");
 	
-})
 	 
-$(function(){
 	$(document).on('click','#btnUp',function(){
 		if(confirm("수정하시겠습니까?") == true){
 		formObj.attr("action", "updateView");
@@ -470,9 +468,7 @@ $(function(){
 			return false;
 		}
 	})
-});
 	
-$(function(){
 	$(document).on('click','#btnDel',function(){
 		if(confirm("정말 삭제하시겠습니까?") == true){
 		formObj.attr("action", "deleteBoard");
@@ -481,7 +477,6 @@ $(function(){
 			return false;
 		}
 	})
-});
 	
 	
 	
@@ -489,7 +484,6 @@ $(function(){
 let contentCnt = '${contentCount}'
 	console.log('콘텐츠 개수'+contentCnt)
 
-	$(function(){
 		 if(contentCnt<=5){
 			 console.log("콘텐츠 카운트 체크")
 			 $('#moreContentBtn').css("display","none");
@@ -565,17 +559,15 @@ let contentCnt = '${contentCount}'
 			 })
 		 }
 		
-	})
 	
 	
-	
+		 
+// 댓글 시작 
+
 let mNum = '${user.memberNum}';
 let userNickname = '${user.memberNickname}';
 let boardNum = 0;
 
-$(function(){
-     
-	
 	//대댓글 등록
 	$(document).on('click','#submit-reCommBtn',function(){
 		//e.stopImmediatePropagation();
@@ -955,8 +947,8 @@ function insertComment(bNum){
 		 								boardNum:bNum,
 		 								notType:notType,
 		 								notMessage: notMessage,
-		 												// 알림을 눌렀을 때 이동할 페이지 
-		 								notUrl:notUrl	//여기서 clubNum, (내가쓴글보기가 구현되면 boardNum 받아서 컨트롤러로 보내야함) 
+		 								// 알림을 눌렀을 때 이동할 페이지 
+		 								notUrl:notUrl	
 		 							
 		 							},
 		 				            success: function (data) {

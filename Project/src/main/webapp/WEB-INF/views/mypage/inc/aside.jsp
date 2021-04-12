@@ -109,7 +109,7 @@ function selectNav(){
                         </li>
                         <!-- Point -->
                         <li class="nav-item">
-                            <a href="getPaymentList" class="nav-link text-white p-3 mb-2 sidebar-link">
+                            <a href="getPaymentList?memberNum=${user.memberNum}" class="nav-link text-white p-3 mb-2 sidebar-link">
                                 <i class="fas fa-coins text-white fa-lg mr-3"></i>포인트
                             </a>
                         </li>

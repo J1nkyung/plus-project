@@ -180,20 +180,13 @@ ORDER BY member_num
          FROM member 
          WHERE member_num = #{memberNum};
       ]]>
-   </select> 
+   </select>  	
    
    <select id="selectMemberPointByNickname" resultType="int">
       <![CDATA[
          SELECT member_point as memberPoint
          FROM member 
          WHERE member_nickname = #{memberNickname};
-      ]]>
-   </select>
-   <select id="selectMemberNumberByNickname" resultType="int">
-      <![CDATA[
-         SELECT member_num as memberNum
-         FROM member 
-         WHERE member_nickname = #{memberNickname}
       ]]>
    </select>
    

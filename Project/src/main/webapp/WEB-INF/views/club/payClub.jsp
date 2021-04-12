@@ -48,10 +48,16 @@
     </div>     
      <script src="${path}/resources/js/jquery-1.12.4.min.js"></script> 
     <script>
-
      
      if('${msg}' != ''){
-         alert('${msg}');
+    	 confirm('${msg}' + <br> + "포인트 충전페이지로 이동하시겠습니까?")
+    		 location="getPaymentList";
+             return true;
+    	 }else{
+             return false;
+         }
+     
+        /*  alert('${msg}'); */
      }
      
     </script>

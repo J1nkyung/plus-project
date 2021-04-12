@@ -17,10 +17,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+	<!-- 웹소켓 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.js"></script>
     <title>Document</title>
     <script>
+    let sock;
+    function connect(){
+    	sock = new SockJS("http://localhost:9999/plus/echo");
+    	sock.onopen = onopen;
+    	console.log("세션 생성");
+    }
+
+    function onopen() {
+        console.log('info: connection opened');
+       }
+    
+	    var memberNum = ${user.memberNum};
+	    var point = "";
 	    function payment(amount) {
-	    	var memberNum = ${user.memberNum};
+	    	//소켓연결
+	    	 connect();
+	    	
+	    	point = amount;
 	    	var IMP = window.IMP; // 생략가능
 	        IMP.init('imp60466849'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
 
@@ -55,14 +74,44 @@
 	                msg += '상점 거래ID : ' + rsp.merchant_uid;
 	                msg += '결제 금액 : ' + rsp.paid_amount;
 	                msg += '카드 승인번호 : ' + rsp.apply_num;
+	                
+	                // 결제알림 보내기 
+	                let notMessage ="포인트<b>" + point + "P</b>가 충전되었습니다.";
+ 					let notType= "결제";
+ 					let notUrl = "${path}/getPaymentList";
+ 					  $.ajax({
+ 					        
+ 							type: "post",
+ 							url: "insertCommNoti",
+ 							data: {
+ 								// 알림이 갈 대상 
+ 								memberNum:memberNum,
+ 								notType:notType,
+ 								notMessage: notMessage,
+ 								notUrl:notUrl
+ 							},
+ 				            success: function (data) {
+ 				            	// 서버로 알림 메시지 전송 
+ 				            	sock.send(notType + "," + memberNum + "," + notMessage + "," + notUrl);
+ 				            	
+ 				            },
+ 				            error: function(e) {
+ 					        	  alert("알림 저장 오류" + e);
+ 					        }
+ 				        }); 
+	         
 	            } else {
 	                var msg = '💬 결제에 실패하였습니다.\n';
 	                msg += '     에러내용 : ' + rsp.error_msg + ". \n";
 	                msg += '     다시 한번 시도해보세요! '
 	            }
 	            alert(msg);
-	            opener.parent.location.reload(); //팝업창을 닫으면서 부모창을 새로고침하는 방법
-	            window.close();
+	            
+	            // 1초뒤 실행 
+	            setTimeout(function() {
+			           opener.parent.location.reload(); //팝업창을 닫으면서 부모창을 새로고침하는 방법
+			           window.close();
+	            	}, 1000);
 	        });
 	        
 	    }

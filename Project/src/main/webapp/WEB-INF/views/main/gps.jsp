@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,10 +11,10 @@
 </head>
 <body>
  
-  <form action="/main" id="gpsForm" method="get">    
+  <form action="${path}/main" id="gpsForm" method="get">    
     	<input type="hidden" name="memberLatitude" >    
     	<input type="hidden" name="memberLongitude">
-    	</form>
+   </form>
  
      <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -22,6 +23,7 @@
      * 비동기적으로 현재 위치를 알아내어 지정된 요소에 출력한다.
      */
     function whereami() {
+    	console.log("where?")
         // 이 객체를 getCurrentPosition() 메서드의 세번째 인자로 전달한다.
         var options = {
             // 가능한 경우, 높은 정확도의 위치(예를 들어, GPS 등) 를 읽어오려면 true로 설정
@@ -46,6 +48,7 @@
             // 2: 브라우저가 위치를 가져올 수 없음.
             // 3: 타임아웃이 발생됨.
             // elt.innerHTML = "Geolocation 오류 "+e.code +": " + e.message;
+        console.log(e);
         }
         // geolocation 요청이 성공하면 이 함수가 호출된다.
         function success(pos) {
@@ -73,8 +76,9 @@
     let formObj = $("#gpsForm");
     
     setTimeout(function() {
+    	console.log("form submit!")
     	formObj.submit();	  
-    	}, 500);
+    	}, 2000);
            
     </script>
  

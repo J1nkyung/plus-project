@@ -179,11 +179,12 @@ public class HeartController {
 	}
 
 	//배열 찜목록 삭제 
-	@RequestMapping(value = "/deleteHeart", produces = "application/text;charset=UTF-8") //.do뺌
+	@RequestMapping(value = "/deleteHeart", produces = "application/text;charset=UTF-8")
 	@ResponseBody
 	public String deleteHeart(HeartVO vo ,Model model , HttpServletRequest request) {
 		System.out.println("************************** deleteHeart.do ****************************");
-		vo.setMemberNum(5);
+//		vo.setMemberNum(5);
+		System.out.println("setMemberNum  : " +vo.getMemberNum() );
 		String[] clubNumArr = request.getParameterValues("clubNumArr");
 		System.out.println(clubNumArr.length);
 		int clubNumArrInt[] = Arrays.stream(clubNumArr).mapToInt(Integer::parseInt).toArray();

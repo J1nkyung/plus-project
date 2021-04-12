@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.project.plus.domain.CriteriaMem;
 import com.project.plus.domain.MemberVO;
+import com.project.plus.domain.PageMakerMem;
 import com.project.plus.domain.PaymentVO;
 import com.project.plus.service.MemberService;
 import com.project.plus.service.PaymentService;
@@ -27,14 +30,28 @@ public class PaymentController {
 
 	
 	@RequestMapping("/getPaymentList")
-	public String getPaymentList(PaymentVO vo, MemberVO membervo,HttpSession session, Model model) {
+	public String getPaymentList(PaymentVO vo, MemberVO membervo,HttpSession session, @RequestParam("memberNum") int memberNum, Model model , CriteriaMem cri) throws Exception {
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		vo.setMemberNum(user.getMemberNum());
 		membervo.setMemberNum(user.getMemberNum());
-		int currentMemberPoint = memberService.selectMemberPoint(membervo);
-		List<PaymentVO> paymentList = paymentService.selectPaymentList(vo);
+		
+		//페이징 20210412
+		int rowStart = cri.getRowStart(); 
+		int rowEnd = cri.getRowEnd();
+		System.out.println("rowStart + rowEnd  : " + rowStart + " / " +  rowEnd);
+		int currentMemberPoint = memberService.selectMemberPoint(membervo); // 현재 포인트
+		List<PaymentVO> paymentList = paymentService.selectPaymentList( memberNum, rowStart, rowEnd);
 		model.addAttribute("currentMemberPoint", currentMemberPoint);
 		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("memberNum", memberNum);
+		
+
+		int totalCount = paymentService.selectPaymentListCount(memberNum);  
+		PageMakerMem pgmm = new PageMakerMem();
+		pgmm.setCriMem(cri);
+		pgmm.setTotalCount(totalCount);
+		model.addAttribute("PageMakerComments" , pgmm);
+		
 		return "paymentList.point";
 	}
 	

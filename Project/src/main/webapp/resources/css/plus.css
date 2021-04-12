@@ -103,23 +103,23 @@
 }
 .subtitle i{
 	 color: #9B9EA5;
-	 font-weight:600;
+ font-weight:600;
 }
 .period {
-	font-size: 15px;
+	font-size: 14px;
 	color: #303333;
 	font-weight: 500;
 }
 
 .shutdown {
-	font-size: 15px;
+	font-size: 14px;
 	color: #303333;
 	font-weight: 500;
 }
 
 .person {
 	padding-top: 5px;
-	font-size: 15px;
+	font-size: 14px;
 	color: #303333;
 	font-weight: 500;
 }
