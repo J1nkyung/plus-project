@@ -44,17 +44,9 @@ public class FileUtils {
 					file[i].transferTo(new File(uploadPath + datePath + File.separator + newFileName));
 					
 					if(i==0) {	// 프로필 사진 = 메인사진 
-//						if(vo.getClubMain_pic().equals("deleted")) {
-//							vo.setClubMain_pic(null);
-//						}
-//						if(vo.getClubContent1_pic().equals("deleted")) {
-//							vo.setClubContent1_pic(null);
-//						}
-//						if(vo.getClubContent2_pic().equals("deleted")) {
-//							vo.setClubContent2_pic(null);
-//						}
 						 vo.setClubMain_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName); 
 						 log.info(vo.getClubMain_pic());
+						 
 						//썸네일 생성 
 						// String tPath = FileUtils.makeThumbnail(uploadPath, datePath, newFileName); 
 						// vo.setClubThumb_pic(File.separator + "uploadImg" + tPath);
@@ -74,13 +66,6 @@ public class FileUtils {
 				}
 			}
 
-//			} else {
-//				// 넘어온 파일이 없다면 == 사진 수정시 main pic을 삭제했을 때 썸네일 컬럼을 null로 update
-//				if(i==0) {
-//					
-//					vo.setClubMain_pic("");
-//					}
-//			}
 			log.info("업로드 파일이 없습니다" + i );
 		}
 		return vo;

@@ -140,6 +140,42 @@ function sendEmail(){
 
 
 
+//비밀번호 유효성 검사
+function isPw1(){
+    var pwVal = $("#pswd1").val();
+                             //특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
+var regExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+if(pwVal.match(regExp) != null){
+ 
+  document.getElementById('alertTxt').innerHTML = "적합한 비밀번호입니다.";
+}else{
+	alert("영문 대 소문자, 숫자, 특수문자를 조합한 8~16자의 비밀번호를 사용하세요.")
+	document.getElementById('alertTxt').innerHTML = "";
+  document.getElementById('alertTxt').style.display = 'block';
+}
+};
+
+
+//비밀번호 재확인 시 일치하는지 여부
+function checkPw() {
+    var p1 = document.getElementById('pswd1').value;
+    var p2 = document.getElementById('pswd2').value;
+    if( p1 != p2 ) {
+    	alert("비밀번호가 일치하지 않습니다")
+    	document.getElementById('alertTxt1').innerHTML = "";
+
+      return false;
+    } else{
+    	 document.getElementById('alertTxt1').innerHTML = "비밀번호가 일치합니다";
+         document.getElementById('alertTxt1').style.display = 'block';
+
+      return true;
+    }
+
+  }
+
+
+
 
 </script>
 
@@ -150,31 +186,44 @@ function sendEmail(){
   <div id="wrapper">
             <!-- content1-->
             <div class="findPw">      
-                <div class="logo-wrap">
-                   <img id="logo" src="${path}/resources/img/images/logo.png">
+                <div class="logo-wrap" style=" margin-bottom:80px;">
+       		<a style="font-size:30px;"><b>비밀번호 수정</b></a> 
+                
 
                 </div>
-                    <!-- ID(Email) -->
-                    <div>
-                        <h3 class="join_title">
-                            <label for="email">이메일(ID)</label>
-                        </h3>
-                        <span class="box int_email">
-                            <input type="text" name="memberEmail" id="email" class="int1 mail_input" maxlength="50">
-                            <!-- <input type="button" class="check" value="중복체크"> -->
-                        </span>
-                        <span class="error_next_box"></span>
-                    </div>
-    
-                    <!-- MOBILE -->
-                    <div>
-                        <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
-                        <span class="box int_mobile">
-                            <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈'-'을 포함해 입력해주세요">
-                            <!-- <input type="button" id="chkMobile" class="check" onclick="isMobile()" value="중복검사하기"> -->
-                        </span>
-                        <span class="error_next_box"></span>
-                    </div>
+                 
+                 
+                 <!-- original  -->
+                <div>
+                    <h3 class="join_title"><label for="pswd1">기존 비밀번호 확인</label></h3>
+                    <span class="box int_pass">
+                        <input type="password" name="memberPassword" id="ori_pswd" class="int" maxlength="20">
+                        <span id="alertTxt"></span>
+
+                    </span>
+                    <span class="error_next_box"></span>
+                </div> 
+                 
+                 <!-- PW1 -->
+                <div>
+                    <h3 class="join_title"><label for="pswd1">새로운 비밀번호</label></h3>
+                    <span class="box int_pass">
+                        <input type="password" name="memberPassword" id="pswd1" onchange="isPw1()" class="int" maxlength="20">
+                        <span id="alertTxt"></span>
+
+                    </span>
+                    <span class="error_next_box"></span>
+                </div> 
+
+                <!-- PW2 -->
+                <div>
+                    <h3 class="join_title"><label for="pswd2">새로운 비밀번호 재확인</label></h3>
+                    <span class="box int_pass_check">
+                        <input type="password" id="pswd2" onchange="checkPw()" class="int" maxlength="20" value="${memberInfo.memberPassword }">
+		                    <span id="alertTxt1"></span>
+                    </span>
+                    <span class="error_next_box"></span>
+                </div> 
                             
                         
                      
@@ -182,7 +231,7 @@ function sendEmail(){
                     <div class="btn_area">
                     
                 <!--  버튼명만 join이고 수정버튼! -->
-                <button id="btnFind" type="button"><span>비밀번호찾기</span></button> 
+                <button id="btnFind" type="button"><span>비밀번호 수정</span></button> 
                     
                     </div>
             </div>

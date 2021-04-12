@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.eclipse.jdt.internal.compiler.ast.SwitchStatement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -102,6 +103,27 @@ public class ClubController {
 		String uploadPath = rq.getSession().getServletContext().getRealPath("/resources/uploadImg");
 		log.info(uploadPath);
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
+		
+		// 파일 수정시 파일을 삭제했을 경우 
+		if(vo.getFileStatus()!=null) {
+			for(int i=0; i<vo.getFileStatus().length; i++) {
+				String status = vo.getFileStatus()[i].substring(vo.getFileStatus()[i].lastIndexOf("_") + 1);
+				log.info("파일 index : " +status);
+			
+				switch (status) {
+					case "0":  vo.setClubMain_pic(" ");
+						break; 
+					case "1": vo.setClubContent1_pic(" ");
+						break; 
+					case "2":  vo.setClubContent2_pic(" ");
+						break; 
+					default: break;
+				}
+			}
+		} else {
+			log.info("파일 삭제 없음");
+		}
+		
 		clubService.updateClub(vo);
 		
 		log.info("업데이트된 클럽메인사진 " + vo.getClubMain_pic());
@@ -113,7 +135,6 @@ public class ClubController {
 	}
 
 
-	
 	// json을 이용하여 더보기 리뷰 리스트 가져오기
 	// produces : response의 content-type을 utf-8로 인코딩하여 보내기
 	@RequestMapping(value = "/getMoreReview", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
@@ -147,14 +168,8 @@ public class ClubController {
 	@RequestMapping("/getClub")
 	public String getClub(@RequestParam("clubNum") int clubNum, ApplyVO avo, HeartVO hvo, HttpSession session, Model model) {
 		
-		/*
-		 * //정연 추가 20210405 MemberVO user = (MemberVO) session.getAttribute("user"); if
-		 * (user != null) { hvo.setMemberNum(user.getMemberNum()); }
-		 */
-		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
-
-		// 2021045  여기위 까지
 		
+		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
 		// 미리 보여줄 5개 리뷰 
 		model.addAttribute("reviews", reviewService.getReviews(clubNum));
 		// 리뷰 총 개수 

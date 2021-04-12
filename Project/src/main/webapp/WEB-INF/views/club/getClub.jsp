@@ -347,6 +347,20 @@ $(function(){
                    return;
                 }
                   
+            
+             //날짜 비교 메서드 
+             let shutDate = '${club.clubShutDate}';
+             shutDate = new Date(shutDate);
+             let today = new Date();
+             console.log(today);
+             function checkShutDate(){
+            	 	if(shutDate < today){
+            	 		return false;;
+            	 	} else {
+            	 		return true;
+            	 	}
+            	 }
+             
              // 모임신청 
              function apply(){
                  return new Promise(function(resolve, reject){
@@ -359,12 +373,18 @@ $(function(){
                   },
                      success: function (data) {
                         console.log(data);
+                    	if(!checkShutDate()){
+                    		alert("모집이 종료된 모임입니다!");
+                    		return;
+                    	}
                            if(data==1){
                               alert("모임 신청이 완료되었습니다!");
                               //신청이 성공한 다음 인원 수를 update해야함 
                               resolve();
                            } else if(data==0){
                               alert("이미 신청한 모임입니다!");
+                           } else if(shutDate < today){
+                        	   
                            }
                     }
                  });

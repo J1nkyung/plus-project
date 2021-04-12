@@ -93,7 +93,12 @@
 				</div>
 			</div>
 			<div id="write-checkinfo">
+			<c:if test="${club.clubKind eq 1}">
+				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을 설명해주세요!</label>
+			</c:if>
+			<c:if test="${club.clubKind eq 2}">
 				<label for="exampleFormControlFile1" id="intro">모임의 리더가 되고싶은 회원님은 어떤사람인가요?</label>
+			</c:if>
 				<textarea name="clubContent2">${club.clubContent2}</textarea>
 				<div class="uploadBox">
 					<!-- <input type="file" class="form-control-file"
@@ -185,8 +190,7 @@
 			<label for="exampleFormControlSelect2">참가비용</label> <input
 				type="text" class="form-control" id="club-fee" name="clubFee">
 		</div>
-		<input name="clubNum" type="hidden" value="
-		${club.clubNum}" /> <input
+		<input name="clubNum" type="hidden" value="${club.clubNum}" /> <input
 			name="clubMakeDate" type="hidden" value="${club.clubMakeDate}" /> <input
 			name="clubCurnum" type="hidden" value="${club.clubCurnum}" /> <input
 			name="clubKind" type="hidden" value="${club.clubKind}" /> <input
@@ -228,19 +232,32 @@ marker.setMap(map);
 
 //파일 선택시 파일이름 변경 
 function getFileName(index){
-  let fileNameSpan = document.getElementById('spanFileName['+index+']')
-  let name = $('input[type=file]')[index].files[0].name 
-  fileNameSpan.innerText = ""
-      $(fileNameSpan).append(name); 
+  let fileNameSpan = document.getElementById('spanFileName['+index+']');
+  let name = $('input[type=file]')[index].files[0].name;
+ 	console.log("파일 :" + name);
+  fileNameSpan.innerText = "";
+  $(fileNameSpan).append(name); 
+  
+  // 해당하는 index로 파일 삭제시 생성된 input이 있을 경우 remove 
+  if($('.status['+index+']')){
+	  console.log($('.status['+index+']'));
+	  $('.status['+index+']').remove();
+  }
 }
 
 //파일 삭제
 function deleteFile(index){
   let fileNameSpan = document.getElementById('spanFileName['+index+']')
   let nameArr = document.getElementsByName('upload');
-  fileNameSpan.innerText = ""
-  nameArr[index].value = "deleted";
-
+  fileNameSpan.innerText = "";
+  // file 값을 없애기 
+  nameArr[index].value = "";
+  
+  // 수정시 아무것도 안했을 경우에도 null로 들어가기 때문에 그에 따른 처리를 해야 한다
+  // 삭제 버튼을 클릭하면 따로 input hidden으로 deleted를 보낸다 
+	let hiddenInput = '<input type="hidden" class="status['+index+']" name="fileStatus" value="deleted_'+index+'" />';
+	console.log(hiddenInput);
+	$('#frm').append(hiddenInput);
 }
 
 
