@@ -3,8 +3,9 @@ package com.project.plus.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.project.plus.domain.BoardVO;
-import com.project.plus.domain.CriteriaBoardList;
 
 public interface BoardService {
 	public int insertBoard(BoardVO board);
@@ -14,8 +15,7 @@ public interface BoardService {
 	public void deleteBoard(int boardNum);
 	public List<BoardVO> getMoreContents(Map<String, Integer> map);
 	public int getContentCount(int clubNum);	
-//	public List<BoardVO> viewMyList(CriteriaBoardList cb, int memberNum, int club);
-	public List<BoardVO> viewMyList(CriteriaBoardList cb);
-	public int myListCount(CriteriaBoardList cb);
+	public List<BoardVO> viewMyList(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum, @Param("rowStart") int rowStart, @Param("rowEnd") int rowEnd) throws Exception;
+	public int viewMyListCount(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum) throws Exception;
 
 }

@@ -33,7 +33,7 @@ public class ReviewVO {
 	// for join 
 	private MemberVO members;
 	
-	@JsonFormat(pattern="yyyy. MM. dd")
+	@JsonFormat(pattern="yyyy. MM. dd HH:mm:ss", timezone ="Asia/Seoul")
 	private Date reviewRegDate;
 	
 	/*필요한 VO*/

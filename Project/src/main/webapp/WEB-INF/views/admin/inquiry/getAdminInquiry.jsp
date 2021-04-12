@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>나의 문의 사항</title>
+<title>개별 문의 사항</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -39,23 +39,21 @@ tr {
 td {
    padding-left:20px;
 }
-
 .wrapper{
    margin : 0 auto;
 } */
 .Content {
 	position: absolute;
-	left: 25%;
+	left: 30%;
 	width: 70%;
 	height: 100vh;
 	padding-top:50px;
 }
-
 tbody {
-border-top:2px gray solid;
+border-top:2px #5266b7 solid;
 }
 th {
-background-color:#eee;
+background-color:#001eff12;
 border-bottom:1px #bbb solid;
 padding-left:15px;
 padding-right:15px;
@@ -66,7 +64,6 @@ border:1px #bbb solid;
 border-right:1px #bbb solid;
 padding-left:15px;
 }
-
 .content {
 height: auto;
 white-space:pre;
@@ -91,17 +88,13 @@ a{
 .btn-primary{
 postion:absolute !important;
 right:0%;
-
-
 }
 /* .contentanswer{
 width:300px;} */
 #listBtn{
 postion:absolute;
 right:10%;
-
 }
-
 </style>
 
 
@@ -109,9 +102,9 @@ right:10%;
 <body>
 <div class="Content">
 <!-- new 게시판 양식 -->
- <table class="board_view" style="border:1px solid #ccc" width="90%" >
+ <table class="board_view" style="border:1px solid #ccc; width:90%;" >
 
-   <h2>문의 상세보기</h2>
+   <h4>문의 상세보기</h4>
         <colgroup>
             <col width="15%">
             <col width="35%">
@@ -123,7 +116,7 @@ right:10%;
             <tr>
                 <th>제목</th>
                 <td>${adminInquiry.inquiryTitle}</td>
-                <th>작성시간</th>
+                <th>작성일자</th>
                 <fmt:parseDate var="parseRegDate" value="${adminInquiry.inquiryRegDate}"
                      pattern="yyyy-MM-dd" />
                   <fmt:formatDate var="resultRegDt" value="${parseRegDate}"
@@ -137,6 +130,10 @@ right:10%;
                 <th>이메일</th>
                 <td>${adminInquiry.memberEmail}</td>
             </tr>
+            <tr>
+            	<th>카테고리</th>
+            	<td colspan="3">${adminInquiry.inquiryType}</td>
+          	</tr>
             <tr class="content">
                 <th>내용</th>
                 <td colspan="3" style="white-space:pre-line"> ${adminInquiry.inquiryContent}</td>
@@ -146,15 +143,15 @@ right:10%;
   
 
    <br/><br/>
-<c:set var="inquiryAnswer" value="${adminInquiry.inquiryAnswer}" />
+<c:set var="adminInquiryAnswer" value="${adminInquiry.inquiryAnswer}" />
 
 <c:if test="${not empty inquiryAnswer}">
-   <h2>답변</h2>
-   <table style="border:1px solid #ccc">
+   <h4>답변</h4>
+   <table style="border:1px solid #ccc; width:90%; height:auto;">
    
-   <table border="1" width="90%" height="auto">
+<!--    <table border="1" width="90%" height="auto"> -->
    <tr>
-    <th>답변 날짜</th>
+    <th>답변일자</th>
     <fmt:parseDate var="parseRegDate" value="${adminInquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
    <fmt:formatDate var="resultRegDt" value="${parseRegDate}" pattern="yyyy-MM-dd" />
    <td><c:out value="${resultRegDt}"/></td>
@@ -164,8 +161,19 @@ right:10%;
     <td class="content"><c:out value="${adminInquiry.inquiryAnswer}"/></td>
     </tr>
     </table>
-    </table>
+ <!--    </table> -->
     <hr>
+   <form action="answerInquiryEditForm" method="post" style="display:inline-block;">
+   <input type="hidden" value="${adminInquiry.inquiryNum}" name="inquiryNum">
+   <input type="hidden" value="${adminInquiry.inquiryType}" name="inquiryType">
+   <%-- <input type="hidden" value="${adminInquiry.memberNum}" name="memberNum"> --%>
+   <%-- <input type="hidden" value="${adminInquiry.inquiryContent}" name="inquiryContent"> --%>
+   <input type="hidden" value="${adminInquiry.inquiryAnswer}" name="inquiryAnswer">
+   <input type="hidden" value="${adminInquiry.inquiryAnswerDate}" name="inquiryAnswerDate">
+   <div class="answerEditBtn">
+   <a href="answerInquiryEditForm"><button type="submit" class="btn btn-primary" id="answerEditBtn">답변 수정</button></a>
+   </div>
+ </form>
 </c:if>
 <c:if test="${empty inquiryAnswer}">
 <form action="answerInquiryForm" method="post" style="display:inline-block;">
@@ -175,7 +183,7 @@ right:10%;
    <input type="hidden" value="${adminInquiry.memberNickname}" name="memberNickname">
    <div class="answerbtn">
  
-   <a href="answerInquiryForm"><button type="submit" class="btn btn-primary " id="answerBtn">답변 작성</button></a>
+   <a href="answerInquiryForm"><button type="submit" class="btn btn-primary" id="answerBtn">답변 작성</button></a>
    </div>
    </form>
 </c:if>&nbsp;
@@ -254,7 +262,7 @@ right:10%;
 							</div>
 						</div>
 					</nav>
-</div>
+<!-- </div> -->
 
 </div>
 <!-- </div> -->

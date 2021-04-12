@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-
-<!--${pageContext.request.contextPath}" 이게 web-app을 가리킨다!!!!!   -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-<!-- 그래서 path 써주고 그 아래 소스 파일 이름 지정해주면 된다 ! 이건 진경언니가 준거 !   -->
-<link rel="stylesheet" href="${path}/resources/css/reviewList.css">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -89,7 +86,7 @@
         #tableWrapper {
             border: 1px solid rgba(189, 186, 186, 0.829);
             width: 85%;
-            height: 60%;
+            height: 50%;
             border-radius: 2%;
         }
 
@@ -112,6 +109,33 @@
         .useInfo th{
         	text-align :center;
         }
+        
+        /*paging css*/
+        #pageArea {
+			margin: 0 auto;
+			position: relative;
+		}
+		
+		.paging {
+			margin-top: 40px;
+			position: absolute;
+			left: 37%;
+		}
+		
+		.paging>li {
+			list-style: none;
+			float: left;
+			padding: 6px 1px;
+		}
+		
+		.span {
+			padding: 6px 12px;
+			border: 1px solid lightgray;
+		}
+		
+		#info, .paging>li :hover {
+			text-decoration: none;
+		}
     </style>
 </head>
 
@@ -148,7 +172,8 @@
                     	<c:forEach var="payList" items="${paymentList }" >
                     		<tr>
 	                    		<td>${payList.payNum }</td>
-	                    		<td>${payList.payDate }</td>
+	                    		<fmt:formatDate value="${payList.payDate}" var="payDate" pattern="yyyy-MM-dd HH:mm:ss" /> 
+	                    		<td>${payDate}</td>
 	                    		<td>${payList.payMethod }</td>
 	                    		<td>${payList.payAmount }</td>
 	                    	</tr>
@@ -156,8 +181,26 @@
                     </c:if> 
                 </table>
             </div>
+            <!-- pagenation -->
+						<div class="pageArea">
+							<ul class="paging">
+								<li>
+									<a class="span" href="getPaymentList${PageMakerComments.makeQuery(PageMakerComments.startPage - 1)}&memberNum=${memberNum}">◀</a>
+								</li>
+								<c:forEach begin="${PageMakerComments.startPage}" end="${PageMakerComments.endPage}" var="idx">
+									<li>
+										<a href="getPaymentList${PageMakerComments.makeQuery(idx)}&memberNum=${memberNum}">
+											<span class="span">${idx}</span>
+										</a>
+									</li>
+								</c:forEach>
+								<li>
+									<a class="span" href="getPaymentList${PageMakerComments.makeQuery(PageMakerComments.endPage + 1)}&memberNum=${memberNum}">▶</a>
+								</li>
+							</ul>
+						</div>
+			<!-- pageArea -->
         </div>
-    </div>
     </div>
 </body>
 </html>

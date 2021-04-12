@@ -7,7 +7,76 @@ public class CriteriaAdmin {
 	private int rowEnd;
 	private int memberNum;
 	
+	/* 검색어 키워드 */
+	private String keyword;
 	
+	/* 검색 타입 */
+	private String type;
+	private String clubName;
+	private String memberNickame;
+	private String payMethod;
+//	private String payDate;
+	
+	/* 검색 타입 배열 */
+	private String[] typeArr;
+	
+	
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getClubName() {
+		return clubName;
+	}
+
+	public void setClubName(String clubName) {
+		this.clubName = clubName;
+	}
+
+	public String getMemberNickame() {
+		return memberNickame;
+	}
+
+	public void setMemberNickame(String memberNickame) {
+		this.memberNickame = memberNickame;
+	}
+
+	public String getPayMethod() {
+		return payMethod;
+	}
+
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
+	}
+
+	public String[] getTypeArr() {
+		return typeArr;
+	}
+
+	public void setTypeArr(String[] typeArr) {
+		this.typeArr = typeArr;
+	}
+
+	public void setRowStart(int rowStart) {
+		this.rowStart = rowStart;
+	}
+
+	public void setRowEnd(int rowEnd) {
+		this.rowEnd = rowEnd;
+	}
+
 	public CriteriaAdmin() {
 		this.page = 1;
 		this.perPageNum = 10;

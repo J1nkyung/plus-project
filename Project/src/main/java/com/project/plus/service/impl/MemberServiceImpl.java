@@ -48,11 +48,6 @@ public class MemberServiceImpl implements MemberService {
 	public void deleteMember(int memberNum) {
 		membermapper.deleteMember(memberNum);
 	}
-
-	public void logout(HttpSession session) {
-		session.invalidate();
-	}
-
 	
 	public MemberVO selectMember(MemberVO vo) {
 		return membermapper.selectMember(vo);
@@ -97,7 +92,11 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
-	
+	@Override
+	public void changePw(MemberVO vo) {
+		membermapper.changePw(vo);
+	}
+
 	
 	@Override
 	   public void updateMemberPoint(MemberVO vo) {
@@ -141,6 +140,7 @@ public class MemberServiceImpl implements MemberService {
 	public int selectMemberNumberByNickname(MemberVO vo) {
 		return membermapper.selectMemberNumberByNickname(vo);
 	}
+
 
 
 

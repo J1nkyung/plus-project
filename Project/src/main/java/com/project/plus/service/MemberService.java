@@ -23,8 +23,6 @@ public interface MemberService {
 	// 이메일 중복 검사
 	public int memberEChk(String memberEmail);
 	
-	public void logout(HttpSession session);
-		
 	MemberVO findPw(MemberVO vo);
 	
 	void updateMember(MemberVO vo);
@@ -37,6 +35,7 @@ public interface MemberService {
 	public int listCount(SearchCriteriaMem scmem);
 	
 	public boolean checkPw(String memberEmail, String memberPassword);
+	void changePw(MemberVO vo);
 
 	//정연 하단 추가 20210403 
 	void updateMemberPoint (MemberVO vo);

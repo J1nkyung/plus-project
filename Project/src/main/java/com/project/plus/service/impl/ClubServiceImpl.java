@@ -77,6 +77,18 @@ public class ClubServiceImpl implements ClubService {
 		public List<ClubVO> selectCurClubList(ClubVO vo) {
 			return mapper.selectCurClubList(vo);
 		}
+		//20210411 클럽리스트 추출 
+		@Override
+		public List<ClubVO> selectFinishClubList(ClubVO vo) {
+			return mapper.selectFinishClubList(vo);
+		}
+		
+		@Override
+		public List<ClubVO> selectFinishMyClubList(ClubVO vo) {
+			return mapper.selectFinishMyClubList(vo);
+		}
+		// 20210411 위 까지
+		
 		@Override
 		public void updateEndDate(ClubVO vo) {
 			mapper.updateEndDate(vo);

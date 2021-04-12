@@ -115,12 +115,14 @@
 
 .counter-block {
 	margin-top: 10px;
-	width: 300px;
+	margin-bottom : 15%;
+	width: 690px;
 	height: 150px;
 	text-align: center;
 	margin-left: 6%;
 	border: 3px solid #eee;
 	border-radius: 5px;
+	
 }
 
 .counter-block p {
@@ -221,6 +223,7 @@ h6{
 	font-weight:bold;
 }
 
+
 </style>
 </head>
 <title>내 모임 관리</title>
@@ -228,12 +231,12 @@ h6{
 	<div class="container" class="clearfix">
 		<div class="row">
 			<!-- 상단의 my progress -->
-			<div class="col-md-4" id="myTitle">my progress</div>
+			<div class="col-md-2" id="myTitle">my progress</div>
 			<div class="col-md-8">
 				<div class="counter-block">
 					<div class="row">
 						<div class="col-12 progress-icon">
-							<p style="font-size:18px;">🔸 내 모임 현황 🔸</p>
+							<p style="font-size:18px; padding-top:10px;">🏳🏳‍🌈 내모임현황 🏳‍🌈🏳‍</p>`
 							<br>
 						</div>
 						<div class="col-4 progress-icon">
@@ -242,7 +245,7 @@ h6{
 						</div>
 						<div class="col-4 progress-icon">
 							<p>완료</p>
-							<h6>${clubCnt}</h6>
+							<h6>${fn:length(finishList) }</h6>
 						</div>
 						<div class="col-4 progress-icon">
 							<p>개설</p>
@@ -438,10 +441,51 @@ h6{
 					</c:forEach>
 				</c:if>
 			</div>
-		</div>
-		<br> <br>
+		</div><br> <br>
+		
+		<!-- 종료된 모임 -->
+		<div class="row-middle">
+			<div class="open-plus">
+				종료된 모임
+				<c:if test="${empty finishList }">
+					<div class="col-md-10" id="clubBar">
+						<div id="ff">
+							<p style="font-size: 15px; text-align: center; margin-top: 50px;">
+							현재 종료된 모임이 없습니다.</p>
+							<p style="font-size: 15px; text-align: center;">이루고자하는 목표를
+								더하기 멤버들과 함께 이뤄보세요.🦝🐷🐔🐸🐾</p>
+						</div>
+					</div>
+				</c:if>
+				<c:if test="${finishList !=null || finishList != '' }">
+					<c:forEach var="finishClub" items="${finishList}">
+						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="today" />
+						<div class="col-md-10" id="clubBar">
+							<div id="openClubPic">
+								<img src="${path}/resources/img/다이어트.PNG" width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>
+							</div>
+							<div id="openClubProgress">
+								<h3 id="clubName" ><a href="getClub?clubNum=${finishClub.clubNum}" title="모임상세페이지 GOGO~!">${finishClub.clubName}   </a>
+									<c:if test="${finishClub.clubFee > 0}"><span class="badge badge-danger">유료</span></c:if>
+									<c:if test="${finishClub.clubFee == 0}"><span class="badge badge-secondary">무료</span></c:if>
+									<c:if test="${finishClub.clubStartDate < today}"><span class="badge badge-warning">종료된 모임</span></c:if>
+								</h3>
+								<div class="w3-light-grey w3-round-large">
+									<div class="w3-container w3-blue w3-round-large" 
+										style="width: 100%; background-color: #eee !important;" id="progressBar" >종료된 모임</div>
+								</div>
+							</div>
+							<div id="openClubBtn">
+									<input type="button" id="outBtn" onclick="location.href='getClub?clubNum=${finishClub.clubNum}'" value="상세페이지" />
+							</div>
+						</div>
+					</c:forEach>
+				</c:if>
+			</div>
+		</div>		
+		<br><br>
 	</div>
-</div>
+
 <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> -->

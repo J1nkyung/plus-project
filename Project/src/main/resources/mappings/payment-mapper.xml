@@ -7,7 +7,23 @@
 
 
 	<select id="selectPaymentList" resultType="com.project.plus.domain.PaymentVO">
-		<![CDATA[
+	SELECT paging.*  
+		FROM ( 
+		        SELECT payment.pay_num as payNum, 
+					payment.member_num as memberNum, 
+					payment.club_num as clubNum, 
+					payment.pay_amount as payAmount, 
+					payment.pay_method as payMethod, 
+					payment.pay_date as payDate,
+					member.member_point as memberPoint,
+		         ROW_NUMBER() OVER(ORDER BY pay_date DESC) AS RNUM
+		         FROM payment, member
+		         WHERE payment.member_num = member.member_num 
+		         	   AND payment.member_num = #{memberNum}
+		      ) paging
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY payDate DESC
+<!-- 		<![CDATA[
 			SELECT 
 				payment.pay_num as payNum, 
 				payment.member_num as memberNum, 
@@ -18,7 +34,24 @@
 				member.member_point as memberPoint 
 			FROM payment, member
             WHERE payment.member_num = member.member_num and payment.member_num = #{memberNum};
-		]]>
+		]]> -->
+	</select>
+	
+	<select id="selectPaymentListCount" resultType="int">
+		SELECT count(*)
+		FROM ( 
+		        SELECT payment.pay_num as payNum, 
+					payment.member_num as memberNum, 
+					payment.club_num as clubNum, 
+					payment.pay_amount as payAmount, 
+					payment.pay_method as payMethod, 
+					payment.pay_date as payDate,
+					member.member_point as memberPoint,
+		         ROW_NUMBER() OVER(ORDER BY pay_date DESC) AS RNUM
+		         FROM payment, member
+		         WHERE payment.member_num = member.member_num 
+		         	   AND payment.member_num = #{memberNum}
+		      ) paging
 	</select>
 	
 	<insert id="insertChargePoint">

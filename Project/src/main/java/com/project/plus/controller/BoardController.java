@@ -136,36 +136,33 @@ public class BoardController {
 			
 			
 	   }
-	   
-	   //내 글 모아보기 
-	   @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
-	   public String viewMyList(CriteriaBoardList cb, Model model) {
-		 
-		   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
-//		   List<BoardVO> view =  boardService.viewMyList(cb, memberNum, clubNum);
-		   List<BoardVO> view =  boardService.viewMyList(cb);
-//			for(BoardVO vo : view) {
-//				System.out.println(vo);
-//			}
-//			System.out.println("");
-		   
-			model.addAttribute("list", view);
-			
-			PageMakerBoardList pmem = new PageMakerBoardList();
-		      pmem.setCb(cb);
-		      pmem.setTotalCount(boardService.myListCount(cb));
-		      model.addAttribute("pmem", pmem);
-			
-		      System.out.println("club 받는지 확인"+cb.getClubNum());
-			
-			
+	      //내 글 모아보기 
+	      @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
+	      public String viewMyList(CriteriaBoardList cb, Model model) {
+	       
+	         //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
+//	         List<BoardVO> view =  boardService.viewMyList(cb, memberNum, clubNum);
+	         List<BoardVO> view =  boardService.viewMyList(cb);
+//	         for(BoardVO vo : view) {
+//	            System.out.println(vo);
+//	         }
+//	         System.out.println("");
+	         
+	         model.addAttribute("list", view);
+	         
+	         PageMakerBoardList pmem = new PageMakerBoardList();
+	            pmem.setCb(cb);
+	            pmem.setTotalCount(boardService.myListCount(cb));
+	            model.addAttribute("pmem", pmem);
+	         
+	            System.out.println("club 받는지 확인"+cb.getClubNum());
+	         
+	         
 
-		   
-		   //return "viewMyList?clubNum="+cb.getClubNum()+"memberNum="+cb.getMemberNum();
-		   return "viewMyList.comm";
-	   }
-	   
-	   
+	         
+	         //return "viewMyList?clubNum="+cb.getClubNum()+"memberNum="+cb.getMemberNum();
+	         return "viewMyList.comm";
+	      }
 	   
 
 	   

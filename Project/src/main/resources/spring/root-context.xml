@@ -25,6 +25,7 @@
 			value="jdbc:mysql://localhost:3306/plusdb?serverTimezone=Asia/Seoul" />
 		<property name="username" value="plus" />
 		<property name="password" value="plus" />
+		
 	</bean>
 
 
