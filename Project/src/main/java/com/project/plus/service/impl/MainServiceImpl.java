@@ -31,16 +31,16 @@ public class MainServiceImpl implements MainService {
 
 	//메인 인기 더하기 리스트
 	@Override
-	public List<ClubVO> getListBest(ClubVO vo) {
+	public List<ClubVO> getListBest(MemberVO mvo) {
 		log.info(".......getListBest.......");
-		return mapper.getListBest(vo);
+		return mapper.getListBest(mvo);
 	}
 
 	// 메인 마감임박 더하기 리스트
 	@Override
-	public List<ClubVO> getListDeadline(ClubVO vo) {
+	public List<ClubVO> getListDeadline(MemberVO mvo) {
 		log.info(".......getListDeadline.......");
-		return mapper.getListDeadline(vo);
+		return mapper.getListDeadline(mvo);
 	}
 
 	//더하기 검색
