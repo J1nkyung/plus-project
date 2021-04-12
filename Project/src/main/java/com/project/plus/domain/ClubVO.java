@@ -32,6 +32,7 @@ public class ClubVO {
 	private Date clubShutDate;
 	private int clubFee;
 	private String clubHashtag;
+	private String[] fileStatus;
 	
 	private int clubCurnum;
 	private int clubHeart;

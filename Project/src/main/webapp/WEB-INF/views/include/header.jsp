@@ -127,7 +127,7 @@
 
 <script>
 
-	
+// 알림 
 $(function(){
 	// 세션 연결 
 	connect();
@@ -160,7 +160,7 @@ function onMessage(msg) {
 	}
 		 let toast = '<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"><div class="toast-header">';
 		 toast += '<img src="${path}/resources/img/images/bell.png" class="rounded mr-2" alt="..." id="toastImg">';
-		 toast += '<strong class="mr-auto">더하기 알림</strong><small>just now</small>';
+		 toast += '<strong class="mr-auto">더하기 알림</strong><small>방금전</small>';
 		 toast += '<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">';
 		 toast += '<span aria-hidden="true">&times;</span></button> </div>';
 		 toast += '<div class="toast-body">'+ msg.data +'</div></div>';

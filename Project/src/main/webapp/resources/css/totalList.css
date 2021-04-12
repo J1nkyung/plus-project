@@ -36,6 +36,7 @@ input{
 }
 .my-4{
 	border-top :1px solid #bbb;
+	padding-bottom:10px;
 }
 #searchBtn{
 	width:45px;
@@ -155,29 +156,33 @@ input{
 }
 
 .subtitle {
-	font-size: 14px;
-	font-weight: 300;
-	color: #9B9EA5;
-	padding: 3px 0px 15px 2px;
+   font-size: 12px;
+   font-weight:500;
+  color: #9B9EA5;
+   padding: 3px 0px 15px 2px;
+}
+.subtitle i{
+	 color: #9B9EA5;
+ font-weight:600;
 }
 
 .period {
-	font-size: 15px;
+	font-size: 14px;
 	color: #303333;
-	font-weight: 600;
+
 }
 
 .shutdown {
-	font-size: 15px;
+	font-size: 14px;
 	color: #303333;
-	font-weight: 600;
+
 }
 
 .person {
 	padding-top: 5px;
-	font-size: 15px;
+	font-size: 14px;
 	color: #303333;
-	font-weight: 600;
+
 }
 
 .person b {

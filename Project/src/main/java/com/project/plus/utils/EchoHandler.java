@@ -1,4 +1,4 @@
-package com.project.plus.controller;
+package com.project.plus.utils;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -46,7 +46,8 @@ public class EchoHandler extends TextWebSocketHandler {
 			
 			if(str!=null) {
 				WebSocketSession userSession = users.get(member);
-				TextMessage text = new TextMessage("<a target='_blank' href='"+ notUrl +"'>[<b>" + notType + "알림" + "</b>]<div class=\"content\">" + notMessage + "</div></a>" );
+				TextMessage text = new TextMessage("<a target='_blank' href='"+ notUrl +"'>[<b>" + notType + "알림" + "</b>]<div class=\"content\">" 
+													+ notMessage + "</div></a>" );
 				userSession.sendMessage(text);
 				log.info("멤버번호 : " + member + ", 헤더로 메시지 받기");
 				log.info(notType);

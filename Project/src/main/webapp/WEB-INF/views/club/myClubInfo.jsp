@@ -69,19 +69,16 @@
  	<label for="exampleFormControlFile1">모임 이름</label> <input type="text"
 			maxlength='16' class="form-control" id="club-title"
 			placeholder="최대 16글자로 입력해주세요" value="${club.clubName}" readonly> 
-	<%-- 	<div class="form-group">
-			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label> -->
-			 <div class="img-form">
-                  
-              </div> 
+		<div class="form-group">
+			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label> 
 			<div class="uploadBox">
 				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
-					type="file" style="display: none;" 
+					type="file" style="display: none;" name="upload"
 					onchange="getFileName(0)" />
 				</label> <span id="spanFileName[0]">${club.clubMain_pic}</span>
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
 			</div>
-		</div> --%>
+		</div> 
 		<article>
 			<div id="write-clubinfo">
 				<label for="exampleFormControlFile1">개설하고자 하는 모임의 성격을
@@ -96,7 +93,12 @@
 				</div>
 			</div>
 			<div id="write-checkinfo">
+			<c:if test="${club.clubKind eq 1}">
+				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을 설명해주세요!</label>
+			</c:if>
+			<c:if test="${club.clubKind eq 2}">
 				<label for="exampleFormControlFile1" id="intro">모임의 리더가 되고싶은 회원님은 어떤사람인가요?</label>
+			</c:if>
 				<textarea name="clubContent2">${club.clubContent2}</textarea>
 				<div class="uploadBox">
 					<!-- <input type="file" class="form-control-file"
@@ -230,19 +232,32 @@ marker.setMap(map);
 
 //파일 선택시 파일이름 변경 
 function getFileName(index){
-  let fileNameSpan = document.getElementById('spanFileName['+index+']')
-  let name = $('input[type=file]')[index].files[0].name 
-  fileNameSpan.innerText = ""
-      $(fileNameSpan).append(name); 
+  let fileNameSpan = document.getElementById('spanFileName['+index+']');
+  let name = $('input[type=file]')[index].files[0].name;
+ 	console.log("파일 :" + name);
+  fileNameSpan.innerText = "";
+  $(fileNameSpan).append(name); 
+  
+  // 해당하는 index로 파일 삭제시 생성된 input이 있을 경우 remove 
+  if($('.status['+index+']')){
+	  console.log($('.status['+index+']'));
+	  $('.status['+index+']').remove();
+  }
 }
 
 //파일 삭제
 function deleteFile(index){
   let fileNameSpan = document.getElementById('spanFileName['+index+']')
   let nameArr = document.getElementsByName('upload');
-  fileNameSpan.innerText = ""
+  fileNameSpan.innerText = "";
+  // file 값을 없애기 
   nameArr[index].value = "";
-
+  
+  // 수정시 아무것도 안했을 경우에도 null로 들어가기 때문에 그에 따른 처리를 해야 한다
+  // 삭제 버튼을 클릭하면 따로 input hidden으로 deleted를 보낸다 
+	let hiddenInput = '<input type="hidden" class="status['+index+']" name="fileStatus" value="deleted_'+index+'" />';
+	console.log(hiddenInput);
+	$('#frm').append(hiddenInput);
 }
 
 

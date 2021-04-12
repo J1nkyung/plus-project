@@ -11,4 +11,5 @@ public interface NotificationService {
 	public List<NotificationVO> getReadNoti(int memberNum);
 	public int deleteNoti(NotificationVO noti);
 	public int updateStatus(NotificationVO noti);
+	public int getTimeDiff(int notId);
 }

@@ -121,9 +121,15 @@ ORDER BY member_num
 		UPDATE MEMBER SET
 				member_nickname = #{memberNickname}, 
 				member_phone = #{memberPhone}, 
-				member_password = #{memberPassword},
 				member_pic = #{memberPic},
 				member_point = #{memberPoint}
+		WHERE member_email = #{memberEmail}
+	</update> 
+	
+	<!-- 회원 비밀번호 변경시 사용하는 쿼리  -->
+ 	<update id="changePw">
+		UPDATE MEMBER SET 
+				member_password = #{memberPassword}
 		WHERE member_email = #{memberEmail}
 	</update> 
 	
@@ -160,6 +166,13 @@ ORDER BY member_num
 		AND member_phone = #{memberPhone}
 	</select> 
 
+	<select id="checkPw" resultType="int" parameterType="map">
+		SELECT COUNT(*) 
+		FROM member
+		WHERE member_email = #{memberEmail}
+		AND member_password = #{memberPassword}
+	</select>
+	
 	
 	 <select id="selectMemberPoint" resultType="int">
       <![CDATA[

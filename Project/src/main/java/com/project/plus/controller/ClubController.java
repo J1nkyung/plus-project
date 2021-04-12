@@ -1,5 +1,6 @@
 package com.project.plus.controller;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.eclipse.jdt.internal.compiler.ast.SwitchStatement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,11 +78,11 @@ public class ClubController {
 
 	// 모임 등록, 파일 업로드
 	@RequestMapping(value = "/insertClub", method = RequestMethod.POST)
-	public String insertClub(ClubVO vo, @RequestParam("upload") MultipartFile[] file, HttpServletRequest request)
+	public String insertClub(ClubVO vo, @RequestParam("upload") MultipartFile[] file, HttpServletRequest rq) 
 			throws Exception {
 
 		// 파일을 저장할 절대 경로 지정
-		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/u 	ploadImg");
+		String uploadPath = rq.getSession().getServletContext().getRealPath("/resources/uploadImg");
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.insertClub(vo); // DB에 저장
 		log.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
@@ -91,20 +93,48 @@ public class ClubController {
 
 	// 모임 수정  
 	@RequestMapping("/updateClub")
-	public String updateClub(ClubVO vo, @RequestParam("upload") MultipartFile[] file, HttpServletRequest request)
+	public String updateClub(ClubVO vo, @RequestParam("upload") MultipartFile[] file,  HttpServletRequest rq)
 			throws Exception {
-		System.out.println(vo.getClubShutDate());
-		String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+		log.info("클럽메인사진 " + vo.getClubMain_pic());
+		log.info("클럽 컨텐츠1 사진 " + vo.getClubContent1_pic());
+		log.info("클럽 컨텐츠2 사진 " + vo.getClubContent2_pic());
+		
+		
+		String uploadPath = rq.getSession().getServletContext().getRealPath("/resources/uploadImg");
 		log.info(uploadPath);
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
+		
+		// 파일 수정시 파일을 삭제했을 경우 
+		if(vo.getFileStatus()!=null) {
+			for(int i=0; i<vo.getFileStatus().length; i++) {
+				String status = vo.getFileStatus()[i].substring(vo.getFileStatus()[i].lastIndexOf("_") + 1);
+				log.info("파일 index : " +status);
+			
+				switch (status) {
+					case "0":  vo.setClubMain_pic(" ");
+						break; 
+					case "1": vo.setClubContent1_pic(" ");
+						break; 
+					case "2":  vo.setClubContent2_pic(" ");
+						break; 
+					default: break;
+				}
+			}
+		} else {
+			log.info("파일 삭제 없음");
+		}
+		
 		clubService.updateClub(vo);
+		
+		log.info("업데이트된 클럽메인사진 " + vo.getClubMain_pic());
+		log.info("업데이트된 클럽 컨텐츠1 사진 " + vo.getClubContent1_pic());
+		log.info("업데이트된 클럽 컨텐츠2 사진 " + vo.getClubContent2_pic());
 		log.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
 
 		return "redirect:main";
 	}
 
 
-	
 	// json을 이용하여 더보기 리뷰 리스트 가져오기
 	// produces : response의 content-type을 utf-8로 인코딩하여 보내기
 	@RequestMapping(value = "/getMoreReview", produces = "application/text;charset=UTF-8", method = RequestMethod.POST)
@@ -137,36 +167,17 @@ public class ClubController {
 	// 모임 상세정보 
 	@RequestMapping("/getClub")
 	public String getClub(@RequestParam("clubNum") int clubNum, ApplyVO avo, HeartVO hvo, HttpSession session, Model model) {
-		MemberVO user = (MemberVO) session.getAttribute("user");
-		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
-//		//정연 추가 20210405
-			if (user != null) {
-			hvo.setMemberNum(user.getMemberNum());
-			hvo.setClubNum(clubNum);
-			int resultClub = heartService.selectHeartNum(hvo);
-			model.addAttribute("isThereHeart", resultClub);
-			System.out.println("resultClub 얼마나오니 : " + resultClub);
-			avo.setClubNum(clubNum);
-			avo.setMemberNum(user.getMemberNum());
-			Integer result = clubService.getOneApply(avo);
-			
-			/*이미 신청한 모임인지 아닌지 getClub jsp에서 확인 이거 사용 안할 듯 ,, */
-			if(result.equals(0)) {
-				model.addAttribute("yesNo", 0);
-			} else {
-				model.addAttribute("yesNo", 1);
-			}
-		}else { 
-			model.addAttribute("isThereHeart", 0);
-		}
-//		// 2021045  여기위 까지
 		
+		
+		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
 		// 미리 보여줄 5개 리뷰 
 		model.addAttribute("reviews", reviewService.getReviews(clubNum));
 		// 리뷰 총 개수 
 		model.addAttribute("reviewCount", reviewService.getReviewCount(clubNum));
 		// 모임 정보 
+		ClubVO vo = clubService.getClub(clubNum);
 		model.addAttribute("club", clubService.getClub(clubNum));
+		log.info(vo.getClubMain_pic());
 		log.info("모임 번호 : " + clubNum+ " 상세 정보 ");
 		return "getClub.club";
 	}
@@ -175,22 +186,28 @@ public class ClubController {
 	@RequestMapping("/getMyClubInfo")
 	public String getMyClubInfo(@RequestParam("clubNum") int clubNum, ClubVO vo, Model model) {
 		vo = clubService.getMyClubInfo(clubNum);
+		log.info("메인 사진 : " + vo.getClubMain_pic());
+		log.info("첫번쨰 사진 : " + vo.getClubContent1_pic());
+		log.info("두번쨰 사진 : " + vo.getClubContent2_pic());
+		
+		// 경로를 자르고 파일명+확장자만 set
+		if (vo.getClubMain_pic() != null) {
+			String formatName = vo.getClubMain_pic().substring(vo.getClubMain_pic().lastIndexOf("_") + 1);
+			vo.setClubMain_pic(formatName);
+			log.info(vo.getClubMain_pic());
+		}
 
-//		// 경로를 자르고 파일명+확장자만 set
-//		if (vo.getClubMain_pic() != null) {
-//			String formatName = vo.getClubMain_pic().substring(vo.getClubMain_pic().lastIndexOf("_") + 1);
-//			vo.setClubMain_pic(formatName);
-//		}
-//
-//		if (vo.getClubContent1_pic() != null) {
-//			String formatName = vo.getClubMain_pic().substring(vo.getClubContent1_pic().lastIndexOf("_") + 1);
-//			vo.setClubMain_pic(formatName);
-//		}
-//
-//		if (vo.getClubContent2_pic() != null) {
-//			String formatName = vo.getClubMain_pic().substring(vo.getClubContent2_pic().lastIndexOf("_") + 1);
-//			vo.setClubMain_pic(formatName);
-//		}
+		if (vo.getClubContent1_pic() != null) {
+			String formatName = vo.getClubContent1_pic().substring(vo.getClubContent1_pic().lastIndexOf("_") + 1);
+			vo.setClubContent1_pic(formatName);
+			log.info(vo.getClubContent1_pic());
+		}
+
+		if (vo.getClubContent2_pic() != null) {
+			String formatName = vo.getClubContent2_pic().substring(vo.getClubContent2_pic().lastIndexOf("_") + 1);
+			vo.setClubContent2_pic(formatName);
+			log.info(vo.getClubContent2_pic());
+		}
 
 		model.addAttribute("club", vo);
 		log.info("모임 수정 폼 : " + vo.getClubNum());
@@ -303,16 +320,6 @@ public class ClubController {
 			}
 			model.addAttribute("selectAttendClubList", resultTwo);
 			
-			//종료된 모임 20210411 추가
-			List<ClubVO> finishList = new ArrayList();
-			
-			List<ClubVO> data1 = clubService.selectFinishClubList(vo);
-			List<ClubVO> data2 = clubService.selectFinishMyClubList(vo);
-			finishList.add(data1.get(0));
-			finishList.add(data2.get(0));
-			
-			model.addAttribute("finishList",finishList);
-					
 			int clubCnt = clubService.clubCnt(vo);
 			model.addAttribute("clubCnt", clubCnt);
 			

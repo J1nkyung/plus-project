@@ -18,7 +18,7 @@
 <section>
    <input type="hidden" value="${club.clubNum}" name="clubNum" /> 
    <img
-      id="mainImg" src="${path}/resources/img/tmpImg/${club.clubMain_pic}"
+      id="mainImg" src="${path}/resources${club.clubMain_pic}"
       onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" />
    <div class="stickyWrap">
       <div class="stickyTab">
@@ -104,7 +104,7 @@
             <div class="fstyle" id="makeDate">${club.clubStartDate}<!-- </div> -->
                <!-- <div id="tilde">  -->
                ~
-               <!-- <div class="fstyle" id="shutDate"> -->${club.clubEndDate}</div>
+               <!-- <div class="fstyle" id="shutDate"> -->${club.clubMakeDate}</div>
             <!-- </div> -->
 
 <br>
@@ -131,14 +131,14 @@
 				
             <!-- 찜버튼 -->
             <button type="button" class="btn" id="heartBtn">
-               <c:if test="${isThereHeart == 0}">
-                  <img src="${path}/resources/img/heart.png" class="heartImg" id ="dd"/>
+               <c:if test="${isThereHeart eq 0}">
+                  <img src="${path}/resources/img/heart.png" id="heartImg" value=0 />
                </c:if>
-               <c:if test="${isThereHeart != 0}">
-                  <img src="${path}/resources/img/blackheart.png" class="heartImg" id ="dd" />
+               <c:if test="${isThereHeart ne 0}">
+                  <img src="${path}/resources/img/blackheart.png" id="heartImg" value=1 />
                </c:if>
             </button>
-  		 <!-- 공유 버튼  -->
+   <!-- 공유 버튼  -->
             <button type="button" class="btn" id="shareBtn" onclick="sendLink()">
                <img id="file" src="${path}/resources/img/share.png">
             </button>
@@ -213,12 +213,10 @@ Kakao.isInitialized();
     })
   }
 
-  
 
 // 본문 function 
 $(function(){
    
-	
    /* 탭메뉴  */
     var $selectMenu = null;
     $(".tabMenu").click(function(){
@@ -319,15 +317,19 @@ $(function(){
                }
 
             // 결제가 필요한 모임 신청하기 버튼 클릭시 이미 신청 내역이라면 alert 창 띄우기 
-            $("#payBtn").on('click',function(){ 
+            $("#payBtn").on('click',function(){
+            	if(!checkLeader()){
+            		alert("개설한 모임은 신청하실 수 없습니다!");
+            		return;
+            	}
                console.log('${yesNo}');
                if(!'${user.memberNum}'){
                    alert("로그인해주세요!");
                    return false;
-                } 
+                }
                 if(${club.clubCurnum} >= ${club.clubMax} ){
                    alert("모집 인원이 마감되어 신청하실 수 없습니다");
-                   return false;
+                   return;
                 }
                 if('${yesNo}' == 1){
                     alert("이미 신청한 모임입니다!");
@@ -337,6 +339,10 @@ $(function(){
             
              // 신청하기 버튼 클릭시 
              $("#applyBtn").on('click',function(){
+            		if(!checkLeader()){
+                		alert("개설한 모임은 신청하실 수 없습니다!");
+                		return;
+                	}
                 console.log('${user.memberNum}');
                 
                 if(!'${user.memberNum}'){
@@ -347,8 +353,35 @@ $(function(){
                 if(${club.clubCurnum} >= ${club.clubMax}){
                    alert("모집 인원이 마감되어 신청하실 수 없습니다");
                    return;
-                }
-                   
+              }
+                
+                // 개설한 모임은 신청 x 
+              function checkLeader(){
+            	  let user = '${user.memberNickname}';
+            	  let leader = '${club.clubLeader}';
+            	  console.log("리더 : " + leader);
+            	  if(user===leader){
+            		  return false;
+            	  } else {
+            		  return true;
+            	  }
+            	  
+              }
+                  
+            
+             //날짜 비교 메서드 
+             let shutDate = '${club.clubShutDate}';
+             shutDate = new Date(shutDate);
+             let today = new Date();
+             console.log(today);
+             function checkShutDate(){
+            	 	if(shutDate < today){
+            	 		return false;;
+            	 	} else {
+            	 		return true;
+            	 	}
+            	 }
+             
              // 모임신청 
              function apply(){
                  return new Promise(function(resolve, reject){
@@ -361,12 +394,18 @@ $(function(){
                   },
                      success: function (data) {
                         console.log(data);
+                    	if(!checkShutDate()){
+                    		alert("모집이 종료된 모임입니다!");
+                    		return;
+                    	}
                            if(data==1){
                               alert("모임 신청이 완료되었습니다!");
                               //신청이 성공한 다음 인원 수를 update해야함 
                               resolve();
                            } else if(data==0){
                               alert("이미 신청한 모임입니다!");
+                           } else if(shutDate < today){
+                        	   
                            }
                     }
                  });
@@ -412,10 +451,10 @@ $(function(){
  }); 
 
 /*정연수정 20210405*/
- if('${msg}' != ''){
+if('${msg}' != ''){
     alert('${msg}');
-} 
-  
+}
+
 /*찜 수정 20210401*/
 //var state = document.getElementById("heartImg"); //und
 //var state = document.getElementsByClassName("heartImg");

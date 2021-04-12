@@ -84,6 +84,10 @@
         	margin-top: 50px;
         	color:#dddddd;
         }
+        
+        #sendtime{
+        	color:darkgray;
+        }
         </style>
 </head>
 <body>
@@ -99,8 +103,10 @@
 	                        <button type="button" class="close">
 	                            <span>×</span>
 	                        </button>
-	            		      <b>[${unread.notType}알림]</b>
-	                        <div class="content"><a target="_blank" href="${unread.notUrl}" class="url">${unread.notMessage}</a></div>
+	            		     	 <b>[${unread.notType}알림]</b>
+		                        <div class="content"><a target="_blank" href="${unread.notUrl}" class="url">${unread.notMessage}</a>
+		                        <div id="sendtime">${unread.timeDiff}</div>
+	                        </div>
 	                    </div>
                     </c:forEach>
 	                    <c:if test="${empty unreadList }">
@@ -117,7 +123,9 @@
 		                            <span>×</span>
 		                        </button>
 		            		      <b>[${read.notType}알림]</b>
-		                        <div class="content"><a target="_blank" href="${read.notUrl}">${read.notMessage}</a></div>
+			                        <div class="content"><a target="_blank" href="${read.notUrl}">${read.notMessage}</a>
+			                        <div id="sendtime">${read.timeDiff}</div>
+		                        </div>
 		                    </div>
                    	 </c:forEach>
 	              		 <c:if test="${empty readList}">
