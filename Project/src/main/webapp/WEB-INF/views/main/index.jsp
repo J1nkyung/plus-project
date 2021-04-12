@@ -122,8 +122,8 @@
 	<div class=search>
 	<div class=searchbox>
 	
-	 <input type="text" name="keyword" id="keywordInput" size="40"
-						value="${scri.keyword}" placeholder=" 관심있는 더하기를 검색해보세요 🔍"/>
+	 <input type="text" name="keyword" id="keywordInput" size="40" 
+autocomplete='off' value="${scri.keyword}" placeholder=" 관심있는 더하기를 검색해보세요 🔍"/>
 					<button id="searchBtn" type="button">검색</button>
 				
 					</div>
@@ -214,8 +214,10 @@
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
-									<i class="fas fa-heart"> ${club.clubHeart}</i>
-								</div>
+<i class="fas fa-heart"> ${club.clubHeart}</i>&nbsp;&nbsp;
+<i class="fab fa-product-hunt">&nbsp;${club.clubFee}</i>
+</div>
+
 
 								<!-- 더하기 상세 정보 -->
 								<p class="text-muted card-text">
@@ -284,9 +286,9 @@
 										${club.clubName} </a>
 								</div>
 								<div class=subtitle>
-									<i class="fas fa-heart"> ${club.clubHeart}</i>
-
-								</div>
+<i class="fas fa-heart"> ${club.clubHeart}</i>&nbsp;&nbsp;
+<i class="fab fa-product-hunt">&nbsp;${club.clubFee}</i>
+</div>
 
 								<!-- 더하기 상세 정보 -->
 								<p class="text-muted card-text">

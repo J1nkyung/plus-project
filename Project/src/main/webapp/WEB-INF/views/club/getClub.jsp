@@ -104,7 +104,7 @@
             <div class="fstyle" id="makeDate">${club.clubStartDate}<!-- </div> -->
                <!-- <div id="tilde">  -->
                ~
-               <!-- <div class="fstyle" id="shutDate"> -->${club.clubEndDate}</div>
+               <!-- <div class="fstyle" id="shutDate"> -->${club.clubMakeDate}</div>
             <!-- </div> -->
 
 <br>
@@ -131,14 +131,14 @@
 				
             <!-- 찜버튼 -->
             <button type="button" class="btn" id="heartBtn">
-               <c:if test="${isThereHeart == 0}">
-                  <img src="${path}/resources/img/heart.png" class="heartImg" id ="dd"/>
+               <c:if test="${isThereHeart eq 0}">
+                  <img src="${path}/resources/img/heart.png" id="heartImg" value=0 />
                </c:if>
-               <c:if test="${isThereHeart != 0}">
-                  <img src="${path}/resources/img/blackheart.png" class="heartImg" id ="dd" />
+               <c:if test="${isThereHeart ne 0}">
+                  <img src="${path}/resources/img/blackheart.png" id="heartImg" value=1 />
                </c:if>
             </button>
-  		 <!-- 공유 버튼  -->
+   <!-- 공유 버튼  -->
             <button type="button" class="btn" id="shareBtn" onclick="sendLink()">
                <img id="file" src="${path}/resources/img/share.png">
             </button>

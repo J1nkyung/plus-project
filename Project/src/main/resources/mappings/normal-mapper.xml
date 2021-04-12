@@ -42,6 +42,7 @@
             HAVING
 				distance < 10
 			AND club_kind = '1'
+			AND club_shutdate>NOW()
 	    	ORDER BY club_makedate DESC 
                 LIMIT 0,1000
 	]]>
@@ -59,6 +60,7 @@
             HAVING
 				distance < 10
 			AND club_kind = '1'
+	        AND club_shutdate>NOW()
 	    	ORDER BY club_heart DESC
                 LIMIT 0,1000
 	]]>
