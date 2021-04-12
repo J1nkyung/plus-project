@@ -50,10 +50,20 @@
 		FROM INQUIRY JOIN MEMBER USING (member_num) WHERE INQUIRY_NUM=#{inquiryNum}
 	</select>
 	
+	<select id="answerInquiryEditForm" resultMap="adminResult">
+		SELECT inquiry_num, inquiry_title, MEMBER.member_num, inquiry_content, inquiry_type, inquiry_state, 
+		inquiry_answer, inquiry_regdate, member_email, member_nickname, inquiry_answer_date
+		FROM INQUIRY JOIN MEMBER USING (member_num) WHERE INQUIRY_NUM=#{inquiryNum}
+	</select>
+	
 	<!-- 관리자 : 답변 작성   -->
 	<update id="answerInquiry">
 		UPDATE INQUIRY SET INQUIRY_ANSWER=#{inquiryAnswer}, INQUIRY_STATE='답변완료',
 		INQUIRY_ANSWER_DATE=now() WHERE INQUIRY_NUM=#{inquiryNum}
+	</update>
+	
+	<update id="answerEditInquiry">
+		UPDATE INQUIRY SET INQUIRY_ANSWER=#{inquiryAnswer}, INQUIRY_ANSWER_DATE=now() WHERE INQUIRY_NUM=#{inquiryNum}
 	</update>
 	
 	<select id="getAdminChart" resultType="Integer">

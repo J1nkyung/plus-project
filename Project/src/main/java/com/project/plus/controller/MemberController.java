@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -116,11 +114,9 @@ public class MemberController {
       pmem.setCriMem(scmem);
       pmem.setTotalCount(memberService.listCount(scmem));
       model.addAttribute("pmem", pmem);
-<<<<<<< HEAD
-      return "memberList.adMember";
-=======
+
       return "member/memberList";
->>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
+
    }
    
    //로그인하고 내정보확인 페이지 들어가면 정보 뿌려주는 메서드
@@ -135,9 +131,7 @@ public class MemberController {
    System.out.println("멤버업데이트 get메서드"+vo); //null나와 ... 
    System.out.println("memberInfo " + memberService.viewMember(vo.getMemberNum()));
    MemberVO user = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
-   
-<<<<<<< HEAD
-=======
+
    
    if(user.getMemberNum() == 1) {
       
@@ -151,20 +145,7 @@ public class MemberController {
      return "";
 
    }
->>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
-   
-   if(user.getMemberNum() == 1) {
-      
-      return "memberUpdate.adMember";
-      
-    }else if(user.getMemberNum()!= 1) {
-       
-          return "memberUpdate.member";
-    }
 
-     return "";
-
-   }
     
    //회원 정보 업데이트하는 메서드 
    @RequestMapping(value="memberUpdate", method=RequestMethod.POST)

@@ -75,6 +75,22 @@ public class AdminController {
 			ads.answerInquiry(vo);
 			return "redirect:adminInquiry";
 		}
+		
+		// 회원 : 1:1 문의글 수정 폼
+		@RequestMapping("/answerInquiryEditForm")
+		public String answerInquiryEditForm(InquiryVO vo, Model model) {
+			model.addAttribute("answerInquiryEditForm", ads.answerInquiryEditForm(vo));
+			System.out.println("지금부터 수정을 시작하지" + vo);
+			return "admin/inquiry/inquiryAnswerEditForm";
+		}
+		
+		// 회원 : 1:1 문의글 수정 등록 메서드
+		@RequestMapping(value = "/answerEditInquiry", method = RequestMethod.POST)
+		public String answerEditInquiry(InquiryVO vo) {
+			ads.answerEditInquiry(vo);
+			System.out.println("수정제출"+vo);
+			return "redirect:adminInquiry";
+		}
 
 	// 관리자 : 차트 페이지
 	@RequestMapping("/adminChart")
@@ -154,6 +170,7 @@ public class AdminController {
 	// 관리자 : 모임 삭제
 	@RequestMapping("/deleteAdminClub")
 	public String deleteAdminClub(ClubVO cvo) {
+		
 		System.out.println("몇번 모임 삭제하는지 알려주세요" + cvo);
 		ads.deleteAdminClub(cvo);
 		return "redirect:adminClub";

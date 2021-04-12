@@ -4,7 +4,6 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <%-- <link rel="stylesheet" href="${path}/resources/css/reviewList.css"> --%>
@@ -29,24 +28,15 @@
 	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> 
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
 <style>
-
-
 /* 진경 수정 */
 body {
-<<<<<<< HEAD
-	font-family: 'NanumSquare', sans-serif;
-	margin-left: 40px;
-=======
 	font-family: 'NanumSquare';
->>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 }
 
-.fixed-top{
-	position:sticky;
+.fixed-top {
+	position: sticky;
 }
-
 /* 끝 */
-
 a {
 	color: inherit;
 }
@@ -80,18 +70,15 @@ a:hover {
 	width: 100%;
 	border-collapse: collapse;
 }
-
 #tableWrapper table th:first-child {
 	border-radius:10px 0px 0px 0px;
 }
 #tableWrapper table th:last-child {
 	border-radius:0px 10px 0px 0px;
 }
-
-
 #tableWrapper table th {
 	text-align: center;
-	/* background-color: grey; */
+	background-color: grey;
 	height: 19.6px;
 	padding: 13px;
 	background-color: #001eff;
@@ -143,11 +130,11 @@ a:hover {
 #searchType {
 	height: 24px;
 }
-li {
+/* li {
 	list-style: none;
 	float: left;
 	padding: 6px;
-}
+} */
 </style>
 
 <body>
@@ -188,38 +175,22 @@ li {
 								</tr>
 							</thead>
 							<tbody>
-								<c:choose>
-									<c:when test="${fn:length(inquiryList) > 0}">
-										<c:forEach var="inquiry" items="${inquiryList}">
-											<tr>
-												<td>${inquiry.inquiryType}</td>
-												<td><a
-													href="${path}/getInquiry?inquiryNum=${inquiry.inquiryNum}"
-													class="inquiry-title">${inquiry.inquiryTitle}</a></td>
-												<fmt:parseDate var="parseRegDate"
-													value="${inquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
-												<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
-													pattern="yyyy-MM-dd" />
-												<td class="text-center">${resultRegDt}</td>
-												<td class="text-center"><%-- <button type="button"
-														class="btn btn-primary btn-sm" style="width: 70px">${inquiry.inquiryState}</button></td> --%>
-														<c:if test="${inquiry.inquiryState eq '처리중'}">
-										<button type="button" class="btn btn-outline-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button></td>
-										</c:if>
-										<c:if test="${inquiry.inquiryState eq '답변완료'}">
-										<button type="button" class="btn btn-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button></td>
-										</c:if>
+								<c:forEach var="inquiry" items="${inquiryList}">
+									<tr>
+										<td>${inquiry.inquiryType}</td>
+										<td style="text-align:left;"><a
+											href="${path}/getInquiry?inquiryNum=${inquiry.inquiryNum}"
+											class="inquiry-title">${inquiry.inquiryTitle}</a></td>
+										<fmt:parseDate var="parseRegDate"
+											value="${inquiry.inquiryRegDate}" pattern="yyyy-MM-dd" />
+										<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
+											pattern="yyyy-MM-dd" />
+										<td class="text-center">${resultRegDt}</td>
+										<td class="text-center"><button type="button"
+												class="btn btn-primary btn-sm" style="width: 70px">${inquiry.inquiryState}</button></td>
 
-											</tr>
-										</c:forEach>
-									</c:when>
-									<c:otherwise>
-										<tr>
-											<td colspan="4">조회된 결과가 없습니다.</td>
-										</tr>
-									</c:otherwise>
-								</c:choose>
-
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -228,10 +199,10 @@ li {
 
 						<ul class="paging">
 
-							<c:if test="${pageMakerAdmin.prev}">
-								<li><a class="span"
-									href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.startPage - 1)}">◀</a></li>
-							</c:if>
+							<%-- <c:if test="${pageMakerAdmin.prev}"> --%>
+							<li><a class="span"
+								href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.startPage - 1)}">◀</a></li>
+							<%-- 	</c:if> --%>
 
 							<c:forEach begin="${pageMakerAdmin.startPage}"
 								end="${pageMakerAdmin.endPage}" var="idx">
@@ -239,60 +210,32 @@ li {
 										class="span">${idx}</span></a></li>
 							</c:forEach>
 
-							<c:if test="${pageMakerAdmin.next && pageMakerAdmin.endPage > 0}">
-								<li><a class="span"
-									href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.endPage + 1)}">▶</a></li>
-							</c:if>
+							<%-- <c:if test="${pageMakerAdmin.next && pageMakerAdmin.endPage > 0}"> --%>
+							<li><a class="span"
+								href="inquiry${pageMakerAdmin.makeQuery(pageMakerAdmin.endPage + 1)}">▶</a></li>
+							<%-- </c:if> --%>
 						</ul>
 
 					</div>
 					<!-- pageArea -->
+					
 				</form>
-<<<<<<< HEAD
-			</div>
-			<div class="col-12">
+				<div class="col-12" style="margin-left:780px; margin-top:0px;"> 
 				<input type="hidden" name="memberNum" value="${user.memberNum}">
-				<input type="hidden" name="inquiryType" value="${inquiry.inquiryType}">
+				<input type="hidden" name="inquiryType"
+					value="${inquiry.inquiryType}">
 				<button class="btn btn-primary pull-right">
 					<a href="${path}/inquiryForm?memberNum=${user.memberNum}">문의</a>
 				</button>
+			 </div>
 			</div>
+			 
 		</div>
-		<!-- wrapper -->
+		<!-- content -->
 
 	</div>
-	</div>
+	<!-- Container -->
 
-
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-		crossorigin="anonymous"></script>
-	<script src="js/script.js"></script>
-=======
-				</div>
-						<div class="col-12">
-            <input type="hidden" name="memberNum" value="${user.memberNum}">
-            <input type="hidden" name="inquiryType" value="${inquiry.inquiryType}">
-            <button class="btn btn-primary pull-right">
-               <a href="${path}/inquiryForm?memberNum=${user.memberNum}">문의</a>
-            </button>
-         </div>
-      </div>
-			<!-- wrapper -->
-
-		</div>
-
->>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 </body>
 
 </html>

@@ -63,6 +63,10 @@ public interface AdminMapper {
 	public InquiryVO answerInquiryForm(InquiryVO vo);
 
 	public void answerInquiry(InquiryVO vo);
+	
+	public InquiryVO answerInquiryEditForm(InquiryVO vo);
+	
+	public void answerEditInquiry(InquiryVO vo);
 
 	public List<PaymentVO> adminPayList(CriteriaAdmin cri) throws Exception;
 	

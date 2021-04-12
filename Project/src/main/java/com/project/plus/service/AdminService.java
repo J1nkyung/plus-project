@@ -14,6 +14,8 @@ public interface AdminService {
 	
 	InquiryVO answerInquiryForm(InquiryVO vo);
 	void answerInquiry(InquiryVO vo);
+	InquiryVO answerInquiryEditForm(InquiryVO vo);
+	void answerEditInquiry(InquiryVO vo);
 	void deleteAdminInquiry(InquiryVO vo);
 
 	InquiryVO getAdminInquiry(InquiryVO vo);

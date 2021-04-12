@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
@@ -38,20 +37,16 @@ body {
 	font-family: 'NanumSquare', sans-serif;
 	margin-left: 40px;
 }
-
 a {
 	color: inherit;
 }
-
 a:hover {
 	text-decoration: none;
 }
-
 .Container {
 	margin: 0;
 	width: 1140px;
 }
-
 .Content {
 	position: absolute;
 	left: 25%;
@@ -59,81 +54,67 @@ a:hover {
 	height: 100vh;
 	padding-top:30px;
 }
-
 #tableWrapper {
 	width: 85%;
 	height: 415.550px;
 }
-
 #block {
 	border: 1px solid rgba(189, 186, 186, 0.829);
 	border-radius: 2%;
 	min-height: 443.2px;
 }
-
 #tableWrapper table {
 	width: 100%;
 	border-collapse: collapse;
 }
-
 #tableWrapper table th:first-child {
 	border-radius:10px 0px 0px 0px;
 }
 #tableWrapper table th:last-child {
 	border-radius:0px 10px 0px 0px;
 }
-
 #tableWrapper table th {
 	text-align: center;
-/* 	background-color: grey; */
+	background-color: grey;
 	height: 19.6px;
 	padding: 13px;
 	background-color: #001eff;
 	color: white;
 }
-
 #tableWrapper table td {
 	text-align: center;
 	padding: 7px;
 	max-height: 17px;
 }
-
 #pageArea {
 	margin: 0 auto;
 	position: relative;
 }
-
 .paging {
 	margin-top: 40px;
 	position: absolute;
 	left: 37%;
 }
-
 .paging>li {
 	list-style: none;
 	float: left;
 	padding: 6px 1px;
 }
-
 .span {
 	padding: 6px 12px;
 	border: 1px solid lightgray;
 }
-
 #info, .paging>li :hover {
 	text-decoration: none;
 }
-
 #keywordInput {
 	display: inline;
 }
-
 .search {
 	float: right;
 	margin-bottom: 3px;
 	margin-right: 3px;
 }
-
 #searchType {
 	height: 24px;
 }
@@ -210,17 +191,10 @@ li {
 										<td class="text-center">${resultRegDt}</td>
 										<td class="text-center">
 										<c:if test="${inquiry.inquiryState eq '처리중'}">
-<<<<<<< HEAD
-										<button type="button" class="btn btn-outline-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button></td>
-										</c:if>
-										<c:if test="${inquiry.inquiryState eq '답변완료'}">
-										<button type="button" class="btn btn-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button></td>
-=======
 										<button type="button" class="btn btn-outline-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button>
 										</c:if>
 										<c:if test="${inquiry.inquiryState eq '답변완료'}">
 										<button type="button" class="btn btn-primary btn-sm" disabled style="width: 70px">${inquiry.inquiryState}</button>
->>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 										</c:if>
 									</tr>
 								</c:forEach>
@@ -250,11 +224,11 @@ li {
 									</div>
 									<div class="navcontent">
 										<ul class="navbar-nav flex-column mt-4">
-									
+
 											<!-- 회원 관리 -->
 											<li class="nav-item"><a href="memberListPage"
-												class="nav-link text-white p-3 mb-2 sidebar-link">
-													<i class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
+												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+													class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
 											</a></li>
 											<!-- 모임 관리 -->
 											<li class="nav-item"><a href="adminClub"
@@ -271,7 +245,7 @@ li {
 											<!-- 공지 관리 -->
 											<li class="nav-item"><a href="announce"
 												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-question-circle text-white fa-lg mr-3"></i>공지
+													class="far fa-flag text-white fa-lg mr-3"></i>공지
 													관리
 											</a></li>
 											<!-- 결제내역 관리 -->
@@ -282,10 +256,12 @@ li {
 											<!-- 관리자 차트 -->
 											<li class="nav-item"><a href="adminChart"
 												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-question-circle text-white fa-lg mr-3"></i>차트
+													class="fas fa-chart-line text-white fa-lg mr-3"></i>차트
 													관리
 											</a></li>
-												<p id="gomain"><a href="main"><i class="fas fa-home"></i> 메인으로 가기 </a></p>
+											<p id="gomain">
+												<a href="main"><i class="fas fa-home"></i> 메인으로 가기 </a>
+											</p>
 										</ul>
 									</div>
 								</div>
@@ -343,7 +319,6 @@ li {
 	window.onload = function(){
 		selectNav();
 	}
-
 	function selectNav(){ 
 		// 지금 접속해있는 주소 얻어서 now에 넣어줌
 		var now = window.location.href;
@@ -352,7 +327,6 @@ li {
 		// 주소에 포함되어야 하는 단어 배열로 선언
 			var arr = ["member", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
 		
-
 		//기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
 			for (var i = 0; i < arr.length; i++) {
 				if(now.includes(arr[i])){
@@ -361,7 +335,6 @@ li {
 			}
 		
 	}
-
 	</script>
 </body>
 

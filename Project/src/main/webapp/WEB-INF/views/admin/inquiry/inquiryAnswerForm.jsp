@@ -89,7 +89,7 @@ float:right;
 			<%-- <input type="hidden" value="${answerInquiryForm.inquiryAnswer}" name="inquiryAnswer"> --%>
 			<input type="hidden" value="${answerInquiryForm.inquiryNum}" name="inquiryNum">
 			<!--  회원번호 진경 알림에게 넘겨주기  -->
-			<button type="button" class="btn btn-primary" id="answerBtn">답변 등록</button>
+			<button type="submit" class="btn btn-primary" id="answerBtn">답변 등록</button>
 			<div class="submit"><a href="adminInquiry">글 목록 가기</a></div>
 		<hr></div>
 	</form> 

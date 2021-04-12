@@ -33,15 +33,13 @@ public class InquiryController {
 	// 회원 : 1:1 문의글 작성 폼
 	@RequestMapping(value = "/inquiryForm", method = RequestMethod.GET)
 	public String inquiryForm(InquiryVO vo, MemberVO mvo, HttpSession session) throws Exception {
-<<<<<<< HEAD
+
 		/*
 		 * MemberVO user = (MemberVO) session.getAttribute("user");
 		 * vo.setMemberNum(user.getMemberNum()); is.inquiryForm(vo);
-		 * System.out.println("inquiryForm" + vo);
-		 */
-=======
->>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
-		return "inquiryForm.inqu";
+		 * System.out.println("inquiryForm" + vo); */
+
+		return "mypage/inquiry/inquiryForm";
 	}
 
 	// 회원 : 1:1 문의글 제출 메서드
@@ -55,6 +53,7 @@ public class InquiryController {
 	@RequestMapping("/editInquiryForm")
 	public String editInquiryForm(InquiryVO vo, Model model) {
 		model.addAttribute("inquiryForm", is.editInquiryForm(vo));
+		System.out.println("1:1 문의 수정 폼 불러와주세요" + vo);
 		return "inquiryEditForm.inqu";
 	}
 

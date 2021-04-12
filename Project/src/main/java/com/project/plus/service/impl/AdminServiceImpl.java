@@ -200,6 +200,16 @@ public class AdminServiceImpl implements AdminService {
 		return mapper.adminClubListCount(cvo);
 	}
 
+	@Override
+	public InquiryVO answerInquiryEditForm(InquiryVO vo) {
+		return mapper.answerInquiryEditForm(vo);
+	}
+
+	@Override
+	public void answerEditInquiry(InquiryVO vo) {
+		mapper.answerEditInquiry(vo);
+	}
+
 //	@Override
 //	public List<PaymentVO> payList(SearchCriteriaAdmin scad) {
 //		List<PaymentVO> list = null;

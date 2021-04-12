@@ -33,10 +33,7 @@
         <listener-class>com.project.plus.action.VisitSessionListener</listener-class>
     </listener>
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 4cbe97992e23aab7d7fb450a804a20f5ba611f0f
 	<!-- Processes application requests -->
 	<servlet>
 		<servlet-name>action</servlet-name>
