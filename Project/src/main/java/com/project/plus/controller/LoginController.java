@@ -248,7 +248,7 @@ public class LoginController {
 		String name = user.getMemberName();
 		String email = user.getMemberEmail();
 		
-		System.out.println("확인해보자"+pw + name+email);
+		//System.out.println("확인해보자"+pw + name+email);
 		
 		//임시 비밀번호 생성 
 		String newPw = "";
