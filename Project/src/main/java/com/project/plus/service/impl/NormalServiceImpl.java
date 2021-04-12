@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.plus.domain.ClubVO;
+import com.project.plus.domain.MemberVO;
 import com.project.plus.mapper.NormalMapper;
+
 import com.project.plus.service.NormalService;
 
 import lombok.extern.log4j.Log4j;
@@ -19,15 +21,15 @@ public class NormalServiceImpl implements NormalService {
 	private NormalMapper mapper;
 
 	@Override
-	public List<ClubVO> getListNormal(ClubVO vo) {
+	public List<ClubVO> getListNormal(MemberVO mvo) {
 		log.info(".......getListNormal.......");
-		return mapper.getListNormal(vo);
+		return mapper.getListNormal(mvo);
 	}
 
 	@Override
-	public List<ClubVO> getListNormalBest(ClubVO vo) {
+	public List<ClubVO> getListNormalBest(MemberVO mvo) {
 		log.info(".......getListNormalBest.......");
-		return mapper.getListNormalBest(vo);
+		return mapper.getListNormalBest(mvo);
 	}
 
 

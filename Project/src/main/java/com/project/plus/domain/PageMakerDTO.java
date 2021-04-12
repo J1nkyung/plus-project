@@ -1,11 +1,16 @@
 package com.project.plus.domain;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
 public class PageMakerDTO {
 	/*전체 게시물 수*/
 	private int totalCount;
@@ -18,6 +23,10 @@ public class PageMakerDTO {
 	/*하단 페이징 나타내는 갯수*/
 	private int displayPageNum = 5;
 	/* 현재 페이지, 페이지당 게시물 표시수 정보 */
+	
+	private BigDecimal memberLatitude;
+	private BigDecimal  memberLongitude;
+	
 	private Criteria cri;
 	
 	
@@ -89,6 +98,8 @@ public class PageMakerDTO {
 		  
 		 UriComponents uriComponents =
 		            UriComponentsBuilder.newInstance()
+		            .queryParam("memberLatitude", getMemberLatitude())
+		            .queryParam("memberLongitude", getMemberLongitude()) 
 		            .queryParam("page", page)
 		            .queryParam("perPageNum", cri.getPerPageNum()) 
 		            .queryParam("searchType", ((SearchCriteria)cri).getSearchType())

@@ -72,11 +72,6 @@
 		</div>
 	</div>
 
-	<%-- <input type="hidden" name="userLatitude"
-		value='<c:out value="${pageMaker.cri.userLatitude}"/>'>
-	<input type="hidden" name="userLongitude"
-		value='<c:out value="${pageMaker.cri.userLongitude}"/>'>
-	</form> --%> <!----------------더하기 리스트------------------>
 	<section class="gallery-block ca
 		rds-gallery">
 		<div class="gallery-container">
