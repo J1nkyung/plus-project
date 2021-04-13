@@ -25,6 +25,7 @@
 		<result property="clubHashtag" column="club_hashtag" />
 		<result property="clubCurnum" column="club_curnum" />
 		<result property="clubHashtag" column="club_hashtag" />
+		<result property="clubHeart" column="club_heart" />
 			<!-- 추가 -->
 		<result property="clubLatitude" column="club_latitude" />
 		<result property="clubLongitude" column="club_longitude" />

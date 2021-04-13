@@ -12,7 +12,6 @@
    href='${path}/resources/css/getClub.css'>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
- 
 </head>
 <wrap class="clearfix">
 <section>
@@ -85,13 +84,13 @@
          
             <div id="clubname">${club.clubName}</div>
             <!-- 해시태그 출력부분  -->
-            <div id="clubhashtag">
-            <c:forEach items="${tags}" var="tag">
-               <span class="badge badge-pill badge-info"># ${tag}</span>
-            </c:forEach>
-</div>
    
          <div class="clubInfoTable">
+            <div id="clubhashtag">
+            <c:forEach items="${tags}" var="tag">
+               <span class="badge badge-pill badge-info"><a href="totalList?page=1&perPageNum=20&searchType=h&keyword=${tag}"># ${tag}</a></span>
+            </c:forEach>
+</div>
             <div id="location">
                <img src="${path}/resources/img/mapicon.png"></img>
                <div id="locationText">모임 위치</div>
@@ -191,7 +190,7 @@ Kakao.isInitialized();
         },
       },
       social: {
-        likeCount: 286,
+        likeCount: ${club.clubHeart},
         commentCount: ${reviewCount},
       },
       buttons: [ 

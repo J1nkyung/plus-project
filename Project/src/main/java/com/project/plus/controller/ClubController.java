@@ -85,7 +85,7 @@ public class ClubController {
 		String uploadPath = rq.getSession().getServletContext().getRealPath("/resources/uploadImg");
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.insertClub(vo); // DB에 저장
-		log.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
+		log.info("모임 등록 완료 ");
 		log.info(uploadPath);
 		return "redirect:main";
 
@@ -131,7 +131,7 @@ public class ClubController {
 		log.info("업데이트된 클럽 컨텐츠2 사진 " + vo.getClubContent2_pic());
 		log.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
 
-		return "redirect:main";
+		return "redirect:getClub?clubNum=" + vo.getClubNum();
 	}
 
 
@@ -215,20 +215,20 @@ public class ClubController {
 		// 경로를 자르고 파일명+확장자만 set
 		if (vo.getClubMain_pic() != null) {
 			String formatName = vo.getClubMain_pic().substring(vo.getClubMain_pic().lastIndexOf("_") + 1);
-			vo.setClubMain_pic(formatName);
-			log.info(vo.getClubMain_pic());
+			vo.setClubMain_pic_name(formatName);
+			log.info(vo.getClubMain_pic_name());
 		}
 
 		if (vo.getClubContent1_pic() != null) {
 			String formatName = vo.getClubContent1_pic().substring(vo.getClubContent1_pic().lastIndexOf("_") + 1);
-			vo.setClubContent1_pic(formatName);
-			log.info(vo.getClubContent1_pic());
+			vo.setClubContent1_pic_name(formatName);
+			log.info(vo.getClubContent1_pic_name());
 		}
 
 		if (vo.getClubContent2_pic() != null) {
 			String formatName = vo.getClubContent2_pic().substring(vo.getClubContent2_pic().lastIndexOf("_") + 1);
-			vo.setClubContent2_pic(formatName);
-			log.info(vo.getClubContent2_pic());
+			vo.setClubContent2_pic_name(formatName);
+			log.info(vo.getClubContent2_pic_name());
 		}
 
 		model.addAttribute("club", vo);
