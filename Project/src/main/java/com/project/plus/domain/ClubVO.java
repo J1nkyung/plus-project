@@ -13,8 +13,6 @@ import lombok.ToString;
 public class ClubVO {
 	private int clubNum;
 	private String clubMain_pic;
-	private String clubThumb_pic;
-	private String clubThumbpic;
 	private String clubName;
 	private String clubLeader;
 	private int clubKind;
