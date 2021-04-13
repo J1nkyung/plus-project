@@ -140,7 +140,7 @@
 
 		<div class="clubdate">
 			<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-			<input type="text" class="form-control c-date" id="shut-date"
+			<input type="text" class="form-control c-date" id="shut-date" autocomplete="off"
 				name="clubShutDate" value="${club.clubShutDate}" />
 		</div>
 		<label for="exampleFormControlSelect2">모임 진행 기간 </label>
@@ -148,7 +148,7 @@
 			<div class="col">
 				<div class="clubdate">
 					<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-					<input type="text" class="form-control c-date" id="start-date"
+					<input type="text" class="form-control c-date" id="start-date" autocomplete="off"
 						name="clubStartDate" value="${club.clubStartDate}" />
 				</div>
 			</div>
@@ -156,14 +156,14 @@
 			<div class="col">
 				<div class="clubdate">
 					<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-					<input type="text" class="form-control c-date" id="end-date"
+					<input type="text" class="form-control c-date" id="end-date" autocomplete="off"
 						name="clubEndDate" value="${club.clubEndDate}" />
 				</div>
 			</div>
 		</div>
 		<div class="people">
-			<label for="exampleFormControlSelect2">참가인원</label> <input
-				type="text" class="form-control" placeholder="최대 50명" id="club-max"
+			<label for="exampleFormControlSelect2">참가인원</label> <input 
+				type="text" class="form-control" placeholder="최대 50명" id="club-max" autocomplete="off"
 				name="clubMax" value="${club.clubMax}">
 		</div>
 
@@ -188,7 +188,7 @@
 		</div>
 		<div class="clubfeeBox">
 			<label for="exampleFormControlSelect2">참가비용</label> <input
-				type="text" class="form-control" id="club-fee" name="clubFee">
+				type="text" class="form-control" id="club-fee" name="clubFee" autocomplete="off">
 		</div>
 		<input name="clubNum" type="hidden" value="${club.clubNum}" /> <input
 			name="clubMakeDate" type="hidden" value="${club.clubMakeDate}" /> <input

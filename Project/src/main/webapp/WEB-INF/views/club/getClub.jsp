@@ -104,7 +104,7 @@
             <div class="fstyle" id="makeDate">${club.clubStartDate}<!-- </div> -->
                <!-- <div id="tilde">  -->
                ~
-               <!-- <div class="fstyle" id="shutDate"> -->${club.clubMakeDate}</div>
+               <!-- <div class="fstyle" id="shutDate"> -->${club.clubEndDate}</div>
             <!-- </div> -->
 
 <br>
