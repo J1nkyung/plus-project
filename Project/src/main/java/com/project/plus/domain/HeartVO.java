@@ -9,7 +9,7 @@ public class HeartVO {
 	private String clubName;
 	
 	/*추가한 vo*/
-	private String clubThumbPic;
+	private String clubMain_Pic;
 	private Date clubStartDate;
 	private Date clubEndDate;
 	private int clubFee;
@@ -89,12 +89,12 @@ public class HeartVO {
 	}
 
 	/*추가한 vo의 getter-setter*/
-	public String getClubThumbPic() {
-		return clubThumbPic;
+	public String getClubMain_Pic() {
+		return clubMain_Pic;
 	}
 
-	public void setClubThumbPic(String clubThumbPic) {
-		this.clubThumbPic = clubThumbPic;
+	public void setClubMain_Pic(String clubMain_Pic) {
+		this.clubMain_Pic = clubMain_Pic;
 	}
 	
 	

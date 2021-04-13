@@ -75,9 +75,8 @@ function selectNav(){
          <div class="bottom-border sidebarContent">
                     <a href="#" class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4">MY PAGE</a>
                      <div class="bottom-border pb-3">
-                         <img class="rounded-circle mr-3" src="${path}/resources${user.memberPic}" alt="" width="200px" height="200px">
+                         <img class="rounded-circle mr-3" src="${path}/resources${user.memberPic}" onerror="this.onerror=null; this.src='${path}/resources/img/default_pic.png'" alt="" width="200px" height="200px">
                          <div class="user-name">${user.memberNickname } <a id="userPage" href="${path}/memberUpdate?memberNum=${user.memberNum }">⚙</a></div>
-                         
                      </div>
                      <ul class="navbar-nav flex-column mt-4">
                         <!-- Mypage -->

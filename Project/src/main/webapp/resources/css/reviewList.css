@@ -1,4 +1,4 @@
-@charset "UTF-8";
+/* @charset "UTF-8";
 
 .reviewContainer{
      margin: 0;
@@ -19,6 +19,8 @@
 
  .tabBox{
      display: flex;
+     width: 69%;
+     height: 150px;
      border: 2px solid #eee;
      margin-bottom: 20px;
      box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
@@ -45,7 +47,7 @@
 
  }
 
- /* 탭 css */
+ 탭 css
  section {
      display: none;
      padding: 20px 0 0;
@@ -105,3 +107,4 @@
 }
 
 
+ */

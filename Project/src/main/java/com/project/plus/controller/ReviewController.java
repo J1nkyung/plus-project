@@ -39,11 +39,11 @@ public class ReviewController {
 	
 	@RequestMapping("/showReviewForm") 
 	public String showReviewForm(ClubVO cvo,ReviewVO vo, Model model) {
-		System.out.println("******showReviewForm.do ReviewVO 넘버확인 ******" + vo.getMemberNum() + "**임시 회원번호에필요한 vo**");
-		System.out.println("******showReviewForm.do ClubVO넘버확인 ******" + cvo.getClubNum());
+		System.out.println("닉네임 " + cvo.getClubLeader());
 		model.addAttribute("selectMember", vo.getMemberNum());
 		model.addAttribute("selectClub", clubService.selectClub(cvo));
-		System.out.println("getter 확인" + cvo.getClubNum());
+		System.out.println("clubService.selectClub(cvo)" + clubService.selectClub(cvo).getClubStartDate());
+		System.out.println("clubService.selectClub(cvo)" + clubService.selectClub(cvo).getClubEndDate());
 		System.out.println("showReviewForm.do 성공! view로 이동..");
 		
 		return "createReview.reviews"; // .jsp는 미리 설정해둠. 
