@@ -24,9 +24,8 @@
 </head>
 
 <body>
-	<!-- 배너너ㅓ -->
-
-    
+<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	<!-- 배너-->    
 	  <div class="mainbanner">
         <img 
          src="${path}/resources/img/plus1.png"
@@ -42,9 +41,9 @@
 	<section class="gallery-block cards-gallery">
 		<div class="gallery-container">
 			<div class="gallerytitle">
-				<h3 id="viewtitle">
-					<b> 지금 인기!</b>
-				</h3>
+				<h2 id="viewtitle">
+				<b>✨지금 가장 인기 있어요!</b>
+				</h2>
 			</div>
 
 				<div class="row">
@@ -114,8 +113,10 @@
 	<section class="gallery-block cards-gallery">
 		<div class="gallery-container">
 				<div class="gallerytitle">
-				
-				<a href="totalList.do" id="viewtotal"> 더 보기 > </a>
+				<h2 id="viewtitle">
+					<b>최근 업데이트 더하기</b>
+				</h2>
+				<a href="totalList" id="viewtotal"> 더 보기 > </a>
 			</div>
 
 			<div class="row">
@@ -225,4 +226,5 @@
         
 
     </script>
+        <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </html>

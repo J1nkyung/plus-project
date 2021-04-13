@@ -83,7 +83,7 @@
 			<div id="write-clubinfo">
 				<label for="exampleFormControlFile1">개설하고자 하는 모임의 성격을
 					설명해주세요!</label>
-				<textarea name="clubContent1">${club.clubContent1}</textarea>
+				<textarea name="clubContent1" placeholder="사진과 글로 모임을 자세히 소개해보세요.">${club.clubContent1}</textarea>
 				<div class="uploadBox">
 					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
 						type="file" style="display: none;" name="upload"
@@ -99,7 +99,7 @@
 			<c:if test="${club.clubKind eq 2}">
 				<label for="exampleFormControlFile1" id="intro">모임의 리더가 되고싶은 회원님은 어떤사람인가요?</label>
 			</c:if>
-				<textarea name="clubContent2">${club.clubContent2}</textarea>
+				<textarea name="clubContent2" placeholder="모두가 실천할 수 있도록 구체적인 인증방법을 작성해주세요.">${club.clubContent2}</textarea>
 				<div class="uploadBox">
 					<!-- <input type="file" class="form-control-file"
 					id="exampleFormControlFile1"> -->

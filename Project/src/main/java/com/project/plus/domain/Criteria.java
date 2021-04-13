@@ -2,13 +2,14 @@ package com.project.plus.domain;
 
 
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import lombok.Getter;
 import lombok.Setter;
 
 /* Criteria
- * 특정 페이지 조회를 위한 클래스
+ *totalList 페이징 조회를 위한 클래스
  */
 public class Criteria {
 
@@ -34,9 +35,9 @@ public class Criteria {
 	/* 검색 타입 배열 */
 	private String[] typeArr;
 	
-	private Double memberLatitude;
-	private Double memberLongitude;
-
+	private BigDecimal memberLatitude;
+	private BigDecimal  memberLongitude;
+	
 	/* 기본 생성자 -> 기본 세팅 : pageNum = 1, amount = 20 */
 	public Criteria() {
 		this.pageNum = 1;
@@ -106,26 +107,26 @@ public class Criteria {
 	public void setTypeArr(String[] typeArr) {
 		this.typeArr = typeArr;
 	}
-	public Double getMemberLatitude() {
+	public BigDecimal getMemberLatitude() {
 		return memberLatitude;
 	}
 
-	public void setMemberLatitude(Double memberLatitude) {
+	public void setMemberLatitude(BigDecimal memberLatitude) {
 		this.memberLatitude = memberLatitude;
 	}
 
-	public Double getMemberLongitude() {
+	public BigDecimal getMemberLongitude() {
 		return memberLongitude;
 	}
 
-	public void setMemberLongitude(Double memberLongitude) {
+	public void setMemberLongitude(BigDecimal memberLongitude) {
 		this.memberLongitude = memberLongitude;
 	}
 	
 	@Override
 	public String toString() {
 		return "Criteria [pageNum=" + pageNum + ", amount=" + amount + ", rowStart=" + rowStart + ", rowEnd=" + rowEnd
-				+ ", keyword=" + keyword + ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) + ", memberLatitude=" + memberLatitude + ", memberLongitude=" + memberLongitude+"]";
+				+ ", keyword=" + keyword + ", type=" + type + ", typeArr=" + Arrays.toString(typeArr) +"]";
 	}
 
 	
