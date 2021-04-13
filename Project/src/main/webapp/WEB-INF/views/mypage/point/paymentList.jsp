@@ -88,7 +88,14 @@
             width: 85%;
             height: 50%;
             border-radius: 2%;
+            
         }
+        #tableWrapper table th:first-child {
+   		 border-radius: 10px 0px 0px 0px;
+		}
+		#tableWrapper table th:last-child {
+   		 border-radius: 0px 10px 0px 0px;
+		}
 
         #tableWrapper table {
             width: 100%;
@@ -112,7 +119,7 @@
         
         /*paging css*/
         #pageArea {
-			margin: 0 auto;
+			margin-left: 70%;
 			position: relative;
 		}
 		
@@ -129,6 +136,7 @@
 		}
 		
 		.span {
+			margin-left: 100%;
 			padding: 6px 12px;
 			border: 1px solid lightgray;
 		}
@@ -146,7 +154,7 @@
             <div id="currentPoint">
                 <table>
                     <tr>
-                        <th id="nowPoint">나의 현재 포인트</th>
+                        <th id="nowPoint">나의 현재 포인트   </th>
                         <th id="point"> ${currentMemberPoint} 원</th>
                     </tr>
                 </table>
@@ -157,7 +165,6 @@
             <div id="tableWrapper">
                 <table class="useInfo">
                     <tr>
-                        <th>이력번호</th>
                         <th>결제날짜</th>
                         <th>이용내역</th>
                         <th>이용포인트</th> 
@@ -171,7 +178,6 @@
                     <c:if test="${paymentList != null || paymentList != ''}">
                     	<c:forEach var="payList" items="${paymentList }" >
                     		<tr>
-	                    		<td>${payList.payNum }</td>
 	                    		<fmt:formatDate value="${payList.payDate}" var="payDate" pattern="yyyy-MM-dd HH:mm:ss" /> 
 	                    		<td>${payDate}</td>
 	                    		<td>${payList.payMethod }</td>

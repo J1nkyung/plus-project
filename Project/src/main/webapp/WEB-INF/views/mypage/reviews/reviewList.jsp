@@ -18,6 +18,130 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>모임리뷰리스트</title> 
 <link rel="stylesheet" href="${path}/resources/css/reviewList.css">
+<style>
+@charset "UTF-8";
+
+.reviewContainer{
+     margin: 0;
+     width: 1140px;
+     margin-bottom : 30%;
+     margin-left :  5%;
+ }
+
+ .reviewTab {
+     padding: 10px;    
+     background: #ffffff;
+     margin-bottom: 50%;
+     }
+     
+ .btnReview{
+     text-decoration:none;
+ }
+
+ .tabBox{
+     display: flex;
+     width: 69%;
+     height: 150px;
+     border: 2px solid #eee;
+     margin-bottom: 20px;
+     box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
+ }
+
+ .clubPic{
+     width: 170px; 
+     height: 120px;  
+     border-radius: 2px 5px 5px 5px;
+     margin:13px 30px 20px 30px ;
+     box-shadow: 1px 1px 1px  #8299d879;
+     
+ }
+
+ .title_text{
+     width: 600px; 
+     margin:1px 25px 12px 25px ;
+     text-align: left;
+      padding-top: 20px;
+ }
+
+ .reviewBtn{
+    padding-top: 50px;
+	padding-right: 3%;
+ }
+
+ /* 탭 css */
+ section {
+     display: none;
+     padding: 20px 0 0;
+     border-top: 1px solid  #8299d82f;}
+
+ input {
+       display: none;}
+
+ label {
+     display: inline-block;
+     padding: 15px 25px;
+     font-weight: 600;
+     color:  #007bff;
+     border: 1px solid transparent;
+     font-size: 20px;
+     }
+
+ label:hover {
+     color: #2C2C96;
+     cursor: pointer;}
+
+
+ .tabs input:checked + label {
+       color: #555;
+       border: 1px solid #ddd;
+       border-top: 2px solid #2e9cdf;
+       border-bottom: 3px solid red;
+       }
+
+ .reviewTab #tab1:checked ~ #ReviewContent1,
+ .reviewTab #tab2:checked ~ #ReviewContent2 {
+     display: block;}
+
+
+ .reviewBtn button {
+     border-style: none;
+   }
+   
+ #noReviewBox{
+ 	width: 69%;
+ 	height : 150px;
+    border: 2px solid #eee;
+    box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
+ 	padding: 5.9%;
+ 	font-size : 20px;
+ 	text-align : center;
+ }
+ 
+ .h4, h4 {
+    padding-top: 3%;
+}
+
+
+.aTagg{
+	text-decoration-line : none;
+	color : black;
+}
+
+.pTag{
+	line-height :2px;
+}
+.btnCss{
+	width:130px;
+	height:55px; 
+	font-size: 19px; 
+	font-weight:700;
+	color:#fff;
+	background-color : #007BFF;
+	border-radius : 5px;
+	padding-right: 2%;
+}
+
+</style>
 </head>
 <body>	
 		<div class="reviewContainer">
@@ -34,28 +158,25 @@
 		                <!-- float left -->
 		                <div>
 		                    <div class="tabBox" >		
-								<c:if test="${noRvw.clubThumbPic == null || noRvw.clubThumbPic== ''}">                   
-			                      <img src="${path}/resources/img/goal.PNG" class="clubPic" title="image">
-			                    </c:if> 
-			                    <c:if test="${noRvw.clubThumbPic != null || noRvw.clubThumbPic== ''}">                   
-			                      <img src="${path}/resources/img/tmpImg/${noRvw.clubThumbPic}" class="clubPic" title="image">
-			                    </c:if> 
+			                       <img class="clubPic" src="${path}/resources${noRvw.clubMain_pic}"
+     								 onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" />
 		                    
-		                       <div class="title_text"><a href="getClub?clubNum=${noRvw.clubNum }" class="aTagg" style="text-decoration-line : none;">
-		                            <h2 title="모임타이틀 ">${noRvw.clubName}</h2>
+		                       <div class="title_text">
+		                       <a href="getClub?clubNum=${noRvw.clubNum }" class="aTagg" ></a>
+		                            <h4 title="모임타이틀 ">${noRvw.clubName}</h4>
 									<fmt:formatDate value="${noRvw.startDate}" var="startDateFmt" pattern="yyyy-MM-dd hh:mm"/>
 									<fmt:formatDate value="${noRvw.endDate}" var="endDateFmt" pattern="yyyy-MM-dd hh:mm"/>
-		                            <h4>📆모임기간 : ${startDateFmt} ~ ${endDateFmt }</h4>
+		                            <p>📆모임기간 :</p>
+		                            <p class="pTag">${startDateFmt} ~ ${endDateFmt }</p>
 		                       </div>
 		                       <div class="reviewBtn">
 		                       		<form id="frm" name="frm" action="showReviewForm.do">
 		                      	 		<input name="clubNum" type="hidden" value="${noRvw.clubNum}"/>
 		                      	 		<input name="memberNum" type="hidden" value="${noRvw.memberNum}"/>
-					                       <button style="width:130px;height:55px; font-size: 19px; font-weight:700;color:black;">
+					                       <button class="btnCss">
 					                       		후기작성
 					                       </button>
 			                       	</form>
-			                   </a>
 		                       </div>
 		                    </div>
 		                </div>
@@ -68,25 +189,22 @@
 		                <!-- float left -->
 		                <div>
 		                    <div class="tabBox" >
-		                    	<c:if test="${okayRvw.clubThumbPic == null || okayRvw.clubThumbPic == ''}">                   
-			                      <img src="${path}/resources/img/goal.PNG" class="clubPic" title="image">
-			                    </c:if> 
-			                    <c:if test="${okayRvw.clubThumbPic != null || okayRvw.clubThumbPic != ''}">                   
-			                     <img src="${path}/resources/img/tmpImg/${okayRvw.clubThumbPic}" class="clubPic" title="image">
-			                    </c:if> 
-		                        <div class="title_text"><a href="getClub?clubNum=${okayRvw.clubNum }" class="aTagg" style="text-decoration-line : none;">
-		                             <h2 title="모임타이틀">${okayRvw.clubName}</h2>
-		                             
+		                       <img class="clubPic" src="${path}/resources${okayRvw.clubMain_pic}"
+     								 onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" />
+		                    
+		                        <div class="title_text">
+		                        <a href="getClub?clubNum=${okayRvw.clubNum }" class="aTagg"></a>
+		                             <h4 title="모임타이틀">${okayRvw.clubName}</h4>
 		                            <fmt:formatDate value="${okayRvw.startDate}" var="startDateFmt2" pattern="yyyy-MM-dd hh:mm"/>
 									<fmt:formatDate value="${okayRvw.endDate}" var="endDateFmt2" pattern="yyyy-MM-dd hh:mm"/>
-		                            
-		                            <h4>📆모임기간 : ${startDateFmt2} ~ ${endDateFmt2}</h4>
-		                        </a></div>
+		                            <p>📆모임기간 :</p>
+		                            <p class="pTag">${startDateFmt2} ~ ${endDateFmt2 }</p>
+		                        </div>
 		                        <div class="reviewBtn">
 			                        <form id="frm" name="frm" action="readReview.do">
 			                        	<input name="clubNum" type="hidden" value="${okayRvw.clubNum}"/>
 		                      	 		<input name="memberNum" type="hidden" value="${okayRvw.memberNum}"/>
-					                       <button style="width:130px;height:55px; font-size: 19px; font-weight:700;color:black;">
+					                       <button class="btnCss">
 					                       		리뷰보기
 					                       </button>
 			                        </form>

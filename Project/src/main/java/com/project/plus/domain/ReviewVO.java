@@ -38,7 +38,7 @@ public class ReviewVO {
 	
 	/*필요한 VO*/
 	@XmlTransient
-	private String clubThumbPic;
+	private String clubMain_pic;
 	@XmlTransient
 	private String clubName;
 	private Date startDate;
@@ -82,10 +82,10 @@ public class ReviewVO {
 		this.reviewRegDate = reviewRegDate;
 	}
 	public String getClubThumbPic() {
-		return clubThumbPic;
+		return clubMain_pic;
 	}
 	public void setClubThumbPic(String clubThumbPic) {
-		this.clubThumbPic = clubThumbPic;
+		this.clubMain_pic = clubThumbPic;
 	}
 	public String getClubName() {
 		return clubName;
@@ -109,7 +109,7 @@ public class ReviewVO {
 	public String toString() {
 		return "ReviewVO [reviewNum=" + reviewNum + ", memberNum=" + memberNum + ", clubNum=" + clubNum
 				+ ", reviewContent=" + reviewContent +", reviewRate=" + reviewRate
-				+ ", reviewRegDate=" + reviewRegDate + ", clubThumbPic=" + clubThumbPic + ", clubName=" + clubName
+				+ ", reviewRegDate=" + reviewRegDate + ", clubThumbPic=" + clubMain_pic + ", clubName=" + clubName
 				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
 	}
 }

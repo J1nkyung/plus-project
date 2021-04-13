@@ -5,7 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!-- 그래서 path 써주고 그 아래 소스 파일 이름 지정해주면 된다 ! 이건 진경언니가 준거 !   -->
-<script src="${path}/resources/js/jquery-1.12.4.js"></script>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
@@ -15,6 +14,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="${path}/resources/js/jquery-1.12.4.js"></script>
 <title>리뷰보기/수정하기</title>
 <style>
 .createContainer {
@@ -35,7 +35,10 @@
 	/* border: 2px solid #eee; */
 	margin: 30px 0px 30px 0px;
 	box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
-	/* background-color: whitesmoke; */
+	 padding-top: 20px;
+     width: 69%;
+     height: 150px;
+     border: 2px solid #eee;
 }
 
 .createClubPic {
@@ -43,7 +46,7 @@
 	height: 120px;
 	/* border-radius: 50%;  테두리 뭐가 더 나은지 여쭤보기*/
 	border-radius: 5px 5px 5px 5px;
-	margin: 20px 30px 20px 30px;
+	margin:  -7px 30px 20px 30px;
 	box-shadow: 1px 1px 1px #8299d879;
 }
 
@@ -112,6 +115,8 @@
 	border-radius: 5px;
 	float: right;
 	margin-top: 3%;
+	    margin-top: 50px;
+    margin-right: 820px;
 }
 
 #deleteBtn{
@@ -123,6 +128,7 @@
 	float: right;
 	margin-top: 3%;
 	margin-right : 3px;
+	    position: absolute;
 }
 
 
@@ -131,10 +137,14 @@
 	color: #999;
 	background-color : #eee;
 	padding:11px 17px;
-	
-	margin-left : 60px;
+	margin-left: 40%;
 	text-decoration:none;
 	font-size: 13px; 
+	    margin-left: 210px;
+    position: absolute;
+    margin-top: 50px;
+    border-style: none;
+    font-size: 14px;
 }
 </style>
 <script src="https://kit.fontawesome.com/415f6f6023.js"
@@ -147,23 +157,16 @@
 		<div class="reviewContent">
 			<h1>리뷰 확인은 모임 상세보기에서도 가능합니다! </h1>
 			 <div class="clubInfoBox">
-				<c:if
-					test="${selectClub.clubThumb_pic == null || selectClub.clubThumb_pic == ''}">
-					<img src="${path}/resources/img/goal.PNG" class="createClubPic"
-						title="image">
-				</c:if>
-				<c:if
-					test="${selectClub.clubThumb_pic != null || selectClub.clubThumb_pic == ''}">
-					<img src="${path}/resources/img/tmpImg/${selectClub.clubThumb_pic}"
-						class="createClubPic" title="image">
-				</c:if>
+				<img class="createClubPic" src="${path}/resources${selectClub.clubMain_pic}"
+     								 onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" />
 				<div class="clubTitle">
-					<h2 title="모임타이틀">${selectClub.clubName }</h2>
+					<h4 title="모임타이틀">${selectClub.clubName }</h4>
 					<fmt:formatDate value="${selectClub.clubStartDate}"
 						var="startDateFmt" pattern="yyyy-MM-dd hh:mm" />
 					<fmt:formatDate value="${selectClub.clubEndDate}" var="endDateFmt"
 						pattern="yyyy-MM-dd hh:mm" />
-					<h4>📆모임기간 : ${startDateFmt} ~ ${endDateFmt}</h4>
+					<p>📆모임기간 :</p>
+					<p class="pTag">${startDateFmt} ~ ${endDateFmt}</p>
 				</div>
 			</div>
 			<form action="updateReview" method="get">
@@ -193,7 +196,7 @@
 					<input type="hidden" name="clubNum" value="${readReview.clubNum}"/>
 					<input type="hidden" name="memberNum" value="${readReview.memberNum}"/>
 					<p class="question">어떤 점이 좋으셨나요?</p>
-					<textarea name="reviewContent" cols="100" rows="9"
+					<textarea name="reviewContent" cols="69" rows="9"
 						style="resize: none; font-size: 20px;"
 						placeholder=" 100자 이내로 작성해주세요." maxlength="100">${readReview.reviewContent}</textarea>
 					<br> <input type="submit" id="addBtn" value="수정하기">
@@ -204,11 +207,22 @@
 				<input type="hidden" name="memberNum" value="${readReview.memberNum}"/>
 				<input type="submit" id="deleteBtn" onclick="return confirm('리뷰가 삭제됩니다. 페이지를 나가시겠습니까?');" value="삭제하기"/> 
 			</form>
+				 <input type="button" id="backBtn" value="뒤로가기" >
 		</div>
 	</div>
-	<div >
-		<a href="getReviewList.do" id="backBtn" onclick="return confirm('페이지를 나가시겠습니까?');">뒤로가기</a>
-	</div>
+<script type="text/javascript"
+	src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+	<script>
+	$(document).ready(function(){ 
+		$('#backBtn').click(function() { 
+			var result = confirm('리뷰가 저장되지 않습니다. 페이지를 나가시겠습니까?'); 
+			if(result) { //yes 
+				location.replace('getReviewList'); } 
+			else { //no 
+				
+			} }); });
+
+	</script>
 </body>
 </html>
 
