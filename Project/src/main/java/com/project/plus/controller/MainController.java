@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.plus.domain.ClubVO;
@@ -22,8 +23,6 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-//@AllArgsConstructor
-
 public class MainController {
 
    @Autowired
@@ -32,7 +31,7 @@ public class MainController {
 
    
    @GetMapping("/main")
-   public String mainList(Criteria cri, Model model, ClubVO cvo, MemberVO mvo) {
+   public String mainList(Model model, ClubVO cvo, MemberVO mvo) {
    
       log.info("list(GET) - memberlatitude : " + mvo.getMemberLatitude());
       log.info("list(GET) - memberlongitude : " + mvo.getMemberLongitude());
@@ -40,30 +39,38 @@ public class MainController {
       // GPS 정보가 없으면 gps.jsp 가서 정보를 가져온다.
       if (mvo.getMemberLatitude() == null || mvo.getMemberLongitude() == null) {
          log.info("list(GET) - gps(GET)으로 forward ");
-         return "redirect:main/gps";
+         String kind = "main";
+         return "redirect:main/gps?kind="+kind;
       }      
-         // service.getListBest(인기더하기)를 main이라는 이름을 통해 뷰에 보내준다.
+       
          model.addAttribute("main", service.getListBest(mvo));
-         // service.getListDeadline(마감임박 더하기)를 main2이라는 이름을 통해 뷰에 보내준다.
          model.addAttribute("main2", service.getListDeadline(mvo));
 
          return "main/index";
          }
-
-      /*
-       * //세션에 값 담기 session.setAttribute("memberLatitude", mvo.getMemberLatitude());
-       * session.setAttribute("memberLongitude", mvo.getMemberLongitude());
-       * System.out.println("memberLatitude" + mvo.getMemberLatitude() +
-       * "memberLongitude" + mvo.getMemberLongitude());
-       */
-   
-   
    
    @GetMapping("main/gps")
-   //gps.jsp 가서 위도경도만 반환받고 바로 list로 다시 돌아감!
-   public void gps(MemberVO mvo, Model model) {      
+   //gps.jsp 가서 위도,경도만 반환받고 바로 expert 페이지로 다시 돌아간다.
+   public void gps(MemberVO mvo, Model model, @RequestParam("kind") String kind ) {      
       log.info("gps(GET) ");      
-      model.addAttribute("gps", mvo );      
-   
+      log.info("kind : " + kind);
+      
+      // kind 종류에 따라 구분
+      if(kind.equals("main")) {
+    	  model.addAttribute("gps", mvo );      
+    	  model.addAttribute("kind", kind );      
+    	  log.info(kind);
+      } 
+      else if(kind.equals("normal")) {
+    	  model.addAttribute("gps", mvo );      
+    	  model.addAttribute("kind", kind );      
+    	  log.info(kind);
+      }
+      else if (kind.equals("expert")) {
+    	  model.addAttribute("gps", mvo );      
+    	  model.addAttribute("kind", kind );      
+    	  log.info(kind); 
+      }
    }
-}
+ }
+			

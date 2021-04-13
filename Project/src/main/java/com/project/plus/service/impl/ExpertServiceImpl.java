@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.FaqVO;
+import com.project.plus.domain.MemberVO;
 import com.project.plus.mapper.ExpertMapper;
 import com.project.plus.mapper.FaqMapper;
 import com.project.plus.mapper.MainMapper;
@@ -25,15 +26,15 @@ public class ExpertServiceImpl implements ExpertService {
 	private ExpertMapper mapper;
 
 	@Override
-	public List<ClubVO> getListExpert(ClubVO vo) {
+	public List<ClubVO> getListExpert(MemberVO mvo) {
 		log.info(".......getListExpert.......");
-		return mapper.getListExpert(vo);
+		return mapper.getListExpert(mvo);
 	}
 
 	@Override
-	public List<ClubVO> getListExpertBest(ClubVO vo) {
+	public List<ClubVO> getListExpertBest(MemberVO mvo) {
 		log.info(".......getListExpertBest.......");
-		return mapper.getListExpertBest(vo);
+		return mapper.getListExpertBest(mvo);
 	}
 
 

@@ -167,7 +167,29 @@ public class ClubController {
 	// 모임 상세정보 
 	@RequestMapping("/getClub")
 	public String getClub(@RequestParam("clubNum") int clubNum, ApplyVO avo, HeartVO hvo, HttpSession session, Model model) {
-		
+		MemberVO user = (MemberVO) session.getAttribute("user");
+//		//정연 추가 20210405
+			if (user != null) {
+			hvo.setMemberNum(user.getMemberNum());
+			hvo.setClubNum(clubNum);
+			int resultClub = heartService.selectHeartNum(hvo);
+			model.addAttribute("isThereHeart", resultClub);
+			System.out.println("resultClub 얼마나오니 : " + resultClub);
+			avo.setClubNum(clubNum);
+			avo.setMemberNum(user.getMemberNum());
+			Integer result = clubService.getOneApply(avo);
+			
+			/*이미 신청한 모임인지 아닌지 getClub jsp에서 확인 이거 사용 안할 듯 ,, */
+			if(result.equals(0)) {
+				model.addAttribute("yesNo", 0);
+			} else {
+				model.addAttribute("yesNo", 1);
+			}
+		}else { 
+			model.addAttribute("isThereHeart", 0);
+		}
+//		// 2021045  여기위 까지
+
 		
 		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
 		// 미리 보여줄 5개 리뷰 

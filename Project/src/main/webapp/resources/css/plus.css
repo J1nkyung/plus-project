@@ -154,38 +154,47 @@
 }
 .bannercontent {
 	  position: absolute;
-     top:20%;
+     top:23%;
      left:60%;
      transform: translate(-40%, 0);                                                                   
      z-index: 1;
      text-align: left;
+
 }
 
 .bannercontent h1{
 	font-weight:900;
+	font-size:25px;
 	color:#303F9D;
+ line-height:50px;
 }
 .bannercontent h4{
 	font-weight:500;
-   font-size:20px;
-	color:#655E5B;
+  font-size:18px;
+	color:#282828;
+	 line-height:25px;
 }
 .bannercontent2 {
 	  position: absolute;
-     top:20%;
-     left:60%;
+     top:23%;
+     left:60%; 
      transform: translate(-40%, 0);                                                                   
      z-index: 1;
      text-align: left;
+ 
+   
 }
 .bannercontent2 h1{
 	font-weight:900;
-	color:#FF6426;
+	font-size:25px;
+	color:#FF3232;
+	 line-height:50px;
 }
 .bannercontent2 h4{
 	font-weight:500;
-   font-size:20px;
-	color:#655E5B;
+   font-size:18px;
+	color:#282828;
+	 line-height:25px;
 }
 	/* 더하기 등록 버튼 */
 .material-icons{
