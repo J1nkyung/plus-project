@@ -455,6 +455,9 @@ padding-bottom:30px;
 			})
 					
 	}) */
+	let mNum = '${user.memberNum}';
+	let userNickname = '${user.memberNickname}';
+	let boardNum = 0;
 
 $(function(){
 	var formObj = $("form[name='updateForm']");
@@ -564,9 +567,7 @@ let contentCnt = '${contentCount}'
 		 
 // 댓글 시작 
 
-let mNum = '${user.memberNum}';
-let userNickname = '${user.memberNickname}';
-let boardNum = 0;
+
 
 	//대댓글 등록
 	$(document).on('click','#submit-reCommBtn',function(){
@@ -756,7 +757,7 @@ function showReComments(cNum){
 //댓글보기 클릭시 
 function getComments(bNum){
 	// 댓글 보기 접었다 펴기 
-	
+	boardNum = bNum;
 	$showCommBtn = $(event.target);
 	$showCommBtn.toggleClass('selected');
 	let inlineContent = $showCommBtn.closest('.inlineContent');
@@ -779,7 +780,7 @@ function getComments(bNum){
 	
 	write.innerHTML ='<textarea cols="80" rows="1" id="textArea" placeholder="댓글을 입력해보세요!"></textarea>';
 	write.innerHTML += '<br> <input type="button" id="submitCommBtn" value="등록하기" onclick="insertComment('+ bNum +')" />';
-	boardNum = bNum;
+	
 	
 	commBox.appendChild(write);
 	pnode.appendChild(commBox);

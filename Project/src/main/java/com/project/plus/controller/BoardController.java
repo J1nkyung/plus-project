@@ -22,8 +22,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.ApplyVO;
 import com.project.plus.domain.BoardVO;
-import com.project.plus.domain.CriteriaBoardList;
-import com.project.plus.domain.PageMakerBoardList;
+import com.project.plus.domain.CommentsVO;
+import com.project.plus.domain.CriteriaMem;
+import com.project.plus.domain.PageMakerMem;
 import com.project.plus.service.ApplyService;
 import com.project.plus.service.BoardService;
 import com.project.plus.service.ClubService;
@@ -136,33 +137,48 @@ public class BoardController {
 			
 			
 	   }
+	   
 	      //내 글 모아보기 
 	      @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
-	      public String viewMyList(CriteriaBoardList cb, Model model) {
+	      public String viewMyList(Model model, CommentsVO cvo , BoardVO board, CriteriaMem cri, @RequestParam("clubNum") int clubNum, @RequestParam("memberNum") int memberNum, HttpSession session) throws Exception {
 	       
+	         // 정연  
+	         model.addAttribute("clubNum", clubNum);
+	         model.addAttribute("memberNum", memberNum);
+	         // 정연 끝
+	         
+	         int rowStart = cri.getRowStart(); //1
+	         int rowEnd = cri.getRowEnd();//10
 	         //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
-//	         List<BoardVO> view =  boardService.viewMyList(cb, memberNum, clubNum);
-	         List<BoardVO> view =  boardService.viewMyList(cb);
-//	         for(BoardVO vo : view) {
-//	            System.out.println(vo);
-//	         }
-//	         System.out.println("");
-	         
+	         List<BoardVO> view =  boardService.viewMyList(clubNum, memberNum ,rowStart , rowEnd);
 	         model.addAttribute("list", view);
+	         int totalListCount = boardService.viewMyListCount(clubNum, memberNum);
+	         PageMakerMem pmem = new PageMakerMem();
+	         pmem.setCriMem(cri);
+	         pmem.setTotalCount(totalListCount);
+	         model.addAttribute("pmem", pmem);
 	         
-	         PageMakerBoardList pmem = new PageMakerBoardList();
-	            pmem.setCb(cb);
-	            pmem.setTotalCount(boardService.myListCount(cb));
-	            model.addAttribute("pmem", pmem);
-	         
-	            System.out.println("club 받는지 확인"+cb.getClubNum());
+	         model.addAttribute("club", clubService.getClub(clubNum)); // 사이드바 - 클럽활동기간
+	         List<ApplyVO> apply =  applyService.applyMember(clubNum); // 사이드바  - 참여중인 멤버
+	         model.addAttribute("apply", apply);
 	         
 	         
+	         /* 20210410 정연하단 추가*/
+//	         int rowStart = cri.getRowStart(); //1
+//	         int rowEnd = cri.getRowEnd();//10
+	         List<CommentsVO> cmts = commService.selectMyCommentsList(clubNum, memberNum, rowStart, rowEnd); // 댓글 꺼내오기 
+	         model.addAttribute("cmts" , cmts); // 값 모델로 보내기 
+	         System.out.println(" 20210410 commentsList : " + cmts);
 
+	         int totalCount = commService.selectMyCommentsListCount(clubNum, memberNum);  
+	         PageMakerMem pgmm = new PageMakerMem();
+	         pgmm.setCriMem(cri);
+	         pgmm.setTotalCount(totalCount);
+	         model.addAttribute("PageMakerComments" , pgmm);
 	         
-	         //return "viewMyList?clubNum="+cb.getClubNum()+"memberNum="+cb.getMemberNum();
 	         return "viewMyList.comm";
 	      }
+	      
 	   
 
 	   

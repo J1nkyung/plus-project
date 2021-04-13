@@ -128,8 +128,9 @@ text-decoration:none;
 	  <div class="sidebar fixed-top">
          <div class="bottom-border sidebarContent">
             <img class="clubMainpic"
-               src="${path}/resources/img/comm-main-pic.png" alt="" width="280px"
-               height="200px">
+               src="${path}/resources${club.clubMain_pic}" alt="" width="280px"
+               height="200px"
+               onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" >
 
                       
                       <div class="navbar-nav flex-column">
