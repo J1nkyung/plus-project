@@ -9,7 +9,6 @@
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />
-		<result property="clubThumb_pic" column="club_thumb_pic" />
 		<result property="clubMain_pic" column="club_main_pic" />
 		<result property="clubMax" column="club_max" />
 		<result property="clubFreq" column="club_freq" />
@@ -26,6 +25,7 @@
 		<result property="clubHashtag" column="club_hashtag" />
 		<result property="clubCurnum" column="club_curnum" />
 		<result property="clubHashtag" column="club_hashtag" />
+		<result property="clubHeart" column="club_heart" />
 			<!-- 추가 -->
 		<result property="clubLatitude" column="club_latitude" />
 		<result property="clubLongitude" column="club_longitude" />
@@ -138,8 +138,7 @@
 	</select>
 	 -->
 		<select id="selectClub" resultType="com.project.plus.domain.ClubVO">
-		<![CDATA[
-		select club_num as clubNum , 
+	<!--select club_num as clubNum , 
 					club_main_pic as clubMain_pic , 
 				    club_name as clubName , 
 				    club_startdate as clubStartDate, 
@@ -147,7 +146,18 @@
 				    club_fee as clubFee
 		from club 
 		where club_leader = #{clubLeader}
-		and club_enddate < now()
+		and club_enddate < now() -->
+		<![CDATA[
+		SELECT 
+			club_num  as clubNum,
+			club_main_pic as clubMain_pic,  
+			club_name as clubName , 
+			club_leader as clubLeader,
+			club_fee as clubFee,
+			club_startdate as clubStartDate , 
+			club_enddate as clubEndDate
+		    FROM club
+		    WHERE club_num = #{clubNum}
 	    ]]>
 	</select>
 	<!-- 20210411 종료된 모임인지 아닌지 확인   -->

@@ -618,9 +618,10 @@ function showReComments(cNum){
 					
 					let editBtn = document.createElement('div');
 					editBtn.classList.add('editBtn');
+					if(data[i].memberNickname === userNickname){
 					editBtn.innerHTML += '<div id="delComm" onclick="delReComm('+data[i].commentsNum+')">삭제</div>'
 					editBtn.innerHTML += '<div id="updateComm" onclick="changeTag('+data[i].commentsNum+')">수정</div>';
-					
+					}
 					reCommList.appendChild(span);
 					reCommList.appendChild(commContent);
 					reCommList.appendChild(editBtn);

@@ -27,7 +27,7 @@
 		SELECT 
 			   club.club_num as clubNum ,
 			   member_num as memberNum ,
-			   club.club_thumb_pic as clubThumbPic,
+			   club.club_main_pic as clubMain_pic,
 			   club.club_name as clubName,
 			   club.club_enddate  as endDate,
 			   club.club_startdate as startDate
@@ -39,7 +39,7 @@
 								   FROM review
 				                   WHERE review.club_num = club.club_num 
 				                   AND review.member_num = #{memberNum})
-		AND club_startdate < ( NOW());
+		AND club_startdate < ( NOW())
 		]]>
 	</select>
 <!-- 				   date_format( club.club_enddate, '%Y-%m-%d') as endDate,
@@ -49,13 +49,13 @@
 		<![CDATA[
 		SELECT club.club_num as clubNum ,
 			   member_num as memberNum ,
-			   club.club_thumb_pic as clubThumbPic,
+			   club.club_main_pic as clubMain_pic,
 			   club.club_name as clubName,
 			   club.club_enddate  as endDate,
 			   club.club_startdate as startDate
 		FROM  review , club 
 		WHERE review.club_num = club.club_num AND review.member_num = #{memberNum}
-		AND club_startdate < ( NOW());
+		AND club_startdate < ( NOW())
 		]]>
 	</select>
 	
@@ -88,9 +88,9 @@
     
     <!-- 정연하단추가 20210326 -->
     <!-- 서버 테스트를 위한 쿼리 -->
-	<select id="writeClubReview" resultType="String">
+<!-- 	<select id="writeClubReview" resultType="String">
         SELECT NOW()
-    </select>
+    </select> -->
     
     <!-- 이전 리뷰 작성 불러오기 -->
    	<select id="readReview" resultType="com.project.plus.domain.ReviewVO">

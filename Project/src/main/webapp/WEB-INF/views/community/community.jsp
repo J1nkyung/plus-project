@@ -735,11 +735,13 @@ function showReComments(cNum){
 					commContent.id = 'commContent';
 					commContent.innerHTML += data[i].commentsContent;
 					
+					
 					let editBtn = document.createElement('div');
 					editBtn.classList.add('editBtn');
+					if(data[i].memberNickname === userNickname){
 					editBtn.innerHTML += '<div id="delComm" onclick="delReComm('+data[i].commentsNum+')">삭제</div>'
 					editBtn.innerHTML += '<div id="updateComm" onclick="changeTag('+data[i].commentsNum+')">수정</div>';
-					
+					} 
 					reCommList.appendChild(span);
 					reCommList.appendChild(commContent);
 					reCommList.appendChild(editBtn);
@@ -765,7 +767,7 @@ function showReComments(cNum){
 //댓글보기 클릭시 
 function getComments(bNum){
 	// 댓글 보기 접었다 펴기 
-	
+	boardNum = bNum;
 	$showCommBtn = $(event.target);
 	$showCommBtn.toggleClass('selected');
 	let inlineContent = $showCommBtn.closest('.inlineContent');
@@ -788,7 +790,7 @@ function getComments(bNum){
 	
 	write.innerHTML ='<textarea cols="80" rows="1" id="textArea" placeholder="댓글을 입력해보세요!"></textarea>';
 	write.innerHTML += '<br> <input type="button" id="submitCommBtn" value="등록하기" onclick="insertComment('+ bNum +')" />';
-	boardNum = bNum;
+	
 	
 	commBox.appendChild(write);
 	pnode.appendChild(commBox);

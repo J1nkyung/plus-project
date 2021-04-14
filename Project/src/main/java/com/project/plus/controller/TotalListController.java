@@ -37,7 +37,7 @@ public class TotalListController {
 	/* 게시판 목록 페이지 접속(페이징 적용) */
 	@RequestMapping(value = "/totalList", method = RequestMethod.GET)
 	public String totalList(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
-		log.info("totalListGET");
+		log.info("totalList");
 	
 		
 		List<ClubVO> list = service.getListPaging(scri);
@@ -53,18 +53,4 @@ public class TotalListController {
 
 }
 
-/*
- * @RequestMapping(value= "totalList.do", method = RequestMethod.GET) public
- * String list( Criteria cri, Model model) throws Exception {
- * 
- * log.info(cri.toString());
- * 
- * model.addAttribute("list", service.getBoardList(cri)); // 게시판의 글 리스트
- * PageMaker pageMaker = new PageMaker(); pageMaker.setCri(cri);
- * pageMaker.setTotalCount(service.getTotal(cri));
- * 
- * model.addAttribute("pageMaker", pageMaker); // 게시판 하단의 페이징 관련, 이전페이지, 페이지 링크
- * , 다음 페이지
- * 
- * return "totalList"; }
- */
+

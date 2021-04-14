@@ -13,8 +13,7 @@ import lombok.ToString;
 public class ClubVO {
 	private int clubNum;
 	private String clubMain_pic;
-	private String clubThumb_pic;
-	private String clubThumbpic;
+	private String clubMain_pic_name;
 	private String clubName;
 	private String clubLeader;
 	private int clubKind;
@@ -24,8 +23,10 @@ public class ClubVO {
 	private String clubFreq;
 	private String clubContent1;
 	private String clubContent1_pic;
+	private String clubContent1_pic_name;
 	private String clubContent2;
 	private String clubContent2_pic;
+	private String clubContent2_pic_name;
 	private Date clubStartDate;
 	private Date clubEndDate;
 	private Date clubMakeDate;	

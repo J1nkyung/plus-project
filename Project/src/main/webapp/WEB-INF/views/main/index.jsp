@@ -55,8 +55,8 @@
 
                <div class="carousel-caption d-none d-md-block">
                   <div class="carouser-content1">
-                     <P>내 주변의 즐거운 모임</P>
-                     <P style="font-size: 60px;">더하기+</P>
+                     <p>내 주변의 즐거운 모임</p>
+                     <p id="mainplus">더하기+</p>
 
                   </div>
                </div>
@@ -67,9 +67,9 @@
                <div class="carousel-caption d-none d-md-block">
                   <div class="carouser-content2">
                      <p>모임은 가까워야 좋죠.</p>
-                     <h3>
+                     <h4 style="color:white;">
                         더하기는 현재 내 위치에서 </br> 10KM 반경의 모임만 볼 수 있어요.
-                     </h3>
+                     </h4>
                   </div>
                </div>
             </div>
@@ -79,12 +79,12 @@
                <div class="carousel-caption d-none d-md-block">
                   <div class="carouser-content3">
                      <p>우린 같은 곳을 봐요.</p>
-                     <h3>
+                     <h4  style="color:white;">
                         같은 목표를 가진 사람들이</br>함께하니 끝까지 할 수 있어요.
-                     </h3>
+                     </h4>
                   </div>
                </div>
-               fo
+              
             </div>
          </div>
          <!-- 화살표 버튼 -->
@@ -100,25 +100,9 @@
       </div>
       </div>
    </main>
-
+<!--  현재 위치 출력 -->
    <div id="current-location"></div>
 
-   <!--검색창 -->
-   <!-- <div class=search>
-      <form class="box" action="totalList" method="get"
-         onsubmit="return inputCheckMain()">
-         <input type="text" name="keyword" size="30" id="searchbox" 
-            placeholder=" 관심있는 더하기를 검색해보세요 🔍"> 
-            <input type="submit" id="searchBtn" value="검색">
-      </form>
-      <script>
-      $(function(){
-        $('#searchBtn').click(function() {
-          self.location = "totalList" + '${pageMaker.makeQuery(1)}' + "&searchType=t" + "&keyword=" + encodeURIComponent($('#searchbox').val());
-        });
-      });   
-    </script>   
-   </div> -->
    <div class=search>
    <div class=searchbox>
    
@@ -136,19 +120,7 @@ autocomplete='off' value="${scri.keyword}" placeholder=" 관심있는 더하기�
           self.location = "totalList" + '?page=1&perPageNum=20' + "&searchType=t" + "&keyword=" + encodeURIComponent($('#keywordInput').val());
         });
       });   
- 
-      /*  <!------------------검색창----------------->
-              const inputCheckMain = function(){
-                  // 공백을 제거한 뒤에 개수를 세던지 한다.
-                  let headerKeyword = $.trim($("[name=keyword]").val());
-                  $('[name=keyword]').val(keyword);
-                  console.log(keyword.length);
-                  if (keyword.length = 0) {
-                     alert("검색어를 입력해주세요.");
-                     return false;
-                  }
-               }; 
-            */
+
                
     </script>   
       
@@ -361,6 +333,7 @@ autocomplete='off' value="${scri.keyword}" placeholder=" 관심있는 더하기�
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
 
 <script>
+
 <!--메인 carousel 2초-->
 /* $('.carousel').carousel({ interval: 2000 }); */
 $('.addplus').on('click',function(){
@@ -396,21 +369,7 @@ if(! '${user.memberNum}'){
         };
         backToTop();
         
-        
-        
-        
-/*         <!------------------검색창----------------->
-        const inputCheckMain = function(){
-            // 공백을 제거한 뒤에 개수를 세던지 한다.
-            let headerKeyword = $.trim($("[name=keyword]").val());
-            $('[name=keyword]').val(keyword);
-            console.log(keyword.length);
-            if (keyword.length >= 30) {
-               alert("30자 이하로 검색해주세요.");
-               return false;
-            }
-         }; */
-     
+ 
          
   
          $( document ).ready( function() {
@@ -459,7 +418,7 @@ if(! '${user.memberNum}'){
 
           } );
   
-  
+
    
          
          //더하기 등록 버튼 고정

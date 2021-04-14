@@ -10,7 +10,6 @@
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />
-		<result property="clubThumb_pic" column="club_thumb_pic" />
 		<result property="clubMain_pic" column="club_main_pic" />
 		<result property="clubMax" column="club_max" />
 		<result property="clubFreq" column="club_freq" />
@@ -49,9 +48,10 @@
 				CONCAT('%',#{keyword},'%')</if>
 			<if test="searchType == 'ha'.toString()">and club_category="습관" and club_name like
 				CONCAT('%',#{keyword},'%')</if>
-			
+				
 	</if>
 	</sql>
+
 
 
 
@@ -68,7 +68,8 @@
 		) memPage
 		WHERE rNum between #{rowStart} and #{rowEnd}
 		ORDER BY
-		club_heart DESC
+		club_makedate DESC
+
 	</select>
 
 

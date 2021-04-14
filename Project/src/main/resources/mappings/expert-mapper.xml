@@ -8,7 +8,6 @@
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />
-		<result property="clubThumb_pic" column="club_thumb_pic" />
 		<result property="clubMain_pic" column="club_main_pic" />
 		<result property="clubMax" column="club_max" />
 		<result property="clubFreq" column="club_freq" />
@@ -28,46 +27,40 @@
 		<result property="clubLongitude" column="club_longitude" />
 
 	</resultMap>
-
-	<select id="getListExpert" resultMap="club">
-		<![CDATA[
-            SELECT *,
-				(6371*acos(cos(radians(37.552333))*cos(radians(club_latitude))*cos(radians(club_longitude)
-				-radians(126.937782))+sin(radians(37.552333))*sin(radians(club_latitude))))
+<!-- 인기 리스트 : 인기순 정렬 -->
+<select id="getListExpertBest" resultMap="club">
+ 	<![CDATA[
+          SELECT *,
+				(6371*acos(cos(radians(#{memberLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude)
+				-radians(#{memberLongitude}))+sin(radians(#{memberLatitude}))*sin(radians(club_latitude))))
 				AS distance 
-            FROM
-                club
-                
-            HAVING
-				distance < 10
-			AND club_kind = '2'
-			AND club_shutdate>NOW()
-	    	ORDER BY club_makedate DESC 
-                LIMIT 0,1000
-	]]>
-	
-
-	</select>
-
-	<select id="getListExpertBest" resultMap="club">
- 		<![CDATA[
-            SELECT *,
-				(6371*acos(cos(radians(37.552333))*cos(radians(club_latitude))*cos(radians(club_longitude)
-				-radians(126.937782))+sin(radians(37.552333))*sin(radians(club_latitude))))
-				AS distance 
-            FROM
-                club
-                
+            FROM  club
             HAVING
 				distance < 10
 			AND club_kind = '2'
 			AND club_shutdate>NOW()
 	    	ORDER BY club_heart DESC
-                LIMIT 0,1000
 	]]>
 	
 	</select>
 
+<!-- 일반리스트 : 최신순 정렬 -->
+	<select id="getListExpert" resultMap="club">
+		<![CDATA[
+          SELECT *,
+				(6371*acos(cos(radians(#{memberLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude)
+				-radians(#{memberLongitude}))+sin(radians(#{memberLatitude}))*sin(radians(club_latitude))))
+				AS distance 
+            FROM  club
+            HAVING
+				distance < 10
+			AND club_kind = '2'
+			AND club_shutdate>NOW()
+	    	ORDER BY club_makedate DESC  
+	]]>
+	</select>
+
+	
 
 
 </mapper>

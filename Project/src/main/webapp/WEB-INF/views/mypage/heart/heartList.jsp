@@ -170,11 +170,11 @@ table {
  }
  
  .card-img-top {
-    width: 100%;
+    width: 20%;
     border-top-left-radius: calc(.25rem - 1px);
     border-top-right-radius: calc(.25rem - 1px);
-    width: 100%;
-    height: 320px;
+    /* width: 100%; */
+    height: 250px;
 }
 
 </style>
@@ -208,14 +208,11 @@ table {
 						<div id="cardPadding">
 							<input type="checkbox" class="inputB" id="card1" name="clubNum"
 								value="${freeclub.clubNum}" /><br> <label for="card">
-								<div class="card" style="width: 400px" onclick="location.href='getClub?clubNum=${freeclub.clubNum}'">
-									<c:if test="${freeclub.clubThumbPic == null || freeclub.clubThumbPic== ''}">
-										<img src="${path}/resources/img/goal.PNG" class="card-img-top" alt="Card image" style="width: 100%"  >
-									</c:if>
-									<c:if
-										test="${freeclub.clubThumbPic != null || freeclub.clubThumbPic== ''}">
-										<img src="${path}/resources/img/tmpImg/${freeclub.clubThumbPic}" class="card-img-top" alt="Card image" style="width: 100%">
-									</c:if>
+								<div class="card" style="width: 350px" onclick="location.href='getClub?clubNum=${freeclub.clubNum}'">
+									<img class="createClubPic" src="${path}/resources${freeclub.clubMain_Pic}"
+     								  onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" style="width: 100%"/>
+		                    
+									
 
 									<div class="card-body">
 										<h4 class="card-title">${freeclub.clubName }</h4>
@@ -269,18 +266,10 @@ table {
 							<input type="checkbox" class="inputB" id="card2" name="clubNum"
 								value="${nofreeclub.clubNum}"><br> <label
 								for="card">
-								<div class="card" style="width: 400px" onclick="location.href='getClub?clubNum=${nofreeclub.clubNum}'">
-									<%-- <c:if
-										test="${nofreeclub.clubThumbPic == null || nofreeclub.clubThumbPic== ''}"> --%>
-									<%-- 	<img src="${path}/resources/img/goal.PNG" class="card-img-top"
-											alt="Card image" style="width: 100%"> --%>
-									<%-- </c:if> --%>
-									<%-- <c:if
-										test="${nofreeclub.clubThumbPic != null || nofreeclub.clubThumbPic== ''}"> --%>
-										<img src="${path}/resources/img/tmpImg/${nofreeclub.clubThumbPic}"
-											class="card-img-top" alt="Card image" style="width: 100%">
-									<%-- </c:if> --%>
-
+								<div class="card" style="width: 350px" onclick="location.href='getClub?clubNum=${nofreeclub.clubNum}'">
+										<img class="card-img-top" alt="Card image" src="${path}/resources${nofreeclub.clubMain_Pic}"
+     								 onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" style="width: 100%"/>
+		                    
 									<div class="card-body">
 										<h4 class="card-title">${nofreeclub.clubName }</h4>
 										<input type="hidden" name="clubName"

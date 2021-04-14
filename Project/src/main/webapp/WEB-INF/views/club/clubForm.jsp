@@ -68,7 +68,7 @@
 			<div id="write-clubinfo">
 				<label for="exampleFormControlFile1">개설하고자 하는 모임의 성격을
 					설명해주세요!</label>
-				<textarea name="clubContent1"></textarea>
+				<textarea name="clubContent1" placeholder="사진과 글로 모임을 자세히 소개해보세요."></textarea>
 				<div class="uploadBox">
 					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
 					<input type="file" style="display: none;" name="upload" onchange="getFileName(1)" />
@@ -79,7 +79,7 @@
 			<div id="write-checkinfo">
 				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을
 					설명해주세요!</label>
-				<textarea name="clubContent2"></textarea>
+				<textarea name="clubContent2" placeholder="모두가 실천할 수 있도록 구체적인 인증방법을 작성해주세요."></textarea>
 				<div class="uploadBox">
 					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
 					<input type="file" style="display: none;" name="upload"
@@ -170,6 +170,7 @@
 <input type="hidden" name="clubLatitude" id="club-lat" value=""></input>
 <input type="hidden" name="clubLongitude" id="club-lng" value=""></input> 
 <input type="hidden" name="clubLeader" value="${user.memberNickname}"></input> 
+
 </form>
 </aside>
 <footer></footer>

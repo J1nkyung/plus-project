@@ -85,7 +85,7 @@ public class ClubController {
 		String uploadPath = rq.getSession().getServletContext().getRealPath("/resources/uploadImg");
 		vo = FileUtils.uploadFile(vo, uploadPath, file);
 		clubService.insertClub(vo); // DB에 저장
-		log.info("모임 번호 : " + vo.getClubNum() + " 등록 완료 ");
+		log.info("모임 등록 완료 ");
 		log.info(uploadPath);
 		return "redirect:main";
 
@@ -131,7 +131,7 @@ public class ClubController {
 		log.info("업데이트된 클럽 컨텐츠2 사진 " + vo.getClubContent2_pic());
 		log.info("모임 번호 : " + vo.getClubNum() + " 수정 완료 ");
 
-		return "redirect:main";
+		return "redirect:getClub?clubNum=" + vo.getClubNum();
 	}
 
 
@@ -167,7 +167,29 @@ public class ClubController {
 	// 모임 상세정보 
 	@RequestMapping("/getClub")
 	public String getClub(@RequestParam("clubNum") int clubNum, ApplyVO avo, HeartVO hvo, HttpSession session, Model model) {
-		
+		MemberVO user = (MemberVO) session.getAttribute("user");
+//		//정연 추가 20210405
+			if (user != null) {
+			hvo.setMemberNum(user.getMemberNum());
+			hvo.setClubNum(clubNum);
+			int resultClub = heartService.selectHeartNum(hvo);
+			model.addAttribute("isThereHeart", resultClub);
+			System.out.println("resultClub 얼마나오니 : " + resultClub);
+			avo.setClubNum(clubNum);
+			avo.setMemberNum(user.getMemberNum());
+			Integer result = clubService.getOneApply(avo);
+			
+			/*이미 신청한 모임인지 아닌지 getClub jsp에서 확인 이거 사용 안할 듯 ,, */
+			if(result.equals(0)) {
+				model.addAttribute("yesNo", 0);
+			} else {
+				model.addAttribute("yesNo", 1);
+			}
+		}else { 
+			model.addAttribute("isThereHeart", 0);
+		}
+//		// 2021045  여기위 까지
+
 		
 		model.addAttribute("tags", clubService.getClubHashtag(clubNum));
 		// 미리 보여줄 5개 리뷰 
@@ -193,20 +215,20 @@ public class ClubController {
 		// 경로를 자르고 파일명+확장자만 set
 		if (vo.getClubMain_pic() != null) {
 			String formatName = vo.getClubMain_pic().substring(vo.getClubMain_pic().lastIndexOf("_") + 1);
-			vo.setClubMain_pic(formatName);
-			log.info(vo.getClubMain_pic());
+			vo.setClubMain_pic_name(formatName);
+			log.info(vo.getClubMain_pic_name());
 		}
 
 		if (vo.getClubContent1_pic() != null) {
 			String formatName = vo.getClubContent1_pic().substring(vo.getClubContent1_pic().lastIndexOf("_") + 1);
-			vo.setClubContent1_pic(formatName);
-			log.info(vo.getClubContent1_pic());
+			vo.setClubContent1_pic_name(formatName);
+			log.info(vo.getClubContent1_pic_name());
 		}
 
 		if (vo.getClubContent2_pic() != null) {
 			String formatName = vo.getClubContent2_pic().substring(vo.getClubContent2_pic().lastIndexOf("_") + 1);
-			vo.setClubContent2_pic(formatName);
-			log.info(vo.getClubContent2_pic());
+			vo.setClubContent2_pic_name(formatName);
+			log.info(vo.getClubContent2_pic_name());
 		}
 
 		model.addAttribute("club", vo);

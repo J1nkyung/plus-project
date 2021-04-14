@@ -10,7 +10,6 @@
 		<result property="clubKind" column="club_kind" />
 		<result property="clubCategory" column="club_category" />
 		<result property="clubOnOff" column="club_onoff" />
-		<result property="clubThumb_pic" column="club_thumb_pic" />
 		<result property="clubMain_pic" column="club_main_pic" />
 		<result property="clubMax" column="club_max" />
 		<result property="clubFreq" column="club_freq" />
@@ -50,20 +49,7 @@
 	]]>
 	</insert>
 
-<!-- 	<sql id="location"> 
-	<![CDATA[
-            SELECT *,
-				(6371*acos(cos(radians(37.552333))*cos(radians(club_latitude))*cos(radians(club_longitude)
-				-radians(126.937782))+sin(radians(37.552333))*sin(radians(club_latitude))))
-				AS distance 
-            FROM
-                club
-            HAVING
-				distance < 10
-	    	ORDER BY distance
-                LIMIT 0,1000
-	]]>
-	</sql> -->
+
 
 	<select id="getListBest" resultMap="clubResult" >
 		<![CDATA[
@@ -71,24 +57,13 @@
 				(6371*acos(cos(radians(#{memberLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude)
 				-radians(#{memberLongitude}))+sin(radians(#{memberLatitude}))*sin(radians(club_latitude))))
 				AS distance 
-            FROM
-                club
+            FROM  club
             HAVING
 				distance < 10
 				AND club_shutdate>NOW()
-	    	ORDER BY club_heart DESC
-                LIMIT 0,1000
+	    	ORDER BY club_heart DESC      
 	]]>
-	
-	<!-- <![CDATA[ 
-	SELECT * FROM club
-	WHERE 1=1
-	
-	 WHERE club_shutdate > NOW() 
-	 AND club_max > club_curnum 
-	 ORDER BY club_shutdate - NOW() ASC ]]> 
-	 -->
-	</select>
+</select>
 
 	<select id="getListDeadline" resultMap="clubResult">
 			<![CDATA[
@@ -96,25 +71,13 @@
 				(6371*acos(cos(radians(#{memberLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude)
 				-radians(#{memberLongitude}))+sin(radians(#{memberLatitude}))*sin(radians(club_latitude))))
 				AS distance 
-            FROM
-                club
+            FROM  club
             HAVING
 				distance < 10
 		AND club_shutdate>NOW()
 	    	ORDER BY distance ASC
-                LIMIT 0,1000
 	]]>
 	</select>
-
-
-
-
-
-	<!-- <![CDATA[ SELECT * (6371*acos(cos(radians(#{memberLatitude}))*cos(radians(club_latitude))*cos(radians(club_longitude) 
-		-radians(#{memberLongitude}))+sin(radians(#{memberLatitude}))*sin(radians(club_latitude))) 
-		AS distance FROM club HAVING distance <= 10 WHERE WHERE club_shutdate > NOW() 
-		AND club_max > club_curnum -]]> -->
-
 
 
 

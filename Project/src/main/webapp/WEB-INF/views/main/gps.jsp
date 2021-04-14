@@ -10,12 +10,28 @@
 <title>Loading..</title>
 </head>
 <body>
+
  
+  <c:if test="${kind eq 'main'}">
   <form action="${path}/main" id="gpsForm" method="get">    
     	<input type="hidden" name="memberLatitude" >    
     	<input type="hidden" name="memberLongitude">
    </form>
- 
+ </c:if>
+   <c:if test="${kind eq 'normal'}">
+  <form action="${path}/normal" id="gpsForm" method="get">    
+    	<input type="hidden" name="memberLatitude" >    
+    	<input type="hidden" name="memberLongitude">
+   </form>
+ </c:if>
+   <c:if test="${kind eq 'expert'}">
+  <form action="${path}/expert" id="gpsForm" method="get">    
+    	<input type="hidden" name="memberLatitude" >    
+    	<input type="hidden" name="memberLongitude">
+   </form>
+ </c:if>
+
+
      <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
@@ -78,7 +94,7 @@
     setTimeout(function() {
     	console.log("form submit!")
     	formObj.submit();	  
-    	}, 2000);
+    	}, 1000);    //1초의 시간 간격을 두고 위도, 경도 값을 보낸다.
            
     </script>
  

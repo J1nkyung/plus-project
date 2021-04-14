@@ -90,7 +90,7 @@ aside{
     width: 487px;
     height: 700px;
     top: 10%;
- padding-top: 20px; 
+/*  padding-top: 20px;  */
     padding-bottom: 5px;
 }
 
@@ -190,7 +190,7 @@ article{
 }
 
 #clubhashtag{
-postion:absoulte;
+position:absoulte;
  top:10%;
 }
 
@@ -355,3 +355,7 @@ strong{
     /* color:white; */
     /* background-color: #001eff; */
 }
+
+ .badge a{
+ 	color:white;
+ }
