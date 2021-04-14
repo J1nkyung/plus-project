@@ -22,8 +22,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.plus.domain.ApplyVO;
 import com.project.plus.domain.BoardVO;
-import com.project.plus.domain.CriteriaBoardList;
-import com.project.plus.domain.PageMakerBoardList;
+import com.project.plus.domain.CommentsVO;
+import com.project.plus.domain.CriteriaMem;
+import com.project.plus.domain.PageMakerMem;
 import com.project.plus.service.ApplyService;
 import com.project.plus.service.BoardService;
 import com.project.plus.service.ClubService;
@@ -76,15 +77,18 @@ public class BoardController {
 			List<ApplyVO> apply =  applyService.applyMember(clubNum);
 				List<BoardVO> list = boardService.getBoardList(clubNum);
 
-		    
-
-			
-//			//apply 테스트 시 출력방법
+//List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
+//				for(BoardVO vo : view) {
+//					System.out.println(vo);
+//				}
+//				System.out.println("");
+				
+			//apply 테스트 시 출력방법
 //			for(ApplyVO avo : apply) {
 //				System.out.println(avo.getMemberNickname());
 //				System.out.println(avo.getMemberNickname());
 //			}
-//			
+			
 			
 			
 			for(BoardVO board : list) {
@@ -102,8 +106,8 @@ public class BoardController {
 		model.addAttribute("club", clubService.getClub(clubNum));
 		//aside 참여중인 멤버 가져오기
 		model.addAttribute("apply", apply);
-		
-
+		//정연추가 20210410 단일 clubNum 받아오기 -추가o 지운것 없음 
+		model.addAttribute("clubNum" , clubNum);
 	    
 		return "community.comm";
 	   }
@@ -136,35 +140,48 @@ public class BoardController {
 			
 			
 	   }
-	      //내 글 모아보기 
-	      @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
-	      public String viewMyList(CriteriaBoardList cb, Model model) {
-	       
-	         //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
-//	         List<BoardVO> view =  boardService.viewMyList(cb, memberNum, clubNum);
-	         List<BoardVO> view =  boardService.viewMyList(cb);
-//	         for(BoardVO vo : view) {
-//	            System.out.println(vo);
-//	         }
-//	         System.out.println("");
-	         
-	         model.addAttribute("list", view);
-	         
-	         PageMakerBoardList pmem = new PageMakerBoardList();
-	            pmem.setCb(cb);
-	            pmem.setTotalCount(boardService.myListCount(cb));
-	            model.addAttribute("pmem", pmem);
-	         
-	            System.out.println("club 받는지 확인"+cb.getClubNum());
-	         
-	         
-
-	         
-	         //return "viewMyList?clubNum="+cb.getClubNum()+"memberNum="+cb.getMemberNum();
-	         return "viewMyList.comm";
-	      }
 	   
+	   //내 글 모아보기 
+	   @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
+	   public String viewMyList(Model model, CommentsVO cvo , BoardVO board, CriteriaMem cri, @RequestParam("clubNum") int clubNum, @RequestParam("memberNum") int memberNum, HttpSession session) throws Exception {
+		 
+			// 정연  
+			model.addAttribute("clubNum", clubNum);
+			model.addAttribute("memberNum", memberNum);
+			// 정연 끝
+			
+			int rowStart = cri.getRowStart(); //1
+			int rowEnd = cri.getRowEnd();//10
+		   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
+		   List<BoardVO> view =  boardService.viewMyList(clubNum, memberNum ,rowStart , rowEnd);
+			model.addAttribute("list", view);
+			int totalListCount = boardService.viewMyListCount(clubNum, memberNum);
+			PageMakerMem pmem = new PageMakerMem();
+			pmem.setCriMem(cri);
+			pmem.setTotalCount(totalListCount);
+			model.addAttribute("pmem", pmem);
+			
+			model.addAttribute("club", clubService.getClub(clubNum)); // 사이드바 - 클럽활동기간
+			List<ApplyVO> apply =  applyService.applyMember(clubNum); // 사이드바  - 참여중인 멤버
+			model.addAttribute("apply", apply);
+			
+			
+			/* 20210410 정연하단 추가*/
+//			int rowStart = cri.getRowStart(); //1
+//			int rowEnd = cri.getRowEnd();//10
+			List<CommentsVO> cmts = commService.selectMyCommentsList(clubNum, memberNum, rowStart, rowEnd); // 댓글 꺼내오기 
+			model.addAttribute("cmts" , cmts); // 값 모델로 보내기 
+			System.out.println(" 20210410 commentsList : " + cmts);
 
+			int totalCount = commService.selectMyCommentsListCount(clubNum, memberNum);  
+			PageMakerMem pgmm = new PageMakerMem();
+			pgmm.setCriMem(cri);
+			pgmm.setTotalCount(totalCount);
+			model.addAttribute("PageMakerComments" , pgmm);
+		   
+		   return "viewMyList.comm";
+	   }
+	   
 	   
 	   //내 글 한개 확인하기 - 댓글도 이거 써야됨 
 	   @RequestMapping(value="viewMyContent", method=RequestMethod.GET)
@@ -184,23 +201,38 @@ public class BoardController {
 	   
 	   
 	   @GetMapping("/insertBoardForm")
-	   public String insertBoardForm() {
-		   return "boardForm.board";
+	   public String insertBoardForm(BoardVO board, Model model) {
+		   /*정연추가 20210410 매개변수 clubNum 그리고 model 받아오기 추가, 하단 추가*/
+		  // System.out.println("****인서트 컨트롤러 clubNum: " + clubNum);
+		   System.out.println(board.getClubNum()+"확인");
+		   model.addAttribute("clubNum", board.getClubNum());
+		   
+		   /*여기 위까지 추가 20210410 지운거 없음 */
+		   return "boardForm.board"; 
 	   }
+//	   @GetMapping("/insertBoardForm")
+//	   public String insertBoardForm(@RequestParam("clubNum") int clubNum, Model model ) {
+//		   /*정연추가 20210410 매개변수 clubNum 그리고 model 받아오기 추가, 하단 추가*/
+//		   System.out.println("****인서트 컨트롤러 clubNum: " + clubNum);
+//		   model.addAttribute("clubNum", clubNum);
+//		   /*여기 위까지 추가 20210410 지운거 없음 */
+//		   return "boardForm.board"; 
+//	   }
+//	   
 	   
-	   
-	   @RequestMapping(value="insertBoard", method=RequestMethod.POST)
+	   @RequestMapping(value="insertBoards", method=RequestMethod.POST)
 	   public String insertBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
+		   System.out.println("post진입???");
 	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+//	      board.setClubNum(clubNum);
+	      int clubNum = board.getClubNum();
+	      System.out.println("클럽넘확인"+board.getClubNum());
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
 	      boardService.insertBoard(board);
-	      System.out.println("사진 확인" +board.getBoardPic());
-	      System.out.println("사진 확인11" + request.getParameter("boardPhoto"));
-	      System.out.println("글번호 확인"+board.getBoardNum()+"사진??"+board.getBoardPic());
 	      log.info("글 번호 : " + board.getBoardNum() + "사진  등록 ");
 
 
-	      return "redirect:getCommunity?clubNum="+board.getClubNum();
+	      return "redirect:getCommunity?clubNum="+clubNum;
 	   }
 	      
 	   //게시글 수정하는 화면
@@ -208,39 +240,69 @@ public class BoardController {
 	   public String updateView(BoardVO board, Model model) {
 	      model.addAttribute("update", boardService.getBoard(board.getBoardNum()));
 	      System.out.println("updateView get메서드 진입");
-	      System.out.println("boardNum "+board.getBoardNum());
-	      System.out.println("clubNum "+board.getClubNum());
-	      
-	     // board.setBoardPic(board.getBoardPic());
-	      System.out.println("업데이트get메서드 사진확인"+board.getBoardPic());
+	      System.out.println(board.getBoardNum());
+	      System.out.println(board.getClubNum());
 	      return "boardUpdateView.board";
 	   }
+	   
 	   //게시글 수정
 	   @RequestMapping(value="updateViewPost", method=RequestMethod.POST)
 	   public String updateBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
 	      System.out.println("updateView post 메서드 진입");
 	      
-	      String uploadPath ;
-	      
-	      if(request.getParameter("boardPhoto")!=null) {
-	      uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+	      String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
 	      board = ProfileUtils.boardPic(board, uploadPath, file);
-	      }else {
-	    	  uploadPath = board.getOld_file();
-	    	  board = ProfileUtils.boardPic(board, uploadPath, file);
-	    	  
-	      }
-	    
-	      //String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
-	      //board = ProfileUtils.boardPic(board, uploadPath, file);
-	      
-	      
-	      System.out.println(board.getBoardPic());
 	      boardService.updateBoard(board);
 	      log.info("들어오니?");
 	      log.info(board.getBoardContent());
 	      return "redirect:getCommunity?clubNum="+board.getClubNum();
 	   }
+	   
+	   
+	   
+	   
+	 //게시글 수정
+//	   @RequestMapping(value="updateViewPost", method=RequestMethod.POST)
+//	   public String updateBoard(BoardVO board, @RequestParam("boardPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
+//	      System.out.println("updateView post 메서드 진입");
+//	      
+//	      String uploadPath ;
+//	      
+//	      	log.info("올드 파일 들어오니?" + board.getOld_file());
+//	      //oldfile null이 아니면 oldfile로 업데이트
+//	      //oldfile 이 null이면 boardPhoto로 업데이트
+//		      log.info("새파일 등록할때1"+request.getParameter("boardPhoto"));
+//
+//	      
+//	      if(request.getParameter("boardPhoto")!=null) {
+//	      uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+//	      board = ProfileUtils.boardPic(board, uploadPath, file);
+//	      board.setBoardPic(request.getParameter("boardPhoto"));
+//	      log.info("확인중~~"+board.getBoardPic());
+//	      }
+//	      
+//	      log.info("새파일 등록할때2"+request.getParameter("boardPhoto"));
+//	      log.info("v파일 오리지널ㄴ ㅔ엄 "+file.getOriginalFilename());
+//	      log.info("새파일 주세요"+board.getBoardPic());
+//	     
+//	      log.info("oldfile"+board.getOld_file());
+//			/*
+//			 * else { uploadPath = board.getOld_file(); board = ProfileUtils.boardPic(board,
+//			 * uploadPath, file);
+//			 * 
+//			 * }
+//			 */
+//	    
+//	      //String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
+//	      //board = ProfileUtils.boardPic(board, uploadPath, file);
+//	      
+//	      
+//	      System.out.println(board.getBoardPic());
+//	      boardService.updateBoard(board);
+//	      log.info("들어오니?");
+//	      log.info(board.getBoardContent());
+//	      return "redirect:getCommunity?clubNum="+board.getClubNum();
+//	   }
 	   
 	   //게시글 삭제
 	   @RequestMapping("deleteBoard")

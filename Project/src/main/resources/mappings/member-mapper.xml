@@ -29,10 +29,13 @@
 		member_email = #{memberEmail}
 	</select> -->
 	
-   	<select id="kakaologin" resultType="Integer">
+    	<select id="kakaologin" resultType="Integer">
 		SELECT count(*) FROM member WHERE
 		member_email = #{memberEmail}
-	</select>
+	</select> 
+	
+
+	
 	
 	<!-- 로그인 관련   "MemberVO"-->
    <select id="login" resultMap="memberResult">
