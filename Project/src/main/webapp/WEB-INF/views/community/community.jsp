@@ -344,7 +344,7 @@ padding-bottom:30px;
                      <p id="boardNickname">${board.memberNickname}</p>
                      <div id="boardRegdate">
                      	<fmt:formatDate value="${board.boardRegDate}" var="changedDate"
-							pattern="yyyy. MM. dd (HH:mm)" />
+							pattern="yyyy. MM. dd HH:mm" />
 						${changedDate}
                      </div>
 
@@ -602,7 +602,7 @@ let contentCnt = '${contentCount}'
 					memberNum:mNum,
 					boardNum:boardNum,
 					commentsContent:content,
-					commentsRegdate:today,
+					/* commentsRegdate:today, */
 				},
 		    	 success: function (data) {
 		     		console.log(data)
@@ -886,7 +886,7 @@ function insertComment(bNum){
 							memberNum:mNum,
 							boardNum:bNum,
 							commentsContent:content,
-							commentsRegdate:today,
+							/* commentsRegdate:today, */
 						},
 			            success: function (data) {
 			            	console.log(data);
@@ -1058,7 +1058,7 @@ function updateComment(cNum){
 			data: {
 				commentsNum:cNum,
 				commentsContent:text,
-				commentsRegdate:today,
+				/* commentsRegdate:today, */
 			},
 	     success: function (data) {
 	     	console.log(data)

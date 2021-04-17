@@ -80,7 +80,7 @@
 							<!-- 이미지 미리보기 영역  -->
 				<!-- <div id="imgViewArea" style="margin-top:10px; display:none;">
 					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/> -->
-					  <img id="imgViewArea"  style="width:200px; height:100px;" src="${path}/resources${club.clubMain_pic}"	/>
+					 <%--  <img id="imgViewArea"  style="width:200px; height:100px;" src="${path}/resources${club.clubMain_pic}"	/> --%>
 			<!-- 	</div> -->
 			</div>
 		</div> 
