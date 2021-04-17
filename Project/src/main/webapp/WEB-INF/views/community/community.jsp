@@ -610,7 +610,7 @@ let contentCnt = '${contentCount}'
 					memberNum:mNum,
 					boardNum:boardNum,
 					commentsContent:content,
-					commentsRegdate:today,
+					/* commentsRegdate:today, */
 				},
 		    	 success: function (data) {
 		     		console.log(data)
@@ -894,7 +894,7 @@ function insertComment(bNum){
 							memberNum:mNum,
 							boardNum:bNum,
 							commentsContent:content,
-							commentsRegdate:today,
+							/* commentsRegdate:today, */
 						},
 			            success: function (data) {
 			            	console.log(data);
@@ -1066,7 +1066,7 @@ function updateComment(cNum){
 			data: {
 				commentsNum:cNum,
 				commentsContent:text,
-				commentsRegdate:today,
+				/* commentsRegdate:today, */
 			},
 	     success: function (data) {
 	     	console.log(data)
