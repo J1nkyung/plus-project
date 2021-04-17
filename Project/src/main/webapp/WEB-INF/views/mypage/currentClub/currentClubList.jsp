@@ -278,7 +278,7 @@ h6{
 								<a href="getCommunity?clubNum=${clubList.clubNum}"> <img src="${path}/resources${clubList.clubMain_pic}"
 								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" 
 									width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>
-							</div>
+									</div>
 							<div id="openClubProgress">
 								<h3 id="clubName">
 									<a href="getClub?clubNum=${clubList.clubNum}" title="모임상세페이지 GOGO~!">${clubList.clubName}</a>
@@ -383,8 +383,7 @@ h6{
 						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="today" />
 						<div class="col-md-10" id="clubBar">
 							<div id="openClubPic">
-								<a href="getCommunity?clubNum=${attendList.clubNum}"><img src="${path}/resources${attendList.clubMain_pic}" width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>
-							</div>
+<a href="getCommunity?clubNum=${attendList.clubNum}"><img src="${path}/resources${attendList.clubMain_pic}" width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>							</div>
 							<div id="openClubProgress">
 								<h3 id="clubName" ><a href="getClub?clubNum=${attendList.clubNum}" title="모임상세페이지 GOGO~!">${attendList.clubName}   </a>
 									<c:if test="${attendList.clubFee > 0}"><span class="badge badge-danger">유료</span></c:if>

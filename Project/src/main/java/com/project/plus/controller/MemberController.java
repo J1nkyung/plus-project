@@ -116,10 +116,10 @@ public class MemberController {
    //회원 목록 조회
    @RequestMapping(value="memberListPage", method=RequestMethod.GET)
    public String memberList(Model model, SearchCriteriaMem scmem) {
-      System.out.println("리스트 조회 하고싶다..");
+      System.out.println("memberListPage Get 진입");
       
       List<MemberVO> list = memberService.memberList(scmem);
-      System.out.println(list);
+     // System.out.println(list);
       model.addAttribute("list", list);
       
       PageMakerMem pmem = new PageMakerMem();

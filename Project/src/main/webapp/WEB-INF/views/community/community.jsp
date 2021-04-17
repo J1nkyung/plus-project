@@ -90,13 +90,17 @@ p {
         #certificationPic{
             /* text-align: center; */
             height: auto;
-            width: 500px;
-            overflow: hidden;
-        }
+            width:auto;
+            max-height:400px;
+            max-width: 500px;
+            size:100%;
+/*             overflow: hidden;
+ */        }
         
         #certificationPic img{
         max-width:100%;
         height:auto;
+        max-height:300px;
         }
 
         #certificationContent{
@@ -326,8 +330,11 @@ padding-bottom:30px;
     <%--   <input type="button" name="boardForm" id="boardForm"
          onclick="location.href='${path}/insertBoardForm'"> --%>
          <!-- 정연 추가 20210410 링크에 ${clubNum }추가 -->
+         <form action="insertBoardForm" method="get">
          <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm?clubNum=${clubNum }'">
          <img src="${path }/resources/img/penwhite.png"></button>
+          			<input type="hidden" name="clubNum" value="${board.clubNum}"/> 
+         </form>
          
 
 <div id="repeatBox">
@@ -455,6 +462,7 @@ padding-bottom:30px;
 			})
 					
 	}) */
+	
 	let mNum = '${user.memberNum}';
 	let userNickname = '${user.memberNickname}';
 	let boardNum = 0;

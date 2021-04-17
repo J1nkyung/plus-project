@@ -137,38 +137,42 @@ public class LoginController {
 	
 	@ResponseBody 
 	@RequestMapping(value="kakaologin", method=RequestMethod.POST) 
-	public String kakaologin(MemberVO vo, HttpSession session) throws Exception {
+	public String kakaologin(MemberVO vo, Model model, HttpSession session) throws Exception {
 	System.out.println("카카오 로그인 컨트롤러 접속");
 		try {
 			//로그인 성공했을 때
-			
-			System.out.println("카카오로그인시도중~"+vo);  //카카오 로그인시 vo 확인
-
-
-			
+						
 			int result = memberService.kakaologin(vo);  //이거랑 카카오 로그인 할때 꼭 있어야돼.. 둘 다 있어야돼 .... 왠지는 몰라
-			MemberVO user = vo;					//이거랑	
-			
-			System.out.println("카카오 로그인 거친 vo~"+ user);  //카카오 로그인시 vo 확인
+			//MemberVO user = vo;					//이거랑	
+			System.out.println("result"+result);
 
 			
+		//	System.out.println(user.getMemberNum()+"membernum");
 			
-			System.out.println(user.getMemberNum()+"membernum");
-			//MemberVO user = vo;
-			//MemberVO user = memberService.kakaologin(vo);
-			
-			System.out.println(user + "vo카카오");  //카카오 로그인시 vo 확인
-			//MemberVO user = vo;
-			System.out.println("user카카2"+user);
+			//System.out.println(user + "vo카카오");  //카카오 로그인시 vo 확인
 			
 			log.info(vo.getMemberNum());
 			
-			if(result!=0) { 
+			if(result == 1) { 
+				
+				MemberVO user = memberService.login(vo);
+				//boolean	pwdMatch = pwdEncoder.matches(vo.getMemberPassword(), user.getMemberPassword());
+
+				System.out.println("result1 진입 ");
 				session.setAttribute("user", user);
-				System.out.println("해봐라user " + user);
-				System.out.println("해봐라"+vo);
-				return "main";
+				System.out.println(user);
+				model.addAttribute("userInfo", user);
+				
+				return "redirect:main";
+//				return "";
+				
+//				session.setAttribute("user", user);
+//				System.out.println("해봐라user " + user);
+//				System.out.println("해봐라"+vo);
+//				return "main";
 			}else if(result==0) {
+				MemberVO user = memberService.login(vo);
+
 				session.setAttribute("user", user);
 				System.out.println("이상한디?user" + user);
 				return "memberJoin";

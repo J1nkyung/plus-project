@@ -12,7 +12,8 @@
 		<result property="boardContent" column="board_content"/>
 		<result property="boardPic" column="board_pic"/>
 		<result property="boardRegDate" column="board_regdate"/>
-	</resultMap>
+ </resultMap>
+<!-- 		<result property="boardChangedRegDate" column="board_changed_regdate"/> -->	
 	
 	
 	<!--글작성  -->
@@ -39,8 +40,8 @@
 		FROM MEMBER 
 		NATURAL JOIN BOARD <!-- 공통컬럼 member_num으로 조인가능 -->
 		WHERE board.club_num = #{clubNum}
-		ORDER BY  board.board_regdate desc LIMIT 0, 5
-	</select>
+		ORDER BY  board.board_regdate DESC LIMIT 0, 5
+	</select> 
 	<!-- 
 	SELECT board.*, member_nickname, member_pic FROM board JOIN member USING (member_num) WHERE club_num = #{clubNum}
 	 -->
@@ -57,6 +58,8 @@
 			board.board_num, board.board_content, board.board_pic, board.board_regdate
 		FROM MEMBER 
 		NATURAL JOIN BOARD <!-- 공통컬럼 member_num으로 조인가능 -->
+		WHERE board.club_num = #{clubNum}
+		ORDER BY board.board_regdate DESC LIMIT #{startIndex}, 5
 		WHERE board.club_num =  #{clubNum}
 		ORDER BY board.board_regdate desc LIMIT #{startIndex}, 5
         
@@ -64,15 +67,36 @@
 	
 	
 	<!-- 글 수정 -->
-	<update id="updateBoard">
+<update id="updateBoard">
+UPDATE BOARD
+SET board_content = #{boardContent},
+board_pic = #{boardPic},
+board_regdate = now()
+WHERE board_num = #{boardNum}
+AND club_num = #{clubNum}
+</update>
+	
+	
+	
+	<!-- 글수정 파일업로드 관련 코드.. 나중에 보강 .. -->
+<!-- 	<update id="updateBoard">
 		UPDATE BOARD 
-		SET board_content = #{boardContent},
+	<trim prefix="SET" suffixOverrides=",">
+			board_content = #{boardContent},
+			board_regdate = now(),
+ 		<if test="boardPic ==null">
+			board_pic = #{old_file},
+		</if>
+ 		<if test="boardPic !=null">
 			board_pic = #{boardPic},
-			board_regdate = now()
+		</if>
+	</trim>
 		WHERE board_num = #{boardNum}
 		AND club_num = #{clubNum};
 	</update>
-	 
+	  -->
+	  
+	  
 	 <delete id="deleteBoard">
 	 	DELETE FROM BOARD WHERE board_num = #{boardNum};
 	 </delete>
