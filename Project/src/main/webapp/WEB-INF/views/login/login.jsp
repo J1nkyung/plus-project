@@ -23,7 +23,8 @@
     
     <script>
         window.Kakao.init("9ce759cfc8b480d36084d93d5b5d195f")
-        
+        Kakao.isInitialized();
+
 function kakaoLogin(){
     window.Kakao.Auth.login({
         scope:'profile, account_email',
@@ -38,11 +39,11 @@ function kakaoLogin(){
                       var userPw = res.id;      //유저의 카카오톡 고유 id. 회원 insert 시 패스워드로 삽입하려고 변수명 pw로 줌
                       var userEmail = res.kakao_account.email; //유저의 이메일
                       var userNickName = res.properties.nickname; //유저가 등록한 별명
-                      var userPic = res.properties.profile_image_url;
+                    //  var userPic = res.properties.profile_image_url;
                       
                       console.log(userEmail);
                       console.log(userNickName);
-                      console.log(userPic);
+                    //  console.log(userPic);
 
                       //console.log(res.redirect_uri);
 
@@ -50,7 +51,7 @@ function kakaoLogin(){
                         memberPassword : userPw,
                         memberEmail: userEmail,
                         memberNickname : userNickName,
-                        memberPic : userPic
+                     //   memberPic : userPic
                       }
 
                       $.ajax({
@@ -60,9 +61,10 @@ function kakaoLogin(){
                                 success: function(data){
                                 console.log("보냄");
                                 console.log(data);
-                                console.log(window.location.protocol + "/" + window.location.host + "/" + data);
+                               // console.log(window.location.protocol + "/" + window.location.host + "/" + data);
                                 //location.href = "../../" + data;
-                                location.href = data;
+                               location.href = data;
+                             //   location.href = 'http://localhost:9999/plus/main';
                                 //location.href = 'kakaologin.do'; //이렇게하면 get메서드오류
                                 }
                        }); // ajax
@@ -152,7 +154,7 @@ function kakaoLogin(){
            <form action="login.do" method="post">
                 <section class="login-input-section-wrap">
                     <div class="login-input-wrap" data-validate = "Valid email is: a@b.c">	
-                        <input name="memberEmail" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder=" 이메일을 입력해주세요" type="text" required autofocus></input>
+                        <input name="memberEmail" value="<%=cookieVal !="" ? cookieVal : "" %>" placeholder=" 이메일을 입력해주세요" type="text" required autocomplete="off" autofocus></input>
                     </div>
                     <div class="login-input-wrap password-wrap">	
                         <input name="memberPassword" placeholder=" 비밀번호를 입력해주세요" type="password" required></input>

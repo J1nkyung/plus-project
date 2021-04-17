@@ -76,13 +76,13 @@ margin:1px;
 			
 			<textarea name="boardContent" id="content">${update.boardContent}</textarea>
              
-            <input id="picFile" type="file" name="boardPhoto" />
-            <img src="${path }/resources${update.boardPic }">
-            <input type="hidden" name="old_file" value="${update.boardPic }">
-            <input type="text" name="old_file" value="${update.boardPic }">
+            <img style="width:200px; height:100px;" src="${path }/resources${update.boardPic }"> 
+             <figcaption>기존 이미지</figcaption>
+         <%--    <input type="hidden" name="old_file" value="${update.boardPic }"> --%>
             			
 				<div id="imgViewArea" style="margin-top:10px; display:none;">
 					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/></div>
+            <input id="picFile" type="file" name="boardPhoto" />
             <button type="button" class="removePic" onclick="removePic();">파일삭제</button>
              <!---->
 			<button type="button" id="BtnUp">저장하기</button><br/>

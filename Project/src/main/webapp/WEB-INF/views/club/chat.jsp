@@ -57,7 +57,7 @@
 				<h2>채팅할 모임을 선택해주세요.</h2>
 			</div>
 			<div class="send-message">
-				<input placeholder="보낼 메세지를 입력해주세요." id="message" /> <input
+				<input placeholder="보낼 메세지를 입력해주세요." id="message" autocomplete="off" /> <input
 					type="button" id="sendBtn" value="보내기" />
 			</div>
 		</div>

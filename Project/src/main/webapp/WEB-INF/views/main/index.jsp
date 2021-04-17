@@ -333,6 +333,7 @@ autocomplete='off' value="${scri.keyword}" placeholder=" 관심있는 더하기�
    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
 
 <script>
+
 <!--메인 carousel 2초-->
 /* $('.carousel').carousel({ interval: 2000 }); */
 $('.addplus').on('click',function(){
@@ -368,21 +369,7 @@ if(! '${user.memberNum}'){
         };
         backToTop();
         
-        
-        
-        
-/*         <!------------------검색창----------------->
-        const inputCheckMain = function(){
-            // 공백을 제거한 뒤에 개수를 세던지 한다.
-            let headerKeyword = $.trim($("[name=keyword]").val());
-            $('[name=keyword]').val(keyword);
-            console.log(keyword.length);
-            if (keyword.length >= 30) {
-               alert("30자 이하로 검색해주세요.");
-               return false;
-            }
-         }; */
-     
+ 
          
   
          $( document ).ready( function() {
@@ -431,7 +418,7 @@ if(! '${user.memberNum}'){
 
           } );
   
-  
+
    
          
          //더하기 등록 버튼 고정

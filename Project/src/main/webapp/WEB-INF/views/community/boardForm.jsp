@@ -58,14 +58,14 @@ margin:1px;
 </style>
 </head>
 <body>
-	<form enctype="multipart/form-data" name="insertBoard">
+	<form enctype="multipart/form-data" name="Board">
 		<div class="wrap">
 			<h2>게시글 등록하기</h2>
 			<hr>
 			<input type="hidden" name="memberPic" value="${user.memberPic }"/>
-			<input type="hidden" name="clubNum" value="2"/><!-- ${board.clubNum}으로 가져오는건가?? -->
-			<input type="hidden" name="memberNum" value="${user.memberNum}"/>
-			<input type="hidden" name="boardPic" value="${board.boardPic }"/>
+ 			<input type="hidden" name="clubNum" value="${clubNum}"/> 
+			<input type="hidden" name="memberNum" value="${user.memberNum}"/> 
+			<%-- <input type="hidden" name="boardPic" value="${board.boardPic }"/> --%>
 			
 			<!-- <input type="text" class="form-control" id="title"
 				placeholder="제목을 입력해주세요." name="title"> -->
@@ -91,19 +91,19 @@ removePic = function(){
 	$("#picFile").val("");
 }
     )}
-$(document).ready(function(){
+ $(document).ready(function(){
 	
-var formObj = $("form[name='insertBoard']");
+var formObj = $("form[name='Board']");
 	
 	$("#submitBtn").on("click", function(){
-	formObj.attr("action", "insertBoard");
-	formObj.attr("method", "post");
+	formObj.attr("action", "insertBoards");
+	formObj.attr("method", "post"); 
 	formObj.submit();           
 	
 	alert('성공적으로 등록했습니다');
 	})
 	
-});
+}); 
 
 function readURL(input) {
 	if (input.files && input.files[0]) {

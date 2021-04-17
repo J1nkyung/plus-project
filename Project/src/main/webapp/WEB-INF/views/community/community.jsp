@@ -90,13 +90,17 @@ p {
         #certificationPic{
             /* text-align: center; */
             height: auto;
-            width: 500px;
-            overflow: hidden;
-        }
+            width:auto;
+            max-height:400px;
+            max-width: 500px;
+            size:100%;
+/*             overflow: hidden;
+ */        }
         
         #certificationPic img{
         max-width:100%;
         height:auto;
+        max-height:300px;
         }
 
         #certificationContent{
@@ -326,8 +330,11 @@ padding-bottom:30px;
     <%--   <input type="button" name="boardForm" id="boardForm"
          onclick="location.href='${path}/insertBoardForm'"> --%>
          <!-- 정연 추가 20210410 링크에 ${clubNum }추가 -->
+         <form action="insertBoardForm" method="get">
          <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm?clubNum=${clubNum }'">
          <img src="${path }/resources/img/penwhite.png"></button>
+          			<input type="hidden" name="clubNum" value="${board.clubNum}"/> 
+         </form>
          
 
 <div id="repeatBox">
@@ -344,7 +351,7 @@ padding-bottom:30px;
                      <p id="boardNickname">${board.memberNickname}</p>
                      <div id="boardRegdate">
                      	<fmt:formatDate value="${board.boardRegDate}" var="changedDate"
-							pattern="yyyy. MM. dd (HH:mm)" />
+							pattern="yyyy. MM. dd HH:mm" />
 						${changedDate}
                      </div>
 
@@ -455,6 +462,10 @@ padding-bottom:30px;
 			})
 					
 	}) */
+	
+	let mNum = '${user.memberNum}';
+	let userNickname = '${user.memberNickname}';
+	let boardNum = 0;
 
 $(function(){
 	var formObj = $("form[name='updateForm']");
@@ -564,9 +575,7 @@ let contentCnt = '${contentCount}'
 		 
 // 댓글 시작 
 
-let mNum = '${user.memberNum}';
-let userNickname = '${user.memberNickname}';
-let boardNum = 0;
+
 
 	//대댓글 등록
 	$(document).on('click','#submit-reCommBtn',function(){
@@ -726,11 +735,13 @@ function showReComments(cNum){
 					commContent.id = 'commContent';
 					commContent.innerHTML += data[i].commentsContent;
 					
+					
 					let editBtn = document.createElement('div');
 					editBtn.classList.add('editBtn');
+					if(data[i].memberNickname === userNickname){
 					editBtn.innerHTML += '<div id="delComm" onclick="delReComm('+data[i].commentsNum+')">삭제</div>'
 					editBtn.innerHTML += '<div id="updateComm" onclick="changeTag('+data[i].commentsNum+')">수정</div>';
-					
+					} 
 					reCommList.appendChild(span);
 					reCommList.appendChild(commContent);
 					reCommList.appendChild(editBtn);
@@ -756,7 +767,7 @@ function showReComments(cNum){
 //댓글보기 클릭시 
 function getComments(bNum){
 	// 댓글 보기 접었다 펴기 
-	
+	boardNum = bNum;
 	$showCommBtn = $(event.target);
 	$showCommBtn.toggleClass('selected');
 	let inlineContent = $showCommBtn.closest('.inlineContent');
@@ -779,7 +790,7 @@ function getComments(bNum){
 	
 	write.innerHTML ='<textarea cols="80" rows="1" id="textArea" placeholder="댓글을 입력해보세요!"></textarea>';
 	write.innerHTML += '<br> <input type="button" id="submitCommBtn" value="등록하기" onclick="insertComment('+ bNum +')" />';
-	boardNum = bNum;
+	
 	
 	commBox.appendChild(write);
 	pnode.appendChild(commBox);

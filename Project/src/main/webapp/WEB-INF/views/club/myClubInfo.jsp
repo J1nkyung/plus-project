@@ -75,8 +75,13 @@
 				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
 					type="file" style="display: none;" name="upload"
 					onchange="getFileName(0)" />
-				</label> <span id="spanFileName[0]">${club.clubMain_pic}</span>
+				</label> <span id="spanFileName[0]">${club.clubMain_pic_name}</span>
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
+							<!-- 이미지 미리보기 영역  -->
+				<!-- <div id="imgViewArea" style="margin-top:10px; display:none;">
+					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/> -->
+					  <img id="imgViewArea"  style="width:200px; height:100px;" src="${path}/resources${club.clubMain_pic}"	/>
+			<!-- 	</div> -->
 			</div>
 		</div> 
 		<article>
@@ -88,7 +93,7 @@
 					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
 						type="file" style="display: none;" name="upload"
 						onchange="getFileName(1)" />
-					</label> <span id="spanFileName[1]">${club.clubContent1_pic}</span>
+					</label> <span id="spanFileName[1]">${club.clubContent1_pic_name}</span>
 					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
 				</div>
 			</div>
@@ -106,7 +111,7 @@
 					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
 						type="file" style="display: none;" name="upload"
 						onchange="getFileName(2)" />
-					</label> <span id="spanFileName[2]">${club.clubContent2_pic}</span>
+					</label> <span id="spanFileName[2]">${club.clubContent2_pic_name}</span>
 					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
 				</div>
 			</div>
@@ -140,7 +145,7 @@
 
 		<div class="clubdate">
 			<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-			<input type="text" class="form-control c-date" id="shut-date"
+			<input type="text" class="form-control c-date" id="shut-date" autocomplete="off"
 				name="clubShutDate" value="${club.clubShutDate}" />
 		</div>
 		<label for="exampleFormControlSelect2">모임 진행 기간 </label>
@@ -148,7 +153,7 @@
 			<div class="col">
 				<div class="clubdate">
 					<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-					<input type="text" class="form-control c-date" id="start-date"
+					<input type="text" class="form-control c-date" id="start-date" autocomplete="off"
 						name="clubStartDate" value="${club.clubStartDate}" />
 				</div>
 			</div>
@@ -156,14 +161,14 @@
 			<div class="col">
 				<div class="clubdate">
 					<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-					<input type="text" class="form-control c-date" id="end-date"
+					<input type="text" class="form-control c-date" id="end-date" autocomplete="off"
 						name="clubEndDate" value="${club.clubEndDate}" />
 				</div>
 			</div>
 		</div>
 		<div class="people">
-			<label for="exampleFormControlSelect2">참가인원</label> <input
-				type="text" class="form-control" placeholder="최대 50명" id="club-max"
+			<label for="exampleFormControlSelect2">참가인원</label> <input 
+				type="text" class="form-control" placeholder="최대 50명" id="club-max" autocomplete="off"
 				name="clubMax" value="${club.clubMax}">
 		</div>
 
@@ -188,7 +193,7 @@
 		</div>
 		<div class="clubfeeBox">
 			<label for="exampleFormControlSelect2">참가비용</label> <input
-				type="text" class="form-control" id="club-fee" name="clubFee">
+				type="text" class="form-control" id="club-fee" name="clubFee" autocomplete="off">
 		</div>
 		<input name="clubNum" type="hidden" value="${club.clubNum}" /> <input
 			name="clubMakeDate" type="hidden" value="${club.clubMakeDate}" /> <input
@@ -197,6 +202,8 @@
 			name="clubLatitude" type="hidden" id="club-lat" value="${club.clubLatitude}"></input> <input
 			name="clubLongitude" type="hidden" id="club-lng" value="${club.clubLongitude}"></input>
 		<button type="button" class="btn" id="modifyBtn" onclick="goSubmit()">수정하기</button>
+		
+		<input type="hidden" name="clubNum" value="${club.clubNum}"></input> 
 		</form>
 		<button type="button" class="btn" id="delBtn" onclick="deleteClub()">삭제하기</button>
 	</div>
@@ -228,6 +235,31 @@ marker.setMap(map);
 
 
 <!---------------------지도 끝------------------->
+
+// 모임 프로필 이미지 미리보기 
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			$('#imgArea').attr('src', e.target.result); 
+		}
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+	 $("#pInput").change(function() {
+		if(  $("#pInput").val() == '' ) {
+			$('#imgArea').attr('src' , '');  
+		}
+		$('#imgViewArea').css({ 'display' : '' });
+		readURL(this);
+	});
+
+
+	//미리보기 에러시 
+function imgAreaError(){
+	$('#imgViewArea').css({ 'display' : 'none' });
+} 
 
 
 //파일 선택시 파일이름 변경 
