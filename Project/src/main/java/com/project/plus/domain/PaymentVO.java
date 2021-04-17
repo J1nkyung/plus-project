@@ -11,6 +11,7 @@ public class PaymentVO {
 	private int payAmount;
 	private String payMethod;
 	private Date payDate;
+	private String payTime;
 	/*추가한 vo*/
 	private int memberPoint;
 	// 현정 추가 0404
@@ -54,6 +55,14 @@ public class PaymentVO {
 	}
 	public void setPayDate(Date payDate) {
 		this.payDate = payDate;
+	}
+	
+	
+	public String getPayTime() {
+		return payTime;
+	}
+	public void setPayTime(String payTime) {
+		this.payTime = payTime;
 	}
 	/*추가한 vo의 getter- setter*/
 	public int getMemberPoint() {

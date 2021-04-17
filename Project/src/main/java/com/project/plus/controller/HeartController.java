@@ -46,8 +46,8 @@ public class HeartController {
 		vo.setMemberNum(user.getMemberNum());
 		avo.setMemberNum(user.getMemberNum());
 		System.out.println("멤버넘버 확인 vo :" + vo.getMemberNum()  + "  avo  : " + avo.getMemberNum());
-		
 		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(avo));
+		System.out.println("checkApplyClub값 확인 : "+applyService.checkApplyClubByMemberNum(avo) );
 		model.addAttribute("selectFreeClub", heartService.selectFreeClub(vo));
 		model.addAttribute("selectNoFreeClub", heartService.selectNoFreeClub(vo));
 

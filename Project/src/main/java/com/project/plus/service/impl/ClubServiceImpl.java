@@ -116,8 +116,8 @@ public class ClubServiceImpl implements ClubService {
 		}
 
 		@Override
-		public int clubCnt(ClubVO vo) {
-			return mapper.clubCnt(vo);
+		public int clubCnt(int memberNum ) {
+			return mapper.clubCnt(memberNum);
 		}
 	
 }
