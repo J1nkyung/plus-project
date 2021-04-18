@@ -60,9 +60,6 @@
 		NATURAL JOIN BOARD <!-- 공통컬럼 member_num으로 조인가능 -->
 		WHERE board.club_num = #{clubNum}
 		ORDER BY board.board_regdate DESC LIMIT #{startIndex}, 5
-		WHERE board.club_num =  #{clubNum}
-		ORDER BY board.board_regdate desc LIMIT #{startIndex}, 5
-        
     </select>
 	
 	

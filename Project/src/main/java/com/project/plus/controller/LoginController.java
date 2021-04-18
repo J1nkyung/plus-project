@@ -46,7 +46,7 @@ public class LoginController {
 
     //로그인 페이지 접속했을 때 연결
 	@RequestMapping(value="login", method=RequestMethod.GET) 
-	public String loginpage(MemberVO vo, HttpSession session, HttpServletResponse response) throws Exception {
+	public String loginpage() throws Exception {
 	
 		return "login.login";
 
@@ -94,7 +94,7 @@ public class LoginController {
 			if(user !=null) {
 				pwdMatch = pwdEncoder.matches(vo.getMemberPassword(), user.getMemberPassword());
 
-			}else {
+			}else { 
 				pwdMatch = false;
 			}
 			
@@ -163,7 +163,7 @@ public class LoginController {
 				System.out.println(user);
 				model.addAttribute("userInfo", user);
 				
-				return "redirect:main";
+				return "success";
 //				return "";
 				
 //				session.setAttribute("user", user);
@@ -171,17 +171,17 @@ public class LoginController {
 //				System.out.println("해봐라"+vo);
 //				return "main";
 			}else if(result==0) {
-				MemberVO user = memberService.login(vo);
+				MemberVO user = vo;
 
 				session.setAttribute("user", user);
 				System.out.println("이상한디?user" + user);
-				return "memberJoin";
+				return "fail";
 			}
 			
 //			session.setAttribute("user", vo);
 //			System.out.println("카카오" + vo);
 //			
-			return "redirect:main";
+			return "success";
 			
 		} catch(Exception e) {
 			e.printStackTrace();

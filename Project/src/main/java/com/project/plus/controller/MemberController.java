@@ -55,7 +55,7 @@ public class MemberController {
  
    
    @RequestMapping(value="memberJoin", method=RequestMethod.POST)
-   public String memberJoin(MemberVO vo, HttpServletResponse response, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
+   public String memberJoin(MemberVO vo, Model model, HttpSession session, HttpServletResponse response, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
       
       
       //비밀번호 암호화
@@ -70,6 +70,16 @@ public class MemberController {
       memberService.joinMember(vo);
       System.out.println(vo);
       log.info("회원 번호 : " + vo.getMemberNum() + "멤버프로필사진  등록 ");
+  
+      session.setAttribute("user", null);
+      session.removeAttribute("user");
+      model.addAttribute("user", null); 
+      
+// 	 response.setContentType("text/html; charset=UTF-8");
+//     PrintWriter out = response.getWriter();
+//     out.println("<script>alert('회원가입이 완료되었습니다 '); </script>");
+//     out.flush();
+     
       return "redirect:login";
          
    }

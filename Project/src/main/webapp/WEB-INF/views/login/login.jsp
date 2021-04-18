@@ -61,11 +61,11 @@ function kakaoLogin(){
                                 success: function(data){
                                 console.log("보냄");
                                 console.log(data);
-                               // console.log(window.location.protocol + "/" + window.location.host + "/" + data);
-                                //location.href = "../../" + data;
-                               location.href = data;
-                             //   location.href = 'http://localhost:9999/plus/main';
-                                //location.href = 'kakaologin.do'; //이렇게하면 get메서드오류
+		                                if(data == "success"){
+		                               location.href = 'main';
+		                                }else if(data == "fail"){
+		                               location.href = 'memberJoin';
+		                                }
                                 }
                        }); // ajax
 		                    
