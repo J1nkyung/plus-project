@@ -27,17 +27,16 @@
 <style>
 
 /* 진경 추가 */
-.fixed-top{
-	position:sticky;
+.fixed-top {
+	position: sticky;
 }
 
 .heartContainer {
 	margin: 0;
-	width: 1140px; 
+	width: 1140px;
 	margin-left: 7%;
-	    /*  position: absolute; */
+	/*  position: absolute; */
 }
-
 
 #heartTitle {
 	margin: 4% 6%;
@@ -92,6 +91,10 @@ div {
 #totalDiv {
 	width: 80%;
 	margin-left: 79%;
+}
+
+.card {
+	width: 350px;
 }
 
 #cardPadding {
@@ -152,31 +155,32 @@ div {
 	transition: color .15s ease-in-out, background-color .15s ease-in-out,
 		border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-	.card:hover {
-	    background-color: #eee;
-	}
-	
-table {
-    border-collapse: collapse;
-}
- #noHeartDiv{
- 	width: 87%;
- 	height : 100%;
-    border: 2px solid #eee;
-    box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
- 	padding: 5.9%;
- 	font-size : 20px;
- 	text-align : center;
- }
- 
- .card-img-top {
-    width: 20%;
-    border-top-left-radius: calc(.25rem - 1px);
-    border-top-right-radius: calc(.25rem - 1px);
-    /* width: 100%; */
-    height: 250px;
+
+.card:hover {
+	background-color: #eee;
 }
 
+table {
+	border-collapse: collapse;
+}
+
+#noHeartDiv {
+	width: 87%;
+	height: 100%;
+	border: 2px solid #eee;
+	box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
+	padding: 5.9%;
+	font-size: 20px;
+	text-align: center;
+}
+
+.card-img-top {
+	width: 100%;
+	border-top-left-radius: calc(.25rem - 1px);
+	border-top-right-radius: calc(.25rem - 1px);
+	/* width: 100%; */
+	height: 250px;
+}
 </style>
 </head>
 
@@ -201,28 +205,30 @@ table {
 					</table>
 				</div>
 				<c:if test="${ empty selectFreeClub }">
-				 	<p id="noHeartDiv">찜한 모임이 없습니다.🐾<p>
+					<p id="noHeartDiv">찜한 모임이 없습니다.🐾
+					<p>
 				</c:if>
-				<div id="fBoxes">	
+				<div id="fBoxes">
 					<c:forEach var="freeclub" items="${selectFreeClub}">
 						<div id="cardPadding">
 							<input type="checkbox" class="inputB" id="card1" name="clubNum"
 								value="${freeclub.clubNum}" /><br> <label for="card">
-								<div class="card" style="width: 350px" onclick="location.href='getClub?clubNum=${freeclub.clubNum}'">
-									<img class="createClubPic" src="${path}/resources${freeclub.clubMain_Pic}"
-     								  onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" style="width: 100%"/>
-		                    
-									
-
+								<div class="card"
+									onclick="location.href='getClub?clubNum=${freeclub.clubNum}'">
+									<img class="card-img-top"
+										src="${path}/resources${freeclub.clubMain_Pic}"
+										onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" />
 									<div class="card-body">
 										<h4 class="card-title">${freeclub.clubName }</h4>
-										<p class="card-text">📆모임기간 : ${freeclub.clubStartDate} ~ ${freeclub.clubEndDate}</p>
+										<p class="card-text">📆모임기간 : ${freeclub.clubStartDate} ~
+											${freeclub.clubEndDate}</p>
 										<div class="alreadyApply">
 											<p>
 												<c:if test="${not empty checkApplyClub }">
 													<c:forEach var="check" items="${checkApplyClub }">
 														<c:if test="${check.clubNum eq freeclub.clubNum}">
-															<span class="badge badge-danger" id="alreadyApplyBadge" >이미 신청한 모임</span>
+															<span class="badge badge-danger" id="alreadyApplyBadge">이미
+																신청한 모임</span>
 														</c:if>
 													</c:forEach>
 												</c:if>
@@ -236,8 +242,9 @@ table {
 					</c:forEach>
 				</div>
 				<div class="apply_Btn">
-					<input type="button" onclick="deleteHeart()" id="applyBtn"value="삭제하기" /> 
-					<input type="button" onclick="applyFreeClub()" id="applyBtn" value="신청하기" />
+					<input type="button" onclick="deleteHeart()" id="applyBtn"
+						value="삭제하기" /> <input type="button" onclick="applyFreeClub()"
+						id="applyBtn" value="신청하기" />
 				</div>
 
 				<!--fBoxes end-->
@@ -257,7 +264,8 @@ table {
 					</table>
 				</div>
 				<c:if test="${ empty selectNoFreeClub }">
-				 	<p id="noHeartDiv">찜한 모임이 없습니다.🐾<p>
+					<p id="noHeartDiv">찜한 모임이 없습니다.🐾
+					<p>
 				</c:if>
 				<div id="fBoxes">
 
@@ -266,15 +274,17 @@ table {
 							<input type="checkbox" class="inputB" id="card2" name="clubNum"
 								value="${nofreeclub.clubNum}"><br> <label
 								for="card">
-								<div class="card" style="width: 350px" onclick="location.href='getClub?clubNum=${nofreeclub.clubNum}'">
-										<img class="card-img-top" alt="Card image" src="${path}/resources${nofreeclub.clubMain_Pic}"
-     								 onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" style="width: 100%"/>
-		                    
+								<div class="card" onclick="location.href='getClub?clubNum=${nofreeclub.clubNum}'">
+									<img class="card-img-top" alt="Card image"
+										src="${path}/resources${nofreeclub.clubMain_Pic}"
+										onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'"
+										style="width: 100%" />
 									<div class="card-body">
 										<h4 class="card-title">${nofreeclub.clubName }</h4>
 										<input type="hidden" name="clubName"
 											value="${nofreeclub.clubName }" />
-										<p class="card-text">📆모임기간 : ${nofreeclub.clubStartDate} ~ ${nofreeclub.clubEndDate}</p>
+										<p class="card-text">📆모임기간 : ${nofreeclub.clubStartDate}
+											~ ${nofreeclub.clubEndDate}</p>
 										<c:if test="${not empty checkApplyClub }">
 											<c:forEach var="check" items="${checkApplyClub }">
 												<c:if test="${check.clubNum eq nofreeclub.clubNum}">
@@ -285,7 +295,7 @@ table {
 										<span class="badge badge-primary">${nofreeclub.clubFreq}</span>
 									</div>
 								</div>
-							</label> 
+							</label>
 						</div>
 					</c:forEach>
 				</div>
@@ -298,7 +308,7 @@ table {
 			</section>
 		</div>
 	</div>
-</div>
+	</div>
 	<!-- 아래 임포트 src는 badge 부트스트랩 js  -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 	<script
@@ -307,93 +317,115 @@ table {
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<script src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 	<script>
-    var $totalBtn = $('#heartContent1 #totalBtn');
-    $totalBtn.attr('checked', false);
-    $totalBtn.change(function () {
-      var $this = $(this);
-      var checked = $this.prop('checked'); // checked 문자열 참조(true, false)
-      $('#heartContent1 input[id="card1"]').prop('checked', checked);
-    });
+		var $totalBtn = $('#heartContent1 #totalBtn');
+		$totalBtn.attr('checked', false);
+		$totalBtn.change(function() {
+			var $this = $(this);
+			var checked = $this.prop('checked'); // checked 문자열 참조(true, false)
+			$('#heartContent1 input[id="card1"]').prop('checked', checked);
+		});
 
-    var $totalBtn2 = $('#heartContent2 #totalBtn2');
-    $totalBtn2.attr('checked', false);
-    $totalBtn2.change(function () {
-      var $this = $(this);
-      var checked = $this.prop('checked'); // checked 문자열 참조(true, false)
-      $('#heartContent2 input[id="card2"]').prop('checked', checked);
-    });
+		var $totalBtn2 = $('#heartContent2 #totalBtn2');
+		$totalBtn2.attr('checked', false);
+		$totalBtn2.change(function() {
+			var $this = $(this);
+			var checked = $this.prop('checked'); // checked 문자열 참조(true, false)
+			$('#heartContent2 input[id="card2"]').prop('checked', checked);
+		});
 
-    function applyFreeClub() {
-    	var param = [];// 변수 값 생성 
-    	// 체크 된 체크박스 name 값을 가져와 그 안의 value를 배열에 넣어줌 
-    	$("input[name='clubNum']:checked").each(function(i) { // input의 name이 clubNum 인 값들이 체크 되면 
-    		param.push($(this).val()); //배열에 값을 추가함. this의 value 값을 추가. 
-    	});
-    	
-    	console.log(param);
-    	
-  		$.ajax({
-  			url : 'applyFreeClub',
-  			type : 'post',
-  			traditional : true,
-  			/* contentType: 'application/json' // 보내는 데이터 json 일때 필수 옵션 */
-  			/*dataType : 'json',*/
-  			data : {'clubNumArr' : param},
-  			success : function(result) {
-  				console.log(result)
-  				alert(result);
-  				location.reload();
-  			},
-  			error : function() {
-  				alert("error")
-  			}
-  		});
-  	}
-    
-    function applyPayClub() {
-    	var param = [];
-    	var paramStr =[]
-    	$("input[name='clubNum']:checked").each(function(i) {
-    		param.push($(this).val()); //배열에 값을 추가함. this의 value 값을 추가.
-    	});
-    	
-    	$("#clubNumArr").val(param);
-    	/* $("#clubLeader").val(paramStr); */
-    	$("#applyPayClubForm").submit();
-    }
-    
-    if('${msg}' != ''){
-        alert('${msg}');
-    }
-    
-    function deleteHeart() {
-    	var param = [];// 변수 값 생성 
-    	var memberNum = ${user.memberNum};
-    	// 체크 된 체크박스 name 값을 가져와 그 안의 value를 배열에 넣어줌 
-    	$("input[name='clubNum']:checked").each(function(i) { // input의 name이 clubNum 인 값들이 체크 되면 
-    		param.push($(this).val()); //배열에 값을 추가함. this의 value 값을 추가. 
-    	});
-    	
-  		$.ajax({
-  			url : 'deleteHeart',
-  			type : 'post',
-  			traditional : true,
-  			/* contentType: 'application/json' // 보내는 데이터 json 일때 필수 옵션 */
-  			/* dataType : 'json', */
-  			data : {'clubNumArr' : param,
-  					'memberNum' :memberNum},
-  			success : function(result) {
-  				console.log(result)
-  				alert(result);
-  				location.reload();
-  			},
-  			error : function() {
-  				alert("error")
-  			}
-  		});
-  	}
-    
-  </script>
+		function applyFreeClub() {
+			if ('${checkApplyClub}' != null) {
+				alert('이미 참여중인 모임이 있습니다.');
+				return false;
+			} else {
+
+				var param = [];// 변수 값 생성 
+				// 체크 된 체크박스 name 값을 가져와 그 안의 value를 배열에 넣어줌 
+				$("input[name='clubNum']:checked").each(function(i) { // input의 name이 clubNum 인 값들이 체크 되면 
+					param.push($(this).val()); //배열에 값을 추가함. this의 value 값을 추가. 
+				});
+
+				console.log(param);
+
+				$.ajax({
+					url : 'applyFreeClub',
+					type : 'post',
+					traditional : true,
+					/* contentType: 'application/json' // 보내는 데이터 json 일때 필수 옵션 */
+					/*dataType : 'json',*/
+					data : {
+						'clubNumArr' : param
+					},
+					success : function(result) {
+						console.log(result)
+						alert(result);
+						location.reload();
+					},
+					error : function() {
+						alert("error")
+					}
+				});
+			}
+		};
+
+		function applyPayClub() {
+			if ('${checkApplyClub}' != null) {
+				alert('이미 참여중인 모임이 있습니다.');
+				return false;
+			} else {
+
+				var param = [];
+				var paramStr = []
+				$("input[name='clubNum']:checked").each(function(i) {
+					param.push($(this).val()); //배열에 값을 추가함. this의 value 값을 추가.
+				});
+
+				$("#clubNumArr").val(param);
+				$("#clubLeader").val(paramStr);
+				$("#applyPayClubForm").submit();
+
+				//
+
+			}
+		}
+
+		if ('${msg}' != '') {
+			alert('${msg}');
+		}
+
+		function deleteHeart() {
+			var param = [];// 변수 값 생성 
+			var memberNum = $
+			{
+				user.memberNum
+			}
+			;
+			// 체크 된 체크박스 name 값을 가져와 그 안의 value를 배열에 넣어줌 
+			$("input[name='clubNum']:checked").each(function(i) { // input의 name이 clubNum 인 값들이 체크 되면 
+				param.push($(this).val()); //배열에 값을 추가함. this의 value 값을 추가. 
+			});
+
+			$.ajax({
+				url : 'deleteHeart',
+				type : 'post',
+				traditional : true,
+				/* contentType: 'application/json' // 보내는 데이터 json 일때 필수 옵션 */
+				/* dataType : 'json', */
+				data : {
+					'clubNumArr' : param,
+					'memberNum' : memberNum
+				},
+				success : function(result) {
+					console.log(result)
+					alert(result);
+					location.reload();
+				},
+				error : function() {
+					alert("error")
+				}
+			});
+		}
+	</script>
 
 </body>
 

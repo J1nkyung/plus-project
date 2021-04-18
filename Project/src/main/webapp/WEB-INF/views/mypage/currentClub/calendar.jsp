@@ -17,13 +17,14 @@
 	var clubList = '${clubList}';
 	var scheduleList = [];
 
+	/*밑에 주석 필요없음 
 		 <c:forEach var="list" items="${clubList}" varStatus="status">
 			scheduleList = [
 				clubName = '${list.clubName}',
 				clubStartDate = '${list.clubStartDate}',
-				clubEndDate = '${list.clubEndDate}'
+				clubEndDate = '${list.clubEndDate}' 
 			]
-		</c:forEach>
+		</c:forEach>*/
 			
  	document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
@@ -55,7 +56,7 @@ function setInfo() {
 		var colorCode = '#' + Math.round(Math.random() * 0xffffff).toString(16);
 		schedule.title = '${list.clubName}';
 		schedule.start = '${list.clubStartDate}';
-		schedule.end = '${list.clubEndDate}';
+		/* schedule.end = '${list.clubEndDate}'; */
 		schedule.backgroundColor = colorCode;
 		
 		scheduleList.push(schedule); 

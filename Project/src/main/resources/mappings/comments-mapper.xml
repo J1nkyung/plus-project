@@ -16,7 +16,7 @@
 
 	<insert id="insertComment">
 		INSERT INTO comments(member_num, board_num, comments_regdate, comments_content) 
-		VALUES (#{memberNum},#{boardNum},STR_TO_DATE(#{commentsRegdate}, '%Y. %m. %d %H:%i:%s'),#{commentsContent})
+		VALUES (#{memberNum},#{boardNum}, now(), #{commentsContent})
 		
 		<selectKey resultType="int" keyProperty="commentsNum" order="AFTER">
 			SELECT LAST_INSERT_ID()
@@ -24,7 +24,7 @@
 	</insert>
 	
 	<update id="updateComment">
-		UPDATE comments SET comments_content=#{commentsContent}, comments_regdate = #{commentsRegdate}
+		UPDATE comments SET comments_content=#{commentsContent}, comments_regdate = now()
 		WHERE comments_num = #{commentsNum}
 	</update>
 	

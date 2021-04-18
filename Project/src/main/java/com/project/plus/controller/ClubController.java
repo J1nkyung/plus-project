@@ -17,6 +17,8 @@ import javax.servlet.http.HttpSession;
 import org.eclipse.jdt.internal.compiler.ast.SwitchStatement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -342,8 +344,10 @@ public class ClubController {
 			}
 			model.addAttribute("selectAttendClubList", resultTwo);
 			
-			int clubCnt = clubService.clubCnt(vo);
+			int clubCnt = clubService.clubCnt(user.getMemberNum());
+			List<ClubVO> finishList = clubService.selectFinishClubList(vo);
 			model.addAttribute("clubCnt", clubCnt);
+			model.addAttribute("finishList", finishList);
 			
 			return "currentClubList.curClub";
 		}
@@ -364,6 +368,8 @@ public class ClubController {
 	        vo.setClubEndDate(d);
 			System.out.println("값확인해봐라,,, "+vo.getClubEndDate());
 	        clubService.updateEndDate(vo);
+	        String msgs = "연장되었습니다.";
+	        model.addAttribute(msgs,"msgs");
 			return "redirect:/getCurrentClubList";
 		}
 		
@@ -444,9 +450,11 @@ public class ClubController {
 		}
 		
 		@RequestMapping("/applyOnePayClubPayment")
+		@Transactional(readOnly = true, propagation = Propagation.REQUIRED, rollbackFor={Exception.class})
 		public String applyOnePayClubPayment(ApplyVO vo, MemberVO mvo, PaymentVO pvo, Model model, HttpServletRequest request) {
 			String msg ="";
-			System.out.println("************************** applyOnePayClubPayment.컨틀로럴 입성 ****************************");
+			System.out.println("************clubController : applyOnePayClubPayment.컨틀로럴 입성 *********");
+			System.out.println("결제 안넘어가면 sql에 해당 멤버 닉네임을 가진 멤버가 없는 것 ");
 			System.out.println(vo.getClubNum() + " / " + vo.getMemberNum() + " / ");
 			System.out.println(pvo.getClubNum() + " / " + pvo.getMemberNum() + " / ");
 			System.out.println(request.getParameter("clubLeader"));
@@ -478,32 +486,29 @@ public class ClubController {
 					int clubFee = clubService.selectClub(cvo).getClubFee(); // 클럽  모임 참가비 추출 
 					int insertFee = (int)clubFee - (clubFee * 10 / 100); // 참가비에서 10%를 뺀 금액 추출 
 					MemberVO memberVo = new MemberVO(); // 모임장 용 
-					memberVo.setMemberNickname(clubLeader);
+					memberVo.setMemberNickname(clubLeader); // 클럽리더명을 멤버 테이블에서 찾는다 
 					int clubLeaderCurrentPoint = memberService.selectMemberPointByNickname(memberVo); // 모임장 금액 더하기 전 현재 포인트 추출 
-					memberVo.setMemberPoint(clubLeaderCurrentPoint + insertFee);
-					memberService.updateClubLeaderPoint(memberVo);
+					System.out.println("모임장 현재 포인트** " + clubLeaderCurrentPoint);
+					memberVo.setMemberPoint(clubLeaderCurrentPoint + insertFee); 
+					System.out.println("모임장이 10센트 빼고 가지는 돈 : " + memberVo.getMemberPoint());
+					memberService.updateClubLeaderPoint(memberVo); // 돈들어갔어야한다
 					// 관리자한테 10% 적립
 					MemberVO adminMemberVo = new MemberVO(); // 관리자용 
 					adminMemberVo.setMemberNickname("관리자");
 					adminMemberVo.setMemberPoint((int) clubFee * 10 / 100);
 					memberService.updateClubLeaderPoint(adminMemberVo);
-					
 					// 참여자 포인트를 차감하고 2
 					mvo.setMemberPoint((currentPoint - totalFee));
 					memberService.deductMemberPoint(mvo);
-					
 					// 모임장 payment 추가시킨다. 
 					PaymentVO pvoTwo = new PaymentVO(); // 모임장 용 
 					int memberNumber = memberService.selectMemberNumberByNickname(memberVo);
-					System.out.println("");
 					pvoTwo.setMemberNum(memberNumber);// 리더명으로 쿼리문 짜서 멤버 넘버 추출하기 
 					pvoTwo.setClubNum(vo.getClubNum());
 					pvoTwo.setPayAmount(insertFee);
 					paymentService.getClubPoint(pvoTwo);
-					
 					//클럽 참여자 수 증가 -- plusCurnum
 					int result = clubService.plusCurnum(vo.getClubNum());
-				
 					System.out.println("result : " + result); // int 값 얼마나오는 지 확인 
 					
 					msg = "모임 신청이 완료되었습니다. 마이페이지에서 확인하세요.";

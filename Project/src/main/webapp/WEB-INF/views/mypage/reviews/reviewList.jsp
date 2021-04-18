@@ -157,17 +157,19 @@
 		        <c:forEach var="noRvw" items="${selectNotReview}">
 		                <!-- float left -->
 		                <div>
-		                    <div class="tabBox" >		
+		                    <div class="tabBox" >
+		                    <a href="getCommunity?clubNum=${noRvw.clubNum}">
 			                       <img class="clubPic" src="${path}/resources${noRvw.clubMain_pic}"
      								 onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" />
-		                    
+		                    </a>
 		                       <div class="title_text">
-		                       <a href="getClub?clubNum=${noRvw.clubNum }" class="aTagg" ></a>
+		                       <a href="getClub?clubNum=${noRvw.clubNum }" class="aTagg" >
 		                            <h4 title="모임타이틀 ">${noRvw.clubName}</h4>
 									<fmt:formatDate value="${noRvw.startDate}" var="startDateFmt" pattern="yyyy-MM-dd hh:mm"/>
 									<fmt:formatDate value="${noRvw.endDate}" var="endDateFmt" pattern="yyyy-MM-dd hh:mm"/>
 		                            <p>📆모임기간 :</p>
 		                            <p class="pTag">${startDateFmt} ~ ${endDateFmt }</p>
+		                        </a>
 		                       </div>
 		                       <div class="reviewBtn">
 		                       		<form id="frm" name="frm" action="showReviewForm.do">
@@ -189,16 +191,18 @@
 		                <!-- float left -->
 		                <div>
 		                    <div class="tabBox" >
+		                    <a href="getCommunity?clubNum=${okayRvw.clubNum}">
 		                       <img class="clubPic" src="${path}/resources${okayRvw.clubMain_pic}"
      								 onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" />
-		                    
+		                    </a>
 		                        <div class="title_text">
-		                        <a href="getClub?clubNum=${okayRvw.clubNum }" class="aTagg"></a>
+		                        <a href="getClub?clubNum=${okayRvw.clubNum }" class="aTagg">
 		                             <h4 title="모임타이틀">${okayRvw.clubName}</h4>
 		                            <fmt:formatDate value="${okayRvw.startDate}" var="startDateFmt2" pattern="yyyy-MM-dd hh:mm"/>
 									<fmt:formatDate value="${okayRvw.endDate}" var="endDateFmt2" pattern="yyyy-MM-dd hh:mm"/>
 		                            <p>📆모임기간 :</p>
 		                            <p class="pTag">${startDateFmt2} ~ ${endDateFmt2 }</p>
+		                         </a>
 		                        </div>
 		                        <div class="reviewBtn">
 			                        <form id="frm" name="frm" action="readReview.do">

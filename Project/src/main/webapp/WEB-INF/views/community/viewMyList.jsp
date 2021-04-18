@@ -5,8 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,6 +12,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 <title>콘텐츠 모아보기</title>
 <script>
     </script>
@@ -278,7 +277,6 @@ width: 240px;
 										<td id="commentsRegdate">
 										<fmt:parseDate value="${comments.commentsRegdate}" var="commentsRegdatee" pattern="yyyy-MM-dd HH:mm" />
 										<fmt:formatDate value="${commentsRegdatee}"  pattern="yyyy. MM. dd (HH:mm)" /> 
-												${commentsRegdatee} 
 										</td>
 									</tr>
 								</c:forEach>
@@ -309,6 +307,6 @@ width: 240px;
 				</section> <!-- 내가 쓴 댓글 탭 종료 -->
 			</div>
 		</div>
-		
+	</div>
 </body>
 </html>
