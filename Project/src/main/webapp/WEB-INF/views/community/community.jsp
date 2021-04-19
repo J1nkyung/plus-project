@@ -610,7 +610,6 @@ let contentCnt = '${contentCount}'
 					memberNum:mNum,
 					boardNum:boardNum,
 					commentsContent:content,
-					/* commentsRegdate:today, */
 				},
 		    	 success: function (data) {
 		     		console.log(data)
@@ -729,7 +728,7 @@ function showReComments(cNum){
 					span.classList.add('userSpan');
 					span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
 					span.innerHTML += '<div id="commentNickname">'+data[i].memberNickname +'</div>';
-					span.innerHTML += '<div id="commRegdate">'+ data[i].commentsChangedRegdate +'</div></div>';
+					span.innerHTML += '<div id="commRegdate">'+ data[i].commentsRegdate +'</div></div>';
 					
 					let commContent = document.createElement('div');
 					commContent.id = 'commContent';
@@ -819,7 +818,7 @@ function getComments(bNum){
 		         	span.classList.add("userSpan");
 		         	span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
 		         	span.innerHTML += '<div id="commentNickname">'+ data[i].memberNickname +'</div>';
-		         	span.innerHTML += '<div id="commRegdate">'+ data[i].commentsChangedRegdate +'</div>';
+		         	span.innerHTML += '<div id="commRegdate">'+ data[i].commentsRegdate +'</div>';
 		         	/* span.innerHTML += '<img src="${path}/resources/img/down.png" id="dropdown"/>'; */
 		         	comment.appendChild(span);
 		         	comment.innerHTML += '<div id="commContent">'+ data[i].commentsContent +'</div></div>';
@@ -894,7 +893,6 @@ function insertComment(bNum){
 							memberNum:mNum,
 							boardNum:bNum,
 							commentsContent:content,
-							/* commentsRegdate:today, */
 						},
 			            success: function (data) {
 			            	console.log(data);
@@ -914,7 +912,6 @@ function insertComment(bNum){
 			            	span.innerHTML += '<div id="commRegdate">'+ today[0]+':'+today[1] +'</div>';
 			            	comment.appendChild(span);
 			            	comment.innerHTML += '<div id="commContent">'+ data.commentsContent +'</div></div>';
-			            //	comment.innerHTML += '<input type="hidden" id="hiddenNum" value="'+bNum+'" />';
 			            	comment.innerHTML += '<div id="editBtn"><div id="delComm" onclick="deleteComment('+data.commentsNum+')">삭제</div>'
 			            						+'<div id="updateComm" onclick="changeTag('+data.commentsNum+')">수정</div>'
 			            						+'<div id="showReCommBtn" onclick="showReComments('+data.commentsNum+')">대댓글</div></div>';
@@ -1066,7 +1063,6 @@ function updateComment(cNum){
 			data: {
 				commentsNum:cNum,
 				commentsContent:text,
-				/* commentsRegdate:today, */
 			},
 	     success: function (data) {
 	     	console.log(data)

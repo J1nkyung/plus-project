@@ -10,7 +10,6 @@
 		<result property="memberPic" column="member_pic" />
 		<result property="boardNum" column="board_num" />
 		<result property="commentsRegdate" column="comments_regdate" />
-		<result property="commentsChangedRegdate" column="comments_changed_regdate" />
 		<result property="commentsContent" column="comments_content" />
 	</resultMap>
 
@@ -33,7 +32,7 @@
 	</delete>
 	
 	<select id="getComments" resultMap="commResult">
-		SELECT member_nickname, member_num, member_pic, comments_num, board_num, comments_content, date_format(comments_regdate,'%Y.%c.%e %H:%i') as comments_changed_regdate 
+		SELECT member_nickname, member_num, member_pic, comments_num, board_num, comments_content, comments_regdate
 		FROM comments 
 		JOIN member USING (member_num) WHERE board_num = #{boardNum} AND comments_class IS NULL
 		ORDER BY comments_regdate DESC
@@ -53,13 +52,13 @@
 	
 	<!-- 대댓글 가져오기 -->
 	<select id="getReComments" resultMap="commResult">
-		SELECT member_nickname, member_num, board_num, comments_num, comments_class, comments_content, date_format(comments_regdate,'%Y.%c.%e %H:%i') as comments_changed_regdate  FROM comments
+		SELECT member_nickname, member_num, board_num, comments_num, comments_class, comments_content, comments_regdate  FROM comments
 		JOIN member USING (member_num) WHERE comments_class = #{commentsClass} ORDER BY comments_regdate DESC
 	</select>
 	
 	<insert id="insertReComments">
 		INSERT INTO comments(member_num, board_num, comments_class, comments_regdate, comments_content) 
-		VALUES (#{memberNum}, #{boardNum}, #{commentsClass}, STR_TO_DATE(#{commentsRegdate}, '%Y. %m. %d %H:%i:%s'),#{commentsContent})
+		VALUES (#{memberNum}, #{boardNum}, #{commentsClass}, now(), #{commentsContent})
 		
 		<selectKey resultType="int" keyProperty="commentsNum" order="AFTER">
 			SELECT LAST_INSERT_ID()
