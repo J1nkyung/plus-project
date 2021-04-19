@@ -364,7 +364,7 @@ $(function(){
                         console.log(data);
                       	
                       	window.open("payClub?clubNum="+${club.clubNum},
-            	                "신청하기", "width=700, height=600, left=400, top=100");
+            	                "신청하기", "width=400, height=450, left=400, top=100");
                      }
                  });
             });

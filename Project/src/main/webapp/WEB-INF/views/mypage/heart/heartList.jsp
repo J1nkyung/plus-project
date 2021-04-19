@@ -376,7 +376,7 @@ table {
 			$("#clubNumArr").val(param);
 			
 			window.open("applyPayClub?clubNumArr="+param,
-      	                "결제하기", "width=700, height=600, left=400, top=100");
+      	                "결제하기", "width=400, height=450, left=400, top=100");
 		}
 
 		if ('${msg}' != '') {
@@ -411,6 +411,7 @@ table {
 				}
 			});
 		}
+		
 	</script>
 
 </body>

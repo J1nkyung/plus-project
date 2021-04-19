@@ -88,14 +88,31 @@ public class HeartController {
 		System.out.println("************************** applyPayClub.do ****************************");
 		System.out.println(" vo.getMemberNum() 확인" +  vo.getMemberNum());
 		String clubNumArrStr[] = request.getParameter("clubNumArr").split(",");
+		String msg = " ";
 		int clubNumArr[] = Arrays.stream(clubNumArrStr).mapToInt(Integer::parseInt).toArray();
-		vo.setClubNumArr(clubNumArr);
-		List<ApplyVO> list = applyService.applyPayClubInfo(vo);
-		model.addAttribute("list", list);
-		model.addAttribute("clubNumArr", request.getParameter("clubNumArr"));
-		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(vo));
-		System.out.println("ddddd여기 다시 서버 켜서 찍히는지 확인하기 ");
-		return "mypage/heart/applyPayClub";
+//		vo.setClubNumArr(clubNumArr);
+		if (clubNumArr != null) {
+			System.out.println("clubNumArr : " + clubNumArr.length);
+			System.out.println("*********** " + vo.getClubNum() + " , memberNum : " + vo.getMemberNum());
+			for (int i = 0; i < clubNumArr.length; i++) {
+				vo.setClubNum(clubNumArr[i]); 
+				if (applyService.checkApplyClub(vo) != null) {
+					System.out.println("이미 참여중인 모임이 있습니다.");
+					msg = "이미 참여중인 모임이 있습니다.";
+				} else {
+					List<ApplyVO> list = applyService.applyPayClubInfo(vo);
+					model.addAttribute("list", list);
+					model.addAttribute("clubNumArr", request.getParameter("clubNumArr"));
+					model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(vo));
+					System.out.println("ddddd여기 다시 서버 켜서 찍히는지 확인하기 ");
+					return "mypage/heart/applyPayClub";
+					}
+				} // for문 end	
+			}else {
+				System.out.println("찜한 모임이 없습니다!");
+				msg = "찜한 모임이 없습니다!";
+			} // 부모if 문 end
+			return msg;
 	}
 
 	@RequestMapping("/applyPayClubPayment")
