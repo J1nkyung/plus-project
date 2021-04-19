@@ -25,6 +25,9 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 <!--<link rel="stylesheet" href="css/heart.css">  -->
 <style>
+.wrap {
+	height : auto !important;
+}
 
 /* 진경 추가 */
 .fixed-top {
@@ -334,10 +337,7 @@ table {
 		});
 
 		function applyFreeClub() {
-			if ('${checkApplyClub}' != null) {
-				alert('이미 참여중인 모임이 있습니다.');
-				return false;
-			} else {
+
 
 				var param = [];// 변수 값 생성 
 				// 체크 된 체크박스 name 값을 가져와 그 안의 value를 배열에 넣어줌 
@@ -365,28 +365,18 @@ table {
 						alert("error")
 					}
 				});
-			}
 		};
 
 		function applyPayClub() {
-			if ('${checkApplyClub}' != null) {
-				alert('이미 참여중인 모임이 있습니다.');
-				return false;
-			} else {
+			var param = [];
+			$("input[name='clubNum']:checked").each(function(i) {
+				param.push($(this).val()); //배열에 값을 추가함. this의 value 값을 추가.
+			});
 
-				var param = [];
-				var paramStr = []
-				$("input[name='clubNum']:checked").each(function(i) {
-					param.push($(this).val()); //배열에 값을 추가함. this의 value 값을 추가.
-				});
-
-				$("#clubNumArr").val(param);
-				$("#clubLeader").val(paramStr);
-				$("#applyPayClubForm").submit();
-
-				//
-
-			}
+			$("#clubNumArr").val(param);
+			
+			window.open("applyPayClub?clubNumArr="+param,
+      	                "결제하기", "width=700, height=600, left=400, top=100");
 		}
 
 		if ('${msg}' != '') {
@@ -395,11 +385,7 @@ table {
 
 		function deleteHeart() {
 			var param = [];// 변수 값 생성 
-			var memberNum = $
-			{
-				user.memberNum
-			}
-			;
+			var memberNum = ${user.memberNum};
 			// 체크 된 체크박스 name 값을 가져와 그 안의 value를 배열에 넣어줌 
 			$("input[name='clubNum']:checked").each(function(i) { // input의 name이 clubNum 인 값들이 체크 되면 
 				param.push($(this).val()); //배열에 값을 추가함. this의 value 값을 추가. 

@@ -335,10 +335,23 @@ $(function(){
                     return false;
                 }
                 
-/*             	if(!checkLeader()){
+             	if(!checkLeader()){
             		alert("개설한 모임은 신청하실 수 없습니다!");
             		return;
-            	} */
+            	} 
+             	
+             	 // 개설한 모임은 신청 x 
+                function checkLeader(){
+              	  let user = '${user.memberNickname}';
+              	  let leader = '${club.clubLeader}';
+              	  console.log("리더 : " + leader);
+              	  if(user===leader){
+              		  return false;
+              	  } else {
+              		  return true;
+              	  }
+              	  
+                }
             	
             	 $.ajax({
                      type: "post",
