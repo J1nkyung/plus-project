@@ -149,7 +149,20 @@ $(document).ready(function(){
    href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
    integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
    crossorigin="anonymous">
-<style>
+
+</head>
+
+<body>
+
+<!-- 관리자가 회원정보 수정 할 때 aside 부분 추가 -->
+<c:if test="${user.memberNum eq 1}">
+<!-- Bootstrap CSS -->
+ <link rel="stylesheet"
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+   crossorigin="anonymous">
+   
+  <style>
 .nav-item {
    font-size: 13px;
    padding: 0px;
@@ -172,20 +185,9 @@ font-size:14px;
 font-weight:700;
 } 
 </style>
-</head>
-
-<body>
-
-<!-- 관리자가 회원정보 수정 할 때 aside 부분 추가 -->
-<c:if test="${user.memberNum eq 1}">
-<!-- Bootstrap CSS -->
- <link rel="stylesheet"
-   href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-   crossorigin="anonymous">
                <!--  사이드 바 추가 -->
                <nav class="navbar navbar-expand-md navbar-light">
-                  <div class="col-lg-3 sidebar fixed-top" style="width:280px;">
+                  <div class="col-lg-3 sidebar fixed-top" style="width:300px;">
                      <button class="navbar-toggler ml-auto mb-2 bg-light"
                         type="button" data-toggle="collapse" data-target="#sidebar">
                         <span class="navbar-toggle-icon"></span>
@@ -220,7 +222,7 @@ font-weight:700;
                                  <!-- 문의 관리 -->
                                  <li class="nav-item"><a href="adminInquiry"
                                     class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-                                       class="fas fa-question-circle text-white fa-lg mr-3"></i>문의관리
+                                       class="fas fa-question-circle text-white fa-lg mr-3"></i>문의 관리
                                  </a></li>
                                  <!-- 공지 관리 -->
                                  <li class="nav-item"><a href="announce"
