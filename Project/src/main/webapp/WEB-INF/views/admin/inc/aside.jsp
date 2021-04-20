@@ -21,39 +21,39 @@
 <title>Plus! Admin</title>
 <style>
 
-	.fixed-top {
-  	 	position:absolute !important; 
+   .fixed-top {
+         position:absolute !important; 
     }
     
 </style>
 <script>
 window.onload = function(){
-	selectNav();
+   selectNav();
 }
 
 function selectNav(){ 
-	// 지금 접속해있는 주소 얻어서 now에 넣어줌
-	var now = window.location.href;
-	// className이 ()인 값을 nav에 넣어줌
-		var nav = document.getElementsByClassName("nav-link text-white p-3 mb-2 sidebar-link");
-	// 주소에 포함되어야 하는 단어 배열로 선언
-		var arr = ["member", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
-	
+   // 지금 접속해있는 주소 얻어서 now에 넣어줌
+   var now = window.location.href;
+   // className이 ()인 값을 nav에 넣어줌
+      var nav = document.getElementsByClassName("nav-link text-white p-3 mb-2 sidebar-link");
+   // 주소에 포함되어야 하는 단어 배열로 선언
+      var arr = ["member", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
+   
 
-	//기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
-		for (var i = 0; i < arr.length; i++) {
-			if(now.includes(arr[i])){
-		nav[i].setAttribute("class", "nav-link text-white p-3 mb-2 sidebar-link current");
-			}
-		}
-	
+   //기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
+      for (var i = 0; i < arr.length; i++) {
+         if(now.includes(arr[i])){
+      nav[i].setAttribute("class", "nav-link text-white p-3 mb-2 sidebar-link current");
+         }
+      }
+   
 }
 
 </script>
 </head>
 <body>
   <!-- navbar -->
-	 <nav class="navbar navbar-expand-md navbar-light"> 
+    <nav class="navbar navbar-expand-md navbar-light"> 
    <div class="col-lg-3 sidebar fixed-top">
         <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#sidebar">
             <span class="navbar-toggle-icon"></span>

@@ -23,7 +23,7 @@
 }
 
 .wrap{
-	height:2000px;
+	height:auto;
 }
 .container {
     height: 100%;
@@ -39,6 +39,12 @@
 	padding-left: 2%;
 	margin-right: 2%;
 	/* background-color: red; */
+}
+
+
+#openClubPic img{
+	width:80%;
+	height:80%;
 }
 
 #openClubProgress {
@@ -69,24 +75,28 @@
 }
 
 #extendBtn {
-	width: 120px;
-	height: 50px;
+	width: 100px;
+	height: 40px;
 	border-style: none;
 	border-radius: 7%;
 	/* margin-top: 52%; */
-	font-size: 22px;
+	font-size: 19px;
 	margin-bottom: 3%;
-	margin-top:4%
+	margin-top:7%;
+	background-color: #007BFF;
+	color:#fff;
 }
 
 #outBtn{
-	width: 120px;
-	height: 50px;
+	width: 100px;
+	height: 40px;
 	border-style: none;
 	border-radius: 7%;
-	margin-top: 52%; 
-	font-size: 22px;
+	margin-top: 51%; 
+	font-size: 18px;
 	margin-bottom: 3%;
+	background-color: #007BFF;
+	color:#fff;
 	
 }
 
@@ -115,9 +125,9 @@
 
 .counter-block {
 	margin-top: 10px;
-	margin-bottom : 15%;
+	margin-bottom : 5%; /*20210416 css 수정*/
 	width: 690px;
-	height: 150px;
+	height: 180px; /*20210416 css 수정*/
 	text-align: center;
 	margin-left: 6%;
 	border: 3px solid #eee;
@@ -222,6 +232,15 @@ h6{
     font-size :26px;
 	font-weight:bold;
 }
+#titleMy{
+	background : linear-gradient(to top,#FFE400 50%, transparent 50%);
+}
+ 
+ /*20210416 css 추가*/
+.pTags{
+	font-size : 21px;
+	font-weight: bold;
+}
 
 
 </style>
@@ -231,25 +250,24 @@ h6{
 	<div class="container" class="clearfix">
 		<div class="row">
 			<!-- 상단의 my progress -->
-			<div class="col-md-2" id="myTitle">my progress</div>
+			<div class="col-md-2" id="myTitle"><span id="titleMy">my progress</span></div>
 			<div class="col-md-8">
 				<div class="counter-block">
 					<div class="row">
 						<div class="col-12 progress-icon">
-							<p style="font-size:18px; padding-top:10px;">🏳🏳‍🌈 내모임현황 🏳‍🌈🏳‍</p>`
-							<br>
+							<p style="font-size:26px; margin-top:20px;">🐾내모임현황 🐾 ‍</p>`
 						</div>
-						<div class="col-4 progress-icon">
-							<p>참가중</p>
-							<h6>${fn:length(selectAttendClubList) }</h6>
+						<div class="col-4 progress-icon" >
+							<p class="pTags">참가중</p>
+							<h6>${fn:length(selectAttendClubList)}</h6>
 						</div>
-						<div class="col-4 progress-icon">
-							<p>완료</p>
-							<h6>${fn:length(finishList) }</h6>
+						<div class="col-4 progress-icon" class="pTags">
+							<p class="pTags">완료</p>
+							<h6>${clubCnt}</h6>
 						</div>
-						<div class="col-4 progress-icon">
-							<p>개설</p>
-							<h6>${fn:length(selectCurClubList) }</h6> 
+						<div class="col-4 progress-icon" class="pTags">
+							<p class="pTags">개설</p>
+							<h6>${fn:length(selectCurClubList)}</h6> 
 						</div>
 					</div>
 				</div>
@@ -264,8 +282,9 @@ h6{
 					<div class="col-md-10" id="clubBar">
 						<div id="ff">
 							<p style="font-size: 15px; text-align: center; margin-top: 50px;"> 아직 개설한 모임이 없습니다.</p>
-							<p style="font-size: 15px; text-align: center;">이루고자하는 목표를
-								더하기 멤버들과 함께 이뤄보세요.🦝🐷🐔🐸🐾</p>
+							<p style="font-size: 15px; text-align: center;">
+								이루고자하는 목표를 더하기 멤버들과 함께 이뤄보세요.🦝🐷🐔🐸🐾
+							</p>
 						</div>
 					</div>
 				</c:if>
@@ -275,10 +294,13 @@ h6{
 							<input type="hidden" id="clubNum" value="${clubList.clubNum}" />
 							<input type="hidden" id="memberNum" value="${user.memberNum}" />
 							<div id="openClubPic">
-								<a href="getCommunity?clubNum=${clubList.clubNum}"> <img src="${path}/resources${clubList.clubMain_pic}"
-								onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" 
-									width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>
-									</div>
+								<!--  <a href="getCommunity?clubNum=${clubList.clubNum}"> <img src="${path}/resources/img/tmpImg/${clubList.clubMain_pic}"
+									width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>-->
+							<a href="getCommunity?clubNum=${clubList.clubNum}">
+								<img  src="${path}/resources${clubList.clubMain_pic}" title="커뮤니티입장 GOGO~!" 
+	     								  onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" style="width: 80%"/>
+		                    </a>
+							</div>
 							<div id="openClubProgress">
 								<h3 id="clubName">
 									<a href="getClub?clubNum=${clubList.clubNum}" title="모임상세페이지 GOGO~!">${clubList.clubName}</a>
@@ -383,7 +405,11 @@ h6{
 						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="today" />
 						<div class="col-md-10" id="clubBar">
 							<div id="openClubPic">
-<a href="getCommunity?clubNum=${attendList.clubNum}"><img src="${path}/resources${attendList.clubMain_pic}" width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>							</div>
+								<a href="getCommunity?clubNum=${attendList.clubNum}">
+								<img  src="${path}/resources${attendList.clubMain_pic}" title="커뮤니티입장 GOGO~!"
+     								  onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" style="width: 80%"/>
+								</a>
+							</div>
 							<div id="openClubProgress">
 								<h3 id="clubName" ><a href="getClub?clubNum=${attendList.clubNum}" title="모임상세페이지 GOGO~!">${attendList.clubName}   </a>
 									<c:if test="${attendList.clubFee > 0}"><span class="badge badge-danger">유료</span></c:if>
@@ -430,7 +456,6 @@ h6{
 											</div>
 										</div>
 										<div class="modal-footer">
-										
 											<button type="button" class="btn btn-default" onclick="clubOut('${attendList.clubNum}', '${attendList.clubLeader}')">모임나가기</button>
 											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 										</div>
@@ -462,13 +487,15 @@ h6{
 						<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss" var="today" />
 						<div class="col-md-10" id="clubBar">
 							<div id="openClubPic">
-								<img src="${path}/resources/img/다이어트.PNG" width="80%" height="80%" title="커뮤니티입장 GOGO~!" /></a>
+								<!-- <img src="${path}/resources/img/다이어트.PNG" width="80%" height="80%" title="커뮤니티입장 GOGO~!" />-->
+								<img  src="${path}/resources${finishClub.clubMain_pic}" title="커뮤니티입장 GOGO~!" 
+     								  onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" style="width: 80%"/>
 							</div>
 							<div id="openClubProgress">
 								<h3 id="clubName" ><a href="getClub?clubNum=${finishClub.clubNum}" title="모임상세페이지 GOGO~!">${finishClub.clubName}   </a>
 									<c:if test="${finishClub.clubFee > 0}"><span class="badge badge-danger">유료</span></c:if>
 									<c:if test="${finishClub.clubFee == 0}"><span class="badge badge-secondary">무료</span></c:if>
-									<c:if test="${finishClub.clubStartDate < today}"><span class="badge badge-warning">종료된 모임</span></c:if>
+									<span class="badge badge-warning">종료된 모임</span>
 								</h3>
 								<div class="w3-light-grey w3-round-large">
 									<div class="w3-container w3-blue w3-round-large" 
@@ -492,7 +519,7 @@ h6{
 <script>
 function clubOut(clubNum, clubLeader) {
 	$.ajax({
-		url : 'outClub.do',
+		url : 'outClub',
 		type : 'post',
 		data : {'clubNum' : clubNum, 
 				'clubLeader' : clubLeader	
@@ -507,7 +534,11 @@ function clubOut(clubNum, clubLeader) {
 		}
 	});
 	
-}
+};
+/*20210416 주석처리 , 안하면 나가기 안됨*/
+/* if(${msgs} != null){
+	alert('${msg}'');
+} */
 </script>
 </body>
 </html>

@@ -30,7 +30,7 @@ public interface ClubMapper {
 	public ClubVO clubOut(ClubVO vo);
 	public void deleteApplyClub(ClubVO vo);
 	public void updateClubCurNum(ClubVO vo);
-	public int clubCnt(ClubVO vo);
+	public int clubCnt(int memberNum);
 	//정연추가20210411 finishclub
 	public List<ClubVO> selectFinishClubList(ClubVO vo);
 	public List<ClubVO> selectFinishMyClubList(ClubVO vo);

@@ -120,21 +120,24 @@
 			<c:if test="${club.clubFee ==0 }">
 				<button type="button" class="btn" id="applyBtn">신청하기</button>
 			</c:if>
-			<form action="payClub" method="post" >
+			<c:if test="${club.clubFee > 0 }">
+				<button type="button" class="btn" id="payBtn">신청하기</button>
+			</c:if>
+			<%-- <form action="payClub" method="post" >
 				<c:if test="${club.clubFee > 0 }">
 					<input type="hidden"  name="clubNum" value="${club.clubNum}"/>
-					<input type="hidden"  name="clubLeader" value="${club.clubLeader}"/>
+					<input type="hidden"  name="clubLeader" value="${club.clubLeader}"/> 
 					<button type="submit" class="btn" id="payBtn">신청하기</button>
 				</c:if>
-			</form>
+			</form> --%>
 				
-            <!-- 찜버튼 -->
+           <!-- 찜버튼 -->
             <button type="button" class="btn" id="heartBtn">
-               <c:if test="${isThereHeart eq 0}">
-                  <img src="${path}/resources/img/heart.png" id="heartImg" value=0 />
+               <c:if test="${isThereHeart == 0}">
+                  <img src="${path}/resources/img/heart.png" class="heartImg" id ="dd"/>
                </c:if>
-               <c:if test="${isThereHeart ne 0}">
-                  <img src="${path}/resources/img/blackheart.png" id="heartImg" value=1 />
+               <c:if test="${isThereHeart != 0}">
+                  <img src="${path}/resources/img/blackheart.png" class="heartImg" id ="dd" />
                </c:if>
             </button>
    <!-- 공유 버튼  -->
@@ -219,14 +222,14 @@ $(function(){
    /* 탭메뉴  */
     var $selectMenu = null;
     $(".tabMenu").click(function(){
-          
-                if ($selectMenu != null){
-                    $selectMenu.removeClass("selected");
-                }
+    
+          if ($selectMenu != null){
+              $selectMenu.removeClass("selected");
+          }
 
-                $selectMenu = $(this);
-                $selectMenu.addClass("selected");
-            })
+          $selectMenu = $(this);
+          $selectMenu.addClass("selected");
+    });
 
    
    
@@ -262,6 +265,7 @@ $(function(){
              // 5개씩 로딩 
             let step = 5;   
            
+             
              //더보기 버튼 클릭시
              $('#moreReviewBtn').click(function(){
                startIndex += step;
@@ -317,23 +321,52 @@ $(function(){
 
             // 결제가 필요한 모임 신청하기 버튼 클릭시 이미 신청 내역이라면 alert 창 띄우기 
             $("#payBtn").on('click',function(){
-            	if(!checkLeader()){
-            		alert("개설한 모임은 신청하실 수 없습니다!");
-            		return;
-            	}
                console.log('${yesNo}');
                if(!'${user.memberNum}'){
                    alert("로그인해주세요!");
                    return false;
                 }
-                if(${club.clubCurnum} >= ${club.clubMax} ){
+                if( ${club.clubCurnum} >= ${club.clubMax} ){
                    alert("모집 인원이 마감되어 신청하실 수 없습니다");
-                   return;
+                   return false;
                 }
                 if('${yesNo}' == 1){
                     alert("이미 신청한 모임입니다!");
                     return false;
                 }
+                
+             	if(!checkLeader()){
+            		alert("개설한 모임은 신청하실 수 없습니다!");
+            		return;
+            	} 
+             	
+             	 // 개설한 모임은 신청 x 
+                function checkLeader(){
+              	  let user = '${user.memberNickname}';
+              	  let leader = '${club.clubLeader}';
+              	  console.log("리더 : " + leader);
+              	  if(user===leader){
+              		  return false;
+              	  } else {
+              		  return true;
+              	  }
+              	  
+                }
+            	
+            	 $.ajax({
+                     type: "post",
+                     url: "payClub",
+                     data: {
+                        clubNum:'${club.clubNum}',
+                        clubLeader:'${club.clubLeader}'
+                     },
+                        success: function (data) {
+                        console.log(data);
+                      	
+                      	window.open("payClub?clubNum="+${club.clubNum},
+            	                "신청하기", "width=400, height=450, left=400, top=100");
+                     }
+                 });
             });
             
              // 신청하기 버튼 클릭시 
@@ -493,6 +526,7 @@ function toggleImg(){
 		       alert("error");
 		     }
 		});
+	
 	}else{
 		state=0; 
 		//document.getElementsByClassName("heartImg").src = "${path}/resources/img/heart.png";

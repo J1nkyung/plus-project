@@ -60,55 +60,28 @@
 		NATURAL JOIN BOARD <!-- 공통컬럼 member_num으로 조인가능 -->
 		WHERE board.club_num = #{clubNum}
 		ORDER BY board.board_regdate DESC LIMIT #{startIndex}, 5
-		WHERE board.club_num =  #{clubNum}
-		ORDER BY board.board_regdate desc LIMIT #{startIndex}, 5
-        
     </select>
-	
+    
+    
 	
 	<!-- 글 수정 -->
-<update id="updateBoard">
-UPDATE BOARD
-SET board_content = #{boardContent},
-board_pic = #{boardPic},
-board_regdate = now()
-WHERE board_num = #{boardNum}
-AND club_num = #{clubNum}
-</update>
-	
-	
-	
-	<!-- 글수정 파일업로드 관련 코드.. 나중에 보강 .. -->
-<!-- 	<update id="updateBoard">
-		UPDATE BOARD 
-	<trim prefix="SET" suffixOverrides=",">
-			board_content = #{boardContent},
-			board_regdate = now(),
- 		<if test="boardPic ==null">
-			board_pic = #{old_file},
-		</if>
- 		<if test="boardPic !=null">
-			board_pic = #{boardPic},
-		</if>
-	</trim>
+	<update id="updateBoard">
+		UPDATE BOARD
+		SET board_content = #{boardContent},
+		board_pic = #{boardPic},
+		board_regdate = now()
 		WHERE board_num = #{boardNum}
-		AND club_num = #{clubNum};
+		AND club_num = #{clubNum}
 	</update>
-	  -->
-	  
+	
+	
+
 	  
 	 <delete id="deleteBoard">
 	 	DELETE FROM BOARD WHERE board_num = #{boardNum};
 	 </delete>
 	 
 	 <select id="viewMyList" resultMap="boardResult" parameterType="map">
-<!-- 	 SELECT board.*, member_nickname, member_pic
-	 FROM board
-	 JOIN MEMBER
-	 USING (member_num)
-	 WHERE club_num = #{clubNum}
-	 AND member_num = #{memberNum} 
-	 ORDER BY board.board_regdate desc  -->
 	   SELECT myList.*
 	    FROM (
 	    	SELECT board.*, 

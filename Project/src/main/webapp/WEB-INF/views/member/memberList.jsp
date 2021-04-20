@@ -341,7 +341,7 @@ color:white;
 											<!-- 공지 관리 -->
 											<li class="nav-item"><a href="announce"
 												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-question-circle text-white fa-lg mr-3"></i>공지
+													class="fas fa-flag text-white fa-lg mr-3"></i>공지
 													관리
 											</a></li>
 											<!-- 결제내역 관리 -->
@@ -352,7 +352,7 @@ color:white;
 											<!-- 관리자 차트 -->
 											<li class="nav-item"><a href="adminChart"
 												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-question-circle text-white fa-lg mr-3"></i>차트
+													class="fas fa-chart-line text-white fa-lg mr-3"></i>차트
 													관리
 											</a></li>
 												<p id="gomain"><a href="main"><i class="fas fa-home"></i> 메인으로 가기 </a></p>

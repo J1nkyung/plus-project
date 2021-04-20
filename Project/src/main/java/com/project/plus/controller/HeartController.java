@@ -46,8 +46,8 @@ public class HeartController {
 		vo.setMemberNum(user.getMemberNum());
 		avo.setMemberNum(user.getMemberNum());
 		System.out.println("멤버넘버 확인 vo :" + vo.getMemberNum()  + "  avo  : " + avo.getMemberNum());
-		
 		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(avo));
+		System.out.println("checkApplyClub값 확인 : "+applyService.checkApplyClubByMemberNum(avo) );
 		model.addAttribute("selectFreeClub", heartService.selectFreeClub(vo));
 		model.addAttribute("selectNoFreeClub", heartService.selectNoFreeClub(vo));
 
@@ -82,6 +82,7 @@ public class HeartController {
 		} // 부모if 문 end
 		return msg;
 	}
+	
 
 	@RequestMapping("/applyPayClub")//.do뺌
 	public String applyPayClub(ApplyVO vo, Model model, HttpServletRequest request) {
@@ -96,6 +97,33 @@ public class HeartController {
 		model.addAttribute("checkApplyClub", applyService.checkApplyClubByMemberNum(vo));
 		System.out.println("ddddd여기 다시 서버 켜서 찍히는지 확인하기 ");
 		return "mypage/heart/applyPayClub";
+	}
+	
+	@RequestMapping(value="/checkPayYn", produces = "application/text;charset=UTF-8")
+	@ResponseBody
+	public String checkPayYn(ApplyVO vo, ClubVO cvo, Model model, HttpServletRequest request, HttpSession session) {
+		MemberVO user = (MemberVO) session.getAttribute("user");
+		vo.setMemberNum(user.getMemberNum());
+		String msg = "";
+		System.out.println("************************** checkPayYn ****************************");
+		String[] clubNumArr = request.getParameterValues("clubNumArr");
+		if (clubNumArr != null) {
+			System.out.println("clubNumArr : " + clubNumArr.length);
+			System.out.println("*********** " + vo.getClubNum() + " , memberNum : " + vo.getMemberNum());
+			for (int i = 0; i < clubNumArr.length; i++) {
+				vo.setClubNum(Integer.parseInt(clubNumArr[i]));
+				if (applyService.checkApplyClub(vo) == null) {
+					msg = "applyAvailable";
+				} else {
+					System.out.println("이미 참여중인 모임이 있습니다.");
+					msg = "이미 참여중인 모임이 있습니다.";
+				}
+			} // for문 end
+		} else {
+			System.out.println("찜한 모임이 없습니다!");
+			msg = "찜한 모임이 없습니다!";
+		} // 부모if 문 end
+		return msg;
 	}
 
 	@RequestMapping("/applyPayClubPayment")

@@ -15,6 +15,7 @@
 					payment.pay_amount as payAmount, 
 					payment.pay_method as payMethod, 
 					payment.pay_date as payDate,
+					time(payment.pay_date) as payTime,
 					member.member_point as memberPoint,
 		         ROW_NUMBER() OVER(ORDER BY pay_date DESC) AS RNUM
 		         FROM payment, member
@@ -37,6 +38,7 @@
 		]]> -->
 	</select>
 	
+	<!-- 전체 게시글의 총 갯수 count -->
 	<select id="selectPaymentListCount" resultType="int">
 		SELECT count(*)
 		FROM ( 

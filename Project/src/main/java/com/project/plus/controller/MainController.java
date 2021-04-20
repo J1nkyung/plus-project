@@ -18,6 +18,7 @@ import com.project.plus.domain.ClubVO;
 import com.project.plus.domain.Criteria;
 import com.project.plus.domain.MemberVO;
 import com.project.plus.service.MainService;
+import com.project.plus.service.VisitCountService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -28,20 +29,28 @@ public class MainController {
    @Autowired
    private MainService service;
 
-
+   @Autowired
+   private VisitCountService vcs;
    
    @GetMapping("/main")
    public String mainList(Model model, ClubVO cvo, MemberVO mvo) {
+   
       log.info("list(GET) - memberlatitude : " + mvo.getMemberLatitude());
       log.info("list(GET) - memberlongitude : " + mvo.getMemberLongitude());
+      
+      // main페이지 방문한 방문자 수 카운팅하는 메서드 호출 0409 현정 (절대 지우지 마세요!)
+      vcs.setTotalCount();
+      
       // GPS 정보가 없으면 gps.jsp 가서 정보를 가져온다.
       if (mvo.getMemberLatitude() == null || mvo.getMemberLongitude() == null) {
          log.info("list(GET) - gps(GET)으로 forward ");
          String kind = "main";
          return "redirect:main/gps?kind="+kind;
       }      
+       
          model.addAttribute("main", service.getListBest(mvo));
          model.addAttribute("main2", service.getListDeadline(mvo));
+
          return "main/index";
          }
    

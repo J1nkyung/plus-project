@@ -61,4 +61,5 @@ public class BoardServiceImpl implements BoardService{
 	public int viewMyListCount(@Param("clubNum") int clubNum, @Param("memberNum") int memberNum) throws Exception {
 		return mapper.viewMyListCount(clubNum, memberNum);
 		}
+
 }

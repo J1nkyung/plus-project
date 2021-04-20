@@ -30,7 +30,7 @@
 </head>
 <body>
     <div class="pointContainer">
-    	<form method="post" action="applyPayClubPayment" >
+    	<!-- <form method="post" action="applyPayClubPayment" > -->
     		<input type="hidden" name ="memberNum" value="${user.memberNum }"/>
     		<input type="hidden" name="clubNumArr" value="${clubNumArr }">
     		<input type="hidden" id="clubLeader" name="clubLeader" value="${clubLeader}">
@@ -48,11 +48,32 @@
 		    <h2>결제포인트</h2>
 		    <p>${totalPoint } P</p>
 		    <input type="hidden" name="totalFee" value="${totalPoint }" >
-		    <input type="submit" id="payBtn" value="결제하기" onclick="clickAlert()">
-	    </form>
+		    <input type="button" id="payBtn" value="결제하기" >
+		    <!-- <input type="submit" id="payBtn" value="결제하기" onclick="clickAlert()">
+	    </form> -->
     </div>     
     <script src="${path}/resources/js/jquery-1.12.4.min.js"></script> 
     <script>
+    
+    $("#payBtn").on("click", function() {
+    	$.ajax({
+            type: "post",
+            url: "applyPayClubPayment",
+            data: {
+            	memberNum:'${user.memberNum }',
+            	clubNumArr:'${clubNumArr }',
+            	clubLeader:'${clubLeader}',
+            	totalFee:'${totalPoint }'
+            },
+               success: function (data) {
+               console.log(data);
+               alert("결제가 완료되었습니다. 모임은 마이페이지에서 확인해주세요.");
+               opener.parent.location.reload();
+               window.close();
+               
+            }
+        });
+    });
 
      if('${msg}' != ''){
          alert('${msg}');

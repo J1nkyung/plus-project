@@ -18,7 +18,7 @@
 	        var showPopup = document.getElementById('showPopup');
 	        showPopup.onclick = function showPopup() {
 	            window.open("chargePointPopup",
-	                "포인트충전", "width=700, height=600, left=400, top=100");
+	                "포인트충전", "width=900, height=800, left=400, top=100");
 	        }
 	    }; 
     </script>
@@ -178,8 +178,10 @@
                     <c:if test="${paymentList != null || paymentList != ''}">
                     	<c:forEach var="payList" items="${paymentList }" >
                     		<tr>
-	                    		<fmt:formatDate value="${payList.payDate}" var="payDate" pattern="yyyy-MM-dd HH:mm:ss" /> 
-	                    		<td>${payDate}</td>
+                    			<td>
+									<fmt:formatDate value="${payList.payDate}"  pattern="yyyy-MM-dd" /> 
+									(${payList.payTime })
+								</td>
 	                    		<td>${payList.payMethod }</td>
 	                    		<td>${payList.payAmount }</td>
 	                    	</tr>

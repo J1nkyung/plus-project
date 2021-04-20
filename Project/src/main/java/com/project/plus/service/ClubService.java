@@ -31,7 +31,7 @@ public interface ClubService {
 	public ClubVO clubOut(ClubVO vo);
 	public void updateClubCurNum(ClubVO vo);
 	public void deleteApplyClub(ClubVO vo);
-	public int clubCnt(ClubVO vo);
+	public int clubCnt(int memberNum);
 	//정연 하단 추가 finish Club 
 	public List<ClubVO> selectFinishClubList(ClubVO vo);
 	public List<ClubVO> selectFinishMyClubList(ClubVO vo);
