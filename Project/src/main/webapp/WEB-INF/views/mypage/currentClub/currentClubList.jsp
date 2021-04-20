@@ -23,7 +23,7 @@
 }
 
 .wrap{
-	height:2000px;
+	height:auto;
 }
 .container {
     height: 100%;

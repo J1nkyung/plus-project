@@ -33,13 +33,9 @@ header {
 
 .inquiry-category {
     width: 200px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
-#inquiry-title {
-    width: 710px;
-    margin-bottom: 10px;
-}
 
 textarea {
     width: 710px;
@@ -56,7 +52,7 @@ textarea {
     outline: 0;
     color: white;
     background-color: #001eff;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .submit a {
 float:right;
@@ -66,8 +62,7 @@ float:right;
 <body>
     <form action="answerEditInquiry" method="post">
         <div class="inquiry-wrap">
-            <h1>1:1문의 답변수정</h1>
-            <hr>
+            <p><h1>1:1문의 답변수정</h1></p>
             <div class="inquiry-category">
                 <label for="exampleFormControlSelect2">카테고리 선택</label>
                 <select name="inquiryType" id="id_select" class="form-control" readonly>
@@ -79,13 +74,10 @@ float:right;
             </div>
             <input type="hidden" value="${answerInquiryEditForm.inquiryNum}" name="inquiryNum">
             <textarea name="inquiryAnswer" style="white-space:pre-line;">${answerInquiryEditForm.inquiryAnswer}</textarea>
-            <button type="submit" id="editBtn">수정하기</button><br/>
-      </div>    
-      </form>
+            <button type="submit" class="btn btn-primary" id="editBtn">수정하기</button><br/>
             <div class="submit"><a href="adminInquiry">글 목록 가기</a></div>
-        <hr>
-    
-    
+      </div>    
+      </form>    
 <script>
 
         $(document).ready(function(){

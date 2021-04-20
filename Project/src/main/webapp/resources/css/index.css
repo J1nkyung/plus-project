@@ -418,6 +418,7 @@ box-shadow: 0 5px 15px -5px #52515170;
 	/* 더하기 등록 버튼 */
 .material-icons{
 	color: rgb(0, 30, 250);
+	    cursor: pointer;
 	}
 
  .material-icons:hover{

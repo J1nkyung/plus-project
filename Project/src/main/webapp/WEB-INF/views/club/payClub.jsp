@@ -17,6 +17,17 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
     <title>포인트결제창</title>
+    <style >
+       #payBtn{
+	     padding:5px;
+	     width:70px;
+	     height : 40px;
+	     background-color : #001eff;
+	     color: white;
+	     border-style : none;
+	     border-radius : 3px;
+  		 }
+    </style>
 </head>
 <body>
     <div class="pointContainer">
@@ -25,11 +36,11 @@
 	    <h2>모임정보</h2>
 	    
 	    <c:set var="totalPoint" value="0" /> <!-- 기본 변수 선언 -->
-	   	<p>${cvoSend.clubName } - ${cvoSend.clubFee }원</p>
+	   	<p>${cvoSend.clubName } 💰  ${cvoSend.clubFee } P</p>
 	   	<c:set var="totalPoint" value="${totalPoint + cvoSend.clubFee }" />
 	    
 	    <h2>결제포인트</h2>
-	    <p>${totalPoint }</p>
+	    <p>${totalPoint } P</p>
 	    
 	    <input type="button" id="payBtn" value="결제하기" />
     </div>     
@@ -49,6 +60,7 @@
                success: function (data) {
                console.log(data);
                alert("모임 신청이 완료되었습니다.");
+               opener.parent.location.reload();
                window.close();
             }
         });

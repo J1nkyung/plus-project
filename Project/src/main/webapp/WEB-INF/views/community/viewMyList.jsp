@@ -243,7 +243,7 @@ width: 240px;
 										</li>
 										<c:forEach begin="${pmem.startPage}" end="${pmem.endPage}" var="idx">
 											<li>
-												<a href="ViewMyList${pmem.makeQuery(idx)}&clubNum=2&memberNum=${memberNum}">
+												<a href="ViewMyList${pmem.makeQuery(idx)}&clubNum=${clubNum }&memberNum=${memberNum}">
 													<span class="span" id="commSpan">${idx}</span>
 												</a>
 											</li>
@@ -291,7 +291,7 @@ width: 240px;
 								</li>
 								<c:forEach begin="${PageMakerComments.startPage}" end="${PageMakerComments.endPage}" var="idx">
 									<li>
-										<a href="ViewMyList${PageMakerComments.makeQuery(idx)}&clubNum=2&memberNum=${memberNum}">
+										<a href="ViewMyList${PageMakerComments.makeQuery(idx)}&clubNum=${clubNum }&memberNum=${memberNum}">
 											<span class="span" id="commSpan">${idx}</span>
 										</a>
 									</li>
