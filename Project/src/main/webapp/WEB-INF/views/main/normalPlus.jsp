@@ -41,9 +41,9 @@
 	<section class="gallery-block cards-gallery">
 		<div class="gallery-container">
 			<div class="gallerytitle">
-				<h2 id="viewtitle">
+				<h5 id="viewtitle">
 				<b>✨지금 가장 인기 있어요!</b>
-				</h2>
+				</h5>
 			</div>
 
 				<div class="row">
@@ -113,9 +113,9 @@
 	<section class="gallery-block cards-gallery">
 		<div class="gallery-container">
 				<div class="gallerytitle">
-				<h2 id="viewtitle">
+				<h5 id="viewtitle">
 					<b>최근 업데이트 더하기</b>
-				</h2>
+				</h5>
 				<a href="totalList" id="viewtotal"> 더 보기 > </a>
 			</div>
 
