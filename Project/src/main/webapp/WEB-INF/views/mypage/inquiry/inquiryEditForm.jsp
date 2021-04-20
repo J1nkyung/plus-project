@@ -83,10 +83,10 @@ float:right;
                 name="inquiryTitle" value="${inquiryForm.inquiryTitle}">
             <textarea name="inquiryContent" style="white-space:pre-line;">${inquiryForm.inquiryContent}</textarea>
             <button type="submit" id="inquiryBtn">수정하기</button><br/>
+            <div class="submit"><a href="inquiry">글 목록 가기</a></div>
       </div>
       </form>
-            <div class="submit"><a href="inquiry">글 목록 가기</a></div>
-        <hr>
+        
     
     
 <script>

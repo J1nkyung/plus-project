@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!--${pageContext.request.contextPath}" 이게 web-app을 가리킨다!!!!!   -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<!-- JSTL 날짜 형식 바꾸는 태그 라이브러리 , 노션가면 주소 있음  
-	fmt:formatDate : Date 형을 받아서 원하는 포멧으로 날짜 형태를 변경시켜 준다.-->
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
@@ -15,15 +12,6 @@
 <title>HeartPage</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
-<!--<link rel="stylesheet" href="css/heart.css">  -->
 <style>
 .wrap {
 	height : auto !important;
@@ -185,15 +173,52 @@ table {
 	height: 250px;
 }
 </style>
+<script>
+
+	if (getCookie("categoryTab") != '') {
+		if (getCookie("categoryTab") == 'one') {
+			$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
+		} else if (getCookie("categoryTab") == 'two') {
+			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
+		}
+	} else {
+		setCookie("categoryTab", "one");
+		$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
+	}
+	
+	var setCookie = function(name, value) {
+	    document.cookie = name + '=' + value + ';path=/';
+	};
+	
+	var getCookie = function(name) {
+	    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+	    return value? value[2] : null;
+	};
+
+	var temp = $(':radio[name="tabs"]:checked').val();
+	//if(temp ==null ){
+	//	$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
+	
+	$('input:radio[name=tabs]').on("click", function(){
+		if (temp == 'one') {
+			setCookie("categoryTab", "one");
+			$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
+		} else {
+			setCookie("categoryTab", "one");
+s			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
+		}
+	});
+	
+</script>
 </head>
 
 <body>
 	<div class="heartContainer">
 		<h1 id="heartTitle">나의 찜목록</h1>
 		<div class="heartTab" style="text-align: left">
-			<input class="tabs" id="tab1" type="radio" name="tabs" checked>
+			<input class="tabs" id="tab1" type="radio" name="tabs" value="one">
 			<label for="tab1" class="tabs">신청 가능한 더하기</label> <input class="tabs"
-				id="tab2" type="radio" name="tabs"> <label for="tab2"
+				id="tab2" type="radio" name="tabs" value="two"> <label for="tab2"
 				class="tabs">결제 가능한 더하기</label>
 			<hr>
 
@@ -375,8 +400,27 @@ table {
 
 			$("#clubNumArr").val(param);
 			
-			window.open("applyPayClub?clubNumArr="+param,
-      	                "결제하기", "width=400, height=450, left=400, top=100");
+			$.ajax({
+				url : 'checkPayYn',
+				type : 'post',
+				traditional : true,
+				data : {
+					'clubNumArr' : param
+				},
+				success : function(result) {
+					console.log(result);
+					if (result == 'applyAvailable') {
+						window.open("applyPayClub?clubNumArr="+param,
+		      	                "결제하기", "width=400, height=450, left=400, top=100");
+					} else {
+						alert(result);
+						location.reload();
+					}
+				},
+				error : function() {
+					alert("error")
+				}
+			});
 		}
 
 		if ('${msg}' != '') {
@@ -412,6 +456,18 @@ table {
 			});
 		}
 		
+		
+		//1.체크된 radio value값 가져오기
+		/* var temp = $(':radio[name="tabs"]:checked').val();
+		if(temp ==null ){
+			$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
+		} else{
+			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
+		} */
+		//2. radio 값 체크하기
+		
+
+
 	</script>
 
 </body>

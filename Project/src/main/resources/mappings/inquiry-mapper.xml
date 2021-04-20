@@ -52,7 +52,7 @@
 	</select>
 	
 	<!-- 문의글 10개씩 끊어서 페이징 -->
-	<select id="getInquiryList" resultMap="inquiryResult" parameterType="com.project.plus.domain.CriteriaAdmin">
+	<select id="getInquiryList" resultMap="inquiryResult" parameterType="com.project.plus.domain.CriteriaMem">
 		SELECT member_num, inquiry_num, inquiry_title, inquiry_content, inquiry_type, inquiry_state, inquiry_regdate 
 		FROM (SELECT member.member_num, inquiry_num, inquiry_title, inquiry_content, inquiry_type, inquiry_state, 
 		inquiry_regdate, row_number() OVER (ORDER BY inquiry_regdate DESC) AS rNum 

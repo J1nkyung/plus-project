@@ -1,14 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<link rel="stylesheet" href="${path}/resources/css/reviewList.css">
-<script type="text/javascript"
-	src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 
 <!DOCTYPE html>
 <html>
@@ -17,416 +14,425 @@
 </head>
 <meta charset="UTF-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+   content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
 
 <!-- font -->
 <link rel="stylesheet" type="text/css"
-	href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+   href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+   crossorigin="anonymous">
 <link rel="stylesheet" href="${path}/resources/css/admin-aside.css">
 
 <!-- themify icon -->
 <!-- fontawesome CSS -->
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
-	integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
-	crossorigin="anonymous">
+   href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+   integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+   crossorigin="anonymous">
+<link rel="stylesheet" href="${path}/resources/css/reviewList.css">
+<script type="text/javascript"
+   src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 
 <style>
 body {
-	padding-top: 30px;
-	font-family: 'NanumSquare', sans-serif;
-	margin-left: 40px;
+   padding-top: 30px;
+   font-family: 'NanumSquare', sans-serif;
+   margin-left: 40px;
 }
+
 a {
-	color: inherit;
+   color: inherit;
 }
+
 a:hover {
-	text-decoration: none;
+   text-decoration: none;
 }
+
 .Container {
-	margin: 0;
-	width: 1140px;
+   margin: 0;
+   width: 1140px;
 }
+
 .Content {
-	position: absolute;
-	left: 25%;
-	width: 70%;
-	height: 100vh;
+   position: absolute;
+   left: 25%;
+   width: 70%;
+   height: 100vh;
 }
+
 #tableWrapper {
-	width: 85%;
-	height: 415.550px;
-	padding-top: 30px;
-	padding-bottom: 30px;
+   width: 85%;
+   height: 415.550px;
+   padding-top: 30px;
+   padding-bottom: 30px;
 }
+
 #block {
-	border: 1px solid rgba(189, 186, 186, 0.829);
-	border-radius: 2%;
-	min-height: 443.2px;
+   border: 1px solid rgba(189, 186, 186, 0.829);
+   border-radius: 2%;
+   min-height: 443.2px;
 }
+
 #tableWrapper table {
-	width: 100%;
-	border-collapse: collapse;
+   width: 100%;
+   border-collapse: collapse;
 }
+
 #tableWrapper table th:first-child {
-	border-radius:10px 0px 0px 0px;
+   border-radius: 10px 0px 0px 0px;
 }
+
 #tableWrapper table th:last-child {
-	border-radius:0px 10px 0px 0px;
+   border-radius: 0px 10px 0px 0px;
 }
+
 #tableWrapper table th {
-	text-align: center;
-	background-color: grey;
-	height: 19.6px;
-	padding: 13px;
-	background-color: #001eff;
-	color: white;
+   text-align: center;
+   background-color: grey;
+   height: 19.6px;
+   padding: 13px;
+   background-color: #001eff;
+   color: white;
 }
+
 #tableWrapper table td {
-	text-align: center;
-	padding: 7px;
-	max-height: 17px;
+   text-align: center;
+   padding: 7px;
+   max-height: 17px;
 }
+
 #pageArea {
-	margin: 0 auto;
-	position: relative;
+   margin: 0 auto;
+   position: relative;
 }
+
 .paging {
-	margin-top: 40px;
-	position: absolute;
-	left: 37%;
+   margin-top: 10px;
+   position: absolute;
+   left: 37%;
 }
+
 .paging>li {
-	list-style: none;
-	float: left;
-	padding: 6px 1px;
+   list-style: none;
+   float: left;
+   padding: 6px 1px;
 }
+
 .span {
-	padding: 6px 12px;
-	border: 1px solid lightgray;
+   padding: 6px 12px;
+   border: 1px solid lightgray;
 }
+
 #info, .paging>li :hover {
-	text-decoration: none;
+   text-decoration: none;
 }
+
 #keywordInput {
-	display: inline;
+   display: inline;
 }
+
 .search {
-	float: right;
-	margin-bottom: 3px;
-	margin-right: 3px;
+   float: right;
+   margin-bottom: 3px;
+   margin-right: 3px;
 }
+
 #searchType {
-	height: 24px;
+   height: 24px;
 }
 </style>
 <style type="text/css">
 li {
-	list-style: none;
-	float: left;
-	padding: 6px;
+   list-style: none;
+   float: left;
+   padding: 6px;
 }
+
 #delBtn a:hover {
-	color: white;
+   color: white;
 }
+
 .clubname {
-	width: 200px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+   width: 200px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
+
 .clubleader {
-	width: 90px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+   width: 90px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
-.btn-outline-primary {
-    border-color: #A9BCF5;
-    color: #A9BCF5; }
-.btn-outline-primary:hover,
-.btn-outline-primary:focus {
-    border-color: #819FF7;
-    background-color: #819FF7;
-    color: #FFF; }
-.btn-outline-primary:active,
-.btn-outline-primary:visited,
-.btn-outline-primary:active:focus,
-.btn-outline-primary:active:hover {
-    border-color: #CED8F6;
-    background-color: #819FF7;
-    color: #FFF; }
-    
-.btn-outline-danger {
-    border-color: #E2A9F3;
-    color: #E2A9F3; }
-.btn-outline-danger:hover,
-.btn-outline-danger:focus {
-    border-color: #D0A9F5;
-    background-color: #D0A9F5;
-    color: #FFF; }
-.btn-outline-danger:active,
-.btn-outline-danger:visited,
-.btn-outline-danger:active:focus,
-.btn-outline-danger:active:hover {
-    border-color: #F2E0F7;
-    background-color: #E2A9F3;
-    color: #FFF; }
+
+.btn-primary {
+    background-color: #7589eb;
+   border-color: #7589eb;
+   color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+   border-color: #819FF7;
+   background-color: #819FF7;
+   color: #FFF;
+}
+
+.btn-primary:active, .btn-primary:visited,
+   .btn-primary:active:focus, .btn-primary:active:hover {
+   border-color: #CED8F6;
+   background-color: #819FF7;
+   color: #FFF;
+}
+
+.btn-success {
+   background-color:#c775eb;
+   border-color: #c775eb;
+   color: #fff;
+}
+
+.btn-success:hover, .btn-success:focus {
+   border-color: #D0A9F5;
+   background-color: #D0A9F5;
+   color: #FFF;
+}
+
+.btn-success:active, .btn-success:visited,
+   .btn-success:active:focus, .btn-success:active:hover {
+   border-color: #F2E0F7;
+   background-color: #E2A9F3;
+   color: #FFF;
+}
+
 .nav-item {
-	font-size: 13px;
-	padding: 0px;
-	padding-left: 35px;
+   font-size: 13px;
+   padding: 0px;
+   padding-left: 35px;
 }
+
 .navbar-light .navbar-nav .nav-link {
-	margin: 0;
-	padding: 5px;
+   margin: 0;
+   padding: 5px;
 }
-#gomain{
-color:white; 
-font-size:12px;
-padding-top:30px;
+
+#gomain {
+   color: white;
+   font-size: 12px;
+   padding-top: 30px;
 }
 </style>
 
 <body>
-	<div class="Container">
-		<div class="Content">
-			<h4>모임 관리</h4>
+   <div class="Container">
+      <div class="Content">
+         <h4>모임 관리</h4>
 
-			<div id="tableWrapper">
-				<form role="form" method="get" id="form">
+         <div id="tableWrapper">
+               <div id="block">
+                  <table class="useInfo">
+                     <thead>
+                        <tr>
 
-					<div id="block">
-						<table class="useInfo">
-							<thead>
-								<tr>
-									<!-- <th>모임번호</th> -->
-									<th>카테고리</th>
-									<th>모임이름</th>
-									<th>모임장</th>
-									<th>시작일</th>
-									<th>종료일</th>
-									<th>ON/OFF</th>
-									<th>모임구분</th>
-									<th>삭제</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="club" items="${adminClubList}">
-									<tr>
-										<%-- <td>${club.clubNum}</td> --%>
-										<td>${club.clubCategory}</td>
-										<td><a href="${path}/getClub?clubNum=${club.clubNum}"><div
-													class="clubname">${club.clubName}</div></a></td>
-										<td><div class="clubleader">${club.clubLeader}</div></td>
-										<fmt:parseDate var="parseRegDate"
-											value="${club.clubStartDate}" pattern="yyyy-MM-dd" />
-										<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
-											pattern="yyyy-MM-dd" />
-										<td class="text-center">${resultRegDt}</td>
-										<fmt:parseDate var="parseRegDate" value="${club.clubEndDate}"
-											pattern="yyyy-MM-dd" />
-										<fmt:formatDate var="resultRegDt" value="${parseRegDate}"
-											pattern="yyyy-MM-dd" />
-										<td class="text-center">${resultRegDt}</td>
+                           <th>카테고리</th>
+                           <th>모임이름</th>
+                           <th>모임장</th>
+                           <th>시작일</th>
+                           <th>종료일</th>
+                           <th>ON/OFF</th>
+                           <th>모임구분</th>
+                           <th>삭제</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <c:forEach var="club" items="${adminClubList}">
+                           <tr>
 
-										<c:if test="${club.clubOnOff eq '온라인'}">
-											<td class="text-center">
-												<button type="button" class="btn btn-outline-warning btn-sm"
-													style="width: 70px">ON</button>
-											</td>
-										</c:if>
-										<c:if test="${club.clubOnOff eq '오프라인'}">
-											<td class="text-center">
-												<button type="button" class="btn btn-outline-info btn-sm"
-													style="width: 70px">OFF</button>
-											</td>
-										</c:if>
+                              <td>${club.clubCategory}</td>
+                              <td><a href="${path}/getClub?clubNum=${club.clubNum}">
+                                    <div class="clubname">${club.clubName}</div>
+                              </a></td>
+                              <td><div class="clubleader">${club.clubLeader}</div></td>
+                              <fmt:parseDate var="parseRegDate"
+                                 value="${club.clubStartDate}" pattern="yyyy-MM-dd" />
+                              <fmt:formatDate var="resultRegDt" value="${parseRegDate}"
+                                 pattern="yyyy-MM-dd" />
+                              <td class="text-center">${resultRegDt}</td>
+                              <fmt:parseDate var="parseRegDate" value="${club.clubEndDate}"
+                                 pattern="yyyy-MM-dd" />
+                              <fmt:formatDate var="resultRegDt" value="${parseRegDate}"
+                                 pattern="yyyy-MM-dd" />
+                              <td class="text-center">${resultRegDt}</td>
 
-										<c:if test="${club.clubKind eq 1}">
-											<td class="text-center">
-												<button type="button" class="btn btn-outline-primary btn-sm"
-													style="width: 70px; font-weight: bold;">가치+</button>
-											</td>
-										</c:if>
-										<c:if test="${club.clubKind eq 2}">
-											<td class="text-center">
-												<button type="button" class="btn btn-outline-danger btn-sm"
-													style="width: 70px; font-weight: bold;">도움+</button>
-											</td>
-										</c:if>
-									<form action="deleteAdminClub" method="post">
-											<input type="hidden" name="clubNum" value="${club.clubNum}">
-											<td class="text-center">
+                              <c:if test="${club.clubOnOff eq '온라인'}">
+                                 <td class="text-center">
+                                 <button type="button" class="btn btn-warning btn-sm" style="width: 50px; font-weight: bold;">ON</button></td>
+                              </c:if>
+                              <c:if test="${club.clubOnOff eq '오프라인'}">
+                                 <td class="text-center">
+                                 <button type="button" class="btn btn-info btn-sm" style="width: 50px; font-weight: bold;">OFF</button></td>
+                              </c:if>
 
-												<button type="submit"  class="btn btn-danger btn-sm"
-													id="delBtn" style="width: 70px; font-weight: bold;">삭제
-													<%-- <a href="${path}/deleteAdminClub?clubNum=${club.clubNum}">삭제</a> --%>
-												</button>
+                              <c:if test="${club.clubKind eq 1}">
+                                 <td class="text-center">
+                                 <button type="button" class="btn btn-primary btn-sm" style="width: 60px; font-weight: bold;">가치+</button></td>
+                              </c:if>
+                              <c:if test="${club.clubKind eq 2}">
+                                 <td class="text-center">
+                                 <button type="button" class="btn btn-success btn-sm" style="width: 60px; font-weight: bold;">도움+</button></td>
+                              </c:if>
+                                 <td class="text-center">
+                                    <form action="deleteAdminClub" method="post">
+                                          <input type="hidden" name="clubNum" value="${club.clubNum}"/>
+                                             <button type="submit" class="btn btn-danger btn-sm"
+                                                id="delBtn" style="width: 50px; font-weight: bold;">
+                                                삭제
+                                                <!-- <a href="${path}/deleteAdminClub?clubNum=${club.clubNum}">삭제</a> -->
+                                             </button>
+                                    </form> 
+                                 </td>
+                           </tr>
+                        </c:forEach>
+                     </tbody>
+                  </table>`
+               </div>
 
-											</td>
-									 </form>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
+               <!--  사이드 바 추가 -->
+               <nav class="navbar navbar-expand-md navbar-light">
+                  <div class="col-lg-3 sidebar fixed-top">
+                     <button class="navbar-toggler ml-auto mb-2 bg-light"
+                        type="button" data-toggle="collapse" data-target="#sidebar">
+                        <span class="navbar-toggle-icon"></span>
+                     </button>
+                     <div class="collapse navbar-collapse" id="sidebar">
+                        <div class="container-fluid">
+                           <div class="row">
+                              <!-- sidebar -->
+                              <a href="#"
+                                 class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4">ADMIN
+                                 PAGE</a>
+                              <!--  <div class="bottom-border pb-3"> -->
+                              <img class="rounded-circle mr-3"
+                                 src="${path}/resources/img/admin.jpg" alt="" width="200px"
+                                 height="200px">
 
-					<!--  사이드 바 추가 -->
-					<nav class="navbar navbar-expand-md navbar-light">
-						<div class="col-lg-3 sidebar fixed-top">
-							<button class="navbar-toggler ml-auto mb-2 bg-light"
-								type="button" data-toggle="collapse" data-target="#sidebar">
-								<span class="navbar-toggle-icon"></span>
-							</button>
-							<div class="collapse navbar-collapse" id="sidebar">
-								<div class="container-fluid">
-									<div class="row">
-										<!-- sidebar -->
-										<a href="#"
-											class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4">ADMIN
-											PAGE</a>
-										<!--  <div class="bottom-border pb-3"> -->
-										<img class="rounded-circle mr-3"
-											src="${path}/resources/img/admin.jpg" alt="" width="200px"
-											height="200px">
+                           </div>
+                           <div class="navcontent">
+                              <ul class="navbar-nav flex-column mt-4">
 
-									</div>
-									<div class="navcontent">
-										<ul class="navbar-nav flex-column mt-4">
+                                 <!-- 회원 관리 -->
+                                 <li class="nav-item"><a href="memberListPage"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
+                                 </a></li>
+                                 <!-- 모임 관리 -->
+                                 <li class="nav-item"><a href="adminClub"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="fas fa-plus text-white fa-lg mr-3"></i>모임 관리
+                                 </a></li>
 
-											<!-- 회원 관리 -->
-											<li class="nav-item"><a href="memberListPage"
-												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
-											</a></li>
-											<!-- 모임 관리 -->
-											<li class="nav-item"><a href="adminClub"
-												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-plus text-white fa-lg mr-3"></i>모임 관리
-											</a></li>
+                                 <!-- 문의 관리 -->
+                                 <li class="nav-item"><a href="adminInquiry"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="fas fa-question-circle text-white fa-lg mr-3"></i>문의
+                                       관리
+                                 </a></li>
+                                 <!-- 공지 관리 -->
+                                 <li class="nav-item"><a href="announce"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="far fa-flag text-white fa-lg mr-3"></i>공지 관리
+                                 </a></li>
+                                 <!-- 결제내역 관리 -->
+                                 <li class="nav-item"><a href="adminPay"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="fas fa-coins text-white fa-lg mr-3"></i>결제내역 관리
+                                 </a></li>
+                                 <!-- 관리자 차트 -->
+                                 <li class="nav-item"><a href="adminChart"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="fas fa-chart-line text-white fa-lg mr-3"></i>차트 관리
+                                 </a></li>
+                                 <p id="gomain">
+                                    <a href="main"><i class="fas fa-home"></i> 메인으로 가기 </a>
+                                 </p>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </nav>
 
-											<!-- 문의 관리 -->
-											<li class="nav-item"><a href="adminInquiry"
-												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-question-circle text-white fa-lg mr-3"></i>문의
-													관리
-											</a></li>
-											<!-- 공지 관리 -->
-											<li class="nav-item"><a href="announce"
-												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="far fa-flag text-white fa-lg mr-3"></i>공지
-													관리
-											</a></li>
-											<!-- 결제내역 관리 -->
-											<li class="nav-item"><a href="adminPay"
-												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-coins text-white fa-lg mr-3"></i>결제내역 관리
-											</a></li>
-											<!-- 관리자 차트 -->
-											<li class="nav-item"><a href="adminChart"
-												class="nav-link text-white p-3 mb-2 sidebar-link"> <i
-													class="fas fa-chart-line text-white fa-lg mr-3"></i>차트
-													관리
-											</a></li>
-											<p id="gomain">
-												<a href="main"><i class="fas fa-home"></i> 메인으로 가기 </a>
-											</p>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-					</nav>
+               <!-- pagenation -->
+               <div id="pageArea">
 
-					<!-- pagenation -->
-					<div id="pageArea">
+                  <ul class="paging">
 
-						<ul class="paging">
+                     <%-- <c:if test="${pageMakerClub.prev}"> --%>
+                     <li><a class="span"
+                        href="adminClub${pageMakerClub.makeQuery(pageMakerClub.startPage - 1)}">◀</a></li>
+                     <%-- </c:if> --%>
 
-							<%-- <c:if test="${pageMakerClub.prev}"> --%>
-							<li><a class="span"
-								href="adminClub${pageMakerClub.makeQuery(pageMakerClub.startPage - 1)}">◀</a></li>
-							<%-- </c:if> --%>
+                     <c:forEach begin="${pageMakerClub.startPage}"
+                        end="${pageMakerClub.endPage}" var="idx">
+                        <li><a href="adminClub${pageMakerClub.makeQuery(idx)}"><span
+                              class="span">${idx}</span></a></li>
+                     </c:forEach>
 
-							<c:forEach begin="${pageMakerClub.startPage}"
-								end="${pageMakerClub.endPage}" var="idx">
-								<li><a href="adminClub${pageMakerClub.makeQuery(idx)}"><span
-										class="span">${idx}</span></a></li>
-							</c:forEach>
+                     <%-- <c:if test="${pageMakerClub.next && pageMakerClub.endPage > 0}"> --%>
+                     <li><a class="span"
+                        href="adminClub${pageMakerClub.makeQuery(pageMakerClub.endPage + 1)}">▶</a></li>
+                     <%-- </c:if> --%>
+                  </ul>
 
-							<%-- <c:if test="${pageMakerClub.next && pageMakerClub.endPage > 0}"> --%>
-							<li><a class="span"
-								href="adminClub${pageMakerClub.makeQuery(pageMakerClub.endPage + 1)}">▶</a></li>
-							<%-- </c:if> --%>
-						</ul>
+               </div>
+               <!-- pageArea -->
+            </form>
+         </div>
+         <!-- wrapper -->
 
-					</div>
-					<!-- pageArea -->
-				</form>
-			</div>
-			<!-- wrapper -->
+      </div>
+   </div>
+   <!-- end of table --> 
 
-		</div>
-	</div>
-	<!-- end of table -->
-	<script>
-	
-	$(document).ready(function(){
-				 
-			$(function(){
-				$(document).on('click','#delBtn',function(){
-					if(confirm("모임을 삭제하시겠습니까?") == true){
-					}else{
-						return false;
-					}
-				})
-			});
-	})
-		
-		window.onload = function(){
-			selectNav();
-		}
-		function selectNav(){ 
-			// 지금 접속해있는 주소 얻어서 now에 넣어줌
-			var now = window.location.href;
-			// className이 ()인 값을 nav에 넣어줌
-				var nav = document.getElementsByClassName("nav-link text-white p-3 mb-2 sidebar-link");
-			// 주소에 포함되어야 하는 단어 배열로 선언
-				var arr = ["ListPage", "adminClub", "adminInquiry", "announce", "adminPay", "adminChart"];
-			
-			//기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
-				for (var i = 0; i < arr.length; i++) {
-					if(now.includes(arr[i])){
-				nav[i].setAttribute("class", "nav-link text-white p-3 mb-2 sidebar-link current");
-					}
-				}
-			
-		}
-		
-		
-	</script>
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-		crossorigin="anonymous"></script>
-	<script src="js/script.js"></script>
-	<script src="/resources/js/script.js"></script>
+   <script>
+      $(document).ready(function() {
+
+         $(function() {
+            $(document).on('click', '#delBtn', function() {
+               if (confirm("모임을 삭제하시겠습니까?") == true) {
+               } else {
+                  return false;
+               }
+            })
+         });
+      })
+ 
+      window.onload = function() {
+         selectNav();
+      }
+      function selectNav() {
+         // 지금 접속해있는 주소 얻어서 now에 넣어줌
+         var now = window.location.href;
+         // className이 ()인 값을 nav에 넣어줌
+         var nav = document
+               .getElementsByClassName("nav-link text-white p-3 mb-2 sidebar-link");
+         // 주소에 포함되어야 하는 단어 배열로 선언
+         var arr = [ "ListPage", "adminClub", "adminInquiry", "announce",
+               "adminPay", "adminChart" ];
+
+         //기본 nav 요소는 for문으로 돌려서 각 단어가 포함된 페이지의 해당 요소에curr 클래스를 추가해준다 
+         for (var i = 0; i < arr.length; i++) {
+            if (now.includes(arr[i])) {
+               nav[i]
+                     .setAttribute("class",
+                           "nav-link text-white p-3 mb-2 sidebar-link current");
+            }
+         }
+      }
+   </script>
 
 </body>
 

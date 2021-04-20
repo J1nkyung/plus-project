@@ -129,7 +129,7 @@ text-decoration:none;
          <div class="bottom-border sidebarContent">
             <img class="clubMainpic"
                src="${path}/resources${club.clubMain_pic}" alt="" width="280px"
-               height="200px">
+               height="200px" onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" >
 
                       
                       <div class="navbar-nav flex-column">
@@ -152,7 +152,7 @@ text-decoration:none;
                       </div>
                          
                           <div class="tr nav-link p-3">
-                          <span class="td"><button type="submit" id="viewMine"><a href="${path}/ViewMyList?clubNum=${club.clubNum }&memberNum=${user.memberNum}">내글보기</a></button></span>
+                          <span class="td"><button type="submit" id="viewMine"><a href="${path}/ViewMyList?clubNum=${clubNum }&memberNum=${user.memberNum}">내글보기</a></button></span>
                         </div>
                          
                          
