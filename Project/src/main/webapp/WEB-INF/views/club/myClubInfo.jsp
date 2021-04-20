@@ -78,10 +78,8 @@
 				</label> <span id="spanFileName[0]">${club.clubMain_pic_name}</span>
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
 							<!-- 이미지 미리보기 영역  -->
-					<div class="imgViewArea" style="margin-top:10px; display:none;" >
-						<img class="imgArea" style="width:200px; height:100px;" onerror="this.style.display='none';" /></div>
-				<img class="orgImg" style="width:200px; height:100px;" src="${path}/resources${club.clubMain_pic}"	
-					onerror="this.style.display='none';" /> 
+					<div class="imgViewArea" style="margin-top:10px;">	
+						<img class="imgArea" style="width:200px; height:100px;"   src="${path}/resources${club.clubMain_pic}"	 onerror="this.style.display='none';" /></div>
 			</div>
 		</div> 
 		<article>
@@ -96,10 +94,8 @@
 					</label> <span id="spanFileName[1]">${club.clubContent1_pic_name}</span>
 					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
 								<!-- 이미지 미리보기 영역  -->
-					<div class="imgViewArea" style="margin-top:10px; display:none;" >
-						<img class="imgArea" style="width:200px; height:100px;" onerror="this.style.display='none';" /></div>
-				<img class="orgImg" style="width:200px; height:100px;" src="${path}/resources${club.clubContent1_pic}"	
-					onerror="this.style.display='none';" /> 
+					<div class="imgViewArea" style="margin-top:10px;" >
+						<img class="imgArea" style="width:200px; height:100px;" src="${path}/resources${club.clubContent1_pic}"	 onerror="this.style.display='none';" /></div>
 				</div>
 			</div>
 			<div id="write-checkinfo">
@@ -119,10 +115,8 @@
 					</label> <span id="spanFileName[2]">${club.clubContent2_pic_name}</span>
 					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
 								<!-- 이미지 미리보기 영역  -->
-					<div class="imgViewArea" style="margin-top:10px; display:none;" >
-						<img class="imgArea" style="width:200px; height:100px;" onerror="this.style.display='none';" /></div>
-				<img class="orgImg" style="width:200px; height:100px;" src="${path}/resources${club.clubContent2_pic}"	
-					onerror="this.style.display='none';" /> 
+					<div class="imgViewArea" style="margin-top:10px;" >
+						<img class="imgArea" style="width:200px; height:100px;" src="${path}/resources${club.clubContent2_pic}"	 onerror="this.style.display='none';" /></div>
 				</div>
 			</div>
 			<div class="hashtag-wrap">
@@ -281,7 +275,6 @@ function changeImg(index){
 
 //파일 선택시 파일이름 변경 
 function getFileName(index){
-
   let fileNameSpan = document.getElementById('spanFileName['+index+']');
   let name = $('input[type=file]')[index].files[0].name;
  	console.log("파일 :" + name);
@@ -289,9 +282,11 @@ function getFileName(index){
   $(fileNameSpan).append(name); 
   
   // 해당하는 index로 파일 삭제시 생성된 input이 있을 경우 remove 
-  if($('.status['+index+']')){
-	  console.log($('.status['+index+']'));
-	  $('.status['+index+']').remove();
+  
+  let target =  document.getElementById('status['+index+']');
+  if(target){
+	  console.log("remove 히든input" + target);
+	  target.remove();
   }
 }
 
@@ -299,28 +294,17 @@ function getFileName(index){
 function deleteFile(index){
 	  let fileNameSpan = document.getElementById('spanFileName['+index+']')
 	  let nameArr = document.getElementsByName('upload');
-		let hiddenInput = '<input type="hidden" class="status['+index+']" name="fileStatus" value="deleted_'+index+'" />';
+	  let hiddenInput = '<input type="hidden" id="status['+index+']" name="fileStatus" value="deleted_'+index+'" />';
+	  fileNameSpan.innerText = "";
+	  // file 값을 없애기 
+	  nameArr[index].value = "";
+	  $('.imgViewArea:eq('+index+')').css({ 'display' : 'none' });
 	  
-	// 기존 이미지의 미리보기 영역 삭제 
-	let orgImgs = document.getElementsByClassName('orgImg');
-	if(orgImgs[index].src != ""){
-		console.log("오니?")
-		$('.orgImg:eq('+index+')').attr('src', ''); 
-		  fileNameSpan.innerText = "";
-		  $('#frm').append(hiddenInput);
-	} else {
+	  // 수정시 아무것도 안했을 경우에도 null로 들어가기 때문에 그에 따른 처리를 해야 한다
+	  // 삭제 버튼을 클릭하면 따로 input hidden으로 deleted를 보낸다 
+			console.log(hiddenInput);
+			$('#frm').append(hiddenInput);
 	
-
-  fileNameSpan.innerText = "";
-  // file 값을 없애기 
-  nameArr[index].value = "";
-  $('.imgViewArea:eq('+index+')').css({ 'display' : 'none' });
-  
-  // 수정시 아무것도 안했을 경우에도 null로 들어가기 때문에 그에 따른 처리를 해야 한다
-  // 삭제 버튼을 클릭하면 따로 input hidden으로 deleted를 보낸다 
-		console.log(hiddenInput);
-		$('#frm').append(hiddenInput);
-	}
 }
 
 
@@ -499,18 +483,19 @@ function checkValue(input){
  return value;
 }
 
-function changeDetail(){
- // let detail = document.getElementById('write-checkinfo');
- let selected = document.getElementById('select-kindbox');
- let intro = document.getElementById('intro');
- console.log(selected.value)
- console.log(intro.innerText)
- 
- if(selected.value == 1 ){
-     intro.innerText = "모임의 인증방법을 설명해주세요!";
- } else if (selected.value == 2 ){
-     intro.innerText = "모임의 리더가 되고싶은 회원님은 어떤사람인가요?";
- }
+function changeDetail() {
+	// let detail = document.getElementById('write-checkinfo');
+	let selected = document.getElementById('select-kindbox');
+	let intro = document.getElementById('intro');
+	let placeHolder =  document.getElementById('clubContent2');
+	
+	if (selected.value == 1) {
+		intro.innerText = "모임의 인증방법을 설명해주세요!";
+		placeHolder.placeholder = "모두가 실천할 수 있도록 구체적인 인증방법을 작성해주세요."
+	} else if (selected.value == 2) {
+		intro.innerText = "모임의 리더가 되고싶은 회원님은 어떤사람인가요?";
+		placeHolder.placeholder = '모임원들에게 멋진 자기소개를 해보세요!';
+	}
 
 }
 

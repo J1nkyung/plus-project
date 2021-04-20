@@ -59,26 +59,20 @@
             },
                success: function (data) {
                console.log(data);
-               alert("모임 신청이 완료되었습니다.");
-               opener.parent.location.reload();
-               window.close();
+               if( ${user.memberPoint } < ${totalPoint }){
+                   alert('포인트가 부족합니다. 마이페이지 내에서 충전가능합니다.');
+                   opener.parent.location.reload();
+                   window.close()   
+                }else{ 
+                   alert("결제가 완료되었습니다. 모임은 마이페이지에서 확인해주세요.");
+                   opener.parent.location.reload();
+                   window.close();
+                }
             }
         });
-    	
-    	/*setTimeout(function() {
-            opener.parent.location.reload(); //팝업창을 닫으면서 부모창을 새로고침하는 방법
-            window.close();
-     	}, 1000);*/
+
     });
      
-     /*if('${msg}' != ''){
-    	 confirm('${msg}' ) { 
-    		 location="getPaymentList";
-             return true;
-    	 }else{
-             return false;
-         }
-     }*/
      
      
     </script>

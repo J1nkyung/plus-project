@@ -86,7 +86,7 @@
         #tableWrapper {
             border: 1px solid rgba(189, 186, 186, 0.829);
             width: 85%;
-            height: 50%;
+            height: 65%;
             border-radius: 2%;
             
         }

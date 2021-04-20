@@ -344,12 +344,7 @@ $(function(){
                     alert("이미 신청한 모임입니다!");
                     return false;
                 }
-                
-         /*  	if(!checkLeader()){
-            		alert("개설한 모임은 신청하실 수 없습니다!");
-            		return;
-            	}  */
-            	
+
             	 $.ajax({
                      type: "post",
                      url: "payClub",

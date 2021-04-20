@@ -35,7 +35,7 @@ public class EchoHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		String msg = message.getPayload();
 		log.info("받은 메시지 : " + msg);
-
+		int mNum = getMemberNum(session);
 		if(msg != null) {
 			String[] str = msg.split(",");
 			String notType = str[0];
@@ -45,12 +45,13 @@ public class EchoHandler extends TextWebSocketHandler {
 			String notUrl = str[3];
 			
 			if(str!=null) {
+			 
 				WebSocketSession userSession = users.get(member);
 				TextMessage text = new TextMessage("<a target='_blank' href='"+ notUrl +"'>[<b>" 
 				+ notType + "알림" + "</b>]<div class=\"content\">" + notMessage + "</div></a>" );
 				userSession.sendMessage(text);
 				log.info("멤버번호 : " + member + ", 헤더로 메시지 받기");
-				log.info(notType);
+				log.info("타입 : " + notType);
 			} 
 		} else {
 			log.info("전달받은 메시지 오류");

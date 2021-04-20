@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<!-- 웹소켓 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
@@ -48,7 +48,7 @@
 	            pay_method : 'card',
 	            merchant_uid : 'merchant_' + new Date().getTime(),
 	            name : '포인트 결제',
-	            amount : amount,  
+	            amount : amount,
 	             /* amount : 100,  */
 	            //buyer_email : 'iamport@siot.do', 
 	            //buyer_name : '구매자이름',
@@ -78,7 +78,7 @@
 	                // 결제알림 보내기 
 	                let notMessage ="포인트<b>" + point + "P</b>가 충전되었습니다.";
  					let notType= "결제";
- 					let notUrl = "${path}/getPaymentList";
+ 					let notUrl = "${path}/getPaymentList?memberNum="+memberNum;
  					  $.ajax({
  					        
  							type: "post",
@@ -92,6 +92,7 @@
  							},
  				            success: function (data) {
  				            	// 서버로 알림 메시지 전송 
+ 				            	console.log("결제알림 전송");
  				            	sock.send(notType + "," + memberNum + "," + notMessage + "," + notUrl);
  				            	
  				            },
@@ -109,9 +110,9 @@
 	            
 	            // 1초뒤 실행 
 	            setTimeout(function() {
-			           opener.parent.location.reload(); //팝업창을 닫으면서 부모창을 새로고침하는 방법
-			           window.close();
-	            	}, 1000);
+			          opener.parent.location.reload(); //팝업창을 닫으면서 부모창을 새로고침하는 방법
+			          window.close();
+	            	}, 10000);
 	        });
 	        
 	    }

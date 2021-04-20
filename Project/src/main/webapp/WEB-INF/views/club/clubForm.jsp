@@ -528,9 +528,6 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 		return value;
 	}
 
-	function checkFileSize() {
-
-	}
 
 	function changeDetail() {
 		// let detail = document.getElementById('write-checkinfo');

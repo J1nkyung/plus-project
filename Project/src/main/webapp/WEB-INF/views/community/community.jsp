@@ -392,42 +392,6 @@ padding-bottom:30px;
                </form>
                <!-- 댓글 쓰는 부분 -->
 
-
-
-
-               <%-- <c:forEach items="${comments}" var="comment">
-                     <c:if test="${board.boardNum == comment.boardNum}">
-                     아래부터 시작해야 함 
-                     <hr>
-                     <div id="commentBox">
-                        <div id="writeComment">
-                           <textarea cols="80" rows="1" id="textArea"
-                              placeholder="댓글을 입력해보세요!"></textarea>
-                           <br> <input type="button" id="submitCommBtn" value="등록하기"
-                              onclick="insertComment(${board.boardNum})" />
-                        </div>
-                     </div>
-                        <div class="comments-wrap">
-                           <div class="userComment">
-                              <div class="userSpan">
-                                 <img src="${path}/resources${comment.memberPic}"
-                                    id="commentUserPic"
-                                    onerror="this.src='${path}/resources/img/default_pic.png'" />
-                                 <div id="commentNickname">${comment.memberNickname}</div>
-                                 <div id="commRegdate">${comment.commentsChangedRegdate}</div>
-                              </div>
-                              <div id="commContent">${comment.commentsContent}</div>
-                              <div id="editBtn">
-                                 <a href="#" id="delComm"
-                                    onclick="deleteComment(${comment.commentsNum})">삭제</a> <a
-                                    id="updateComm" href="#"
-                                    onclick="changeTag(${comment.commentsNum})">수정</a>
-                              </div>
-                              <hr>
-                           </div>
-                        </div>
-                     </c:if>
-                  </c:forEach> --%>
                <div id="showCommBtn">
                   <img id="commImg" src="${path}/resources/img/message.png" />
                   <div id="commList" onclick="getComments(${board.boardNum})">댓글(${board.commentsCount}개)</div>
@@ -445,23 +409,6 @@ padding-bottom:30px;
 </body>
 <script>
 
-//수정, 삭제 시 확인 자바스크립트
-	/* $(document).ready(function(){
-			var formObj = $("form[name='updateForm']");
-			
-			$("#btnUp").on("click", function(){
-				formObj.attr("action", "updateView");
-				formObj.attr("method", "get");
-				formObj.submit();				
-			})
-			
-			$("#btnDel").on("click", function(){
-				formObj.attr("action", "deleteBoard");
-				formObj.attr("method", "post");
-				formObj.submit();
-			})
-					
-	}) */
 	
 	let mNum = '${user.memberNum}';
 	let userNickname = '${user.memberNickname}';
