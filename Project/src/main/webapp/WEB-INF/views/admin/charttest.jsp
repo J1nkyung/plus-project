@@ -245,23 +245,15 @@ li {
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-
-      // Load the Visualization API and the corechart package.
       google.charts.load('current', {'packages':['corechart']});
       google.charts.load('current', {'packages':['bar']});
 
-
-      // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(drawChart);
 	  google.charts.setOnLoadCallback(drawChart2);
       google.charts.setOnLoadCallback(drawStuff);
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      
+
       function drawChart() {
 
-        // Create the data table.
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Club');
         data.addColumn('number', 'count');
@@ -272,13 +264,11 @@ li {
           ['취미', ${getCateHobby}]
         ]);
 
-        // Set chart options
         var options = {'title':'모임 개설 현황',
                        'width': 900,
                        'height':550,
                        colors :['#c9dcff', '#9dbefc', '#72a1f7', '#3f76d4']};
 
-        // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
@@ -316,8 +306,6 @@ li {
             [ thisWeek[0],  ${getJoinToday}, ${adminTodayVisit}]
           ]);
 
-          
-          
           var options = {
             title: '더하기 일일 가입자수/방문자수 추이' + ' (' + currentDate + '까지 최근 7일 통계)',
             curveType: 'function',
@@ -330,7 +318,7 @@ li {
 
           chart.draw(data, options);
       }
-  
+ 
           function drawStuff() {
             var data = new google.visualization.arrayToDataTable([
               ['모임카테고리', '온라인', '오프라인'],

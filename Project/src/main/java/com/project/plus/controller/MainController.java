@@ -32,20 +32,16 @@ public class MainController {
    
    @GetMapping("/main")
    public String mainList(Model model, ClubVO cvo, MemberVO mvo) {
-   
       log.info("list(GET) - memberlatitude : " + mvo.getMemberLatitude());
       log.info("list(GET) - memberlongitude : " + mvo.getMemberLongitude());
-
       // GPS 정보가 없으면 gps.jsp 가서 정보를 가져온다.
       if (mvo.getMemberLatitude() == null || mvo.getMemberLongitude() == null) {
          log.info("list(GET) - gps(GET)으로 forward ");
          String kind = "main";
          return "redirect:main/gps?kind="+kind;
       }      
-       
          model.addAttribute("main", service.getListBest(mvo));
          model.addAttribute("main2", service.getListDeadline(mvo));
-
          return "main/index";
          }
    

@@ -18,7 +18,8 @@
 <header></header>
 <section>
 
-	<form action="insertClub" enctype="multipart/form-data" method="post" id="frm" name="insertform">
+	<form action="insertClub" enctype="multipart/form-data" method="post"
+		id="frm" name="insertform">
 		<div class="selection">
 			<div class="select-kind">
 				<label for="exampleFormControlSelect2">더하기 종류</label> <select
@@ -44,24 +45,26 @@
 					<option value="취미">취미</option>
 				</select>
 			</div>
-		
+
 		</div>
-		
+
 		<label for="exampleFormControlFile1">모임의 제목을 입력해주세요</label> <input
-			type="text" maxlength='16' class="form-control" id="club-title" autocomplete="off"
-			placeholder="최대 16글자로 입력해주세요" name="clubName">
+			type="text" maxlength='16' class="form-control" id="club-title"
+			autocomplete="off" placeholder="최대 16글자로 입력해주세요" name="clubName">
 
 		<div class="form-group">
 			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label>
 			<div class="uploadBox">
-				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
-				<input type="file" style="display: none;" name="upload" id="pInput"
+				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+					type="file" style="display: none;" name="upload" id="pInput"
 					onchange="getFileName(0)" />
 				</label> <span id="spanFileName[0]"></span>
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
-							<!-- 이미지 미리보기 영역  -->
-				<div id="imgViewArea" style="margin-top:10px; display:none;">
-					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/></div>
+				<!-- 이미지 미리보기 영역  -->
+				<div id="imgViewArea" style="margin-top: 10px; display: none;">
+					<img id="imgArea" style="width: 200px; height: 100px;"
+						onerror="imgAreaError()" />
+				</div>
 			</div>
 		</div>
 		<article>
@@ -70,8 +73,9 @@
 					설명해주세요!</label>
 				<textarea name="clubContent1" placeholder="사진과 글로 모임을 자세히 소개해보세요."></textarea>
 				<div class="uploadBox">
-					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
-					<input type="file" style="display: none;" name="upload" onchange="getFileName(1)" />
+					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+						type="file" style="display: none;" name="upload"
+						onchange="getFileName(1)" />
 					</label> <span id="spanFileName[1]"></span>
 					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
 				</div>
@@ -79,22 +83,23 @@
 			<div id="write-checkinfo">
 				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을
 					설명해주세요!</label>
-				<textarea name="clubContent2" placeholder="모두가 실천할 수 있도록 구체적인 인증방법을 작성해주세요."></textarea>
+				<textarea name="clubContent2"
+					placeholder="모두가 실천할 수 있도록 구체적인 인증방법을 작성해주세요."></textarea>
 				<div class="uploadBox">
-					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
-					<input type="file" style="display: none;" name="upload"
+					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+						type="file" style="display: none;" name="upload"
 						onchange="getFileName(2)" />
 					</label> <span id="spanFileName[2]"></span>
 					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
-			
+
 				</div>
 			</div>
 			<div class="hashtag-wrap">
 
-				<input type="text" class="form-control" id="write-hashtag" autocomplete="off"
-					onkeypress="onKeyDown()" maxlength='10'
-					placeholder="해쉬태그를 입력해주세요! (최대 5개)"> 
-				<input type="text" style="display:none" id="add-hashtag" name="clubHashtag" />
+				<input type="text" class="form-control" id="write-hashtag"
+					autocomplete="off" onkeypress="onKeyDown()" maxlength='10'
+					placeholder="해쉬태그를 입력해주세요! (최대 5개)"> <input type="text"
+					style="display: none" id="add-hashtag" name="clubHashtag" />
 				<!-- append hashtag -->
 
 			</div>
@@ -103,42 +108,45 @@
 <aside>
 
 	<div class="clubinfo-form">
-		<div class="location" >
-		<label for="exampleFormControlSelect2">모임위치</label><br> 
-		<p id=location-content><img src="${path}/resources/img/mapicon.png"> 마커를 움직여 모임의 위치를 등록해주세요.</p>
-<div id="map" style="width:450px;height:300px;"></div>
+		<div class="location">
+			<label for="exampleFormControlSelect2">모임위치</label><br>
+			<p id=location-content>
+				<img src="${path}/resources/img/mapicon.png"> 마커를 움직여 모임의 위치를
+				등록해주세요.
+			</p>
+			<div id="map" style="width: 450px; height: 300px;"></div>
 
-</div>
-	
-	
+		</div>
+
+
 		<label for="exampleFormControlSelect2">모집 종료일 </label>
 		<div class="clubdate">
 			<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-			<input type="text" class="form-control c-date" id="shut-date"  autocomplete="off"
-				name="clubShutDate" />
+			<input type="text" class="form-control c-date" id="shut-date"
+				autocomplete="off" name="clubShutDate" />
 		</div>
 		<label for="exampleFormControlSelect2">모임 진행 기간 </label>
 		<div class="form-row">
 			<div class="col">
 				<div class="clubdate">
 					<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-					<input type="text" class="form-control c-date" id="start-date"  autocomplete="off"
-						name="clubStartDate" />
+					<input type="text" class="form-control c-date" id="start-date"
+						autocomplete="off" name="clubStartDate" />
 				</div>
 			</div>
 			<div id="tilde">~</div>
 			<div class="col">
 				<div class="clubdate">
 					<img class="calanderimg" src="${path}/resources/img/calendar.png" />
-					<input type="text" class="form-control c-date" id="end-date"  autocomplete="off"
-						name="clubEndDate" autocomplete="off" />
+					<input type="text" class="form-control c-date" id="end-date"
+						autocomplete="off" name="clubEndDate" autocomplete="off" />
 				</div>
 			</div>
 		</div>
 		<div class="people">
 			<label for="exampleFormControlSelect2">참가인원</label> <input
-				type="text" class="form-control" maxlength="2" placeholder="최대 50명" autocomplete="off"
-				id="club-max" name="clubMax">
+				type="text" class="form-control" maxlength="2" placeholder="최대 50명"
+				autocomplete="off" id="club-max" name="clubMax">
 		</div>
 
 
@@ -162,28 +170,30 @@
 		</div>
 		<div class="clubfeeBox">
 			<label for="exampleFormControlSelect2">참가비용</label> <input
-				type="text" class="form-control" id="club-fee" name="clubFee"  autocomplete="off"
-				maxlength="6" >
+				type="text" class="form-control" id="club-fee" name="clubFee"
+				autocomplete="off" maxlength="6">
 		</div>
 		<button type="button" class="btn" id="applyBtn" onclick="goSubmit()">등록하기</button>
 	</div>
-<input type="hidden" name="clubLatitude" id="club-lat" value=""></input>
-<input type="hidden" name="clubLongitude" id="club-lng" value=""></input> 
-<input type="hidden" name="clubLeader" value="${user.memberNickname}"></input> 
+	<input type="hidden" name="clubLatitude" id="club-lat" value=""></input>
+	<input type="hidden" name="clubLongitude" id="club-lng" value=""></input>
+	<input type="hidden" name="clubLeader" value="${user.memberNickname}"></input>
 
-</form>
+	</form>
 </aside>
 <footer></footer>
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.js"></script>
 <script src="${path}/resources/js/bootstrap-datepicker.ko.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=54bd0b6b843cae2c7eb4621d80f301a4"></script>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=54bd0b6b843cae2c7eb4621d80f301a4"></script>
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA14FclHyP6uY1AXC81jP9ZEsnWKEn-nYE"></script>
+	
 <script>
-
-var lat2=0;
-var lng2=0;
+// 사용자가 마커로 찍은 위도, 경도 값
+var clicklat=0;
+var clicklng=0;
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
@@ -193,76 +203,58 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+// GeoLocation을 이용해서 접속 위치를 확인한다.
 if (navigator.geolocation) {
-    
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function(position) {
-        
         var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
+              lon = position.coords.longitude; // 경도
 
-        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:5px" width:10px";>현재위치</div>'; // 인포윈도우에 표시될 내용입니다
-        
-        // 마커와 인포윈도우를 표시합니다
+        var locPosition = new kakao.maps.LatLng(lat, lon), // geolocation으로 얻어온 좌표로 마커를 표시
+         message = '<div style="padding:5px" width:10px";>현재위치</div>'; // 인포윈도우
         displayMarker(locPosition, message);
-            
       });
-    
     var marker = new kakao.maps.Marker({ 
-        // 지도 중심좌표에 마커를 생성합니다 
-        position: map.getCenter() 
+      // 지도 중심좌표에 마커를 생성
+      position: map.getCenter() 
     }); 
-    // 지도에 마커를 표시합니다
+    // 지도에 마커를 표시
     marker.setMap(map);
 
-  
-    // 지도에 클릭 이벤트를 등록합니다
-    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+    // 지도에 클릭 이벤트 등록
+    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출
     kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        
-        
-        // 클릭한 위도, 경도 정보를 가져옵니다 
+        // 클릭한 위도, 경도 정보
         var latlng = mouseEvent.latLng; 
-    
-        // 마커 위치를 클릭한 위치로 옮깁니다
+        // 마커 위치를 클릭한 위치로 옮긴다
         marker.setPosition(latlng);
-
         // 클릭한 위치의 위도 경도를 담아
-        var lat2 = latlng.getLat();
-        var lng2 = latlng.getLng();
-     
+        var clicklat = latlng.getLat();
+        var clicklng = latlng.getLng();
         // formname.inputname.value로 변수를 넣는다.
-        document.insertform.clubLatitude.value=lat2;
-        document.insertform.clubLongitude.value=lng2;
-
+        document.insertform.clubLatitude.value=clicklat;
+        document.insertform.clubLongitude.value=clicklng;
     });
-
 } else { 
-    
     var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-        message = '위치추적이 허용되지 않은 브라우저입니다.'
-        
+     message = '위치추적이 허용되지 않은 브라우저입니다.'
     displayMarker(locPosition, message);
 }
-
     // 현재 위치를 나타내는 마커 이미지 변경하기
     function displayMarker(locPosition, message) {
-
 var imageSrc ="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-    imageSize = new kakao.maps.Size(28, 40), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(14, 30)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    imageSize = new kakao.maps.Size(28, 40),
+    imageOption = {offset: new kakao.maps.Point(14, 30)}; // 마커이미지의 옵션
       
-// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+// 사용자가 클릭한 위치에 마커이미지를 생성
 var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-    markerPosition =locPosition// 마커가 표시될 위치입니다
-   
+    markerPosition =locPosition// 마커가 표시될 위치
+    
     var marker = new kakao.maps.Marker({
         map:map,
         position: markerPosition, 
-        image: markerImage // 마커이미지 설정 
+        image: markerImage 
     });
-
+    
     var iwContent = message, // 인포윈도우에 표시할 내용
         iwRemoveable = true;
 
@@ -271,11 +263,7 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
         content : iwContent,
         removable : iwRemoveable
     });
-    
-    // 말풍선을 마커 위에 나타낸다.
     infowindow.open(map, marker);
-    
-    // 지도 중심좌표를 접속위치로 변경합니다
     map.setCenter(locPosition);      
 }   
 

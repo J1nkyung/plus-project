@@ -11,7 +11,6 @@
 </head>
 <body>
 
- 
   <c:if test="${kind eq 'main'}">
   <form action="${path}/main" id="gpsForm" method="get">    
     	<input type="hidden" name="memberLatitude" >    
@@ -31,39 +30,22 @@
    </form>
  </c:if>
 
-
      <!-- jQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>
-    /**
-     * 비동기적으로 현재 위치를 알아내어 지정된 요소에 출력한다.
-     */
+    /* 사용자의 현재 위치를 비동기 전송하는 방식*/
     function whereami() {
     	console.log("where?")
-        // 이 객체를 getCurrentPosition() 메서드의 세번째 인자로 전달한다.
         var options = {
-            // 가능한 경우, 높은 정확도의 위치(예를 들어, GPS 등) 를 읽어오려면 true로 설정
-            // 그러나 이 기능은 배터리 지속 시간에 영향을 미친다.
-            enableHighAccuracy: true, // 대략적인 값이라도 상관 없음: 기본값
-            // 위치 정보가 충분히 캐시되었으면, 이 프로퍼티를 설정하자,
-            // 위치 정보를 강제로 재확인하기 위해 사용하기도 하는 이 값의 기본 값은 0이다.
-            maximumAge: 30000,     // 5분이 지나기 전까지는 수정되지 않아도 됨
-            // 위치 정보를 받기 위해 얼마나 오랫동안 대기할 것인가?
-            // 기본값은 Infinity이므로 getCurrentPosition()은 무한정 대기한다.
+            enableHighAccuracy: true,
+            maximumAge: 30000,    
             timeout: 15000    // 15초 이상 기다리지 않는다.
         }
-        if(navigator.geolocation) // geolocation 을 지원한다면 위치를 요청한다.
+        if(navigator.geolocation) // geolocation로 위치를 요청한다.
             navigator.geolocation.getCurrentPosition(success, error, options);
         else
-            // elt.innerHTML = "이 브라우저에서는 Geolocation이 지원되지 않습니다.";
-        // geolocation 요청이 실패하면 이 함수를 호출한다.
+        	//실패 시 오류 메세지를 출력한다.
         function error(e) {
-            // 오류 객체에는 수치 코드와 텍스트 메시지가 존재한다.
-            // 코드 값은 다음과 같다.
-            // 1: 사용자가 위치 정보를 공유 권한을 제공하지 않음.
-            // 2: 브라우저가 위치를 가져올 수 없음.
-            // 3: 타임아웃이 발생됨.
-            // elt.innerHTML = "Geolocation 오류 "+e.code +": " + e.message;
         console.log(e);
         }
         // geolocation 요청이 성공하면 이 함수가 호출된다.
@@ -78,14 +60,12 @@
                 " 약 " + pos.coords.accuracy + " 미터 떨어진 곳에 있습니다.";
                 latitude = pos.coords.latitude;
                 longitude = pos.coords.longitude;
-                
                 console.log(latitude, longitude);
-                
+                 //수집한 위도, 경도 좌표의 값을 넣는다.
                 $("input[name='memberLatitude']").val(latitude);
                 $("input[name='memberLongitude']").val(longitude);
-                
+                // 정보 위치를 출력해본다.
                 console.log(msg);
-            // elt.innerHTML = msg;     // 모든 위치 정보를 출력한다.
         }
     }
     whereami();
@@ -97,7 +77,5 @@
     	}, 1000);    //1초의 시간 간격을 두고 위도, 경도 값을 보낸다.
            
     </script>
- 
 </body>
-
 </html>

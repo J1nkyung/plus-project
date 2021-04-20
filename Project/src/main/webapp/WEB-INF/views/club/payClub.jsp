@@ -34,7 +34,6 @@
 		    <h2>모임정보</h2>
 		    
 		    <c:set var="totalPoint" value="0" /><!-- 기본 변수 선언 -->
-		   <%--  <c:forEach items="${cvo}" var="cvoSend"> --%>
 	    		<p>${cvoSend.clubName } - ${cvoSend.clubFee }원</p>
 	    		<c:set var="totalPoint" value="${totalPoint + cvoSend.clubFee }" />
 	    	<%-- </c:forEach> --%>

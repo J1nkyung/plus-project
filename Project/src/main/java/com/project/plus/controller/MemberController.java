@@ -55,15 +55,15 @@ public class MemberController {
  
    
    @RequestMapping(value="memberJoin", method=RequestMethod.POST)
-   public String memberJoin(MemberVO vo, HttpServletResponse response, @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
-      
+   public String memberJoin(MemberVO vo, HttpServletResponse response, 
+   @RequestParam("memberPhoto") MultipartFile file, HttpServletRequest request) throws Exception {
       
       //비밀번호 암호화
       String inputPass = vo.getMemberPassword();
       String memberPassword = pwdEncoder.encode(inputPass);
       vo.setMemberPassword(memberPassword);
       
-      
+
       // 파일을 저장할 절대 경로 지정
       String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
       vo = ProfileUtils.profile(vo, uploadPath, file);
@@ -212,27 +212,22 @@ public class MemberController {
 
    //비밀번호 변경 post 메서드 
    @RequestMapping(value="changePw", method=RequestMethod.POST)
-   public String changePw(MemberVO vo, @RequestParam("ori_pswd")String ori_pswd, HttpSession session, HttpServletResponse response) throws Exception{
-	  
+   public String changePw(MemberVO vo, @RequestParam("ori_pswd")String ori_pswd, 
+		   HttpSession session, HttpServletResponse response) throws Exception{   
 	   
 	   MemberVO user = (MemberVO) session.getAttribute("user");
 	   System.out.println(user.getMemberEmail());
-	
-	   
+
 	   Boolean pwdMatch = pwdEncoder.matches(ori_pswd, user.getMemberPassword());
 	   System.out.println("ori_pswd확인" + ori_pswd); //예전 비밀번호 확인 
 	   System.out.println(vo.getMemberPassword());//새로운 비밀번호 받아옴
 		if(pwdMatch == true) {
-			System.out.println("true 진입??"); //진입 완료 
+			System.out.println("true 진입??"); 
 		    
 			String inputPass = vo.getMemberPassword();
 		      String memberPassword = pwdEncoder.encode(inputPass);
-		      
-		      
-		      //여기서 user의 정보에다가 새로운 암호를 set해주는거같아 
-		      user.setMemberPassword(memberPassword); 
-		      
-		    //그래서 여기도 user인거..? 위의 정보로 비밀번호 바꿔줘야하니까
+		      //user의 정보에 변경한 암호를 set
+		      user.setMemberPassword(memberPassword);
 			memberService.changePw(user); 
 			return "redirect:logout";
 		}else {
@@ -256,13 +251,12 @@ public class MemberController {
    }
    
    
-   //회원가입 시 인증메일 보내는 메서드
+   //회원가입 시 인증메일 발송
    @RequestMapping(value="mailCheck", method=RequestMethod.GET)
     @ResponseBody
     public String mailCheckGET(String email) throws Exception{
         
       System.out.println("메일함수 진입");
-      
         /* 뷰(View)로부터 넘어온 데이터 확인 */
         log.info("이메일 데이터 전송 확인");
         log.info("인증번호 : " + email);
@@ -282,8 +276,7 @@ public class MemberController {
                 "<br>" + 
                 "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
 
-        try {
-                  
+        try { 
                   MimeMessage message = mailSender.createMimeMessage();
                   MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
                   helper.setFrom(setFrom);
@@ -298,10 +291,6 @@ public class MemberController {
 
         String num = Integer.toString(checkNum);
         System.out.println(num);
-        return num;
-        
-    }
- 
-   
-   
+        return num;   
+    } 
 }

@@ -140,47 +140,8 @@ public class BoardController {
 			
 			
 	   }
-	      //내 글 모아보기 
-	      @RequestMapping(value="ViewMyList", method=RequestMethod.GET)
-	      public String viewMyList(Model model, CommentsVO cvo , BoardVO board, CriteriaMem cri, @RequestParam("clubNum") int clubNum, @RequestParam("memberNum") int memberNum, HttpSession session) throws Exception {
-
-				// 정연  
-				model.addAttribute("clubNum", clubNum);
-				model.addAttribute("memberNum", memberNum);
-				// 정연 끝
-				
-				int rowStart = cri.getRowStart(); //1
-				int rowEnd = cri.getRowEnd();//10
-			   //List<BoardVO> view =  boardService.viewMyContents(clubNum, memberNum);
-			   List<BoardVO> view =  boardService.viewMyList(clubNum, memberNum ,rowStart , rowEnd);
-				model.addAttribute("list", view);
-				int totalListCount = boardService.viewMyListCount(clubNum, memberNum);
-				PageMakerMem pmem = new PageMakerMem();
-				pmem.setCriMem(cri);
-				pmem.setTotalCount(totalListCount);
-				model.addAttribute("pmem", pmem);
-				
-				model.addAttribute("club", clubService.getClub(clubNum)); // 사이드바 - 클럽활동기간
-				List<ApplyVO> apply =  applyService.applyMember(clubNum); // 사이드바  - 참여중인 멤버
-				model.addAttribute("apply", apply);
-				
-				
-				/* 20210410 정연하단 추가*/
-//				int rowStart = cri.getRowStart(); //1
-//				int rowEnd = cri.getRowEnd();//10
-				List<CommentsVO> cmts = commService.selectMyCommentsList(clubNum, memberNum, rowStart, rowEnd); // 댓글 꺼내오기 
-				model.addAttribute("cmts" , cmts); // 값 모델로 보내기 
-				System.out.println(" 20210410 commentsList : " + cmts);
-
-				int totalCount = commService.selectMyCommentsListCount(clubNum, memberNum);  
-				PageMakerMem pgmm = new PageMakerMem();
-				pgmm.setCriMem(cri);
-				pgmm.setTotalCount(totalCount);
-				model.addAttribute("PageMakerComments" , pgmm);
-			   
-			   return "viewMyList.comm";
-		   }
-		   
+	     
+		  
 	   
 	   //내 글 모아보기 
 	   @RequestMapping(value="ViewMyList", method=RequestMethod.GET)

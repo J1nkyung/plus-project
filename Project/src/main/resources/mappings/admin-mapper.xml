@@ -75,7 +75,8 @@
 	</select>
 	
 	<select id="getAdminDayVisit" resultType="Integer">
-		SELECT count(*) FROM visit WHERE DATE_FORMAT(V_DATE, '%y-%m-%d') = DATE_FORMAT(NOW(), '%y-%m-%d')
+		SELECT count(*) FROM visit WHERE DATE_FORMAT(V_DATE, '%y-%m-%d') 
+		= DATE_FORMAT(NOW(), '%y-%m-%d')
 	</select>
 	<select id="getVisit_1" resultType="Integer">
 		SELECT count(*) FROM VISIT WHERE DATE_FORMAT(v_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 1 day, '%y-%m-%d')
@@ -110,7 +111,8 @@
 	</select>
 	
 	<select id="getJoinToday" resultType="Integer">
-		SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')=DATE_FORMAT(NOW(), '%y-%m-%d')
+		SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')
+		=DATE_FORMAT(NOW(), '%y-%m-%d')
 	</select>
 	<select id="getJoin_1" resultType="Integer">
 		SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 1 day, '%y-%m-%d')
