@@ -216,7 +216,7 @@ s			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
 	<div class="heartContainer">
 		<h1 id="heartTitle">나의 찜목록</h1>
 		<div class="heartTab" style="text-align: left">
-			<input class="tabs" id="tab1" type="radio" name="tabs" value="one">
+			<input class="tabs" id="tab1" type="radio" name="tabs" value="one" checked>
 			<label for="tab1" class="tabs">신청 가능한 더하기</label> <input class="tabs"
 				id="tab2" type="radio" name="tabs" value="two"> <label for="tab2"
 				class="tabs">결제 가능한 더하기</label>

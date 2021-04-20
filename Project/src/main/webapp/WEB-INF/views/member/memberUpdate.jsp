@@ -57,11 +57,6 @@ function setThumbnail(event){
         }
     }; 
 
-
-
-
-
-	
   
 //등록한 사진 삭제하는 버튼
 removePic = function(){
@@ -145,12 +140,118 @@ $(document).ready(function(){
 
 })
 
-
-
 </script>
+
+<!-- 관리자 회원정보 수정시 필요한 코드 -->
+<link rel="stylesheet" href="${path}/resources/css/admin-aside.css">
+<!-- fontawesome CSS -->
+<link rel="stylesheet"
+   href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"
+   integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu"
+   crossorigin="anonymous">
+<style>
+.nav-item {
+   font-size: 13px;
+   padding: 0px;
+   padding-left: 35px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+   margin: 0;
+   padding: 5px;
+}
+
+#gomain a {
+   color: white;
+   font-size: 12px;
+   padding-top: 30px;
+}
+
+.update_title label{
+font-size:14px;
+font-weight:700;
+} 
+</style>
 </head>
 
 <body>
+
+<!-- 관리자가 회원정보 수정 할 때 aside 부분 추가 -->
+<c:if test="${user.memberNum eq 1}">
+<!-- Bootstrap CSS -->
+ <link rel="stylesheet"
+   href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+   crossorigin="anonymous">
+               <!--  사이드 바 추가 -->
+               <nav class="navbar navbar-expand-md navbar-light">
+                  <div class="col-lg-3 sidebar fixed-top" style="width:280px;">
+                     <button class="navbar-toggler ml-auto mb-2 bg-light"
+                        type="button" data-toggle="collapse" data-target="#sidebar">
+                        <span class="navbar-toggle-icon"></span>
+                     </button>
+                     <div class="collapse navbar-collapse" id="sidebar">
+                        <div class="container-fluid">
+                           <div class="row">
+                              <!-- sidebar -->
+                              <a href="#"
+                                 class="navbar-brand text-white text-center d-block mx-auto py-3 mb-4">ADMIN
+                                 PAGE</a>
+                              <!--  <div class="bottom-border pb-3"> -->
+                              <img class="rounded-circle mr-3"
+                                 src="${path}/resources/img/admin.jpg" alt="" width="200px"
+                                 height="200px">
+
+                           </div>
+                           <div class="navcontent">
+                              <ul class="navbar-nav flex-column mt-4">
+
+                                 <!-- 회원 관리 -->
+                                 <li class="nav-item"><a href="memberListPage"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link current"> <i
+                                       class="fas fa-users-cog text-white fa-lg mr-3"></i>회원 관리
+                                 </a></li>
+                                 <!-- 모임 관리 -->
+                                 <li class="nav-item"><a href="adminClub"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="fas fa-plus text-white fa-lg mr-3"></i>모임 관리
+                                 </a></li>
+
+                                 <!-- 문의 관리 -->
+                                 <li class="nav-item"><a href="adminInquiry"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="fas fa-question-circle text-white fa-lg mr-3"></i>문의관리
+                                 </a></li>
+                                 <!-- 공지 관리 -->
+                                 <li class="nav-item"><a href="announce"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="far fa-flag text-white fa-lg mr-3"></i>공지 관리
+                                 </a></li>
+                                 <!-- 결제내역 관리 -->
+                                 <li class="nav-item"><a href="adminPay"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="fas fa-coins text-white fa-lg mr-3"></i>결제내역 관리
+                                 </a></li>
+                                 <!-- 관리자 차트 -->
+                                 <li class="nav-item"><a href="adminChart"
+                                    class="nav-link text-white p-3 mb-2 sidebar-link"> <i
+                                       class="fas fa-chart-line text-white fa-lg mr-3"></i>차트 관리
+                                 </a></li>
+                                 <p id="gomain">
+                                    <a href="main"><i class="fas fa-home"></i> 메인으로 가기 </a>
+                                 </p>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </nav>
+
+</c:if>
+
+
+
+
     <!-- header -->
     <div id="header">
         <!-- <h1>회원정보수정</h1> -->
@@ -179,7 +280,7 @@ $(document).ready(function(){
 
                 <!-- ID(Email) -->
                 <div>
-                    <h3 class="join_title">
+                    <h3 class="update_title">
                         <label for="email">이메일(ID)</label>
                     </h3>
                     <span class="box int_email">
@@ -190,7 +291,7 @@ $(document).ready(function(){
                 
             <!-- NAME -->
             <div>
-                <h3 class="join_title"><label for="name">이름</label></h3>
+                <h3 class="update_title"><label for="name">이름</label></h3>
                 <span class="box int_name">
                     <input type="text" name="memberName" id="name" class="int1" maxlength="16" value="${memberInfo.memberName }" readonly>
                     <!-- <input type="button" class="check" value="중복체크하기"> -->
@@ -200,7 +301,7 @@ $(document).ready(function(){
 
                 <!-- nickNAME -->
                 <div>
-                    <h3 class="join_title"><label for="name">닉네임</label></h3>
+                    <h3 class="update_title"><label for="name">닉네임</label></h3>
                     <span class="box int_name">
                         <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="16" value="${memberInfo.memberNickname }" placeholder="8자 이내의 닉네임을 지어주세요" >
                         <input type="button" id="chkNickname" class="check" value="중복체크하기" onclick="chNickname()" >
@@ -209,7 +310,7 @@ $(document).ready(function(){
 
                 <!-- MOBILE -->
                 <div>
-                    <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
+                    <h3 class="update_title"><label for="phoneNo">휴대전화</label></h3>
                     <span class="box int_mobile">
                         <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈'-'을 포함해 입력해주세요" value="${memberInfo.memberPhone }">
                         <input type="button" id="chkMobile" class="check" onclick="isMobile()" value="중복검사하기">
@@ -217,19 +318,9 @@ $(document).ready(function(){
                 </div>
 
 
-                <%-- <!-- PW2 -->
-                <div>
-                    <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
-                    <span class="box int_pass_check">
-                        <input type="password" id="pswd2" onchange="checkPw()" class="int" maxlength="20" value="${memberInfo.memberPassword }">
-		                    <span id="alertTxt1"></span>
-                    </span>
-                    <span class="error_next_box"></span>
-                </div> --%>
-
                 <!-- 보유 포인트 -->
                 <div>
-                    <h3 class="join_title"><label for="point">보유 포인트</label></h3>
+                    <h3 class="update_title"><label for="point">보유 포인트</label></h3>
                     <span class="box int_point">
                     
         <c:if test="${user.memberNum ne 1}">
