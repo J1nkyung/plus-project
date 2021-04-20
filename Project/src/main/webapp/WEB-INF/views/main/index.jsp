@@ -293,11 +293,7 @@ autocomplete='off' value="${scri.keyword}" placeholder=" 관심있는 더하기�
          style="font-size: 55px;"> add_circle </span>
 
    </div>
-   <a href="http://127.0.0.1:52273/#chatbot_page' 
-	onclick=window.open(this.href, '_blank', 'width=800, height=600'); return false;">
-   <span class="material-icons-outlined">
-smart_toy</span>
-</a>
+   
 
    </div>
    </div>
