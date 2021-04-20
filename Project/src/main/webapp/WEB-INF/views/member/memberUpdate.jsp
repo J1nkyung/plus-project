@@ -62,47 +62,16 @@ function setThumbnail(event){
 
 
 	
-/* 	//비밀번호 유효성 검사
-function isPw1(){
-    var pwVal = $("#pswd1").val();
-                             //특수문자 / 문자 / 숫자 포함 형태의 8~15자리 이내의 암호 정규식
-var regExp = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-if(pwVal.match(regExp) != null){
- 
-  document.getElementById('alertTxt').innerHTML = "적합한 비밀번호입니다.";
-}else{
-	alert("영문 대 소문자, 숫자, 특수문자를 조합한 8~16자의 비밀번호를 사용하세요.")
-	document.getElementById('alertTxt').innerHTML = "";
-  document.getElementById('alertTxt').style.display = 'block';
-}
-};
-
-
-//비밀번호 재확인 시 일치하는지 여부
-function checkPw() {
-    var p1 = document.getElementById('pswd1').value;
-    var p2 = document.getElementById('pswd2').value;
-    if( p1 != p2 ) {
-    	alert("비밀번호가 일치하지 않습니다")
-    	document.getElementById('alertTxt1').innerHTML = "";
-
-      return false;
-    } else{
-    	 document.getElementById('alertTxt1').innerHTML = "비밀번호가 일치합니다";
-         document.getElementById('alertTxt1').style.display = 'block';
-
-      return true;
-    }
-
-  } */
   
 //등록한 사진 삭제하는 버튼
 removePic = function(){
     $('.removePic').click(function(){
            $("#image_container").empty()
 	$("#picFile").val("");
-}
-    )}
+       	$("#oldPic").val("");
+       	$("#pic_upload_button").val("");
+	}
+)}
 
 
 //닉네임 중복 , 유효성 검사
@@ -197,13 +166,15 @@ $(document).ready(function(){
         <!-- content1-->
         <div class="content1">      
                 <!-- profile pic -->
+            <input type="hidden" name="memberPhoto" id="oldPic" value="${memberInfo.memberPic }"> 
+
                 <div class="pro_pic_area">
                     <div id="image_container"><img src="${path}/resources${memberInfo.memberPic}" onerror="this.style.display='none';"/></div>
                 <div class="filebox"> 
                 </div>
                 	<button type="button" class="removePic" onclick="removePic();">삭제</button>
    	                <label class="picbutton" for="pic_upload_button"><div class="picbutton1">사진첨부하기</div></label>
-                    <input id="pic_upload_button" type="file" name="memberPhoto" accept="image/*" onchange="setThumbnail(event);" value="${memberInfo.memberPic}">
+                    <input id="pic_upload_button" type="file" name="memberPhoto" accept="image/*" onchange="setThumbnail(event);" >
                 </div>
 
                 <!-- ID(Email) -->
@@ -270,17 +241,14 @@ $(document).ready(function(){
                     </span>
                 </div>
 
-                           	<c:if test="${user.memberNum ne 1}">
-                 <div>
+         <c:if test="${user.memberNum ne 1}">
                     <span class="box int_pass1">
 			<button id="btnPw" type="button" onclick="location.href='changePw'"><span>비밀번호 수정</span></button> 
 
                     </span>
-                    <span class="error_next_box"></span>
-                </div> 
         </c:if>
 
-                <div class="btn_area">
+      <div class="btn_area">
                 
        	<c:if test="${user.memberNum ne 1}">
 			<button id="btnUpMem" type="submit"><span>내정보 수정하기</span></button> 
@@ -289,11 +257,7 @@ $(document).ready(function(){
 			<button id="btnUp" type="submit"><span>수정하기</span></button>
             <button id="btnDel" type="submit"><span>삭제하기</span></button>
         </c:if>
-                
-<!--                 <button type="submit" id="btnJoin">
-                    <span>수정하기</span>
-                </button> -->
-            	</div>
+  	 </div><!-- btn_area -->
         </div>
         <!--content1-->
     </div>

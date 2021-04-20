@@ -373,87 +373,60 @@ function chNickname(){
 
     
             <!-- MOBILE -->
-            <div>
                 <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                 <span class="box int_mobile">
                     <input type="tel" name="memberPhone" id="mobile" class="int1" maxlength="16" placeholder=" 하이픈'-'을 포함해 입력해주세요 " autocomplete="off" required>
                     <input type="button" onclick="isMobile()" id="chkMobile" class="check" value="중복검사하기">
                 </span>
-                <span class="error_next_box"></span>
-            </div>
     
             <!-- ID(Email) -->
-            <div>
-                <h3 class="join_title">
-                    <label for="email">이메일(ID)</label>
-                </h3>
+                <h3 class="join_title"><label for="email">이메일(ID)</label></h3>
                 <span class="box int_email">
                     <input name="memberEmail" type="email" id="email" class="int1 mail_input" maxlength="50" value="${user.memberEmail }" required>
                     <input type="button" id="verifyEmail" onclick="verifyEmail()" class="check mail_check_button" value="인증번호발송"/> 
                 </span>
-                <span class="error_next_box"></span>
-            </div>
     
                 <!-- ID(Email) -->
-            <div>
-                <h3 class="join_title">
-                    <label for="email">이메일 인증코드 확인</label>
-                </h3>
+                <h3 class="join_title"><label for="email">이메일 인증코드 확인</label></h3>
                 <span class="box int_email mail_check_warp">
                     <input  name="memberEmailcode" id="mail_check_input" class="int1 mail_check_input_box" maxlength="50" required>
                     <input type="button" class="check mail_check_input" onclick="emailcode()" value="인증코드확인"> <!--  -->
                 </span>
-                <span class="error_next_box"></span>
-            </div>
     
     
             <!-- PW1 -->
-            <div>
                 <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                 <span class="box int_pass">
                     <input type="password" name="memberPassword"  id="pswd1" onchange="isPw1()" class="int psscolor" maxlength="20" value="${user.memberPassword }" placeholder="영문과 숫자, 특수문자를 포함해주세요" required>
                     <span id="alertTxt"></span>
-    
                 </span>
-                <span class="error_next_box"></span>
-            </div>
             
             <!-- PW2 -->
-            <div>
                 <h3 class="join_title"><label for="pswd2">비밀번호 재확인</label></h3>
                 <span class="box int_pass_check">
                     <input type="password" id="pswd2" onchange="checkPw()" class="int psscolor" maxlength="20" value="${user.memberPassword }" placeholder="비밀번호를 다시 한 번 입력해주세요" required>
                     <span id="alertTxt1"></span>
                 </span>
-                <span class="error_next_box"></span>
-            </div>
     
 
             <!-- NAME -->
-            <div>
                 <h3 class="join_title"><label for="name">이름</label></h3>
                 <span class="box int_name">
                     <input type="text" name="memberName" id="name" class="int1"  onchange="chName()"  maxlength="20" autocomplete="off" required>
                     <!-- <input type="button" class="check" value="중복체크하기"> -->
                 </span>
-                <span class="error_next_box"></span>
-            </div>
 
             <!-- nickNAME -->
-            <div>
                 <h3 class="join_title"><label for="nickname">닉네임</label></h3>
                 <span class="box int_name">
                     <input type="text" name="memberNickname" id="nickname" class="int1" maxlength="16" value="${user.memberNickname }" placeholder="8자 이내의 닉네임을 지어주세요" autocomplete="off" required>
                     <input type="button" class="check" id="chkNickname" onclick="chNickname()" value="중복체크하기">
                 </span>
-                <span class="error_next_box"></span>
-            </div>
     
         </div>
         <!--content1-->
     
         <div class="content2">
-
 
             <!-- original_content -->
             <div class="pro_pic_area">

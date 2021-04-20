@@ -39,8 +39,8 @@ outline: -webkit-focus-ring-color auto 0px;
 }
 
 
-#submitBtn {
-	width: 710px;
+#BtnUp {
+	width: 700px;
 	height: 50px;
 	border: 0;
 	outline: 0;
@@ -51,9 +51,18 @@ outline: -webkit-focus-ring-color auto 0px;
 .submit a {
 float:right;
 }
-.removePic{
-width:75.9px;
+.removePic, .removeOldPic{
+width:120px;
 margin:1px;
+}
+#notiTxt:focus{
+outline:none;
+}
+#notiTxt{
+border:none;
+margin:10px 0;
+background-color:#ebf0f3;
+padding:2px;
 }
 </style>
 </head>
@@ -65,9 +74,7 @@ margin:1px;
 			<input type="hidden" name="boardNum" value="${update.boardNum }">
 			<input type="hidden" name="memberPic" value="${update.memberPic }"/>
 
-			<!-- 
-			<input type="hidden" name="regdate"value="${update.boardRegDate }"/>
-			 -->
+
 			 
 			<input type="hidden" name="clubNum" value="${update.clubNum}"/>
 			<input type="hidden" name="memberNum" value="${update.memberNum}"/>
@@ -76,14 +83,15 @@ margin:1px;
 			
 			<textarea name="boardContent" id="content">${update.boardContent}</textarea>
              
-            <img style="width:200px; height:100px;" src="${path }/resources${update.boardPic }"> 
+            <img style="width:200px; height:100px;" id="oldPicSrc" src="${path }/resources${update.boardPic }" onerror="this.style.display='none';"> 
              <figcaption>기존 이미지</figcaption>
-         <%--    <input type="hidden" name="old_file" value="${update.boardPic }"> --%>
-            			
+            <input type="hidden" name="boardPhoto" id="oldPic" value="${update.boardPic }"> 
+            <button type="button" class="removeOldPic" onclick="removeOldPic();">기존파일삭제</button>
+            			<input type="text" value=" 새로운 이미지 업로드 시 기존 이미지는 사라집니다" id="notiTxt" readonly>
 				<div id="imgViewArea" style="margin-top:10px; display:none;">
 					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/></div>
             <input id="picFile" type="file" name="boardPhoto" />
-            <button type="button" class="removePic" onclick="removePic();">파일삭제</button>
+            <button type="button" class="removePic" onclick="removePic();">현재파일삭제</button>
              <!---->
 			<button type="button" id="BtnUp">저장하기</button><br/>
 	<div class="submit"><a href="getCommunity?clubNum=${update.clubNum }">글 목록 가기</a></div>
@@ -97,8 +105,16 @@ CKEDITOR.replace("content", {height:300, resize_enabled:false});
 removePic = function(){
     $('.removePic').click(function(){
 	$("#picFile").val("");
-}
-    )}
+	document.getElementById("imgArea").src = "";
+	}
+)}
+removeOldPic = function(){
+    $('.removeOldPic').click(function(){
+	$("#oldPic").val("");
+	document.getElementById("imgArea").src = "";
+	document.getElementById("oldPicSrc").src = "";
+	}
+)}
 
 
 $(document).ready(function(){
