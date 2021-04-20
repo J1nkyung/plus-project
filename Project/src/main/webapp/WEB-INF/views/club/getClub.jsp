@@ -25,7 +25,12 @@
             <a href="#moreInfo" class="tabMenu">상세정보</a>
          </div>
          <div id="introTab">
-            <a href="#leaderInfo" class="tabMenu">리더소개</a>
+	         <c:if test="${club.clubKind eq 1}">
+	            <a href="#leaderInfo" class="tabMenu">인증방법</a>
+	         </c:if>
+	         <c:if test="${club.clubKind eq 2}">
+	            <a href="#leaderInfo" class="tabMenu">리더소개</a>
+	         </c:if>
          </div>
          <div id="reviewTab">
             <a href="#review" class="tabMenu">후기</a>
@@ -38,7 +43,12 @@
             onerror="this.style.display='none';" /> ${club.clubContent1}
       </div>
       <hr>
-      <h3>리더 소개</h3>
+      <c:if test="${club.clubKind eq 1}">
+      	<h3>인증 방법</h3>
+      </c:if>
+      <c:if test="${club.clubKind eq 2}">
+      	<h3>리더 소개</h3>
+      </c:if>
       <div id="leaderInfo" style="height:auto;  white-space:pre-line;">
          <img class="images" style="height:400px;" src="${path}/resources${club.clubContent2_pic}"
             onerror="this.style.display='none';" /> ${club.clubContent2}
@@ -335,10 +345,10 @@ $(function(){
                     return false;
                 }
                 
-/*             	if(!checkLeader()){
+         /*  	if(!checkLeader()){
             		alert("개설한 모임은 신청하실 수 없습니다!");
             		return;
-            	} */
+            	}  */
             	
             	 $.ajax({
                      type: "post",

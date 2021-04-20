@@ -126,7 +126,7 @@
 											<fmt:formatDate var="endDay" value='${club.clubEndDate}'
 												pattern="yyyyMMdd" />
 											
-											<c:if test="${shutDay>today}">
+											<c:if test="${shutDay>=today}">
 												<span class="period">📅 ${club.clubStartDate} ~
 													${club.clubEndDate}</span>
 												</br>
