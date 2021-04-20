@@ -38,6 +38,7 @@
 		]]> -->
 	</select>
 	
+	<!-- 전체 게시글의 총 갯수 count -->
 	<select id="selectPaymentListCount" resultType="int">
 		SELECT count(*)
 		FROM ( 

@@ -43,7 +43,7 @@ public class PaymentController {
 		List<PaymentVO> paymentList = paymentService.selectPaymentList( memberNum, rowStart, rowEnd);
 		model.addAttribute("currentMemberPoint", currentMemberPoint);
 		model.addAttribute("paymentList", paymentList);
-		model.addAttribute("memberNum", memberNum);
+		model.addAttribute("memberNum", memberNum); 
 		
 
 		int totalCount = paymentService.selectPaymentListCount(memberNum);  
@@ -62,8 +62,6 @@ public class PaymentController {
 	
 	@RequestMapping("/chargePoint")
 	public void chargePoint(PaymentVO vo, MemberVO membervo) {
-//		vo.setMemberNum(3);
-//		membervo.setMemberNum(3);
 		// 유저가 현재 가지고 있는 포인트
 		int currentMemberPoint = memberService.selectMemberPoint(membervo);
 		// 콘솔 값 확인 

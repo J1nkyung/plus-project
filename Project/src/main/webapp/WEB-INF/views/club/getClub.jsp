@@ -335,10 +335,23 @@ $(function(){
                     return false;
                 }
                 
-/*             	if(!checkLeader()){
+             	if(!checkLeader()){
             		alert("개설한 모임은 신청하실 수 없습니다!");
             		return;
-            	} */
+            	} 
+             	
+             	 // 개설한 모임은 신청 x 
+                function checkLeader(){
+              	  let user = '${user.memberNickname}';
+              	  let leader = '${club.clubLeader}';
+              	  console.log("리더 : " + leader);
+              	  if(user===leader){
+              		  return false;
+              	  } else {
+              		  return true;
+              	  }
+              	  
+                }
             	
             	 $.ajax({
                      type: "post",
@@ -351,7 +364,7 @@ $(function(){
                         console.log(data);
                       	
                       	window.open("payClub?clubNum="+${club.clubNum},
-            	                "신청하기", "width=700, height=600, left=400, top=100");
+            	                "신청하기", "width=400, height=450, left=400, top=100");
                      }
                  });
             });

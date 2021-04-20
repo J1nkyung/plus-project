@@ -157,7 +157,7 @@ public class MemberController {
    
    if(user.getMemberNum() == 1) {
       
-      return "memberUpdate.adMember";
+      return "member/memberUpdate";
       
     }else if(user.getMemberNum()!= 1) {
        

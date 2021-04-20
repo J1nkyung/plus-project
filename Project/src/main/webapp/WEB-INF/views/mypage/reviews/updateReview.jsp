@@ -180,7 +180,7 @@
 	                      <label aria-label="3 stars"  class="rating__label" for="rating-3">
 	                         <i class="rating__icon rating__icon--star fa fa-star"></i>
 	                     </label> 
-	                  <input class="rating__input" name="reviewRate" id="rating-3" value="3" type="radio" checked> 
+	                  <input class="rating__input" name="reviewRate" id="rating-3" value="3" type="radio" > 
 	                     <label aria-label="4 stars"  class="rating__label" for="rating-4">
 	                        <i class="rating__icon rating__icon--star fa fa-star"></i>
 	                     </label> 
@@ -222,6 +222,8 @@
 				
 			} }); });
 
+	
+	$('input:radio[name=reviewRate]:input[value=${readReview.reviewRate}]').attr("checked", true);
 	</script>
 </body>
 </html>
