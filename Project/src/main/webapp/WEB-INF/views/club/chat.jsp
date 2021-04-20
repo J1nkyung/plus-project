@@ -381,8 +381,6 @@ let roomId = 0;
 		 	function onclose(evt) {
 				console.log("연결끊김");
 				$(".mymessage-box").append("연결 끊김");
-				
-
 			} 
 
 

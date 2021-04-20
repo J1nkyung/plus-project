@@ -72,16 +72,16 @@
 		<div class="form-group">
 			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label> 
 			<div class="uploadBox">
-				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input class="inputs"
 					type="file" style="display: none;" name="upload"
-					onchange="getFileName(0)" />
+					onchange="getFileName(0); changeImg(0);" />
 				</label> <span id="spanFileName[0]">${club.clubMain_pic_name}</span>
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
 							<!-- 이미지 미리보기 영역  -->
-				<!-- <div id="imgViewArea" style="margin-top:10px; display:none;">
-					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/> -->
-					 <%--  <img id="imgViewArea"  style="width:200px; height:100px;" src="${path}/resources${club.clubMain_pic}"	/> --%>
-			<!-- 	</div> -->
+					<div class="imgViewArea" style="margin-top:10px; display:none;" >
+						<img class="imgArea" style="width:200px; height:100px;" onerror="this.style.display='none';" /></div>
+				<img class="orgImg" style="width:200px; height:100px;" src="${path}/resources${club.clubMain_pic}"	
+					onerror="this.style.display='none';" /> 
 			</div>
 		</div> 
 		<article>
@@ -90,11 +90,16 @@
 					설명해주세요!</label>
 				<textarea name="clubContent1" placeholder="사진과 글로 모임을 자세히 소개해보세요.">${club.clubContent1}</textarea>
 				<div class="uploadBox">
-					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input class="inputs"
 						type="file" style="display: none;" name="upload"
-						onchange="getFileName(1)" />
+						onchange="getFileName(1); changeImg(1);" />
 					</label> <span id="spanFileName[1]">${club.clubContent1_pic_name}</span>
 					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
+								<!-- 이미지 미리보기 영역  -->
+					<div class="imgViewArea" style="margin-top:10px; display:none;" >
+						<img class="imgArea" style="width:200px; height:100px;" onerror="this.style.display='none';" /></div>
+				<img class="orgImg" style="width:200px; height:100px;" src="${path}/resources${club.clubContent1_pic}"	
+					onerror="this.style.display='none';" /> 
 				</div>
 			</div>
 			<div id="write-checkinfo">
@@ -108,11 +113,16 @@
 				<div class="uploadBox">
 					<!-- <input type="file" class="form-control-file"
 					id="exampleFormControlFile1"> -->
-					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input class="inputs"
 						type="file" style="display: none;" name="upload"
-						onchange="getFileName(2)" />
+						onchange="getFileName(2); changeImg(2);" />
 					</label> <span id="spanFileName[2]">${club.clubContent2_pic_name}</span>
 					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
+								<!-- 이미지 미리보기 영역  -->
+					<div class="imgViewArea" style="margin-top:10px; display:none;" >
+						<img class="imgArea" style="width:200px; height:100px;" onerror="this.style.display='none';" /></div>
+				<img class="orgImg" style="width:200px; height:100px;" src="${path}/resources${club.clubContent2_pic}"	
+					onerror="this.style.display='none';" /> 
 				</div>
 			</div>
 			<div class="hashtag-wrap">
@@ -236,34 +246,42 @@ marker.setMap(map);
 
 <!---------------------지도 끝------------------->
 
-// 모임 프로필 이미지 미리보기 
-function readURL(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			$('#imgArea').attr('src', e.target.result); 
+
+function changeImg(index){
+	 console.log("몇번쨰? " + index)
+	 let inputs = document.getElementsByClassName('inputs');
+		 console.log(inputs[index])
+		let target = inputs[index];
+		 // 파일이 없으면 
+		if(target.value == '' ) {
+			// 이미지 소스 없애기 
+			$('.imgArea:eq('+index+')').attr('src' , '');  
 		}
-		reader.readAsDataURL(input.files[0]);
-	}
+		// 미리보기 영역 없애기
+		$('.imgViewArea:eq('+index+')').css({ 'display' : '' });
+		readURL(target, index);
+		
 }
 
-	 $("#pInput").change(function() {
-		if(  $("#pInput").val() == '' ) {
-			$('#imgArea').attr('src' , '');  
+
+// 모임 프로필 이미지 미리보기 
+	function readURL(input, i) {
+	  console.log(input)
+		if (input.files && input.files[0]) {
+	 		 console.log(input.files[0].name)
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('.imgArea:eq('+i+')').attr('src', e.target.result); 
+			}
+			reader.readAsDataURL(input.files[0]);
 		}
-		$('#imgViewArea').css({ 'display' : '' });
-		readURL(this);
-	});
+	}
 
-
-	//미리보기 에러시 
-function imgAreaError(){
-	$('#imgViewArea').css({ 'display' : 'none' });
-} 
 
 
 //파일 선택시 파일이름 변경 
 function getFileName(index){
+
   let fileNameSpan = document.getElementById('spanFileName['+index+']');
   let name = $('input[type=file]')[index].files[0].name;
  	console.log("파일 :" + name);
@@ -279,17 +297,30 @@ function getFileName(index){
 
 //파일 삭제
 function deleteFile(index){
-  let fileNameSpan = document.getElementById('spanFileName['+index+']')
-  let nameArr = document.getElementsByName('upload');
+	  let fileNameSpan = document.getElementById('spanFileName['+index+']')
+	  let nameArr = document.getElementsByName('upload');
+		let hiddenInput = '<input type="hidden" class="status['+index+']" name="fileStatus" value="deleted_'+index+'" />';
+	  
+	// 기존 이미지의 미리보기 영역 삭제 
+	let orgImgs = document.getElementsByClassName('orgImg');
+	if(orgImgs[index].src != ""){
+		console.log("오니?")
+		$('.orgImg:eq('+index+')').attr('src', ''); 
+		  fileNameSpan.innerText = "";
+		  $('#frm').append(hiddenInput);
+	} else {
+	
+
   fileNameSpan.innerText = "";
   // file 값을 없애기 
   nameArr[index].value = "";
+  $('.imgViewArea:eq('+index+')').css({ 'display' : 'none' });
   
   // 수정시 아무것도 안했을 경우에도 null로 들어가기 때문에 그에 따른 처리를 해야 한다
   // 삭제 버튼을 클릭하면 따로 input hidden으로 deleted를 보낸다 
-	let hiddenInput = '<input type="hidden" class="status['+index+']" name="fileStatus" value="deleted_'+index+'" />';
-	console.log(hiddenInput);
-	$('#frm').append(hiddenInput);
+		console.log(hiddenInput);
+		$('#frm').append(hiddenInput);
+	}
 }
 
 

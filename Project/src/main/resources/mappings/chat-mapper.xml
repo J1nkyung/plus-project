@@ -39,7 +39,7 @@
 	<!-- 채팅내역 불러오기 -->
 	<select id="getMessages" resultMap="chatResult">
 		SELECT c.club_num, date_format(chat_sendtime, '%b %d | %H:%i:%s') as chat_string_sendtime, chat_message, m.member_nickname 
-		FROM chat c, member m WHERE c.member_num = m.member_num AND c.club_num = #{clubNum}
+		FROM chat c, member m WHERE c.member_num = m.member_num AND c.club_num = #{clubNum} ORDER BY chat_sendtime DESC LIMIT 20
 	</select> 
 	
 	<!-- 채팅방이 존재하는지 확인 -->

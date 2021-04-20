@@ -17,10 +17,10 @@ public class CommentsVO {
 	private int memberNum;
 	private int boardNum;
 	
-//	@JsonFormat(pattern="yyyy. MM. dd HH:mm:ss", timezone ="Asia/Seoul")
-//	private Date commentsRegdate;
-	private String commentsRegdate;
-	private String commentsChangedRegdate;
+	@JsonFormat(pattern="yyyy. MM. dd HH:mm", timezone ="Asia/Seoul")
+	private Date commentsRegdate;
+	
+	//private String commentsRegdate;
 	private String commentsContent;
 	private String memberNickname;
 	private String memberPic;

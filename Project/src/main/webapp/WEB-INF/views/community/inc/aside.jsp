@@ -129,7 +129,7 @@ text-decoration:none;
          <div class="bottom-border sidebarContent">
             <img class="clubMainpic"
                src="${path}/resources${club.clubMain_pic}" alt="" width="280px"
-               height="200px">
+               height="200px" onerror="this.onerror=null; this.src='${path}/resources/img/img1.jpg'" >
 
                       
                       <div class="navbar-nav flex-column">

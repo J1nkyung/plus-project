@@ -273,10 +273,10 @@ width: 240px;
 								<c:forEach var="comments" items="${cmts}">
 									<tr>
 										<td><a id="cmtsContent" href="${path}/viewMyContent?boardNum=${comments.boardNum}" title="댓글이 있는 곳으로 이동"><div class="titleBox2">${comments.commentsContent}</div></a></td>
-										<td>직장의신</td><!-- 이거 일단 스킵 정연 -->
+										<td>${user.memberNickname}</td><!-- 이거 일단 스킵 정연 -->
 										<td id="commentsRegdate">
-										<fmt:parseDate value="${comments.commentsRegdate}" var="commentsRegdatee" pattern="yyyy-MM-dd HH:mm" />
-										<fmt:formatDate value="${commentsRegdatee}"  pattern="yyyy. MM. dd (HH:mm)" /> 
+										<fmt:formatDate value="${comments.commentsRegdate}" var="changedDate" pattern="yyyy. MM. dd (HH:mm)" /> 
+										${changedDate}
 										</td>
 									</tr>
 								</c:forEach>

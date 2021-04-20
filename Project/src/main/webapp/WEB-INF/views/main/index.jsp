@@ -291,7 +291,9 @@ autocomplete='off' value="${scri.keyword}" placeholder=" 관심있는 더하기�
    <div class="addplus">
       <span class="material-icons"
          style="font-size: 55px;"> add_circle </span>
+
    </div>
+   
 
    </div>
    </div>

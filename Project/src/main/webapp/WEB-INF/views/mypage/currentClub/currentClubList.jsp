@@ -255,7 +255,7 @@ h6{
 				<div class="counter-block">
 					<div class="row">
 						<div class="col-12 progress-icon">
-							<p style="font-size:26px; margin-top:20px;">🐾내모임현황 🐾 ‍</p>`
+							<p style="font-size:26px; margin-top:20px;">🏳🏳‍🌈내모임현황‍🏳‍🌈🏳‍</p>
 						</div>
 						<div class="col-4 progress-icon" >
 							<p class="pTags">참가중</p>

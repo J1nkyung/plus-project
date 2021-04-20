@@ -25,7 +25,12 @@
             <a href="#moreInfo" class="tabMenu">상세정보</a>
          </div>
          <div id="introTab">
-            <a href="#leaderInfo" class="tabMenu">리더소개</a>
+	         <c:if test="${club.clubKind eq 1}">
+	            <a href="#leaderInfo" class="tabMenu">인증방법</a>
+	         </c:if>
+	         <c:if test="${club.clubKind eq 2}">
+	            <a href="#leaderInfo" class="tabMenu">리더소개</a>
+	         </c:if>
          </div>
          <div id="reviewTab">
             <a href="#review" class="tabMenu">후기</a>
@@ -38,7 +43,12 @@
             onerror="this.style.display='none';" /> ${club.clubContent1}
       </div>
       <hr>
-      <h3>리더 소개</h3>
+      <c:if test="${club.clubKind eq 1}">
+      	<h3>인증 방법</h3>
+      </c:if>
+      <c:if test="${club.clubKind eq 2}">
+      	<h3>리더 소개</h3>
+      </c:if>
       <div id="leaderInfo" style="height:auto;  white-space:pre-line;">
          <img class="images" style="height:400px;" src="${path}/resources${club.clubContent2_pic}"
             onerror="this.style.display='none';" /> ${club.clubContent2}
@@ -335,23 +345,10 @@ $(function(){
                     return false;
                 }
                 
-             	if(!checkLeader()){
+         /*  	if(!checkLeader()){
             		alert("개설한 모임은 신청하실 수 없습니다!");
             		return;
-            	} 
-             	
-             	 // 개설한 모임은 신청 x 
-                function checkLeader(){
-              	  let user = '${user.memberNickname}';
-              	  let leader = '${club.clubLeader}';
-              	  console.log("리더 : " + leader);
-              	  if(user===leader){
-              		  return false;
-              	  } else {
-              		  return true;
-              	  }
-              	  
-                }
+            	}  */
             	
             	 $.ajax({
                      type: "post",
@@ -364,7 +361,7 @@ $(function(){
                         console.log(data);
                       	
                       	window.open("payClub?clubNum="+${club.clubNum},
-            	                "신청하기", "width=400, height=450, left=400, top=100");
+            	                "신청하기", "width=700, height=600, left=400, top=100");
                      }
                  });
             });
