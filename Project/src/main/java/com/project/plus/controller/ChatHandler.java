@@ -1,4 +1,4 @@
-package com.project.plus.utils;
+package com.project.plus.controller;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -19,7 +19,6 @@ import com.project.plus.service.ChatService;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-@Component
 public class ChatHandler extends TextWebSocketHandler {
 
 	@Autowired

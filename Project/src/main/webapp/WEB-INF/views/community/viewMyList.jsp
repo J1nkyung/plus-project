@@ -243,7 +243,7 @@ width: 240px;
 										</li>
 										<c:forEach begin="${pmem.startPage}" end="${pmem.endPage}" var="idx">
 											<li>
-												<a href="ViewMyList${pmem.makeQuery(idx)}&clubNum=2&memberNum=${memberNum}">
+												<a href="ViewMyList${pmem.makeQuery(idx)}&clubNum=${clubNum }&memberNum=${memberNum}">
 													<span class="span" id="commSpan">${idx}</span>
 												</a>
 											</li>
@@ -273,10 +273,10 @@ width: 240px;
 								<c:forEach var="comments" items="${cmts}">
 									<tr>
 										<td><a id="cmtsContent" href="${path}/viewMyContent?boardNum=${comments.boardNum}" title="댓글이 있는 곳으로 이동"><div class="titleBox2">${comments.commentsContent}</div></a></td>
-										<td>직장의신</td><!-- 이거 일단 스킵 정연 -->
+										<td>${user.memberNickname}</td><!-- 이거 일단 스킵 정연 -->
 										<td id="commentsRegdate">
-										<fmt:parseDate value="${comments.commentsRegdate}" var="commentsRegdatee" pattern="yyyy-MM-dd HH:mm" />
-										<fmt:formatDate value="${commentsRegdatee}"  pattern="yyyy. MM. dd (HH:mm)" /> 
+										<fmt:formatDate value="${comments.commentsRegdate}" var="changedDate" pattern="yyyy. MM. dd (HH:mm)" /> 
+										${changedDate}
 										</td>
 									</tr>
 								</c:forEach>
@@ -291,7 +291,7 @@ width: 240px;
 								</li>
 								<c:forEach begin="${PageMakerComments.startPage}" end="${PageMakerComments.endPage}" var="idx">
 									<li>
-										<a href="ViewMyList${PageMakerComments.makeQuery(idx)}&clubNum=2&memberNum=${memberNum}">
+										<a href="ViewMyList${PageMakerComments.makeQuery(idx)}&clubNum=${clubNum }&memberNum=${memberNum}">
 											<span class="span" id="commSpan">${idx}</span>
 										</a>
 									</li>

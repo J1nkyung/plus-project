@@ -1,4 +1,4 @@
-package com.project.plus.utils;
+package com.project.plus.controller;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,7 +14,6 @@ import com.project.plus.domain.MemberVO;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-@Component
 public class EchoHandler extends TextWebSocketHandler {
 
 	private Map<Integer, WebSocketSession> users = new ConcurrentHashMap<Integer, WebSocketSession>();
@@ -35,7 +34,7 @@ public class EchoHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		String msg = message.getPayload();
 		log.info("받은 메시지 : " + msg);
-
+		int mNum = getMemberNum(session);
 		if(msg != null) {
 			String[] str = msg.split(",");
 			String notType = str[0];
@@ -45,12 +44,13 @@ public class EchoHandler extends TextWebSocketHandler {
 			String notUrl = str[3];
 			
 			if(str!=null) {
+			 
 				WebSocketSession userSession = users.get(member);
-				TextMessage text = new TextMessage("<a target='_blank' href='"+ notUrl +"'>[<b>" + notType + "알림" + "</b>]<div class=\"content\">" 
-													+ notMessage + "</div></a>" );
+				TextMessage text = new TextMessage("<a target='_blank' href='"+ notUrl +"'>[<b>" 
+				+ notType + "알림" + "</b>]<div class=\"content\">" + notMessage + "</div></a>" );
 				userSession.sendMessage(text);
 				log.info("멤버번호 : " + member + ", 헤더로 메시지 받기");
-				log.info(notType);
+				log.info("타입 : " + notType);
 			} 
 		} else {
 			log.info("전달받은 메시지 오류");

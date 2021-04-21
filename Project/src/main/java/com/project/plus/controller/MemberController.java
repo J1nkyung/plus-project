@@ -175,17 +175,28 @@ public class MemberController {
             HttpServletResponse response, @RequestParam("memberPhoto") MultipartFile file, 
             HttpServletRequest request) throws Exception {
       
+	   
+	      if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+
+	   
+	   
       System.out.println("기본"+vo); //수정하려는 정보내용 
+     
       String uploadPath = request.getSession().getServletContext().getRealPath("/resources/uploadImg");
       vo = ProfileUtils.profile(vo, uploadPath, file);
-      memberService.updateMember(vo);
-      MemberVO mInfo = memberService.selectMember(vo);  
-      System.out.println("세션정보확인"+session.getAttribute("user")); //로그인한사람 정보, (사용자라면 원래정보)
+     
       
-      System.out.println("선택정보 vo user에 담음");
-      System.out.println(mInfo); //수정후정보 
-      
-      
+	      }else {
+	    	  vo.setMemberPic(request.getParameter("memberPhoto"));
+	      }
+	    	  
+	      memberService.updateMember(vo);
+	      MemberVO mInfo = memberService.selectMember(vo);  
+	      System.out.println("세션정보확인"+session.getAttribute("user")); //로그인한사람 정보, (사용자라면 원래정보)
+	      
+	      System.out.println("선택정보 vo user에 담음");
+	      System.out.println(mInfo); //수정후정보 
+	      
       MemberVO user = (MemberVO) session.getAttribute("user"); //로그인한 사람의 정보 (세션에서 가져옴)
       
       

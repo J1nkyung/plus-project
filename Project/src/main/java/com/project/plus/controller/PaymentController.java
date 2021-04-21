@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.project.plus.domain.CriteriaMem;
@@ -61,7 +62,8 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/chargePoint")
-	public void chargePoint(PaymentVO vo, MemberVO membervo) {
+	@ResponseBody
+	public int chargePoint(PaymentVO vo, MemberVO membervo) {
 		// 유저가 현재 가지고 있는 포인트
 		int currentMemberPoint = memberService.selectMemberPoint(membervo);
 		// 콘솔 값 확인 
@@ -75,6 +77,7 @@ public class PaymentController {
 		System.out.println("멤버 포인트 " + vo.getPayAmount() + "충전완료");
 		memberService.updateMemberPoint(membervo);
 		paymentService.insertChargePoint(vo);
+		return 1;
 		
 	} 
 }

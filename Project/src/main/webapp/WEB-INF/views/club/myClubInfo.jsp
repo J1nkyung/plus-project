@@ -58,7 +58,7 @@
 			</div>
 			<div class="category">
 				<label for="exampleFormControlSelect2">카테고리 선택</label> <select
-					class="form-control" name="clubCategory">
+					class="form-control optionCategory" name="clubCategory">
 					<option value="운동">운동</option>
 					<option value="공부">학습</option>
 					<option value="습관">습관</option>
@@ -72,16 +72,15 @@
 		<div class="form-group">
 			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label> 
 			<div class="uploadBox">
-				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input class="inputs"
 					type="file" style="display: none;" name="upload"
-					onchange="getFileName(0)" />
+					onchange="getFileName(0); changeImg(0);" />
 				</label> <span id="spanFileName[0]">${club.clubMain_pic_name}</span>
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
 							<!-- 이미지 미리보기 영역  -->
-				<!-- <div id="imgViewArea" style="margin-top:10px; display:none;">
-					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/> -->
-					 <%--  <img id="imgViewArea"  style="width:200px; height:100px;" src="${path}/resources${club.clubMain_pic}"	/> --%>
-			<!-- 	</div> -->
+					<div class="imgViewArea" style="margin-top:10px;">	
+						<img class="imgArea" style="width:200px; height:100px;"   src="${path}/resources${club.clubMain_pic}"	
+						 onerror="this.style.display='none';" /></div>
 			</div>
 		</div> 
 		<article>
@@ -90,11 +89,15 @@
 					설명해주세요!</label>
 				<textarea name="clubContent1" placeholder="사진과 글로 모임을 자세히 소개해보세요.">${club.clubContent1}</textarea>
 				<div class="uploadBox">
-					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input class="inputs"
 						type="file" style="display: none;" name="upload"
-						onchange="getFileName(1)" />
+						onchange="getFileName(1); changeImg(1);" />
 					</label> <span id="spanFileName[1]">${club.clubContent1_pic_name}</span>
 					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
+								<!-- 이미지 미리보기 영역  -->
+					<div class="imgViewArea" style="margin-top:10px;" >
+						<img class="imgArea" style="width:200px; height:100px;" src="${path}/resources${club.clubContent1_pic}"	
+						 onerror="this.style.display='none';" /></div>
 				</div>
 			</div>
 			<div id="write-checkinfo">
@@ -108,11 +111,15 @@
 				<div class="uploadBox">
 					<!-- <input type="file" class="form-control-file"
 					id="exampleFormControlFile1"> -->
-					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input
+					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 <input class="inputs"
 						type="file" style="display: none;" name="upload"
-						onchange="getFileName(2)" />
+						onchange="getFileName(2); changeImg(2);" />
 					</label> <span id="spanFileName[2]">${club.clubContent2_pic_name}</span>
 					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
+								<!-- 이미지 미리보기 영역  -->
+					<div class="imgViewArea" style="margin-top:10px;" >
+						<img class="imgArea" style="width:200px; height:100px;" src="${path}/resources${club.clubContent2_pic}"	
+						 onerror="this.style.display='none';" /></div>
 				</div>
 			</div>
 			<div class="hashtag-wrap">
@@ -174,15 +181,15 @@
 
 
 		<div class="freq">
-			<label for="exampleFormControlSelect2">모임주기</label> <select
-				class="form-control" name="clubFreq">
-				<option value="주1회">주 1회</option>
-				<option value="주2회">주 2회</option>
-				<option value="주3회">주 3회</option>
-				<option value="주4회">주 4회</option>
-				<option value="주5회">주 5회</option>
-				<option value="주6회">주 6회</option>
-				<option value="주7회">주 7회</option>
+			<label for="exampleFormControlSelect2">모임주기</label> 
+			<select class="form-control optionFreq" name="clubFreq">
+				<option value="주 1회">주 1회</option>
+				<option value="주 2회">주 2회</option>
+				<option value="주 3회">주 3회</option>
+				<option value="주 4회">주 4회</option>
+				<option value="주 5회">주 5회</option>
+				<option value="주 6회">주 6회</option>
+				<option value="주 7회">주 7회</option>
 			</select>
 		</div>
 		<div class="radioBtn">
@@ -235,31 +242,55 @@ marker.setMap(map);
 
 
 <!---------------------지도 끝------------------->
+let category = '${club.clubCategory}';
+let freq = '${club.clubFreq}';
+let clubFee = '${club.clubFee}';
 
-// 모임 프로필 이미지 미리보기 
-function readURL(input) {
-	if (input.files && input.files[0]) {
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			$('#imgArea').attr('src', e.target.result); 
-		}
-		reader.readAsDataURL(input.files[0]);
-	}
+console.log(category)
+console.log(freq)
+
+$('.optionCategory').val(category).prop("selected", true);
+$('.optionFreq').val(freq).prop("selected", true);
+
+if(clubFee=='0'){
+	$('input:radio[name=optradio]:input[value=free]').attr("checked", true);
+} else {
+	$('input:radio[name=optradio]:input[value=pay]').attr("checked", true);
+	$('.clubfeeBox').css('display','block');
+	$('#club-fee').val(clubFee);
 }
 
-	 $("#pInput").change(function() {
-		if(  $("#pInput").val() == '' ) {
-			$('#imgArea').attr('src' , '');  
+
+function changeImg(index){
+	 console.log("몇번쨰? " + index)
+	 let inputs = document.getElementsByClassName('inputs');
+		 console.log(inputs[index])
+		let target = inputs[index];
+		 // 파일이 없으면 
+		if(target.value == '' ) {
+			// 이미지 소스 없애기 
+			$('.imgArea:eq('+index+')').attr('src' , '');  
 		}
-		$('#imgViewArea').css({ 'display' : '' });
-		readURL(this);
-	});
+		// 미리보기 영역 없애기
+		$('.imgViewArea:eq('+index+')').css({ 'display' : '' });
+		readURL(target, index);
+		
+}
 
 
-	//미리보기 에러시 
-function imgAreaError(){
-	$('#imgViewArea').css({ 'display' : 'none' });
-} 
+// 모임 프로필 이미지 미리보기 
+	function readURL(input, i) {
+	  console.log(input)
+		if (input.files && input.files[0]) {
+	 		 console.log(input.files[0].name)
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$('.imgArea:eq('+i+')').attr('src', e.target.result); 
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
 
 
 //파일 선택시 파일이름 변경 
@@ -271,25 +302,29 @@ function getFileName(index){
   $(fileNameSpan).append(name); 
   
   // 해당하는 index로 파일 삭제시 생성된 input이 있을 경우 remove 
-  if($('.status['+index+']')){
-	  console.log($('.status['+index+']'));
-	  $('.status['+index+']').remove();
+  
+  let target =  document.getElementById('status['+index+']');
+  if(target){
+	  console.log("remove 히든input" + target);
+	  target.remove();
   }
 }
 
 //파일 삭제
 function deleteFile(index){
-  let fileNameSpan = document.getElementById('spanFileName['+index+']')
-  let nameArr = document.getElementsByName('upload');
-  fileNameSpan.innerText = "";
-  // file 값을 없애기 
-  nameArr[index].value = "";
-  
-  // 수정시 아무것도 안했을 경우에도 null로 들어가기 때문에 그에 따른 처리를 해야 한다
-  // 삭제 버튼을 클릭하면 따로 input hidden으로 deleted를 보낸다 
-	let hiddenInput = '<input type="hidden" class="status['+index+']" name="fileStatus" value="deleted_'+index+'" />';
-	console.log(hiddenInput);
-	$('#frm').append(hiddenInput);
+	  let fileNameSpan = document.getElementById('spanFileName['+index+']')
+	  let nameArr = document.getElementsByName('upload');
+	  let hiddenInput = '<input type="hidden" id="status['+index+']" name="fileStatus" value="deleted_'+index+'" />';
+	  fileNameSpan.innerText = "";
+	  // file 값을 없애기 
+	  nameArr[index].value = "";
+	  $('.imgViewArea:eq('+index+')').css({ 'display' : 'none' });
+	  
+	  // 수정시 아무것도 안했을 경우에도 null로 들어가기 때문에 그에 따른 처리를 해야 한다
+	  // 삭제 버튼을 클릭하면 따로 input hidden으로 deleted를 보낸다 
+			console.log(hiddenInput);
+			$('#frm').append(hiddenInput);
+	
 }
 
 
@@ -468,18 +503,19 @@ function checkValue(input){
  return value;
 }
 
-function changeDetail(){
- // let detail = document.getElementById('write-checkinfo');
- let selected = document.getElementById('select-kindbox');
- let intro = document.getElementById('intro');
- console.log(selected.value)
- console.log(intro.innerText)
- 
- if(selected.value == 1 ){
-     intro.innerText = "모임의 인증방법을 설명해주세요!";
- } else if (selected.value == 2 ){
-     intro.innerText = "모임의 리더가 되고싶은 회원님은 어떤사람인가요?";
- }
+function changeDetail() {
+	// let detail = document.getElementById('write-checkinfo');
+	let selected = document.getElementById('select-kindbox');
+	let intro = document.getElementById('intro');
+	let placeHolder =  document.getElementById('clubContent2');
+	
+	if (selected.value == 1) {
+		intro.innerText = "모임의 인증방법을 설명해주세요!";
+		placeHolder.placeholder = "모두가 실천할 수 있도록 구체적인 인증방법을 작성해주세요."
+	} else if (selected.value == 2) {
+		intro.innerText = "모임의 리더가 되고싶은 회원님은 어떤사람인가요?";
+		placeHolder.placeholder = '모임원들에게 멋진 자기소개를 해보세요!';
+	}
 
 }
 

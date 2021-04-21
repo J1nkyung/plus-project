@@ -392,42 +392,6 @@ padding-bottom:30px;
                </form>
                <!-- 댓글 쓰는 부분 -->
 
-
-
-
-               <%-- <c:forEach items="${comments}" var="comment">
-                     <c:if test="${board.boardNum == comment.boardNum}">
-                     아래부터 시작해야 함 
-                     <hr>
-                     <div id="commentBox">
-                        <div id="writeComment">
-                           <textarea cols="80" rows="1" id="textArea"
-                              placeholder="댓글을 입력해보세요!"></textarea>
-                           <br> <input type="button" id="submitCommBtn" value="등록하기"
-                              onclick="insertComment(${board.boardNum})" />
-                        </div>
-                     </div>
-                        <div class="comments-wrap">
-                           <div class="userComment">
-                              <div class="userSpan">
-                                 <img src="${path}/resources${comment.memberPic}"
-                                    id="commentUserPic"
-                                    onerror="this.src='${path}/resources/img/default_pic.png'" />
-                                 <div id="commentNickname">${comment.memberNickname}</div>
-                                 <div id="commRegdate">${comment.commentsChangedRegdate}</div>
-                              </div>
-                              <div id="commContent">${comment.commentsContent}</div>
-                              <div id="editBtn">
-                                 <a href="#" id="delComm"
-                                    onclick="deleteComment(${comment.commentsNum})">삭제</a> <a
-                                    id="updateComm" href="#"
-                                    onclick="changeTag(${comment.commentsNum})">수정</a>
-                              </div>
-                              <hr>
-                           </div>
-                        </div>
-                     </c:if>
-                  </c:forEach> --%>
                <div id="showCommBtn">
                   <img id="commImg" src="${path}/resources/img/message.png" />
                   <div id="commList" onclick="getComments(${board.boardNum})">댓글(${board.commentsCount}개)</div>
@@ -445,23 +409,6 @@ padding-bottom:30px;
 </body>
 <script>
 
-//수정, 삭제 시 확인 자바스크립트
-	/* $(document).ready(function(){
-			var formObj = $("form[name='updateForm']");
-			
-			$("#btnUp").on("click", function(){
-				formObj.attr("action", "updateView");
-				formObj.attr("method", "get");
-				formObj.submit();				
-			})
-			
-			$("#btnDel").on("click", function(){
-				formObj.attr("action", "deleteBoard");
-				formObj.attr("method", "post");
-				formObj.submit();
-			})
-					
-	}) */
 	
 	let mNum = '${user.memberNum}';
 	let userNickname = '${user.memberNickname}';
@@ -610,7 +557,6 @@ let contentCnt = '${contentCount}'
 					memberNum:mNum,
 					boardNum:boardNum,
 					commentsContent:content,
-					/* commentsRegdate:today, */
 				},
 		    	 success: function (data) {
 		     		console.log(data)
@@ -729,7 +675,7 @@ function showReComments(cNum){
 					span.classList.add('userSpan');
 					span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
 					span.innerHTML += '<div id="commentNickname">'+data[i].memberNickname +'</div>';
-					span.innerHTML += '<div id="commRegdate">'+ data[i].commentsChangedRegdate +'</div></div>';
+					span.innerHTML += '<div id="commRegdate">'+ data[i].commentsRegdate +'</div></div>';
 					
 					let commContent = document.createElement('div');
 					commContent.id = 'commContent';
@@ -819,7 +765,7 @@ function getComments(bNum){
 		         	span.classList.add("userSpan");
 		         	span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
 		         	span.innerHTML += '<div id="commentNickname">'+ data[i].memberNickname +'</div>';
-		         	span.innerHTML += '<div id="commRegdate">'+ data[i].commentsChangedRegdate +'</div>';
+		         	span.innerHTML += '<div id="commRegdate">'+ data[i].commentsRegdate +'</div>';
 		         	/* span.innerHTML += '<img src="${path}/resources/img/down.png" id="dropdown"/>'; */
 		         	comment.appendChild(span);
 		         	comment.innerHTML += '<div id="commContent">'+ data[i].commentsContent +'</div></div>';
@@ -894,7 +840,6 @@ function insertComment(bNum){
 							memberNum:mNum,
 							boardNum:bNum,
 							commentsContent:content,
-							/* commentsRegdate:today, */
 						},
 			            success: function (data) {
 			            	console.log(data);
@@ -914,7 +859,6 @@ function insertComment(bNum){
 			            	span.innerHTML += '<div id="commRegdate">'+ today[0]+':'+today[1] +'</div>';
 			            	comment.appendChild(span);
 			            	comment.innerHTML += '<div id="commContent">'+ data.commentsContent +'</div></div>';
-			            //	comment.innerHTML += '<input type="hidden" id="hiddenNum" value="'+bNum+'" />';
 			            	comment.innerHTML += '<div id="editBtn"><div id="delComm" onclick="deleteComment('+data.commentsNum+')">삭제</div>'
 			            						+'<div id="updateComm" onclick="changeTag('+data.commentsNum+')">수정</div>'
 			            						+'<div id="showReCommBtn" onclick="showReComments('+data.commentsNum+')">대댓글</div></div>';
@@ -1066,7 +1010,6 @@ function updateComment(cNum){
 			data: {
 				commentsNum:cNum,
 				commentsContent:text,
-				/* commentsRegdate:today, */
 			},
 	     success: function (data) {
 	     	console.log(data)

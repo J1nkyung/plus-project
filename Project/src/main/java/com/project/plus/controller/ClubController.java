@@ -14,7 +14,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.eclipse.jdt.internal.compiler.ast.SwitchStatement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
@@ -437,85 +436,85 @@ public class ClubController {
 			}
 			return chkmsg;
 		}
-		   //결제 
-		@RequestMapping("/payClub")
-		public String payClub(ClubVO cvo,ApplyVO avo, Model model, HttpServletRequest request) {
-			System.out.println("********************** payClub 컨트롤러 입성 ************************");
-			System.out.println(cvo.getClubNum());
-			System.out.println(avo.getClubNum());
-			
-			ClubVO cvoSend = clubService.selectClub(cvo);
-			model.addAttribute("cvoSend", cvoSend);
-			return "club/payClub"; 
-		}
-		
-		@RequestMapping("/applyOnePayClubPayment")
-		@Transactional(readOnly = true, propagation = Propagation.REQUIRED, rollbackFor={Exception.class})
-		public String applyOnePayClubPayment(ApplyVO vo, MemberVO mvo, PaymentVO pvo, Model model, HttpServletRequest request) {
-			String msg ="";
-			System.out.println("************clubController : applyOnePayClubPayment.컨틀로럴 입성 *********");
-			System.out.println("결제 안넘어가면 sql에 해당 멤버 닉네임을 가진 멤버가 없는 것 ");
-			System.out.println(vo.getClubNum() + " / " + vo.getMemberNum() + " / ");
-			System.out.println(pvo.getClubNum() + " / " + pvo.getMemberNum() + " / ");
-			System.out.println(request.getParameter("clubLeader"));
-			String clubLeader = request.getParameter("clubLeader");
- 			int totalFee = vo.getTotalFee();
-			System.out.println("토탈 피 : " + totalFee + "  현재 멤버 : " + mvo.getMemberNum());
-			int currentPoint = memberService.selectMemberPoint(mvo); //보유 포인트 
-			System.out.println("현재 멤버가 가진 돈 : " + currentPoint);
-			Integer clubNumm = vo.getClubNum();
-			
-			if (clubNumm != null  ) {
-				if ((currentPoint == 0) || ((currentPoint - totalFee) < 0)) {
-					System.out.println("포인트가 부족합니다.");
-					msg = "포인트가 부족합니다. 마이페이지에서 포인트 충전 가능합니다.";
-				} else {
-					// 포인트 부족하지 않으면 모임을 신청하고
-					pvo.setMemberPoint((currentPoint - totalFee)); // 700현재 - 300모임신청 = 400 뺀금액 
-					pvo.setPayAmount( totalFee);
-					// 참가자 payment 추가시킨다. 
-					paymentService.useMemberPoint(pvo);	
-					// 참가자 apply 추가시킨다 
-					applyService.applyFreeClub(vo);
-					// 모임장 포인트를 10% 떼고 등가시킨다. 3 
-					ClubVO cvo = new ClubVO(); // 값 중복 될까봐 
-					cvo.setClubLeader(request.getParameter("clubLeader")); //클럽 장 
-					String cNum = request.getParameter("clubNum"); //클럽 장 
-					cvo.setClubNum(Integer.parseInt(cNum));
-					System.out.println("clubLeader!!!! : " + cvo.getClubLeader() + "클럽 넘버 : " + cvo.getClubNum());
-					int clubFee = clubService.selectClub(cvo).getClubFee(); // 클럽  모임 참가비 추출 
-					int insertFee = (int)clubFee - (clubFee * 10 / 100); // 참가비에서 10%를 뺀 금액 추출 
-					MemberVO memberVo = new MemberVO(); // 모임장 용 
-					memberVo.setMemberNickname(clubLeader); // 클럽리더명을 멤버 테이블에서 찾는다 
-					int clubLeaderCurrentPoint = memberService.selectMemberPointByNickname(memberVo); // 모임장 금액 더하기 전 현재 포인트 추출 
-					System.out.println("모임장 현재 포인트** " + clubLeaderCurrentPoint);
-					memberVo.setMemberPoint(clubLeaderCurrentPoint + insertFee); 
-					System.out.println("모임장이 10센트 빼고 가지는 돈 : " + memberVo.getMemberPoint());
-					memberService.updateClubLeaderPoint(memberVo); // 돈들어갔어야한다
-					// 관리자한테 10% 적립
-					MemberVO adminMemberVo = new MemberVO(); // 관리자용 
-					adminMemberVo.setMemberNickname("관리자");
-					adminMemberVo.setMemberPoint((int) clubFee * 10 / 100);
-					memberService.updateClubLeaderPoint(adminMemberVo);
-					// 참여자 포인트를 차감하고 2
-					mvo.setMemberPoint((currentPoint - totalFee));
-					memberService.deductMemberPoint(mvo);
-					// 모임장 payment 추가시킨다. 
-					PaymentVO pvoTwo = new PaymentVO(); // 모임장 용 
-					int memberNumber = memberService.selectMemberNumberByNickname(memberVo);
-					pvoTwo.setMemberNum(memberNumber);// 리더명으로 쿼리문 짜서 멤버 넘버 추출하기 
-					pvoTwo.setClubNum(vo.getClubNum());
-					pvoTwo.setPayAmount(insertFee);
-					paymentService.getClubPoint(pvoTwo);
-					//클럽 참여자 수 증가 -- plusCurnum
-					int result = clubService.plusCurnum(vo.getClubNum());
-					System.out.println("result : " + result); // int 값 얼마나오는 지 확인 
-					
-					msg = "모임 신청이 완료되었습니다. 마이페이지에서 확인하세요.";
-					}
-				}
-			model.addAttribute("msg", msg);
-			return "forward:/getClub";
-		}
-		// 여기 위까지 추가 20210405 정연
+        //결제 
+     @RequestMapping("/payClub")
+     public String payClub(ClubVO cvo,ApplyVO avo, Model model, HttpServletRequest request) {
+        System.out.println("********************** payClub 컨트롤러 입성 ************************");
+        System.out.println(cvo.getClubNum());
+        System.out.println(avo.getClubNum());
+        
+        ClubVO cvoSend = clubService.selectClub(cvo);
+        model.addAttribute("cvoSend", cvoSend);
+        return "club/payClub"; 
+     }
+     
+     @RequestMapping("/applyOnePayClubPayment")
+     @Transactional(readOnly = true, propagation = Propagation.REQUIRED, rollbackFor={Exception.class})
+     public String applyOnePayClubPayment(ApplyVO vo, MemberVO mvo, PaymentVO pvo, Model model, HttpServletRequest request) {
+        String msg ="";
+        System.out.println("************clubController : applyOnePayClubPayment.컨틀로럴 입성 *********");
+        System.out.println("결제 안넘어가면 sql에 해당 멤버 닉네임을 가진 멤버가 없는 것 ");
+        System.out.println(vo.getClubNum() + " / " + vo.getMemberNum() + " / ");
+        System.out.println(pvo.getClubNum() + " / " + pvo.getMemberNum() + " / ");
+        System.out.println(request.getParameter("clubLeader"));
+        String clubLeader = request.getParameter("clubLeader");
+         int totalFee = vo.getTotalFee();
+        System.out.println("토탈 피 : " + totalFee + "  현재 멤버 : " + mvo.getMemberNum());
+        int currentPoint = memberService.selectMemberPoint(mvo); //보유 포인트 
+        System.out.println("현재 멤버가 가진 돈 : " + currentPoint);
+        Integer clubNumm = vo.getClubNum();
+        
+        if (clubNumm != null  ) {
+           if ((currentPoint == 0) || ((currentPoint - totalFee) < 0)) {
+              System.out.println("포인트가 부족합니다.");
+              msg = "포인트가 부족합니다. 마이페이지에서 포인트 충전 가능합니다.";
+           } else {
+              // 포인트 부족하지 않으면 모임을 신청하고
+              pvo.setMemberPoint((currentPoint - totalFee)); // 700현재 - 300모임신청 = 400 뺀금액 
+              pvo.setPayAmount( totalFee);
+              // 참가자 payment 추가시킨다. 
+              paymentService.useMemberPoint(pvo);   
+              // 참가자 apply 추가시킨다 
+              applyService.applyFreeClub(vo);
+              // 모임장 포인트를 10% 떼고 등가시킨다. 3 
+              ClubVO cvo = new ClubVO(); // 값 중복 될까봐 
+              cvo.setClubLeader(request.getParameter("clubLeader")); //클럽 장 
+              String cNum = request.getParameter("clubNum"); //클럽 장 
+              cvo.setClubNum(Integer.parseInt(cNum));
+              System.out.println("clubLeader!!!! : " + cvo.getClubLeader() + "클럽 넘버 : " + cvo.getClubNum());
+              int clubFee = clubService.selectClub(cvo).getClubFee(); // 클럽  모임 참가비 추출 
+              int insertFee = (int)clubFee - (clubFee * 10 / 100); // 참가비에서 10%를 뺀 금액 추출 
+              MemberVO memberVo = new MemberVO(); // 모임장 용 
+              memberVo.setMemberNickname(clubLeader); // 클럽리더명을 멤버 테이블에서 찾는다 
+              int clubLeaderCurrentPoint = memberService.selectMemberPointByNickname(memberVo); // 모임장 금액 더하기 전 현재 포인트 추출 
+              System.out.println("모임장 현재 포인트** " + clubLeaderCurrentPoint);
+              memberVo.setMemberPoint(clubLeaderCurrentPoint + insertFee); 
+              System.out.println("모임장이 10센트 빼고 가지는 돈 : " + memberVo.getMemberPoint());
+              memberService.updateClubLeaderPoint(memberVo); // 돈들어갔어야한다
+              // 관리자한테 10% 적립
+              MemberVO adminMemberVo = new MemberVO(); // 관리자용 
+              adminMemberVo.setMemberNickname("관리자");
+              adminMemberVo.setMemberPoint((int) clubFee * 10 / 100);
+              memberService.updateClubLeaderPoint(adminMemberVo);
+              // 참여자 포인트를 차감하고 2
+              mvo.setMemberPoint((currentPoint - totalFee));
+              memberService.deductMemberPoint(mvo);
+              // 모임장 payment 추가시킨다. 
+              PaymentVO pvoTwo = new PaymentVO(); // 모임장 용 
+              int memberNumber = memberService.selectMemberNumberByNickname(memberVo);
+              pvoTwo.setMemberNum(memberNumber);// 리더명으로 쿼리문 짜서 멤버 넘버 추출하기 
+              pvoTwo.setClubNum(vo.getClubNum());
+              pvoTwo.setPayAmount(insertFee);
+              paymentService.getClubPoint(pvoTwo);
+              //클럽 참여자 수 증가 -- plusCurnum
+              int result = clubService.plusCurnum(vo.getClubNum());
+              System.out.println("result : " + result); // int 값 얼마나오는 지 확인 
+              
+              msg = "모임 신청이 완료되었습니다. 마이페이지에서 확인하세요.";
+              }
+           }
+        model.addAttribute("msg", msg);
+        return "forward:/getClub";
+     }
+     // 여기 위까지 추가 20210405 정연
 }

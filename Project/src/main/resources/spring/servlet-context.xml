@@ -65,8 +65,8 @@
 	</websocket:handshake-interceptors>
 	<websocket:sockjs />
 </websocket:handlers>
-<beans:bean id="chatHandler" class="com.project.plus.utils.ChatHandler" />
-<beans:bean id="echoHandler" class="com.project.plus.utils.EchoHandler" />
+<beans:bean id="chatHandler" class="com.project.plus.controller.ChatHandler" />
+<beans:bean id="echoHandler" class="com.project.plus.controller.EchoHandler" />
 
 
 	<context:component-scan

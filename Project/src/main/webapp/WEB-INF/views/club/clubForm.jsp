@@ -55,14 +55,14 @@
 			<label for="exampleFormControlFile1">모임 프로필 사진 업로드</label>
 			<div class="uploadBox">
 				<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
-				<input type="file" style="display: none;" name="upload" id="pInput"
-					onchange="getFileName(0)" />
+				<input type="file" class="inputs"  style="display: none;" name="upload"
+					onchange="getFileName(0); changeImg(0);" />
 				</label> <span id="spanFileName[0]"></span>
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
 							<!-- 이미지 미리보기 영역  -->
-				<div id="imgViewArea" style="margin-top:10px; display:none;">
-					<img id="imgArea" style="width:200px; height:100px;" onerror="imgAreaError()"/></div>
-			</div>
+				<div class="imgViewArea" style="margin-top:10px; display:none;">
+					<img class="imgArea" style="width:200px; height:100px;" onerror="this.style.display='none';" /></div>
+				</div>
 		</div>
 		<article>
 			<div id="write-clubinfo">
@@ -71,22 +71,27 @@
 				<textarea name="clubContent1" placeholder="사진과 글로 모임을 자세히 소개해보세요."></textarea>
 				<div class="uploadBox">
 					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
-					<input type="file" style="display: none;" name="upload" onchange="getFileName(1)" />
+					<input type="file"  class="inputs" style="display: none;" name="upload" onchange="getFileName(1); changeImg(1);" />
 					</label> <span id="spanFileName[1]"></span>
 					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
+									<!-- 이미지 미리보기 영역  -->
+					<div class="imgViewArea" style="margin-top:10px; display:none;" >
+						<img class="imgArea" style="width:200px; height:100px;" onerror="this.style.display='none';" /></div>
 				</div>
 			</div>
 			<div id="write-checkinfo">
 				<label for="exampleFormControlFile1" id="intro">모임의 인증방법을
 					설명해주세요!</label>
-				<textarea name="clubContent2" placeholder="모두가 실천할 수 있도록 구체적인 인증방법을 작성해주세요."></textarea>
+				<textarea name="clubContent2" id="clubContent2" placeholder="모두가 실천할 수 있도록 구체적인 인증방법을 작성해주세요."></textarea>
 				<div class="uploadBox">
 					<label class="btn btn-info btn-sm uploadBtn"> 파일 선택 
-					<input type="file" style="display: none;" name="upload"
-						onchange="getFileName(2)" />
+					<input type="file" class="inputs" style="display: none;" name="upload"
+						onchange="getFileName(2); changeImg(2);" />
 					</label> <span id="spanFileName[2]"></span>
 					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
-			
+									<!-- 이미지 미리보기 영역  -->
+				<div class="imgViewArea" style="margin-top:10px; display:none;" >
+					<img class="imgArea" style="width:200px; height:100px;" onerror="this.style.display='none';" /></div>
 				</div>
 			</div>
 			<div class="hashtag-wrap">
@@ -281,33 +286,37 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 
   <!------------지도 끝----------->
   
+  function changeImg(index){
+	 console.log("몇번쨰? " + index)
+	 let inputs = document.getElementsByClassName('inputs');
+		 console.log(inputs[index])
+		let target = inputs[index];
+		 // 파일이 없으면 
+		if(target.value == '' ) {
+			// 이미지 소스 없애기 
+			$('.imgArea:eq('+index+')').attr('src' , '');  
+		}
+		// 미리보기 영역 없애기
+		$('.imgViewArea:eq('+index+')').css({ 'display' : '' });
+		readURL(target, index);
+		
+  }
   
   
   // 모임 프로필 이미지 미리보기 
-	function readURL(input) {
+	function readURL(input, i) {
+	  console.log(input)
 		if (input.files && input.files[0]) {
+	 		 console.log(input.files[0].name)
 			var reader = new FileReader();
 			reader.onload = function(e) {
-				$('#imgArea').attr('src', e.target.result); 
+				$('.imgArea:eq('+i+')').attr('src', e.target.result); 
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
 
- 	 $("#pInput").change(function() {
-			if(  $("#pInput").val() == '' ) {
-				$('#imgArea').attr('src' , '');  
-			}
-			$('#imgViewArea').css({ 'display' : '' });
-			readURL(this);
-		});
 
-	
- 	//미리보기 에러시 
-	function imgAreaError(){
-		$('#imgViewArea').css({ 'display' : 'none' });
-	} 
-  
   
 	//파일 선택시 파일이름 변경 
 	function getFileName(index) {
@@ -322,13 +331,12 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 	function deleteFile(index) {
 		let fileNameSpan = document.getElementById('spanFileName[' + index
 				+ ']')
-		let fileOne = document.getElementById('spanFileName[0]');
+		let fileOne = document.getElementById('spanFileName['+index+']');
 		let nameArr = document.getElementsByName('upload');
 		fileNameSpan.innerText = ""
 		nameArr[index].value = "";
-		if(fileNameSpan==fileOne){
-			$('#imgViewArea').css({ 'display' : 'none' });
-		}
+		$('.imgViewArea:eq('+index+')').css({ 'display' : 'none' });
+		
 	}
 
 	//버튼 클릭시 유효성 검사 후 제출 
@@ -520,21 +528,19 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 		return value;
 	}
 
-	function checkFileSize() {
-
-	}
 
 	function changeDetail() {
 		// let detail = document.getElementById('write-checkinfo');
 		let selected = document.getElementById('select-kindbox');
 		let intro = document.getElementById('intro');
-		console.log(selected.value)
-		console.log(intro.innerText)
-
+		let placeHolder =  document.getElementById('clubContent2');
+		
 		if (selected.value == 1) {
 			intro.innerText = "모임의 인증방법을 설명해주세요!";
+			placeHolder.placeholder = "모두가 실천할 수 있도록 구체적인 인증방법을 작성해주세요."
 		} else if (selected.value == 2) {
 			intro.innerText = "모임의 리더가 되고싶은 회원님은 어떤사람인가요?";
+			placeHolder.placeholder = '모임원들에게 멋진 자기소개를 해보세요!';
 		}
 
 	}

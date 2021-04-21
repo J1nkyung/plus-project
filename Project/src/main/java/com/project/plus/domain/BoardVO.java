@@ -18,7 +18,6 @@ public class BoardVO {
 	private int memberNum;
 	private String boardContent;
 	private String boardPic;
-	private String old_file;
 	
 	@JsonFormat(pattern="yyyy. MM. dd HH:mm", timezone ="Asia/Seoul")
 	private Date boardRegDate;
