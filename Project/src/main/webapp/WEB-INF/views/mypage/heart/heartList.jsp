@@ -173,43 +173,7 @@ table {
 	height: 250px;
 }
 </style>
-<script>
 
-	if (getCookie("categoryTab") != '') {
-		if (getCookie("categoryTab") == 'one') {
-			$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
-		} else if (getCookie("categoryTab") == 'two') {
-			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
-		}
-	} else {
-		setCookie("categoryTab", "one");
-		$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
-	}
-	
-	var setCookie = function(name, value) {
-	    document.cookie = name + '=' + value + ';path=/';
-	};
-	
-	var getCookie = function(name) {
-	    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-	    return value? value[2] : null;
-	};
-
-	var temp = $(':radio[name="tabs"]:checked').val();
-	//if(temp ==null ){
-	//	$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
-	
-	$('input:radio[name=tabs]').on("click", function(){
-		if (temp == 'one') {
-			setCookie("categoryTab", "one");
-			$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
-		} else {
-			setCookie("categoryTab", "one");
-s			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
-		}
-	});
-	
-</script>
 </head>
 
 <body>
@@ -238,7 +202,7 @@ s			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
 				</c:if>
 				<div id="fBoxes">
 					<c:forEach var="freeclub" items="${selectFreeClub}">
-						<div id="cardPadding">
+						<div id="cardPadding1">
 							<input type="checkbox" class="inputB" id="card1" name="clubNum"
 								value="${freeclub.clubNum}" /><br> <label for="card">
 								<div class="card"
@@ -298,7 +262,7 @@ s			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
 				<div id="fBoxes">
 
 					<c:forEach var="nofreeclub" items="${selectNoFreeClub}">
-						<div id="cardPadding">
+						<div id="cardPadding2">
 							<input type="checkbox" class="inputB" id="card2" name="clubNum"
 								value="${nofreeclub.clubNum}"><br> <label
 								for="card">

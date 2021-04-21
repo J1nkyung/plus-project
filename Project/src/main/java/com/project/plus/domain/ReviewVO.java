@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 
 @XmlRootElement(name="selectNotReview")
@@ -21,6 +22,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@ToString
 public class ReviewVO {
 	@XmlElement(name="review")
 	@XmlAttribute
@@ -44,72 +46,4 @@ public class ReviewVO {
 	private Date startDate;
 	private Date endDate;
 	
-
-	public int getReviewNum() {
-		return reviewNum;
-	}
-	public void setReviewNum(int reviewNum) {
-		this.reviewNum = reviewNum;
-	}
-	public int getMemberNum() {
-		return memberNum;
-	}
-	public void setMemberNum(int memberNum) {
-		this.memberNum = memberNum;
-	}
-	public int getClubNum() {
-		return clubNum;
-	}
-	public void setClubNum(int clubNum) {
-		this.clubNum = clubNum;
-	}
-	public String getReviewContent() {
-		return reviewContent;
-	}
-	public void setReviewContent(String reviewContent) {
-		this.reviewContent = reviewContent;
-	}
-	public int getReviewRate() {
-		return reviewRate;
-	}
-	public void setReviewRate(int reviewRate) {
-		this.reviewRate = reviewRate;
-	}
-	public Date getReviewRegDate() {
-		return reviewRegDate;
-	}
-	public void setReviewRegDate(Date reviewRegDate) {
-		this.reviewRegDate = reviewRegDate;
-	}
-	public String getClubThumbPic() {
-		return clubMain_pic;
-	}
-	public void setClubThumbPic(String clubThumbPic) {
-		this.clubMain_pic = clubThumbPic;
-	}
-	public String getClubName() {
-		return clubName;
-	}
-	public void setClubName(String clubName) {
-		this.clubName = clubName;
-	}
-	public Date getStartDate() {
-		return startDate;
-	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-	public Date getEndDate() {
-		return endDate;
-	}
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-	@Override
-	public String toString() {
-		return "ReviewVO [reviewNum=" + reviewNum + ", memberNum=" + memberNum + ", clubNum=" + clubNum
-				+ ", reviewContent=" + reviewContent +", reviewRate=" + reviewRate
-				+ ", reviewRegDate=" + reviewRegDate + ", clubThumbPic=" + clubMain_pic + ", clubName=" + clubName
-				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
-	}
 }

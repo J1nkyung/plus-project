@@ -69,7 +69,7 @@
                console.log(data);
                if( ${user.memberPoint } < ${totalPoint }){
                    alert('포인트가 부족합니다. 마이페이지 내에서 충전가능합니다.');
-                   opener.parent.location.reload();
+              	   opener.parent.location.reload();
                    window.close()   
                 }else{ 
                    alert("결제가 완료되었습니다. 모임은 마이페이지에서 확인해주세요.");

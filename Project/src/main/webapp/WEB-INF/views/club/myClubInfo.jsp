@@ -58,7 +58,7 @@
 			</div>
 			<div class="category">
 				<label for="exampleFormControlSelect2">카테고리 선택</label> <select
-					class="form-control" name="clubCategory">
+					class="form-control optionCategory" name="clubCategory">
 					<option value="운동">운동</option>
 					<option value="공부">학습</option>
 					<option value="습관">습관</option>
@@ -79,7 +79,8 @@
 				<button type="button" class="removeBtn" onclick="deleteFile(0)">x</button>
 							<!-- 이미지 미리보기 영역  -->
 					<div class="imgViewArea" style="margin-top:10px;">	
-						<img class="imgArea" style="width:200px; height:100px;"   src="${path}/resources${club.clubMain_pic}"	 onerror="this.style.display='none';" /></div>
+						<img class="imgArea" style="width:200px; height:100px;"   src="${path}/resources${club.clubMain_pic}"	
+						 onerror="this.style.display='none';" /></div>
 			</div>
 		</div> 
 		<article>
@@ -95,7 +96,8 @@
 					<button type="button" class="removeBtn" onclick="deleteFile(1)">x</button>
 								<!-- 이미지 미리보기 영역  -->
 					<div class="imgViewArea" style="margin-top:10px;" >
-						<img class="imgArea" style="width:200px; height:100px;" src="${path}/resources${club.clubContent1_pic}"	 onerror="this.style.display='none';" /></div>
+						<img class="imgArea" style="width:200px; height:100px;" src="${path}/resources${club.clubContent1_pic}"	
+						 onerror="this.style.display='none';" /></div>
 				</div>
 			</div>
 			<div id="write-checkinfo">
@@ -116,7 +118,8 @@
 					<button type="button" class="removeBtn" onclick="deleteFile(2)">x</button>
 								<!-- 이미지 미리보기 영역  -->
 					<div class="imgViewArea" style="margin-top:10px;" >
-						<img class="imgArea" style="width:200px; height:100px;" src="${path}/resources${club.clubContent2_pic}"	 onerror="this.style.display='none';" /></div>
+						<img class="imgArea" style="width:200px; height:100px;" src="${path}/resources${club.clubContent2_pic}"	
+						 onerror="this.style.display='none';" /></div>
 				</div>
 			</div>
 			<div class="hashtag-wrap">
@@ -178,15 +181,15 @@
 
 
 		<div class="freq">
-			<label for="exampleFormControlSelect2">모임주기</label> <select
-				class="form-control" name="clubFreq">
-				<option value="주1회">주 1회</option>
-				<option value="주2회">주 2회</option>
-				<option value="주3회">주 3회</option>
-				<option value="주4회">주 4회</option>
-				<option value="주5회">주 5회</option>
-				<option value="주6회">주 6회</option>
-				<option value="주7회">주 7회</option>
+			<label for="exampleFormControlSelect2">모임주기</label> 
+			<select class="form-control optionFreq" name="clubFreq">
+				<option value="주 1회">주 1회</option>
+				<option value="주 2회">주 2회</option>
+				<option value="주 3회">주 3회</option>
+				<option value="주 4회">주 4회</option>
+				<option value="주 5회">주 5회</option>
+				<option value="주 6회">주 6회</option>
+				<option value="주 7회">주 7회</option>
 			</select>
 		</div>
 		<div class="radioBtn">
@@ -239,6 +242,23 @@ marker.setMap(map);
 
 
 <!---------------------지도 끝------------------->
+let category = '${club.clubCategory}';
+let freq = '${club.clubFreq}';
+let clubFee = '${club.clubFee}';
+
+console.log(category)
+console.log(freq)
+
+$('.optionCategory').val(category).prop("selected", true);
+$('.optionFreq').val(freq).prop("selected", true);
+
+if(clubFee=='0'){
+	$('input:radio[name=optradio]:input[value=free]').attr("checked", true);
+} else {
+	$('input:radio[name=optradio]:input[value=pay]').attr("checked", true);
+	$('.clubfeeBox').css('display','block');
+	$('#club-fee').val(clubFee);
+}
 
 
 function changeImg(index){

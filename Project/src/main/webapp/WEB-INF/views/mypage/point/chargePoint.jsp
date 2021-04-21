@@ -48,7 +48,7 @@
 	            pay_method : 'card',
 	            merchant_uid : 'merchant_' + new Date().getTime(),
 	            name : '포인트 결제',
-	            amount : amount,
+	            amount : 100,
 	             /* amount : 100,  */
 	            //buyer_email : 'iamport@siot.do', 
 	            //buyer_name : '구매자이름',
@@ -67,6 +67,7 @@
 	            				},
 	            		success:function(result){
 	            			console.log('결제 완료');
+	            			
 	            		}
 	            	});
 	                var msg = '💬 결제가 완료되었습니다. 보유하신 포인트 금액을 확인해주세요.';
@@ -76,30 +77,31 @@
 	                msg += '카드 승인번호 : ' + rsp.apply_num;
 	                
 	                // 결제알림 보내기 
-	                let notMessage ="포인트<b>" + point + "P</b>가 충전되었습니다.";
- 					let notType= "결제";
- 					let notUrl = "${path}/getPaymentList?memberNum="+memberNum;
- 					  $.ajax({
- 					        
- 							type: "post",
- 							url: "insertCommNoti",
- 							data: {
- 								// 알림이 갈 대상 
- 								memberNum:memberNum,
- 								notType:notType,
- 								notMessage: notMessage,
- 								notUrl:notUrl
- 							},
- 				            success: function (data) {
- 				            	// 서버로 알림 메시지 전송 
- 				            	console.log("결제알림 전송");
- 				            	sock.send(notType + "," + memberNum + "," + notMessage + "," + notUrl);
- 				            	
- 				            },
- 				            error: function(e) {
- 					        	  alert("알림 저장 오류" + e);
- 					        }
- 				        }); 
+                    let notMessage ="포인트<b>" + point + "P</b>가 충전되었습니다.";
+    					let notType= "결제";
+    					let notUrl = "${path}/getPaymentList?memberNum="+memberNum;
+    					  $.ajax({
+    					        
+    							type: "post",
+    							url: "insertCommNoti",
+    							data: {
+    								// 알림이 갈 대상 
+    								memberNum:memberNum,
+    								notType:notType,
+    								notMessage: notMessage,
+    								notUrl:notUrl
+    							},
+    				            success: function (data) {
+    				            	// 서버로 알림 메시지 전송 
+    				            	console.log("결제알림 전송");
+    				            	sock.send(notType + "," + memberNum + "," + notMessage + "," + notUrl);
+    				            	
+    				            },
+    				            error: function(e) {
+    					        	  alert("알림 저장 오류" + e);
+    					        }
+    				        }); 
+	               
 	         
 	            } else {
 	                var msg = '💬 결제에 실패하였습니다.\n';
@@ -112,7 +114,7 @@
 	            setTimeout(function() {
 			          opener.parent.location.reload(); //팝업창을 닫으면서 부모창을 새로고침하는 방법
 			          window.close();
-	            	}, 10000);
+	            	}, 1000);
 	        });
 	        
 	    }

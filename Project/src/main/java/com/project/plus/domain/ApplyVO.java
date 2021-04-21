@@ -23,54 +23,12 @@ public class ApplyVO {
 	private String memberPic;
 	private String memberNickname;
 	
-	
-	public String getClubName() {
-		return clubName;
-	}
-	public void setClubName(String clubName) {
-		this.clubName = clubName;
-	}
-	public int getClubFee() {
-		return clubFee;
-	}
-	public void setClubFee(int clubFee) {
-		this.clubFee = clubFee;
-	}
-	public int getApplyNum() {
-		return applyNum;
-	}
-	public void setApplyNum(int applyNum) {
-		this.applyNum = applyNum;
-	}
-	public int getMemberNum() {
-		return memberNum;
-	}
-	public void setMemberNum(int memberNum) {
-		this.memberNum = memberNum;
-	}
-	public int getClubNum() {
-		return clubNum;
-	}
-	public void setClubNum(int clubNum) {
-		this.clubNum = clubNum;
-	}
-	public Date getApplyDate() {
-		return applyDate;
-	}
-	public void setApplyDate(Date applyDate) {
-		this.applyDate = applyDate;
-	}
-	public int getTotalFee() {
-		return totalFee;
-	}
-	public void setTotalFee(int totalFee) {
-		this.totalFee = totalFee;
-	}
-	public int[] getClubNumArr() {
-		return clubNumArr;
-	}
-	public void setClubNumArr(int[] clubNumArr) {
-		this.clubNumArr = clubNumArr;
-	}
+
+//	public int[] getClubNumArr() {
+//		return clubNumArr;
+//	}
+//	public void setClubNumArr(int[] clubNumArr) {
+//		this.clubNumArr = clubNumArr;
+//	}
 	
 }

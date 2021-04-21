@@ -1,4 +1,4 @@
-package com.project.plus.utils;
+package com.project.plus.controller;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -14,7 +14,6 @@ import com.project.plus.domain.MemberVO;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-@Component
 public class EchoHandler extends TextWebSocketHandler {
 
 	private Map<Integer, WebSocketSession> users = new ConcurrentHashMap<Integer, WebSocketSession>();
