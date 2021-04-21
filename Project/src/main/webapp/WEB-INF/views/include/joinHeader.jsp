@@ -75,12 +75,8 @@
 </head>
 
 <body>
-    <!-- 사실상 헤더가 없어요  -->
     <header></header>
-    <!-- 본문 너비 정하는 용으로 wrapper 아이디 설정 -->
     <div id="wrapper">
-        <!-- navi bar가 사실상 저희 헤더입니다 -->
-        <!-- id="selected" 나중에 자바스크립트로 수정할 부분 -->
         <nav>
             <ul class="menu-left">
                 <li id="logo_a"><a href="main.do"><img id="logo_img" src="${path}/resources/img/images/logo.png"></a></li>
@@ -98,10 +94,6 @@
                         </ul>
                     </div>
                 </li>
-             <!--  
-               <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/chat.png" id="icon"></a></li>
-                <li class="nav-right icon"><a href="#"><img src="${path}/resources/img/images/bell1.png" id="icon"></a></li>
-             --> 
             </ul>          
         </nav>
 

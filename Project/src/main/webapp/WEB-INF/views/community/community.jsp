@@ -11,7 +11,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<%-- <link rel="stylesheet" type="text/css" href="${path}/resources/css/comm-aside.css"> --%>
 <title>커뮤니티</title>
 
 <style>
@@ -327,8 +326,6 @@ padding-bottom:30px;
 
 	
    <div class="communityContainer">
-    <%--   <input type="button" name="boardForm" id="boardForm"
-         onclick="location.href='${path}/insertBoardForm'"> --%>
          <!-- 정연 추가 20210410 링크에 ${clubNum }추가 -->
          <form action="insertBoardForm" method="get">
          <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm?clubNum=${clubNum }'">
@@ -369,12 +366,6 @@ padding-bottom:30px;
                                     </button>
                                     <button type="submit" id="btnDel"><a href="${path}/deleteBoard?boardNum=${board.boardNum}&clubNum=${board.clubNum}">삭제</a>
                                     </button>
-                               <%--      <button type="submit" id="btnUp">
-                                       <a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>
-                                    </button>
-                                    <button type="submit" id="btnDel">
-                                       <a href="${path}/deleteBoard?boardNum=${board.boardNum}">삭제</a>
-                                    </button> --%>
                                  </ul>
                               </li>
                            </ul>

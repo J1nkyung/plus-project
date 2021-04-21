@@ -1,0 +1,184 @@
+body {
+   padding-top: 30px;
+   font-family: 'NanumSquare', sans-serif;
+   margin-left: 40px;
+}
+
+a {
+   color: inherit;
+}
+
+a:hover {
+   text-decoration: none;
+}
+
+.Container {
+   margin: 0;
+   width: 1140px;
+}
+
+.Content {
+   position: absolute;
+   left: 25%;
+   width: 70%;
+   height: 100vh;
+}
+
+#tableWrapper {
+   width: 85%;
+   height: 415.550px;
+   padding-top: 30px;
+   padding-bottom: 30px;
+}
+
+#block {
+   border: 1px solid rgba(189, 186, 186, 0.829);
+   border-radius: 2%;
+   min-height: 443.2px;
+}
+
+#tableWrapper table {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+#tableWrapper table th:first-child {
+   border-radius: 10px 0px 0px 0px;
+}
+
+#tableWrapper table th:last-child {
+   border-radius: 0px 10px 0px 0px;
+}
+
+#tableWrapper table th {
+   text-align: center;
+   background-color: grey;
+   height: 19.6px;
+   padding: 13px;
+   background-color: #001eff;
+   color: white;
+}
+
+#tableWrapper table td {
+   text-align: center;
+   padding: 7px;
+   max-height: 17px;
+}
+
+#pageArea {
+   margin: 0 auto;
+   position: relative;
+}
+
+.paging {
+   margin-top: 10px;
+   position: absolute;
+   left: 37%;
+}
+
+.paging>li {
+   list-style: none;
+   float: left;
+   padding: 6px 1px;
+}
+
+.span {
+   padding: 6px 12px;
+   border: 1px solid lightgray;
+}
+
+#info, .paging>li :hover {
+   text-decoration: none;
+}
+
+#keywordInput {
+   display: inline;
+}
+
+.search {
+   float: right;
+   margin-bottom: 3px;
+   margin-right: 3px;
+}
+
+#searchType {
+   height: 24px;
+}
+li {
+   list-style: none;
+   float: left;
+   padding: 6px;
+}
+
+#delBtn a:hover {
+   color: white;
+}
+
+.clubname {
+   width: 200px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.clubleader {
+   width: 90px;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.btn-primary {
+    background-color: #7589eb;
+   border-color: #7589eb;
+   color: #fff;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+   border-color: #819FF7;
+   background-color: #819FF7;
+   color: #FFF;
+}
+
+.btn-primary:active, .btn-primary:visited,
+   .btn-primary:active:focus, .btn-primary:active:hover {
+   border-color: #CED8F6;
+   background-color: #819FF7;
+   color: #FFF;
+}
+
+.btn-success {
+   background-color:#c775eb;
+   border-color: #c775eb;
+   color: #fff;
+}
+
+.btn-success:hover, .btn-success:focus {
+   border-color: #D0A9F5;
+   background-color: #D0A9F5;
+   color: #FFF;
+}
+
+.btn-success:active, .btn-success:visited,
+   .btn-success:active:focus, .btn-success:active:hover {
+   border-color: #F2E0F7;
+   background-color: #E2A9F3;
+   color: #FFF;
+}
+
+.nav-item {
+   font-size: 13px;
+   padding: 0px;
+   padding-left: 35px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+   margin: 0;
+   padding: 5px;
+}
+
+#gomain {
+   color: white;
+   font-size: 12px;
+   padding-top: 30px;
+}

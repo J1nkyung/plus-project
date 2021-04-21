@@ -366,12 +366,7 @@ margin-right:230px;
                                     </button>
                                     <button type="submit" id="btnDel"><a href="${path}/deleteBoard?boardNum=${board.boardNum}&clubNum=${board.clubNum}">삭제</a>
                                     </button>
-                               <%--      <button type="submit" id="btnUp">
-                                       <a href="${path}/updateView?boardNum=${board.boardNum}">수정</a>
-                                    </button>
-                                    <button type="submit" id="btnDel">
-                                       <a href="${path}/deleteBoard?boardNum=${board.boardNum}">삭제</a>
-                                    </button> --%>
+                     
                                  </ul>
                               </li>
                            </ul>
@@ -403,23 +398,6 @@ margin-right:230px;
 </body>
 <script>
 
-//수정, 삭제 시 확인 자바스크립트
-	/* $(document).ready(function(){
-			var formObj = $("form[name='updateForm']");
-			
-			$("#btnUp").on("click", function(){
-				formObj.attr("action", "updateView");
-				formObj.attr("method", "get");
-				formObj.submit();				
-			})
-			
-			$("#btnDel").on("click", function(){
-				formObj.attr("action", "deleteBoard");
-				formObj.attr("method", "post");
-				formObj.submit();
-			})
-					
-	}) */
 
 $(document).ready(function(){
 	var formObj = $("form[name='updateForm']");
@@ -491,7 +469,6 @@ $(function(){
 					memberNum:mNum,
 					boardNum:boardNum,
 					commentsContent:content,
-					commentsRegdate:today,
 				},
 		    	 success: function (data) {
 		     		console.log(data)
@@ -610,7 +587,7 @@ function showReComments(cNum){
 					span.classList.add('userSpan');
 					span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
 					span.innerHTML += '<div id="commentNickname">'+data[i].memberNickname +'</div>';
-					span.innerHTML += '<div id="commRegdate">'+ data[i].commentsChangedRegdate +'</div></div>';
+					span.innerHTML += '<div id="commRegdate">'+ data[i].commentsRegdate +'</div></div>';
 					
 					let commContent = document.createElement('div');
 					commContent.id = 'commContent';
@@ -699,7 +676,7 @@ function getComments(bNum){
 		         	span.classList.add("userSpan");
 		         	span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
 		         	span.innerHTML += '<div id="commentNickname">'+ data[i].memberNickname +'</div>';
-		         	span.innerHTML += '<div id="commRegdate">'+ data[i].commentsChangedRegdate +'</div>';
+		         	span.innerHTML += '<div id="commRegdate">'+ data[i].commentsRegdate +'</div>';
 		         	/* span.innerHTML += '<img src="${path}/resources/img/down.png" id="dropdown"/>'; */
 		         	comment.appendChild(span);
 		         	comment.innerHTML += '<div id="commContent">'+ data[i].commentsContent +'</div></div>';
@@ -774,7 +751,6 @@ function insertComment(bNum){
 							memberNum:mNum,
 							boardNum:bNum,
 							commentsContent:content,
-							commentsRegdate:today,
 						},
 			            success: function (data) {
 			            	console.log(data);

@@ -28,13 +28,11 @@
 }
 
 #tableWrapper {
-	/* width: 85%; */
 	width: 100%; 
 	height: 415.550px;
 }
 
 #block {
-	/*    border: 1px solid rgba(189, 186, 186, 0.829); */
 	border-radius: 2%;
 	min-height: 443.2px;
 }
@@ -180,13 +178,6 @@ width: 240px;
 }
 /*말줄임 css end*/
 </style>
-<script>
-    $(function(){
-      $('#searchBtn').click(function() {
-        self.location = "memberList" + '${pmem.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
-      });
-    });   
-</script>
 </head>
 
 <body>
@@ -203,15 +194,6 @@ width: 240px;
 					<div id="tableWrapper"><!-- tab 1  -->
 						<form role="form" method="get" id="form">
 
-							<%--  <div class="search">
-    <select name="searchType" id="searchType">
-      <option value="null"<c:out value="${scmem.searchType == null ? 'selected' : ''}"/>>-----</option>
-      <option value="e"<c:out value="${scmem.searchType eq 'e' ? 'selected' : ''}"/>>이메일</option>
-      <option value="n"<c:out value="${scmem.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
-    </select>
-    <input type="text" size="30" name="keyword" id="keywordInput" value="${scmem.keyword}"/>
-    <button id="searchBtn" type="button">검색</button>
-</div> --%>
 							<!-- search -->
 							<div id="block">
 								<table class="useInfo">

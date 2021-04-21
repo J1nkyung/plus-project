@@ -382,11 +382,6 @@ var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 
 			}
 
-		/* 	if (lat.value == "") {
-				alert("모임의 위치를 선택해주세요!")
-				return postion.focus()
-
-			} */
 			for (var i = 0; i < date.length; i++) {
 				if (date[i].value == "") {
 					alert("날짜를 입력해주세요!")

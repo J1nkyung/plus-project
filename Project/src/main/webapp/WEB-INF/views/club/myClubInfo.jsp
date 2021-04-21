@@ -41,13 +41,6 @@
 		id="frm">
 
 		<div class="selection">
-			<!-- 		<div class="select-kind">
-				<label for="exampleFormControlSelect2">더하기 종류</label> 
-				<select class="form-control" id="select-kindbox" name="clubKind" onchange="changeDetail()">
-					<option value="1">가치더하기</option>
-					<option value="2">도움더하기</option>
-				</select>
-			</div> -->
 
 			<div class="select-onoff">
 				<label for="exampleFormControlSelect2">온라인/오프라인</label> <select

@@ -74,21 +74,8 @@
               
             }
         });
-    	
-    	/*setTimeout(function() {
-            opener.parent.location.reload(); //팝업창을 닫으면서 부모창을 새로고침하는 방법
-            window.close();
-     	}, 1000);*/
+
     });
-     
-     /*if('${msg}' != ''){
-    	 confirm('${msg}' ) { 
-    		 location="getPaymentList";
-             return true;
-    	 }else{
-             return false;
-         }
-     }*/
      
      
     </script>

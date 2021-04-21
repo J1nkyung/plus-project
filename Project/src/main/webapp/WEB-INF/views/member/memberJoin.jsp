@@ -25,28 +25,7 @@
      chk3_yn()
      //이메일 인증코드 보내는 함수
   	 verifyEmail()
-  
-	
-/* 	var formObj = $("form[name='joinForm']");
-	
-	//
-	$("#btnJoin").on("click", function(){
-		
-		if(chNickname()==false){
-				alert('닉넴중복여부 확인요망')
-		}else{
-			if(emailcode()==false){
-				alert('본인인증코드 확인요망')
-			}else{
-				
-				formObj.attr("action", "memberJoin").submit();
-				formObj.attr("method", "post");
-				alert("더하기와 함게해주셔서 감사합니다");
-			}
-	
-		}
 
-	 }); */
 
 	 
   	 $("#btnJoin").click(function submitCheck(){
