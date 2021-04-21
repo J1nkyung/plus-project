@@ -48,6 +48,8 @@
     <script>
     
     $("#payBtn").on("click", function() {
+    	
+    	
     	$.ajax({
             type: "post",
             url: "applyOnePayClubPayment",
@@ -58,10 +60,18 @@
                totalFee:'${totalPoint }'
             },
                success: function (data) {
-               console.log(data);
-               alert("모임 신청이 완료되었습니다.");
-               opener.parent.location.reload();
-               window.close();
+               console.log(data);	
+               if( ${user.memberPoint } < ${totalPoint }){
+	               alert('포인트 부족');
+	               opener.parent.location.reload();
+	               window.close()	
+               }else{ 
+            	   alert('신청완료');
+	               opener.parent.location.reload();
+	               window.close();
+            	   
+               }
+              
             }
         });
     	

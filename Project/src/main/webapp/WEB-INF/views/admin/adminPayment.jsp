@@ -255,7 +255,9 @@ li {
                                  pattern="yyyy-MM-dd" />
                               <fmt:formatDate var="resultRegDt" value="${parseRegDate}"
                                  pattern="yyyy-MM-dd" />
-                              <td class="text-center">${resultRegDt}</td>
+                             <%--  ${resultRegDt} + " (" + ${payment.payTime} +")" --%>
+                             <td class="text-center"><fmt:formatDate value="${payment.payDate}"  
+                             pattern="yyyy-MM-dd" /> (${payment.payTime })</td>
                               <c:if test="${payment.payMethod eq '포인트충전'}">
                                  <td class="text-center"><button type="button"
                                        class="btn btn-primary btn-sm" disabled style="width: 70px">충전</button></td>

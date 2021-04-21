@@ -35,10 +35,10 @@
 	/* border: 2px solid #eee; */
 	margin: 30px 0px 30px 0px;
 	box-shadow: 0.5px 0.5px 0.5px 0.5px #8299d841;
-	 padding-top: 20px;
-     width: 69%;
-     height: 150px;
-     border: 2px solid #eee;
+	padding-top: 20px;
+	width: 69%;
+	height: 150px;
+	border: 2px solid #eee;
 }
 
 .createClubPic {
@@ -46,7 +46,7 @@
 	height: 120px;
 	/* border-radius: 50%;  테두리 뭐가 더 나은지 여쭤보기*/
 	border-radius: 5px 5px 5px 5px;
-	margin:  -7px 30px 20px 30px;
+	margin: -7px 30px 20px 30px;
 	box-shadow: 1px 1px 1px #8299d879;
 }
 
@@ -56,49 +56,49 @@
 	text-align: left;
 }
 /*별점 css*/
-        /* rating */
+/* rating */
 .rating-group {
-   display: inline-flex;
+	display: inline-flex;
 }
 
 .rating__icon {
-   pointer-events: none;
+	pointer-events: none;
 }
 
 .rating__input {
-   position: absolute !important;
-   left: -9999px !important;
+	position: absolute !important;
+	left: -9999px !important;
 }
 
 .rating__label {
-   cursor: pointer;
-   padding: 0 0.1em;
-   font-size: 2rem;
+	cursor: pointer;
+	padding: 0 0.1em;
+	font-size: 2rem;
 }
 
 .rating__icon--star {
-   color: #57B9F0;
+	color: #57B9F0;
 }
 
 .rating__icon--none {
-   color: #eee;
+	color: #eee;
 }
 
 .rating__input:checked ~ .rating__label .rating__icon--star {
-   color: #ddd;
+	color: #ddd;
 }
 
 .rating-group:hover .rating__label .rating__icon--star {
-   color: #57B9F0;
+	color: #57B9F0;
 }
 
 .rating__input:hover ~ .rating__label .rating__icon--star {
-   color: #ddd;
+	color: #ddd;
 }
 
-.rating-group:hover .rating__input--none:not(:hover ) +.rating__label .rating__icon--none
-   {
-   color: #eee;
+.rating-group:hover .rating__input--none:not (:hover ) +.rating__label .rating__icon--none
+	{
+	color: #eee;
 }
 /*p 태그 서식 */
 .question {
@@ -115,11 +115,11 @@
 	border-radius: 5px;
 	float: right;
 	margin-top: 3%;
-	    margin-top: 50px;
-    margin-right: 820px;
+	margin-top: 50px;
+	margin-right: 820px;
 }
 
-#deleteBtn{
+#deleteBtn {
 	padding: 10px 20px;
 	color: #999;
 	border: 0;
@@ -127,24 +127,23 @@
 	border-radius: 5px;
 	float: right;
 	margin-top: 3%;
-	margin-right : 3px;
-	    position: absolute;
+	margin-right: 3px;
+	position: absolute;
 }
 
-
-#backBtn{
+#backBtn {
 	border-radius: 5px;
 	color: #999;
-	background-color : #eee;
-	padding:11px 17px;
+	background-color: #eee;
+	padding: 11px 17px;
 	margin-left: 40%;
-	text-decoration:none;
-	font-size: 13px; 
-	    margin-left: 210px;
-    position: absolute;
-    margin-top: 50px;
-    border-style: none;
-    font-size: 14px;
+	text-decoration: none;
+	font-size: 13px;
+	margin-left: 210px;
+	position: absolute;
+	margin-top: 50px;
+	border-style: none;
+	font-size: 14px;
 }
 </style>
 <script src="https://kit.fontawesome.com/415f6f6023.js"
@@ -155,10 +154,11 @@
 <body>
 	<div class="createContainer">
 		<div class="reviewContent">
-			<h1>리뷰 확인은 모임 상세보기에서도 가능합니다! </h1>
-			 <div class="clubInfoBox">
-				<img class="createClubPic" src="${path}/resources${selectClub.clubMain_pic}"
-     								 onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" />
+			<h1>리뷰 확인은 모임 상세보기에서도 가능합니다!</h1>
+			<div class="clubInfoBox">
+				<img class="createClubPic"
+					src="${path}/resources${selectClub.clubMain_pic}"
+					onerror="this.onerror=null; this.src='${path}/resources/img/goal.PNG'" />
 				<div class="clubTitle">
 					<h4 title="모임타이틀">${selectClub.clubName }</h4>
 					<fmt:formatDate value="${selectClub.clubStartDate}"
@@ -166,35 +166,38 @@
 					<fmt:formatDate value="${selectClub.clubEndDate}" var="endDateFmt"
 						pattern="yyyy-MM-dd hh:mm" />
 					<p>📆모임기간 :</p>
-					<p class="pTag">${startDateFmt} ~ ${endDateFmt}</p>
+					<p class="pTag">${startDateFmt}~ ${endDateFmt}</p>
 				</div>
 			</div>
 			<form action="updateReview" method="get">
-           		 <div class="rating-group">
-	               <label aria-label="1 star" class="rating__label" for="rating-1"><i class="rating__icon rating__icon--star fa fa-star"></i></label> 
-	                  <input class="rating__input" name="reviewRate" id="rating-1" value="1" type="radio">
-	                      <label aria-label="2 stars" class="rating__label" for="rating-2">
-	                         <i class="rating__icon rating__icon--star fa fa-star"></i>
-	                      </label> 
-	                  <input class="rating__input" name="reviewRate" id="rating-2" value="2" type="radio">
-	                      <label aria-label="3 stars"  class="rating__label" for="rating-3">
-	                         <i class="rating__icon rating__icon--star fa fa-star"></i>
-	                     </label> 
-	                  <input class="rating__input" name="reviewRate" id="rating-3" value="3" type="radio" > 
-	                     <label aria-label="4 stars"  class="rating__label" for="rating-4">
-	                        <i class="rating__icon rating__icon--star fa fa-star"></i>
-	                     </label> 
-	                  <input class="rating__input" name="reviewRate" id="rating-4" value="4" type="radio"> 
-	                     <label aria-label="5 stars" class="rating__label" for="rating-5">
-	                        <i class="rating__icon rating__icon--star fa fa-star"></i>
-	                     </label> 
-                  	  <input  class="rating__input" name="reviewRate" id="rating-5" value="5"  type="radio">
-                  	  
-                  	  
-          		  </div>
+				<div class="rating-group">
+					<label aria-label="1 star" class="rating__label" for="rating-1"><i
+						class="rating__icon rating__icon--star fa fa-star"></i></label> <input
+						class="rating__input" name="reviewRate" id="rating-1" value="1"
+						type="radio"> <label aria-label="2 stars"
+						class="rating__label" for="rating-2"> <i
+						class="rating__icon rating__icon--star fa fa-star"></i>
+					</label> <input class="rating__input" name="reviewRate" id="rating-2"
+						value="2" type="radio"> <label aria-label="3 stars"
+						class="rating__label" for="rating-3"> <i
+						class="rating__icon rating__icon--star fa fa-star"></i>
+					</label> <input class="rating__input" name="reviewRate" id="rating-3"
+						value="3" type="radio"> <label aria-label="4 stars"
+						class="rating__label" for="rating-4"> <i
+						class="rating__icon rating__icon--star fa fa-star"></i>
+					</label> <input class="rating__input" name="reviewRate" id="rating-4"
+						value="4" type="radio"> <label aria-label="5 stars"
+						class="rating__label" for="rating-5"> <i
+						class="rating__icon rating__icon--star fa fa-star"></i>
+					</label> <input class="rating__input" name="reviewRate" id="rating-5"
+						value="5" type="radio">
+
+
+				</div>
 				<div>
-					<input type="hidden" name="clubNum" value="${readReview.clubNum}"/>
-					<input type="hidden" name="memberNum" value="${readReview.memberNum}"/>
+					<input type="hidden" name="clubNum" value="${readReview.clubNum}" />
+					<input type="hidden" name="memberNum"
+						value="${readReview.memberNum}" />
 					<p class="question">어떤 점이 좋으셨나요?</p>
 					<textarea name="reviewContent" cols="69" rows="9"
 						style="resize: none; font-size: 20px;"
@@ -203,20 +206,22 @@
 				</div>
 			</form>
 			<form action="deleteReview" method="get">
-				<input type="hidden" name="clubNum" value="${readReview.clubNum}"/>
-				<input type="hidden" name="memberNum" value="${readReview.memberNum}"/>
-				<input type="submit" id="deleteBtn" onclick="return confirm('리뷰가 삭제됩니다. 페이지를 나가시겠습니까?');" value="삭제하기"/> 
+				<input type="hidden" name="clubNum" value="${readReview.clubNum}" />
+				<input type="hidden" name="memberNum"
+					value="${readReview.memberNum}" /> <input type="submit"
+					id="deleteBtn"
+					onclick="return confirm('리뷰가 삭제됩니다. 페이지를 나가시겠습니까?');" value="삭제하기" />
 			</form>
-				 <input type="button" id="backBtn" value="뒤로가기" >
+			<input type="button" id="backBtn" value="뒤로가기">
 		</div>
 	</div>
-<script type="text/javascript"
-	src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript"
+		src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 	<script>
 	$(document).ready(function(){ 
 		$('#backBtn').click(function() { 
 			var result = confirm('리뷰가 저장되지 않습니다. 페이지를 나가시겠습니까?'); 
-			if(result) { //yes 
+			if(result) { //yes  
 				location.replace('getReviewList'); } 
 			else { //no 
 				

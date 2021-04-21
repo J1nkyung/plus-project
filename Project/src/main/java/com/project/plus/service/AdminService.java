@@ -56,6 +56,13 @@ public interface AdminService {
    int getOnHobby(ClubVO cvo);
    int getOffHobby(ClubVO cvo);
    
+   int getPayToday(PaymentVO pvo);
+   int getPay_1(PaymentVO pvo);
+   int getPay_2(PaymentVO pvo);
+   int getPay_3(PaymentVO pvo);
+   int getPay_4(PaymentVO pvo);
+   int getPay_5(PaymentVO pvo);
+   int getPay_6(PaymentVO pvo);
 
    public List<PaymentVO> adminPayList(CriteriaMem cri) throws Exception;
    public int adminPayListCount(CriteriaMem cri) throws Exception;

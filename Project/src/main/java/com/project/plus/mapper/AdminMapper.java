@@ -9,8 +9,8 @@ import com.project.plus.domain.MemberVO;
 import com.project.plus.domain.PaymentVO;
 import com.project.plus.domain.VisitCountVO;
 
-
 public interface AdminMapper {
+   
    public void deleteAdminInquiry(InquiryVO vo);
 
    public InquiryVO getAdminInquiry(InquiryVO vo);
@@ -18,7 +18,7 @@ public interface AdminMapper {
    public List<InquiryVO> getAdminInquiryList(CriteriaMem cri) throws Exception;
 
    public int adminInquiryListCount(CriteriaMem cri) throws Exception;
-   
+
    public int getAdminChart(MemberVO mvo);
 
    public int getAdminVisit(VisitCountVO vcvo);
@@ -58,33 +58,41 @@ public interface AdminMapper {
    public int getJoin_5(MemberVO mvo);
 
    public int getJoin_6(MemberVO mvo);
-   
+
    public int getOnStudy(ClubVO cvo);
-   
+
    public int getOffStudy(ClubVO cvo);
-   
+
    public int getOnExcer(ClubVO cvo);
-   
+
    public int getOffExcer(ClubVO cvo);
-   
+
    public int getOnHabit(ClubVO cvo);
-   
+
    public int getOffHabit(ClubVO cvo);
-   
+
    public int getOnHobby(ClubVO cvo);
-   
+
    public int getOffHobby(ClubVO cvo);
+   
+   public int getPayToday(PaymentVO pvo);
+   public int getPay_1(PaymentVO pvo);
+   public int getPay_2(PaymentVO pvo);
+   public int getPay_3(PaymentVO pvo);
+   public int getPay_4(PaymentVO pvo);
+   public int getPay_5(PaymentVO pvo);
+   public int getPay_6(PaymentVO pvo);
 
    public InquiryVO answerInquiryForm(InquiryVO vo);
 
    public void answerInquiry(InquiryVO vo);
-   
+
    public InquiryVO answerInquiryEditForm(InquiryVO vo);
-   
+
    public void answerEditInquiry(InquiryVO vo);
 
    public List<PaymentVO> adminPayList(CriteriaMem cri) throws Exception;
-   
+
    public int adminPayListCount(CriteriaMem cri) throws Exception;
 
    public void deleteAdminClub(ClubVO cvo);
@@ -92,9 +100,9 @@ public interface AdminMapper {
    public List<ClubVO> adminClubList(CriteriaMem cri) throws Exception;
 
    public int adminClubListCount(CriteriaMem cri) throws Exception;
-   
+
    public int adminClubListCount(ClubVO cvo);
-   
+
 //   public List<PaymentVO> payList(SearchCriteriaAdmin scad);
 //   public int payListCount(SearchCriteriaAdmin scad);
 }

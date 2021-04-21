@@ -164,8 +164,30 @@
       SELECT COUNT(*) FROM member WHERE DATE_FORMAT(member_joindate, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 6 day, '%y-%m-%d')
    </select>
    
-
    
+   <!-- 포인트 통계용 차트 -->
+   <select id="getPayToday" resultType="Integer">
+      SELECT IFNULL(SUM(pay_amount), 0) FROM payment WHERE pay_method='포인트충전' AND DATE_FORMAT(pay_date, '%y-%m-%d')=DATE_FORMAT(NOW(), '%y-%m-%d')
+   </select>
+   <select id="getPay_1" resultType="Integer">
+      SELECT IFNULL(SUM(pay_amount), 0) FROM payment WHERE pay_method='포인트충전' AND DATE_FORMAT(pay_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 1 day, '%y-%m-%d')
+   </select>
+   <select id="getPay_2" resultType="Integer">
+      SELECT IFNULL(SUM(pay_amount), 0) FROM payment WHERE pay_method='포인트충전' AND DATE_FORMAT(pay_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 2 day, '%y-%m-%d')
+   </select>
+   <select id="getPay_3" resultType="Integer">
+      SELECT IFNULL(SUM(pay_amount), 0) FROM payment WHERE pay_method='포인트충전' AND DATE_FORMAT(pay_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 3 day, '%y-%m-%d')
+   </select>
+   <select id="getPay_4" resultType="Integer">
+      SELECT IFNULL(SUM(pay_amount), 0) FROM payment WHERE pay_method='포인트충전' AND DATE_FORMAT(pay_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 4 day, '%y-%m-%d')
+   </select>
+   <select id="getPay_5" resultType="Integer">
+      SELECT IFNULL(SUM(pay_amount), 0) FROM payment WHERE pay_method='포인트충전' AND DATE_FORMAT(pay_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 5 day, '%y-%m-%d')
+   </select>
+   <select id="getPay_6" resultType="Integer">
+      SELECT IFNULL(SUM(pay_amount), 0) FROM payment WHERE pay_method='포인트충전' AND DATE_FORMAT(pay_date, '%y-%m-%d')=DATE_FORMAT(curdate()-interval 6 day, '%y-%m-%d')
+   </select>
+
    <!-- 문의글 개별 상세 조회 -->
    <select id="getAdminInquiry" resultMap="adminResult">
       SELECT inquiry_num, inquiry_title, MEMBER.member_num, inquiry_content, inquiry_type, inquiry_state, 
@@ -189,8 +211,9 @@
    
    <!-- 결제내역 리스트 페이징-->
    <select id="adminPayList" resultMap="adminPayResult" parameterType="com.project.plus.domain.CriteriaMem">
-      SELECT pay_num, member_num, member_nickname, club_name, pay_method, pay_date, pay_amount
+      SELECT pay_num, member_num, member_nickname, club_name, pay_method, pay_date, pay_amount , time(pay_date) as payTime
       FROM (SELECT PAYMENT.pay_num, MEMBER.member_num, MEMBER.member_nickname, CLUB.club_name, PAYMENT.pay_method, PAYMENT.pay_date, PAYMENT.pay_amount,
+      time(pay_date) as payTime,
       row_number() OVER (ORDER BY pay_num DESC) AS rNum
       FROM PAYMENT
       LEFT JOIN CLUB ON CLUB.club_num = PAYMENT.club_num
@@ -216,7 +239,7 @@
       SELECT COUNT(club_num) FROM club
    </select>
    
-   <!-- 모임 삭제  // 여기에 cascade 관련이 들어가야 하는데 모든 걸 다 cascade 할것인지.. -->
+   <!-- 모임 삭제  -->
    <delete id="deleteAdminClub">
       DELETE FROM CLUB WHERE CLUB_NUM=#{clubNum}
    </delete>
@@ -242,5 +265,5 @@
    </if>
 </sql> -->
 
-
+  
 </mapper>

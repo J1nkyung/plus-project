@@ -30,70 +30,71 @@ public class AdminController {
 
    @Autowired
    private AdminService ads;
+
    // 관리자 : 1:1 문의글 상세 조회
-      @GetMapping("/getAdminInquiry")
-      public String getAdminInquiry(InquiryVO vo, Model model) {
-         model.addAttribute("adminInquiry", ads.getAdminInquiry(vo));
-         return "admin/inquiry/getAdminInquiry";
-      }
+   @GetMapping("/getAdminInquiry")
+   public String getAdminInquiry(InquiryVO vo, Model model) {
+      model.addAttribute("adminInquiry", ads.getAdminInquiry(vo));
+      return "admin/inquiry/getAdminInquiry";
+   }
 
-      // 회원 : 1:1 문의 목록 조회 페이징처리 완
-      @RequestMapping(value = "/adminInquiry")
-      public String getAdminInquiryList(Model model, CriteriaMem cri) throws Exception {
+   // 회원 : 1:1 문의 목록 조회 페이징처리 완
+   @RequestMapping(value = "/adminInquiry")
+   public String getAdminInquiryList(Model model, CriteriaMem cri) throws Exception {
 
-         List<InquiryVO> adminInquiryList = ads.getAdminInquiryList(cri);
-         System.out.println(adminInquiryList);
-         model.addAttribute("adminInquiryList", adminInquiryList);
+      List<InquiryVO> adminInquiryList = ads.getAdminInquiryList(cri);
+      System.out.println(adminInquiryList);
+      model.addAttribute("adminInquiryList", adminInquiryList);
 
-         PageMakerMem pgmad = new PageMakerMem();
-         pgmad.setCriMem(cri);
-         pgmad.setTotalCount(ads.adminInquiryListCount(cri));
-         model.addAttribute("pageMakerMem", pgmad);
+      PageMakerMem pgmad = new PageMakerMem();
+      pgmad.setCriMem(cri);
+      pgmad.setTotalCount(ads.adminInquiryListCount(cri));
+      model.addAttribute("pageMakerMem", pgmad);
 
-         return "admin/inquiry/adminInquiry";
-      }
+      return "admin/inquiry/adminInquiry";
+   }
 
-      // 관리자 : 1:1 문의글 삭제
-      @RequestMapping("/deleteAdminInquiry")
-      public String deleteAdminInquiry(InquiryVO vo) {
-         ads.deleteAdminInquiry(vo);
-         return "redirect:adminInquiry";
-      }
+   // 관리자 : 1:1 문의글 삭제
+   @RequestMapping("/deleteAdminInquiry")
+   public String deleteAdminInquiry(InquiryVO vo) {
+      ads.deleteAdminInquiry(vo);
+      return "redirect:adminInquiry";
+   }
 
-      // 관리자 : 1:1 문의글 답변 폼
-      @RequestMapping("/answerInquiryForm")
-      public String answerInquiryForm(InquiryVO vo, Model model) {
-         model.addAttribute("answerInquiryForm", ads.answerInquiryForm(vo));
-         System.out.println("controller의 vo" + vo);
-         return "admin/inquiry/inquiryAnswerForm";
-      }
+   // 관리자 : 1:1 문의글 답변 폼
+   @RequestMapping("/answerInquiryForm")
+   public String answerInquiryForm(InquiryVO vo, Model model) {
+      model.addAttribute("answerInquiryForm", ads.answerInquiryForm(vo));
+      System.out.println("controller의 vo" + vo);
+      return "admin/inquiry/inquiryAnswerForm";
+   }
 
-      // 관리자 : 1:1 문의글 답변 등록 메서드
-      @RequestMapping("/answerInquiry")
-      public String answerInquiry(InquiryVO vo) {
-         ads.answerInquiry(vo);
-         return "redirect:adminInquiry";
-      }
-      
-      // 회원 : 1:1 문의글 수정 폼
-      @RequestMapping("/answerInquiryEditForm")
-      public String answerInquiryEditForm(InquiryVO vo, Model model) {
-         model.addAttribute("answerInquiryEditForm", ads.answerInquiryEditForm(vo));
-         System.out.println("지금부터 수정을 시작하지" + vo);
-         return "admin/inquiry/inquiryAnswerEditForm";
-      }
-      
-      // 회원 : 1:1 문의글 수정 등록 메서드
-      @RequestMapping(value = "/answerEditInquiry", method = RequestMethod.POST)
-      public String answerEditInquiry(InquiryVO vo) {
-         ads.answerEditInquiry(vo);
-         System.out.println("수정제출"+vo);
-         return "redirect:adminInquiry";
-      }
+   // 관리자 : 1:1 문의글 답변 등록 메서드
+   @RequestMapping("/answerInquiry")
+   public String answerInquiry(InquiryVO vo) {
+      ads.answerInquiry(vo);
+      return "redirect:adminInquiry";
+   }
+
+   // 회원 : 1:1 문의글 수정 폼
+   @RequestMapping("/answerInquiryEditForm")
+   public String answerInquiryEditForm(InquiryVO vo, Model model) {
+      model.addAttribute("answerInquiryEditForm", ads.answerInquiryEditForm(vo));
+      System.out.println("지금부터 수정을 시작하지" + vo);
+      return "admin/inquiry/inquiryAnswerEditForm";
+   }
+
+   // 회원 : 1:1 문의글 수정 등록 메서드
+   @RequestMapping(value = "/answerEditInquiry", method = RequestMethod.POST)
+   public String answerEditInquiry(InquiryVO vo) {
+      ads.answerEditInquiry(vo);
+      System.out.println("수정제출" + vo);
+      return "redirect:adminInquiry";
+   }
 
    // 관리자 : 차트 페이지
    @RequestMapping("/adminChart")
-   public String getAdminChart(ClubVO cvo, MemberVO mvo, VisitCountVO vcvo, Model model) {
+   public String getAdminChart(ClubVO cvo, MemberVO mvo, VisitCountVO vcvo, PaymentVO pvo, Model model) {
       model.addAttribute("adminChart", ads.getAdminChart(mvo));
       model.addAttribute("adminTotalVisit", ads.getAdminVisit(vcvo));
       model.addAttribute("adminTodayVisit", ads.getAdminDayVisit(vcvo));
@@ -116,7 +117,7 @@ public class AdminController {
       model.addAttribute("getJoin_6", ads.getJoin_6(mvo));
 
       model.addAttribute("adminClubListCount", ads.adminClubListCount(cvo));
-      
+
       model.addAttribute("getOnStudy", ads.getOnStudy(cvo));
       model.addAttribute("getOffStudy", ads.getOffStudy(cvo));
       model.addAttribute("getOnExcer", ads.getOnExcer(cvo));
@@ -125,24 +126,32 @@ public class AdminController {
       model.addAttribute("getOffHabit", ads.getOffHabit(cvo));
       model.addAttribute("getOnHobby", ads.getOnHobby(cvo));
       model.addAttribute("getOffHobby", ads.getOffHobby(cvo));
+      
+      model.addAttribute("getPayToday", ads.getPayToday(pvo));
+      model.addAttribute("getPay_1", ads.getPay_1(pvo));
+      model.addAttribute("getPay_2", ads.getPay_2(pvo));
+      model.addAttribute("getPay_3", ads.getPay_3(pvo));
+      model.addAttribute("getPay_4", ads.getPay_4(pvo));
+      model.addAttribute("getPay_5", ads.getPay_5(pvo));
+      model.addAttribute("getPay_6", ads.getPay_6(pvo));
 
       return "/admin/charttest";
    }
-   
+
 //   // 관리자 : 모든 회원들의 결제내역 목록 조회
    @RequestMapping("/adminPay")
    public String adminPayList(CriteriaMem cri, Model model) throws Exception {
       List<PaymentVO> adminPayList = ads.adminPayList(cri);
       System.out.println(adminPayList);
-      model.addAttribute("adminPayList",adminPayList);
-      
+      model.addAttribute("adminPayList", adminPayList);
+
       PageMakerMem pgmm = new PageMakerMem();
       pgmm.setCriMem(cri);
       pgmm.setTotalCount(ads.adminPayListCount(cri));
       model.addAttribute("pageMakerPay", pgmm);
       return "/admin/adminPayment";
-   } 
-   
+   }
+
    // 관리자 : 모든 회원들의 결제내역 목록 조회
 
    /*
@@ -157,8 +166,7 @@ public class AdminController {
     * model.addAttribute("pageMakerPay", pgmad); return "/admin/adminPayment"; }
     */
 
-
-   // 관리자 : 모든 모임 목록 조회   
+   // 관리자 : 모든 모임 목록 조회
    @RequestMapping("/adminClub")
    public String adminClubList(Model model, CriteriaMem cri) throws Exception {
 
@@ -173,15 +181,14 @@ public class AdminController {
 
       return "/admin/adminClub";
    }
-   
+
    // 관리자 : 모임 삭제
    @RequestMapping("/deleteAdminClub")
    public String deleteAdminClub(ClubVO cvo) {
-      
+
       System.out.println("몇번 모임 삭제하는지 알려주세요" + cvo);
       ads.deleteAdminClub(cvo);
       return "redirect:adminClub";
    }
-
 
 }

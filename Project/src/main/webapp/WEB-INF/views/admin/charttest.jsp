@@ -33,8 +33,9 @@
 
 <style>
 #chart_div {
-margin-left:140px;
+   margin-left: 140px;
 }
+
 body {
    padding-top: 30px;
    font-family: 'NanumSquare', sans-serif;
@@ -48,6 +49,7 @@ a {
 a:hover {
    text-decoration: none;
 }
+
 .Container {
    margin: 0;
    width: 1140px;
@@ -67,15 +69,14 @@ a:hover {
    border-radius: 2%;
    min-height: 443.2px;
 }
-
-
 </style>
 <style type="text/css">
 li {
    list-style: none;
    float: left;
    padding: 6px;
-} 
+}
+
 .nav-item {
    font-size: 13px;
    padding: 0px;
@@ -94,7 +95,6 @@ li {
 }
 </style>
 <style>
-
 .card-counter {
    box-shadow: 2px 2px 10px #DADADA;
    margin: 5px;
@@ -154,10 +154,11 @@ li {
    display: block;
    font-size: 15px;
 }
-.cardrow{
+
+.cardrow {
    display: flex;
-    flex-wrap: wrap;
-    /* margin-right: 0px;
+   flex-wrap: wrap;
+   /* margin-right: 0px;
     margin-left: 0px; */
 }
 </style>
@@ -167,15 +168,14 @@ li {
 <script type="text/javascript"
    src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-
-      // Load the Visualization API and the corechart package.
+/*   google.charts.load("current", {packages:['corechart']}); */
       google.charts.load('current', {'packages':['corechart']});
       google.charts.load('current', {'packages':['bar']});
-
 
       // Set a callback to run when the Google Visualization API is loaded.
       google.charts.setOnLoadCallback(drawChart);
      google.charts.setOnLoadCallback(drawChart2);
+     google.charts.setOnLoadCallback(drawStuff2);
       google.charts.setOnLoadCallback(drawStuff);
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
@@ -239,7 +239,6 @@ li {
           ]);
 
           
-          
           var options = {
             title: '더하기 일일 가입자수/방문자수 추이' + ' (' + currentDate + '까지 최근 7일 통계)',
             curveType: 'function',
@@ -252,7 +251,60 @@ li {
 
           chart.draw(data, options);
       }
-  
+   
+      
+       function drawStuff2() {
+          var d = new Date(); 
+           var currentDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일"; 
+           var currentDay = new Date();  
+            var theYear = currentDay.getFullYear();
+            var theMonth = currentDay.getMonth();
+            var theDate  = currentDay.getDate();
+            var theDayOfWeek = currentDay.getDay();
+            
+            var thisWeek = [];
+
+            for(var i=0; i<7; i++) {
+              var resultDay = new Date(theYear, theMonth, theDate - (i));
+              var yyyy = resultDay.getFullYear();
+              var mm = Number(resultDay.getMonth()) + 1;
+              var dd = resultDay.getDate();
+             
+              mm = String(mm).length === 1 ? '0' + mm : mm;
+              dd = String(dd).length === 1 ? '0' + dd : dd;
+             
+              thisWeek[i] = yyyy + '-' + mm + '-' + dd;
+            }
+             var data = google.visualization.arrayToDataTable([
+                    ['', '일일 포인트 충전 매출액'],
+                    [ thisWeek[6],  ${getPay_6}],
+                    [ thisWeek[5],  ${getPay_5}],
+                    [ thisWeek[4],  ${getPay_4}],
+                    [ thisWeek[3],  ${getPay_3}],
+                    [ thisWeek[2],  ${getPay_2}],
+                    [ thisWeek[1],  ${getPay_1}],
+                    [ thisWeek[0],  ${getPayToday}]
+                  ]);
+
+               var options = {
+                 width: 800, 
+                legend: { position: 'top' },
+                 chart: {
+                   title: '더하기 일일 매출 추이',
+                   subtitle: ' (' + currentDate + '까지 최근 7일 통계)' },
+                /*  axes: {
+                   x: {
+                     0: { side: 'top', label: 'white to move'} // Top x-axis.
+                   }
+                 }, */
+                 bar: { groupWidth: "90%" }
+               }; 
+
+               var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+               // Convert the Classic options to Material options.
+               chart.draw(data, google.charts.Bar.convertOptions(options));
+             }
+
           function drawStuff() {
             var data = new google.visualization.arrayToDataTable([
               ['모임카테고리', '온라인', '오프라인'],
@@ -288,7 +340,7 @@ li {
 </head>
 
 <body>
-<!--  사이드 바 추가 -->
+   <!--  사이드 바 추가 -->
    <nav class="navbar navbar-expand-md navbar-light">
       <div class="col-lg-3 sidebar fixed-top">
          <button class="navbar-toggler ml-auto mb-2 bg-light" type="button"
@@ -352,57 +404,58 @@ li {
       </div>
    </nav>
 
-<div class="Content">
-<% 
-      Date date = new Date();
-   SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy/MM/dd");
-   String strdate = simpleDate.format(date);
-   %>
+   <div class="Content">
+      <%
+         Date date = new Date();
+      SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy/MM/dd");
+      String strdate = simpleDate.format(date);
+      %>
 
-         <div class="analysisCard">
-            <div class="cardrow">
+      <div class="analysisCard">
+         <div class="cardrow">
 
-               <div class="col-sm-3">
-                  <div class="card-counter danger">
-                     <i class="fa fa-ticket"></i> <span class="count-numbers">${adminTodayVisit}</span>
-                     <span class="count-name"><%=strdate%> 방문자</span>
-                  </div>
+            <div class="col-sm-3">
+               <div class="card-counter danger">
+                  <i class="fa fa-ticket"></i> <span class="count-numbers">${adminTodayVisit}</span>
+                  <span class="count-name"><%=strdate%> 방문자</span>
                </div>
+            </div>
 
-               <div class="col-sm-3">
-                  <div class="card-counter primary">
-                     <i class="fa fa-mouse-pointer" style="margin-left: 20px;"></i> <span
-                        class="count-numbers">${adminTotalVisit}</span> <span
-                        class="count-name">총 방문자</span>
-                  </div>
+            <div class="col-sm-3">
+               <div class="card-counter primary">
+                  <i class="fa fa-mouse-pointer" style="margin-left: 20px;"></i> <span
+                     class="count-numbers">${adminTotalVisit}</span> <span
+                     class="count-name">총 방문자</span>
                </div>
+            </div>
 
-               <div class="col-sm-3">
-                  <div class="card-counter info">
-                     <i class="fa fa-users"></i> <span class="count-numbers">${adminChart}</span>
-                     <span class="count-name">회원수</span>
-                  </div>
+            <div class="col-sm-3">
+               <div class="card-counter info">
+                  <i class="fa fa-users"></i> <span class="count-numbers">${adminChart}</span>
+                  <span class="count-name">회원수</span>
                </div>
+            </div>
 
-               <div class="col-sm-3">
-                  <div class="card-counter success">
-                     <i class="fa fa-plus"></i> <span class="count-numbers">${adminClubListCount}</span>
-                     <span class="count-name">개설 모임 수</span>
-                  </div>
+            <div class="col-sm-3">
+               <div class="card-counter success">
+                  <i class="fa fa-plus"></i> <span class="count-numbers">${adminClubListCount}</span>
+                  <span class="count-name">개설 모임 수</span>
                </div>
             </div>
          </div>
-      
-<br/>
+      </div>
 
-   
+      <br />
 
-   <center>
-      <!-- <div id="columnchart_material"></div> -->
-      <div id="curve_chart"></div>
-      <div id="chart_div"></div>
-      <div id="dual_x_div" style="width: 900px; height: 500px;"></div>
-   </center>
+
+
+      <center>
+
+         <div id="curve_chart"></div>
+         <div id="chart_div"></div>
+         <div id="top_x_div" style="width: 900px; height: 400px;"></div><br><br><br>
+         <div id="dual_x_div" style="width: 900px; height: 400px;"></div>
+      </center>
    </div>
    <script>
    window.onload = function(){
@@ -442,6 +495,6 @@ li {
       src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"></script>
-<!--    <script src="js/script.js"></script> -->
+   <!--    <script src="js/script.js"></script> -->
 </body>
 </html>

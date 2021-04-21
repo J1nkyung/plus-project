@@ -16,7 +16,7 @@ import com.project.plus.service.AdminService;
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {
-   
+
    @Autowired
    AdminMapper mapper;
 
@@ -250,6 +250,41 @@ public class AdminServiceImpl implements AdminService {
    @Override
    public int getOffHobby(ClubVO cvo) {
       return mapper.getOffHobby(cvo);
+   }
+
+   @Override
+   public int getPayToday(PaymentVO pvo) {
+      return mapper.getPayToday(pvo);
+   }
+
+   @Override
+   public int getPay_1(PaymentVO pvo) {
+      return mapper.getPay_1(pvo);
+   }
+
+   @Override
+   public int getPay_2(PaymentVO pvo) {
+      return mapper.getPay_2(pvo);
+   }
+
+   @Override
+   public int getPay_3(PaymentVO pvo) {
+      return mapper.getPay_3(pvo);
+   }
+
+   @Override
+   public int getPay_4(PaymentVO pvo) {
+      return mapper.getPay_4(pvo);
+   }
+
+   @Override
+   public int getPay_5(PaymentVO pvo) {
+      return mapper.getPay_5(pvo);
+   }
+
+   @Override
+   public int getPay_6(PaymentVO pvo) {
+      return mapper.getPay_6(pvo);
    }
 
 //   @Override

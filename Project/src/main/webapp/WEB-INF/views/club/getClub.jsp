@@ -339,7 +339,24 @@ $(function(){
             		alert("개설한 모임은 신청하실 수 없습니다!");
             		return;
             	} 
-             	
+             /* 	if(${user.memberPoint} < ${club.clubFee}){
+             		alert("포인트가 부족합니다.");
+            		return false;
+             	}
+             	 */
+             	 function checkMoney(){
+               	  let user = '{user.memberPoint}';
+               	  let fee = '${club.clubFee}';
+               	  console.log("리더 : " + leader);
+               	  if(user < fee){
+               		  alert('포인트가 부족합니다.');
+               		  return false;
+               	  } else {
+               		  return true;
+               	  }
+               	  
+                 }
+             	 
              	 // 개설한 모임은 신청 x 
                 function checkLeader(){
               	  let user = '${user.memberNickname}';
@@ -353,6 +370,18 @@ $(function(){
               	  
                 }
             	
+                //날짜 비교 메서드 
+                let shutDate = '${club.clubShutDate}';
+                shutDate = new Date(shutDate);
+                let today = new Date();
+                console.log(today);
+                function checkShutDate(){
+               	 	if(shutDate < today){
+               	 		return false;;
+               	 	} else {
+               	 		return true;
+               	 	}
+               	 }
             	 $.ajax({
                      type: "post",
                      url: "payClub",
@@ -368,6 +397,7 @@ $(function(){
                      }
                  });
             });
+            
             
              // 신청하기 버튼 클릭시 
              $("#applyBtn").on('click',function(){

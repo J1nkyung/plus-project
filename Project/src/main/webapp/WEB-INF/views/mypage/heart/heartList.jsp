@@ -174,7 +174,7 @@ table {
 }
 </style>
 <script>
-
+/*
 	if (getCookie("categoryTab") != '') {
 		if (getCookie("categoryTab") == 'one') {
 			$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
@@ -195,6 +195,9 @@ table {
 	    return value? value[2] : null;
 	};
 
+
+
+	/
 	var temp = $(':radio[name="tabs"]:checked').val();
 	//if(temp ==null ){
 	//	$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
@@ -205,10 +208,12 @@ table {
 			$('input:radio[name=tabs]:input[value=one]').attr("checked", true);
 		} else {
 			setCookie("categoryTab", "one");
-s			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
+			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
 		}
 	});
+	*/
 	
+
 </script>
 </head>
 
@@ -216,10 +221,10 @@ s			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
 	<div class="heartContainer">
 		<h1 id="heartTitle">나의 찜목록</h1>
 		<div class="heartTab" style="text-align: left">
-			<input class="tabs" id="tab1" type="radio" name="tabs" value="one">
+			<input class="tabs" id="tab1" type="radio" name="tabs" value="one" checked>
 			<label for="tab1" class="tabs">신청 가능한 더하기</label> <input class="tabs"
 				id="tab2" type="radio" name="tabs" value="two"> <label for="tab2"
-				class="tabs">결제 가능한 더하기</label>
+				class="tabs" id="tab2label">결제 가능한 더하기</label>
 			<hr>
 
 			<section id="heartContent1" style="margin-bottom: 20px;">
@@ -345,6 +350,24 @@ s			$('input:radio[name=tabs]:input[value=two]').attr("checked", true);
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<script src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 	<script>
+		var $tabInput = $('#tab2');
+		if(localStorage.getItem("isPay")=='true'){
+			$tabInput.prop('checked', true)
+		}else{
+			$tabInput.attr('checked', false)
+		}
+	
+		var $tab2 = $('#tab2label');
+		
+		$tab2.click(function(){
+			var isPay = localStorage.getItem("isPay");
+
+			if(isPay=='true')
+				localStorage.setItem("isPay", 'false');
+			else
+				localStorage.setItem("isPay", 'true');
+		});
+	
 		var $totalBtn = $('#heartContent1 #totalBtn');
 		$totalBtn.attr('checked', false);
 		$totalBtn.change(function() {
