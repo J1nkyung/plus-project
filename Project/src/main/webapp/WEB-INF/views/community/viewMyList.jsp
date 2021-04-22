@@ -198,20 +198,10 @@ width: 240px;
 				<input id="tab1" type="radio" name="tabs" value="tabOne" checked /> 
 					<label for="tab1">내가 쓴 글</label>
 				<input id="tab2" type="radio" name="tabs" value="tabTwo" /> 
-					<label for="tab2">내가 쓴 댓글 </label>
+					<label for="tab2" id="tab2label">내가 쓴 댓글 </label>
 				<section id="content1" style="margin-bottom: 20px;">
 					<div id="tableWrapper"><!-- tab 1  -->
 						<form role="form" method="get" id="form">
-
-							<%--  <div class="search">
-    <select name="searchType" id="searchType">
-      <option value="null"<c:out value="${scmem.searchType == null ? 'selected' : ''}"/>>-----</option>
-      <option value="e"<c:out value="${scmem.searchType eq 'e' ? 'selected' : ''}"/>>이메일</option>
-      <option value="n"<c:out value="${scmem.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
-    </select>
-    <input type="text" size="30" name="keyword" id="keywordInput" value="${scmem.keyword}"/>
-    <button id="searchBtn" type="button">검색</button>
-</div> --%>
 							<!-- search -->
 							<div id="block">
 								<table class="useInfo">
@@ -308,5 +298,25 @@ width: 240px;
 			</div>
 		</div>
 	</div>
+<script src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+<script>
+	var $tabInput = $('#tab2');
+	if(localStorage.getItem("isPay")=='true'){
+		$tabInput.prop('checked', true)
+	}else{
+		$tabInput.attr('checked', false)
+	}
+	
+	var $tab2 = $('#tab2label');
+	
+	$tab2.click(function(){
+		var isPay = localStorage.getItem("isPay");
+	
+		if(isPay=='true')
+			localStorage.setItem("isPay", 'false');
+		else
+			localStorage.setItem("isPay", 'true');
+	});
+</script>
 </body>
 </html>
