@@ -169,17 +169,11 @@ function kakaoLogin(){
                 </section>
            </form>
                 <section class="Easy-sign-in-wrap">
-                    <!-- <div class="hr-1"></div> -->
-                    <!-- <h4>SNS로그인</h4> -->
                     <ul class="sign-button-list"><!--  id="kakao-login-btn"   -->
                         <li><button class="kakao-login"><a href="javascript:kakaoLogin();"><img src="${path}/resources/img/images/kakao.png"></a></button></li>
                         <li><button class="naver-login"><a href="<%=apiURL%>"><img src="${path}/resources/img/images/naver.png"/></a></button></li>
                     </ul>
                     <div class="hr-2"></div>
-                   <!--   <ul class="sign-button-list">
-                       <a href="#"><li><button class="join-member"><span class="join-member">가입하기</span></button></li></a> 
-                    </ul>
-                    -->
                     <span><a href="findPw" id="find-id">비밀번호 찾기</a></span>
                         <p>같이하실래요? <a href="memberJoin" class="joinMsg">가입하기</a></p><br/>
                 </section>

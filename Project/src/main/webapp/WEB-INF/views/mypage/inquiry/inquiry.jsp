@@ -18,15 +18,6 @@
 <script type="text/javascript"
    src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 
-<!-- Bootstrap CSS -->
-<!--  <link rel="stylesheet"
-   href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-   crossorigin="anonymous"> -->
-<!-- font -->
-<!-- <link rel="stylesheet" type="text/css"
-   href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"> 
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
 <style>
 /* 진경 수정 */
 body {
@@ -130,11 +121,6 @@ a:hover {
 #searchType {
    height: 24px;
 }
-/* li {
-   list-style: none;
-   float: left;
-   padding: 6px;
-} */
 </style>
 
 <body>
@@ -147,22 +133,6 @@ a:hover {
          <div id="tableWrapper">
             <form role="form" method="get" id="form">
 
-               <!-- 나는 일단 지금 search가 안되기 때문에.. -->
-               <%-- <div class="search">
-                  <select name="searchType" id="searchType">
-                     <option value="null"
-                        <c:out value="${scmem.searchType == null ? 'selected' : ''}"/>>-----</option>
-                     <option value="e"
-                        <c:out value="${scmem.searchType eq 'e' ? 'selected' : ''}"/>>이메일</option>
-                     <option value="n"
-                        <c:out value="${scmem.searchType eq 'n' ? 'selected' : ''}"/>>이름</option>
-                  </select>
-                  
-                  <input type="text" size="30" name="keyword" id="keywordInput"
-                     value="${scmem.keyword}" />
-                  <button id="searchBtn" type="button">검색</button>
-               </div>--%>
-               <!-- search -->
 
                <div id="block">
                   <table class="useInfo">

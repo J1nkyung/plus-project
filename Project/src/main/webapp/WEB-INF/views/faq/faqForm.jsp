@@ -56,14 +56,10 @@ textarea {
 </style>
 </head>
 <body>
-   <!--    <div id="wrap">
-      <section id="container"> -->
-   <!-- <div class="section_in"> -->
    <form action="insertFaq" method="post">
       <div class="faq-wrap">
          <h2>FAQ 등록</h2>
          <hr>
-         <!-- <fieldset class="formContent"> -->
          <div class="category">
             <label for="exampleFormControlSelect2">카테고리 선택</label> <select
                class="form-control" name="faqCategory" style="width: 200px;">
@@ -73,13 +69,8 @@ textarea {
                <option value="기타문의">기타문의</option>
             </select>
          </div>
-         <!-- <div class="faq-title">
-                  <label for="title">자주묻는질문 제목</label> -->
          <input type="text" style="width: 710px; height: 25px; margin-top:7px; margin-bottom:7px;"
             class="form-control" name="faqTitle" placeholder="제목을 입력하세요">
-         <!-- </div> -->
-         <!-- <div class="faq-content"> -->
-         <!-- <label for="faq-content-label">내용</label><br /> -->
          <textarea cols="100" rows="20" name="faqContent"
             style="white-space: pre-line;"></textarea>
          <button type="submit" id="faqBtn">등록하기</button>

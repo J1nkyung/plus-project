@@ -92,7 +92,6 @@
          });
       }
    </script>
-   <%--    <%@ include file="../include/footer.jsp" %> --%>
 </body>
 
 </html>

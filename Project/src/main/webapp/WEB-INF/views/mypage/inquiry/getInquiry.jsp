@@ -19,24 +19,8 @@
 <style>
 body {
    font-family: 'NanumSquare', sans-serif;
-   /* margin-left: 40px; */
 }
-/* .content-data {
-   padding:30px;
-}
-tr {
-   height:50;}
-td {
-   padding-left:20px;
-}
-.wrap {
-    width: 100%;
-    height: 1000px;
-    position: relative;
-    display: flex;
-    padding-left: 300px;
-    padding-top: 50px;
-    } */
+
 .fixed-top {
    position: sticky;
 }
@@ -75,12 +59,6 @@ tr td {
    padding-bottom: 15px;
 }
 
-/* .nav-item {
-   font-size: 13px;
-   padding: 0px;
-   padding-left: 35px;
-} */
-
 #gomain {
    color: white;
    font-size: 12px;
@@ -90,10 +68,7 @@ tr td {
 a {
    text-decoration: none;
 }
-/* .btn-primary{
-postion:absolute !important;
-right:0%;
-} */
+
 .contentanswer {
    width: 300px;
 }

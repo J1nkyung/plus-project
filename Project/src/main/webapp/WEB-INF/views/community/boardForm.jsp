@@ -65,11 +65,6 @@ margin:1px;
 			<input type="hidden" name="memberPic" value="${user.memberPic }"/>
  			<input type="hidden" name="clubNum" value="${clubNum}"/> 
 			<input type="hidden" name="memberNum" value="${user.memberNum}"/> 
-			<%-- <input type="hidden" name="boardPic" value="${board.boardPic }"/> --%>
-			
-			<!-- <input type="text" class="form-control" id="title"
-				placeholder="제목을 입력해주세요." name="title"> -->
-			
 			<input type="text" id="memberNickname" name="memberNickname" value="작성자 : ${user.memberNickname }" readonly/>
 			
 			<textarea name="boardContent" id="content" ></textarea>

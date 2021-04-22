@@ -1,0 +1,225 @@
+/* 진경 수정 */
+.fixed-top{
+ position: sticky;
+}
+
+.wrap{
+	height:auto;
+}
+.container {
+    height: 100%;
+}
+
+
+#clubBar {
+	display: flex;
+}
+
+#openClubPic {
+	width: 30%;
+	padding-left: 2%;
+	margin-right: 2%;
+	/* background-color: red; */
+}
+
+
+#openClubPic img{
+	width:80%;
+	height:80%;
+}
+
+#openClubProgress {
+	width: 50%;
+	/* background-color: blue; */
+}
+
+#openClubBtn {
+	width: 15%;
+	/* background-color: blueviolet; */
+	margin: 3% 0% 2% 7%;
+}
+
+#clubName {
+	margin: 8% 0%;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+#inBtn {
+	width: 120px;
+	height: 50px;
+	border-style: none;
+	border-radius: 7%;
+	margin-top: 52%;
+	font-size: 22px;
+	margin-bottom: 3%;
+}
+
+#extendBtn {
+	width: 100px;
+	height: 40px;
+	border-style: none;
+	border-radius: 7%;
+	/* margin-top: 52%; */
+	font-size: 19px;
+	margin-bottom: 3%;
+	margin-top:7%;
+	background-color: #007BFF;
+	color:#fff;
+}
+
+#outBtn{
+	width: 100px;
+	height: 40px;
+	border-style: none;
+	border-radius: 7%;
+	margin-top: 51%; 
+	font-size: 18px;
+	margin-bottom: 3%;
+	background-color: #007BFF;
+	color:#fff;
+	
+}
+
+#openClubPic img {
+	margin-top: 7%;
+	border-radius: 20px;
+}
+
+.open-plus .col-md-10 {
+	border-style: none;
+	border-radius: 10px;
+	background-color: rgba(88, 86, 87, 0.041);
+	margin-top: 10px;
+	height: 170px;
+	width: 80vw;
+}
+
+.open-plus{
+	font-size :24px;
+	font-weight : bold;
+}
+
+#clubBar {
+	margin: 4% 0%;
+}
+
+.counter-block {
+	margin-top: 10px;
+	margin-bottom : 5%; /*20210416 css 수정*/
+	width: 690px;
+	height: 180px; /*20210416 css 수정*/
+	text-align: center;
+	margin-left: 6%;
+	border: 3px solid #eee;
+	border-radius: 5px;
+	
+}
+
+.counter-block p {
+	font-weight: bold;
+	color: rgba(7, 7, 7, 0.877);
+}
+
+.counter-block h6 {
+	font-weight: bold;
+	color: rgba(7, 7, 7, 0.877);
+}
+
+/* 모달 css*/
+.modal-content {
+	position: relative;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #999;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 6px;
+	outline: 0;
+	width: 620px;
+	height: 500px;
+	margin-left: 5%;
+	font-size: 15px;
+}
+
+.modal-header {
+	font-size: 15px;
+	display: -ms-flexbox;
+	display: inline-table;
+	-ms-flex-align: start;
+	-ms-flex-pack: justify;
+	padding: 1rem 1rem;
+	border-bottom: 1px solid #dee2e6;
+	background-color: #EBF0F7;
+	border-radius: 6px 6px 0px 0px;
+	border-top-right-radius: calc(.3rem - 1px);
+}
+
+.btn-default {
+	color: #333;
+	background-color: #fff;
+	border-color: #ccc;
+}
+/*모달 끝*/
+#infoText {
+	font-size: 14px;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+}
+
+#infoText {
+	margin-top: 30px;
+}
+
+#blank {
+	margin-top: 5%;
+	line-height: 6px;
+}
+/*모달 창 위치*/
+.modal-dialog {
+	margin-top: 5%;
+}
+
+#ff {
+	display: inline;
+	width: 100%;
+}
+
+.modal-footer {
+	margin-top: 40px;
+}
+
+.textStyle {
+	background: linear-gradient(to top, #FFE400 50%, transparent 50%);
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: #dc3545fa;
+}
+a {
+    color: #212529;
+    text-decoration: none;
+    background-color: transparent;
+}
+h6{
+ font-weight: bold;
+ margin-bottom:2%;
+}
+
+
+#myTitle{
+	padding-top : 5px;
+    font-size :26px;
+	font-weight:bold;
+}
+#titleMy{
+	background : linear-gradient(to top,#FFE400 50%, transparent 50%);
+}
+ 
+ /*20210416 css 추가*/
+.pTags{
+	font-size : 21px;
+	font-weight: bold;
+}
+

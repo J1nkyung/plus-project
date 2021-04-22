@@ -5,7 +5,7 @@
 <%@ page import="java.io.InputStreamReader" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
   
-    네이버로그인
+   <!--  네이버로그인 -->
   
   
   <%
