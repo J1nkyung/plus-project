@@ -133,13 +133,6 @@
 			<c:if test="${club.clubFee > 0 }">
 				<button type="button" class="btn" id="payBtn">신청하기</button>
 			</c:if>
-			<%-- <form action="payClub" method="post" >
-				<c:if test="${club.clubFee > 0 }">
-					<input type="hidden"  name="clubNum" value="${club.clubNum}"/>
-					<input type="hidden"  name="clubLeader" value="${club.clubLeader}"/> 
-					<button type="submit" class="btn" id="payBtn">신청하기</button>
-				</c:if>
-			</form> --%>
 				
            <!-- 찜버튼 -->
             <button type="button" class="btn" id="heartBtn">
@@ -367,7 +360,6 @@ $(function(){
                 		alert("개설한 모임은 신청하실 수 없습니다!");
                 		return;
                 	}
-                console.log('${user.memberNum}');
                 
                 if(!'${user.memberNum}'){
                    alert("로그인해주세요!");
@@ -400,7 +392,7 @@ $(function(){
              console.log(today);
              function checkShutDate(){
             	 	if(shutDate < today){
-            	 		return false;;
+            	 		return false;
             	 	} else {
             	 		return true;
             	 	}
@@ -410,12 +402,12 @@ $(function(){
              function apply(){
                  return new Promise(function(resolve, reject){
                       $.ajax({
-                  type: "post",
-                  url: "apply",
-                  data: {
-                     clubNum:'${club.clubNum}',
-                     memberNum:'${user.memberNum}',
-                  },
+	                  type: "post",
+	                  url: "apply",
+	                  data: {
+	                     clubNum:'${club.clubNum}',
+	                     memberNum:'${user.memberNum}',
+	                  },
                      success: function (data) {
                         console.log(data);
                     	if(!checkShutDate()){
@@ -428,8 +420,6 @@ $(function(){
                               resolve();
                            } else if(data==0){
                               alert("이미 신청한 모임입니다!");
-                           } else if(shutDate < today){
-                        	   
                            }
                     }
                  });
@@ -439,12 +429,12 @@ $(function(){
          //참여인원수 증가 update 
          function plusCurnum(){
                return new Promise(function(resolve, reject){
-                      $.ajax({
-                  type: "post",
-                  url: "plusCurnum",
-                  data: {
-                     clubNum:'${club.clubNum}'
-                  },
+                    $.ajax({
+	                  type: "post",
+	                  url: "plusCurnum",
+	                  data: {
+	                     clubNum:'${club.clubNum}'
+	                  },
                      success: function (data) {
                         console.log(data);
                            if(data==1){

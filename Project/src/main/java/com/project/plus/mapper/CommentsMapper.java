@@ -1,17 +1,17 @@
 package com.project.plus.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.project.plus.domain.CommentsVO;
-import com.project.plus.domain.CriteriaMem;
 
 public interface CommentsMapper {
 	public int insertComment(CommentsVO comments);
 	public int deleteComment(CommentsVO comments);
 	public int updateComment(CommentsVO comments);
-	public List<CommentsVO> getComments(CommentsVO comments);
+	public List<CommentsVO> getComments(Map<String,Integer> condition);
 	public List<CommentsVO> getMoreComments(int boardNum);
 	public int getCommentsCount(int bNum);
 	public List<CommentsVO> getReComments(CommentsVO comments);

@@ -10,18 +10,19 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
 <title>커뮤니티</title>
 
 <style>
+
 body {
 	font-size: 16px;
-/* 	background-color: #f5f4f0;
- */}
+}
 
 .communityContainer {
 	margin: 0;
-	margin-left:100px;
+	margin-left: 100px;
 	width: 100%;
 }
 
@@ -32,7 +33,7 @@ body {
 	flex-direction: column;
 	border: 1px solid rgba(0, 0, 0, 0.171);
 	border-radius: 5px;
-	margin:10px;
+	margin: 10px;
 }
 
 .contentBox {
@@ -41,8 +42,6 @@ body {
 
 .userInfo {
 	display: flex;
-
-	/* background-color: tomato; */
 }
 
 .userComment {
@@ -82,31 +81,28 @@ p {
 	box-shadow: 1px 1px 1px #8299d879;
 }
 
-.certification{
-    margin-left:4%;
- }
-        /*인증사진 위치 및 내용*/
-        #certificationPic{
-            /* text-align: center; */
-            height: auto;
-            width:auto;
-            max-height:400px;
-            max-width: 500px;
-            size:100%;
-/*             overflow: hidden;
- */        }
-        
-        #certificationPic img{
-        max-width:100%;
-        height:auto;
-        max-height:300px;
-        }
+.certification {
+	margin-left: 4%;
+}
+/*인증사진 위치 및 내용*/
+#certificationPic {
+	height: auto;
+	width: auto;
+	max-height: 400px;
+	max-width: 500px;
+	size: 100%;
+}
 
-        #certificationContent{
-            margin: 4% 10% 2% 0%;
-            font-size: 15px;
-        }
+#certificationPic img {
+	max-width: 100%;
+	height: auto;
+	max-height: 300px;
+}
 
+#certificationContent {
+	margin: 4% 10% 2% 0%;
+	font-size: 15px;
+}
 
 /*닉네임*/
 #boardNickname {
@@ -137,11 +133,10 @@ textarea {
 	display: flex;
 }
 
-
-.reComm-box{
-	margin-left:80px;
-	display:flex;
-} 
+.reComm-box {
+	margin-left: 80px;
+	display: flex;
+}
 
 #submitCommBtn, #submit-reCommBtn {
 	display: inline-block;
@@ -163,23 +158,24 @@ textarea {
 	color: #6e7c7c;
 	font-size: 12px;
 }
-#editBtn{
-	margin-bottom:30px;
-	color:#6e7c7c;
+
+#editBtn {
+	margin-bottom: 30px;
+	color: #6e7c7c;
 }
 
-#delComm, #updateComm{
+#delComm, #updateComm {
 	float: right;
 	font-size: 15px;
 	margin-right: 10px;
 	cursor: pointer;
 }
 
-#showReCommBtn{
+#showReCommBtn {
 	font-size: 15px;
 	margin-right: 10px;
 	cursor: pointer;
-    margin-left: 60px;
+	margin-left: 60px;
 }
 
 #editText {
@@ -210,35 +206,31 @@ textarea {
 	display: flex;
 }
 
-#boardForm{
-   position: fixed;
-   float: right;
-   bottom: 50px;
-   right: 100px;
-   border-radius:50%;
-   height:50px;
-   width:50px;
-   background-color:#001eff;
-   opacity:0.9;
-   color:#333;
-   border-style:none;
-   }
-   
-
-   
-   #boardForm img{
-max-width:65%;
-height:auto;
-margin-left:3px;
-/* width:50px;
- */
+#boardForm {
+	position: fixed;
+	float: right;
+	bottom: 50px;
+	right: 100px;
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+	background-color: #001eff;
+	opacity: 0.9;
+	color: #333;
+	border-style: none;
 }
 
-#boardRegdate{
-  	margin:37px;
-  	font-size:10pt;
-  }
-        
+#boardForm img {
+	max-width: 65%;
+	height: auto;
+	margin-left: 3px;
+}
+
+#boardRegdate {
+	margin: 37px;
+	font-size: 10pt;
+}
+
 #dropdown {
 	width: 15px;
 	height: 15px;
@@ -246,157 +238,185 @@ margin-left:3px;
 	cursor: pointer;
 }
 
-   
 .dropbtn {
-  padding: 30px 16px 5px 16px;
-  font-size: 16px;
-  border: none;
-  cursor:pointer;
-/*   clear:both;
-   position:relative;
-   left:300px; */
-}
-
-#dropmenu{
-width:15px;
-height:18px;
-opacity:0.5;
+	padding: 30px 16px 5px 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
 
 }
-#btnDel, #btnUp{
-padding:3px 5px;
-margin-bottom:1px;
-margin-left:5px;
-border:none;
-box-shadow:1px 1px 1px grey;
-background-color:#001eff;
-opacity:0.8;
-border-radius:5px;
+
+#dropmenu {
+	width: 15px;
+	height: 18px;
+	opacity: 0.5;
 }
 
-.dropdowns > ul > li {
-      display: inline-block;
-      position: relative;
-    }
-.dropdowns > ul > li > ul {
-  position: absolute;
-  list-style-type: none;
-  padding-left: 0px;
-  display: none;
-}
-.dropdowns > ul > li:hover > ul {
-  display: block;
-}
-.dropdowns > ul > li:active > ul {
-  display: block;
-}
-.dropdowns a{
-color:white;
-}
-.dropdowns a:hover{
-color:white;
+#btnDel, #btnUp {
+	padding: 3px 5px;
+	margin-bottom: 1px;
+	margin-left: 5px;
+	border: none;
+	box-shadow: 1px 1px 1px grey;
+	background-color: #001eff;
+	opacity: 0.8;
+	border-radius: 5px;
 }
 
-.moreBtn{
-margin:20px 0 50px 10%;
-width:60%;
-border-radius:5px;
-border-style:none;
-box-shadow: 1px 1px 1px grey;
-background-color:#001eff;
-color:white !important;
-font-weight:bold;
-height:35px;
+.dropdowns>ul>li {
+	display: inline-block;
+	position: relative;
 }
-.moreBtn:focus{
-border:0;
-outline:0;
+
+.dropdowns>ul>li>ul {
+	position: absolute;
+	list-style-type: none;
+	padding-left: 0px;
+	display: none;
 }
-.newContent{
-padding-bottom:30px;
+
+.dropdowns>ul>li:hover>ul {
+	display: block;
+}
+
+.dropdowns>ul>li:active>ul {
+	display: block;
+}
+
+.dropdowns a {
+	color: white;
+}
+
+.dropdowns a:hover {
+	color: white;
+}
+
+.moreBtn {
+	margin: 20px 0 50px 10%;
+	width: 60%;
+	border-radius: 5px;
+	border-style: none;
+	box-shadow: 1px 1px 1px grey;
+	background-color: #001eff;
+	color: white !important;
+	font-weight: bold;
+	height: 35px;
+}
+
+.moreBtn:focus {
+	border: 0;
+	outline: 0;
+}
+
+.newContent {
+	padding-bottom: 30px;
 }
 
 .reComm-list {
-    margin: 40px 0 0 40px;
+	margin: 40px 0 0 40px;
 }
+
+.disable {
+	pointer-events: none;
+}
+
+.paging{
+ text-align: center; 
+}
+
+.paging > span{
+		margin:0 5px 0 5px;
+}
+.page-btn{
+	margin:0 5px 0 5px;
+}
+
 </style>
 </head>
 <body>
 
 
-	
-   <div class="communityContainer">
-         <!-- 정연 추가 20210410 링크에 ${clubNum }추가 -->
-         <form action="insertBoardForm" method="get">
-         <button type="button" name="boardForm" id="boardForm" onclick="location.href='${path}/insertBoardForm?clubNum=${clubNum }'">
-         <img src="${path }/resources/img/penwhite.png"></button>
-          			<input type="hidden" name="clubNum" value="${board.clubNum}"/> 
-         </form>
-         
 
-<div id="repeatBox">
+	<div class="communityContainer">
+		<!-- 정연 추가 20210410 링크에 ${clubNum }추가 -->
+		<form action="insertBoardForm" method="get">
+			<button type="button" name="boardForm" id="boardForm"
+				onclick="location.href='${path}/insertBoardForm?clubNum=${clubNum }'">
+				<img src="${path }/resources/img/penwhite.png">
+			</button>
+			<input type="hidden" name="clubNum" value="${board.clubNum}" />
+		</form>
 
-      <c:forEach items="${boards}" var="board">
-         <div class="inlineContent">
-            <!-- 게시글 -->
-            <div class="contentBox">
-               <form role="form" name="updateForm" method="post">
-                  <div class="userInfo">
-                     <input type="hidden" name="boardNum" value="${board.boardNum }">
-                     <img src="${path}/resources${board.memberPic}" id="userPic"
-                        onerror="this.src='${path}/resources/img/default_pic.png'" />
-                     <p id="boardNickname">${board.memberNickname}</p>
-                     <div id="boardRegdate">
-                     	<fmt:formatDate value="${board.boardRegDate}" var="changedDate"
-							pattern="yyyy. MM. dd HH:mm" />
-						${changedDate}
-                     </div>
 
-                     <c:set var="writer" value="${board.memberNum }" />
-                     <c:if test="${writer eq user.memberNum}">
+		<div id="repeatBox">
 
-                        <div class="dropdowns">
-                           <ul>
-                              <li>
-                                 <div class="dropbtn">
-                                    <img id="dropmenu" src="${path }/resources/img/menu.png">
-                                 </div>
-                                 <ul>
-                                    <button type="submit" id="btnUp"><a href="${path}/updateView?boardNum=${board.boardNum}&clubNum=${board.clubNum}">수정</a>
-                                    </button>
-                                    <button type="submit" id="btnDel"><a href="${path}/deleteBoard?boardNum=${board.boardNum}&clubNum=${board.clubNum}">삭제</a>
-                                    </button>
-                                 </ul>
-                              </li>
-                           </ul>
-                        </div>
-                     </c:if>
+			<c:forEach items="${boards}" var="board">
+				<div class="inlineContent">
+					<!-- 게시글 -->
+					<div class="contentBox">
+						<form role="form" name="updateForm" method="post">
+							<div class="userInfo">
+								<input type="hidden" name="boardNum" value="${board.boardNum }">
+								<img src="${path}/resources${board.memberPic}" id="userPic"
+									onerror="this.src='${path}/resources/img/default_pic.png'" />
+								<p id="boardNickname">${board.memberNickname}</p>
+								<div id="boardRegdate">
+									<fmt:formatDate value="${board.boardRegDate}" var="changedDate"
+										pattern="yyyy. MM. dd HH:mm" />
+									${changedDate}
+								</div>
 
-                  </div>
-                  <div class="certification">
-                     <div id="certificationPic">
-                        <img src="${path}/resources${board.boardPic}"
-                           onerror="this.style.display='none';">
-                     </div>
-                     <p id="certificationContent">${board.boardContent}</p>
-                  </div>
-               </form>
-               <!-- 댓글 쓰는 부분 -->
+								<c:set var="writer" value="${board.memberNum }" />
+								<c:if test="${writer eq user.memberNum}">
 
-               <div id="showCommBtn">
-                  <img id="commImg" src="${path}/resources/img/message.png" />
-                  <div id="commList" onclick="getComments(${board.boardNum})">댓글(${board.commentsCount}개)</div>
-               </div>
-            <!-- 댓글 가져오기  -->
-            </div><!--contentBox  -->
-         </div><!-- inline content 끝 -->
-      </c:forEach>
-      <div class="newContent">
-      
-      </div>
-      <button type="button" class="moreBtn" id="moreContentBtn">더보기</button>
-   </div><!-- repeatBox -->
-   </div>   <!--communityContainer end-->
+									<div class="dropdowns">
+										<ul>
+											<li>
+												<div class="dropbtn">
+													<img id="dropmenu" src="${path }/resources/img/menu.png">
+												</div>
+												<ul>
+													<button type="submit" id="btnUp">
+														<a
+															href="${path}/updateView?boardNum=${board.boardNum}&clubNum=${board.clubNum}">수정</a>
+													</button>
+													<button type="submit" id="btnDel">
+														<a
+															href="${path}/deleteBoard?boardNum=${board.boardNum}&clubNum=${board.clubNum}">삭제</a>
+													</button>
+												</ul>
+											</li>
+										</ul>
+									</div>
+								</c:if>
+
+							</div>
+							<div class="certification">
+								<div id="certificationPic">
+									<img src="${path}/resources${board.boardPic}"
+										onerror="this.style.display='none';">
+								</div>
+								<p id="certificationContent">${board.boardContent}</p>
+							</div>
+						</form>
+						<!-- 댓글 쓰는 부분 -->
+
+						<div id="showCommBtn">
+							<img id="commImg" src="${path}/resources/img/message.png" />
+							<div id="commList" onclick="getComments(${board.boardNum}, 0)">댓글(${board.commentsCount}개)</div>
+						</div>
+						<!-- 댓글 가져오기  -->
+					</div>
+					<!--contentBox  -->
+				</div>
+				<!-- inline content 끝 -->
+			</c:forEach>
+			<div class="newContent"></div>
+			<button type="button" class="moreBtn" id="moreContentBtn">더보기</button>
+		</div>
+		<!-- repeatBox -->
+	</div>
+	<!--communityContainer end-->
 </body>
 <script>
 
@@ -515,11 +535,11 @@ let contentCnt = '${contentCount}'
 
 
 
-	//대댓글 등록
+	//답댓글 등록
 	$(document).on('click','#submit-reCommBtn',function(){
 		//e.stopImmediatePropagation();
 		
-		// 대댓글 리스트 div 가져오기 
+		// 답댓글 리스트 div 가져오기 
 		let reCommWrap = $(this).parent().parent();
 		console.log(reCommWrap)
 		
@@ -556,7 +576,7 @@ let contentCnt = '${contentCount}'
 		     		
 		     		// 오늘 날짜 format 변환
 		     			today = today.split(':');
-						// 대댓글입력시 대댓글 목록에 추가 
+						// 답댓글입력시 답댓글 목록에 추가 
 						let reList ='<div class="reComm-list">';
 						reList +='<div class="userSpan">'
 						reList += '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
@@ -568,16 +588,15 @@ let contentCnt = '${contentCount}'
 				     	let reCommBox = reCommWrap.children().first();
 				     	console.log(reCommBox)
 				     	$(reList).insertAfter(reCommBox);
-				     	//reCommWrap.append(reList);
 				     	
-				     	console.log("대댓글 등록 성공!")
+				     	console.log("댓글 등록 성공!")
 				     	alert("댓글이 등록되었습니다!");
 				     	area.val('');
 		     		}
 		     	
 		        },
 		        error: function(e) {
-		        	  alert("대댓글 불러오기 오류" + e);
+		        	  alert("댓글 불러오기 오류" + e);
 		        }
 			}) 
 		
@@ -585,11 +604,11 @@ let contentCnt = '${contentCount}'
 });	// function 끝 
 
 
-// 대댓글 삭제 
+// 답댓글 삭제 
 function delReComm(cNum){
 	let thisEle = $(event.target);
 	let reCommList = thisEle.parent().parent();
-	
+	console.log(reCommList);
 	
 	$.ajax({
 		type: "post",
@@ -600,16 +619,16 @@ function delReComm(cNum){
 	          success: function (data) {
         	console.log(data)
         	if(data){
-            		console.log("대댓글삭제완료");
-            		alert("댓글이 삭제되었습니다!");
+            		console.log("답댓글삭제완료");
+            		alert("답댓글이 삭제되었습니다!");
             		reCommList.remove();
             		
             	} else {
-            		console.log("대댓글삭제실패");
+            		console.log("답댓글삭제실패");
 	      		}
         },
         error: function() {
-        	  alert("대댓글 삭제 오류");
+        	  alert("답댓글 삭제 오류");
         }
     });
 	
@@ -619,7 +638,7 @@ function delReComm(cNum){
 // 답글 버튼 클릭시 
 function showReComments(cNum){
 	
-	// 대댓글 접었다 펴기 
+	// 답댓글 접었다 펴기 
 	$showReCommBtn = $(event.target);
 	$showReCommBtn.toggleClass('selected');
 	let target = $showReCommBtn.closest('.userComment').children('.reComm-wrap');
@@ -629,26 +648,26 @@ function showReComments(cNum){
 		console.log('댓글번호 : ' + cNum);
 		let userComm = event.target.closest('.userComment');
 		
-		// 대댓글 wrap 만들기 
+		// 답댓글 wrap 만들기 
 		let reCommWrap = document.createElement('div');
 		reCommWrap.classList.add('reComm-wrap');
 		userComm.appendChild(reCommWrap);
 		
-		// 대댓글 작성 폼 보여주기
+		// 답댓글 작성 폼 보여주기
 		let reCommBox = document.createElement('div');
 		reCommBox.classList.add('reComm-box');
 		reCommBox.innerHTML = '<textarea cols="50" rows="2" id="re-textarea" placeholder="답글을 입력해보세요!" />';
 		reCommBox.innerHTML += '<input type="button" id="submit-reCommBtn" name='+ cNum +' value="등록하기" />';
 		reCommWrap.appendChild(reCommBox);
 		
-		// 대댓글 입력을 위한 노드 추가  
+		// 답댓글 입력을 위한 노드 추가  
 		let reCommList = document.createElement('div');
 		reCommList.classList.add('reComm-list');
 		reCommWrap.appendChild(reCommList);
 		
 		
 		
-		// 해당 댓글의 대댓글 목록 가져오는 ajax 		
+		// 해당 댓글의 답댓글 목록 가져오는 ajax 		
 	 	 $.ajax({
 				type: "post",
 				url: "getReComments",
@@ -659,7 +678,7 @@ function showReComments(cNum){
 	         	console.log(data)
 	         	
 				for(var i=0; i<data.length; i++){
-					// 대댓글 리스트 보여주기 
+					// 답댓글 리스트 보여주기 
 					let reCommList = document.createElement('div');
 					reCommList.classList.add('reComm-list');
 					let span = document.createElement('div');
@@ -689,7 +708,7 @@ function showReComments(cNum){
 					}
 		        },
 		        error: function(e) {
-		        	  alert("대댓글 불러오기 오류" + e);
+		        	  alert("답댓글 불러오기 오류" + e);
 		        }
 	     });  
 	}
@@ -700,54 +719,73 @@ function showReComments(cNum){
 
 
 
-
 //댓글보기 클릭시 
-function getComments(bNum){
+function getComments(bNum,page){
 	// 댓글 보기 접었다 펴기 
 	boardNum = bNum;
-	$showCommBtn = $(event.target);
+	$showCommBtn = $(event.target).parent();
 	$showCommBtn.toggleClass('selected');
 	let inlineContent = $showCommBtn.closest('.inlineContent');
+	
 	if(!$showCommBtn.hasClass('selected')){
-		inlineContent.children('.commentBox').remove();
-		inlineContent.children('.comments-wrap').remove();
-
+		inlineContent.children('.comm-parent-wrap').remove();
 	} else{
 	
-		//inlineContent 찾기 
-	let pnode = event.target.closest('.inlineContent');
-	console.log(pnode);
+			//inlineContent 찾기 
+		let pnode = event.target.closest('.inlineContent');
+		
+		// 댓글 입력 부분 
+		let commBox = document.createElement('div');
+		commBox.classList.add('commentBox');
+		let write = document.createElement('div');
+		write.classList.add('writeComment');
 	
-	// 댓글 입력 부분 
-	let commBox = document.createElement('div');
-	commBox.classList.add('commentBox');
-	let write = document.createElement('div');
-	write.classList.add('writeComment');
-
+		
+		write.innerHTML ='<textarea cols="80" rows="1" id="textArea" placeholder="댓글을 입력해보세요!"></textarea>';
+		write.innerHTML += '<br> <input type="button" id="submitCommBtn" value="등록하기" onclick="insertComment('+ bNum +')" />';
+		commBox.appendChild(write);
 	
-	write.innerHTML ='<textarea cols="80" rows="1" id="textArea" placeholder="댓글을 입력해보세요!"></textarea>';
-	write.innerHTML += '<br> <input type="button" id="submitCommBtn" value="등록하기" onclick="insertComment('+ bNum +')" />';
-	
-	
-	commBox.appendChild(write);
-	pnode.appendChild(commBox);
-	
-	// 댓글이 없을 경우를 대비해 wrap을 하나 만들어준다 (없으면 댓글 0개일시 댓글 감소,증가가 안됨) 
-	let wrap = document.createElement('div');
-	wrap.classList.add('comments-wrap');
-	pnode.appendChild(wrap);
-	
+		let wrap = document.querySelector('.comm-parent-wrap');
+			if(wrap){
+				inlineContent.children('.comm-parent-wrap').remove();
+			} 
+			wrap = document.createElement('div');
+			wrap.classList.add('comm-parent-wrap');
+			pnode.appendChild(wrap);
+			wrap.appendChild(commBox);
+		
+			
+			// 댓글이 없을 경우를 대비해 cWrap을 하나 만들어준다 (없으면 댓글 0개일시 댓글 감소,증가가 안됨) 
+			let cWrap = document.createElement('div');
+			cWrap.classList.add('comments-wrap');
+			wrap.appendChild(cWrap);
+		
+		  if (page === undefined) {
+			  page=0;
+		  }
+		  
 	 $.ajax({
 			type: "post",
 			url: "getComments",
-			data: {
+			 dataType: "json",
+             data: JSON.stringify({
 				boardNum:bNum,
-			},
+				page:page
+			}),
+			contentType: "application/json",
          success: function (data) {
          	console.log(data)
          	
-			for(var i=0; i<data.length; i++){
+         	  var a = '';
+              var page = data.page;
+              var startpage = data.startpage;
+              var endpage = data.endpage;
+              var commList = data.commList;
+              
+              $.each(commList, function(key, value) {
+            	 console.log("여기오니????");
 				// 댓글 리스트 
+				 	let  = document.createElement('div');
 				 	let commWrap = document.createElement('div');
 					commWrap.classList.add('comments-wrap');
 					let comment = document.createElement('div');
@@ -755,27 +793,40 @@ function getComments(bNum){
 		         	let span = document.createElement('div');
 		         	span.classList.add("userSpan");
 		         	span.innerHTML = '<img src="${path}/resources/img/하이킹.PNG" id="commentUserPic"/>';
-		         	span.innerHTML += '<div id="commentNickname">'+ data[i].memberNickname +'</div>';
-		         	span.innerHTML += '<div id="commRegdate">'+ data[i].commentsRegdate +'</div>';
-		         	/* span.innerHTML += '<img src="${path}/resources/img/down.png" id="dropdown"/>'; */
+		         	span.innerHTML += '<div id="commentNickname">'+ value.memberNickname +'</div>';
+		         	span.innerHTML += '<div id="commRegdate">'+ value.commentsRegdate +'</div>';
 		         	comment.appendChild(span);
-		         	comment.innerHTML += '<div id="commContent">'+ data[i].commentsContent +'</div></div>';
+		         	comment.innerHTML += '<div id="commContent">'+ value.commentsContent +'</div></div>';
 		         	
 		         	// 댓글쓴이와 로그인 유저가 같은 사람이면 수정,삭제가 보임 
-		         	if(data[i].memberNickname === userNickname){
-			         	comment.innerHTML += '<div id="editBtn"><div id="delComm" onclick="deleteComment('+data[i].commentsNum+')">삭제</div>'
-			         						+'<div id="updateComm" onclick="changeTag('+data[i].commentsNum+')">수정</div>'
-			         						+'<div id="showReCommBtn" onclick="showReComments('+data[i].commentsNum+')">대댓글</div></div>';
+		         	if(value.memberNickname === userNickname){
+			         	comment.innerHTML += '<div id="editBtn"><div id="delComm" onclick="deleteComment('+ value.commentsNum+')">삭제</div>'
+			         						+'<div id="updateComm" onclick="changeTag('+ value.commentsNum+')">수정</div>'
+			         						+'<div id="showReCommBtn" onclick="showReComments('+ value.commentsNum+')">답댓글</div></div>';
 			         	comment.innerHTML += '<div class="reComm-wrap"></div>';		
 		         	} else {
 		         		
-			         	comment.innerHTML +='<div id="editBtn"><div id="showReCommBtn" onclick="showReComments('+data[i].commentsNum+')">대댓글</div></div>';
+			         	comment.innerHTML +='<div id="editBtn"><div id="showReCommBtn" onclick="showReComments('+ value.commentsNum+')">답댓글</div></div>';
 			         	comment.innerHTML += '<div class="reComm-wrap"></div>';
 		         	}
 		         	
 		         	commWrap.appendChild(comment);
-					pnode.appendChild(commWrap);
-				}
+					wrap.appendChild(commWrap);
+				});
+              
+              		console.log("페이지 넘버 " + page + "startpage " + startpage + " endpage" + endpage);
+              		a = '<div class="paging">'
+				    for (var num=startpage; num<=endpage; num++) {
+				    	console.log("여기 오니???2")
+		                 if (num == page) {
+		                   a += '<span>'+num+'</span>';
+		                   console.log("here?");
+		                 } else {
+		                      a += '<a href="#" onclick="getComments(' + bNum + ', ' + num + ');" class="page-btn">' + num + '</a>';
+		                 }
+		              }
+              		a+="</div>";
+					inlineContent.children('.comm-parent-wrap').append(a);
 	        },
 	        error: function(e) {
 	        	  alert("댓글 불러오기 오류" + e);
@@ -803,12 +854,8 @@ function getTime() {
 function insertComment(bNum){
 	return new Promise(function(resolve, reject){
 		console.log(bNum)
-		
-		
-		
-		//let pnode = event.target.parentNode.parentNode.nextElementSibling;
 		let pnode = event.target.closest('.commentBox').nextElementSibling;
-		
+		console.log(event.target.closest('.commentBox'));
 		console.log(pnode);	//comments-wrap
 		
 		let area = event.target.parentNode.getElementsByTagName('textArea')[0];
@@ -852,22 +899,22 @@ function insertComment(bNum){
 			            	comment.innerHTML += '<div id="commContent">'+ data.commentsContent +'</div></div>';
 			            	comment.innerHTML += '<div id="editBtn"><div id="delComm" onclick="deleteComment('+data.commentsNum+')">삭제</div>'
 			            						+'<div id="updateComm" onclick="changeTag('+data.commentsNum+')">수정</div>'
-			            						+'<div id="showReCommBtn" onclick="showReComments('+data.commentsNum+')">대댓글</div></div>';
+			            						+'<div id="showReCommBtn" onclick="showReComments('+data.commentsNum+')">답댓글</div></div>';
 			            	
 			            //comments wrap에 가져온 comment 삽입 
 			            	wrap.appendChild(comment);
 			            	console.log(pnode);
 			            	
 			            // comments wrap을 inlineContent의 첫번째 노드로  삽입 
-			            	console.log(pnode.parentNode);	// inlineContent
+			            	console.log(pnode.parentNode);	// comm-parent-wrap
 			           		 let inline = pnode.parentNode;
-			         	  	 inline.insertBefore(wrap, inline.children[2]);
+			         	  	 inline.insertBefore(wrap, inline.children[1]);
 		                   	console.log("댓글 등록 성공");
 		                   	alert("댓글이 등록되었습니다!"); 
 		                   	
 		               	 // 성공하면 댓글 개수 증가 
-					  	 	let showBtn = pnode.parentNode.firstElementChild
-					   		let count = showBtn.lastElementChild.lastElementChild;
+			               	let showBtn = inline.previousElementSibling.children[1];
+					   		let count = showBtn.lastElementChild;
 		 					let calc = "+";
 		 					changeCount(calc, count); 
 		 					
@@ -985,10 +1032,10 @@ function updateComment(cNum){
 		console.log("댓글의 버튼")
 	editBtn.innerHTML = '<div id="delComm" onclick="deleteComment('+cNum+')">삭제</div>'
 						+'<div id="updateComm" onclick="changeTag('+cNum+')">수정</div>'
-						+'<div id="showReCommBtn" onclick="showReComments('+cNum+')">대댓글</div>';
+						+'<div id="showReCommBtn" onclick="showReComments('+cNum+')">답댓글</div>';
 	} else {
-		console.log("대댓글의 버튼")
-		editBtn.innerHTML = '<div id="delComm" onclick="deleteComment('+cNum+')">삭제</div>'
+		console.log("답댓글 버튼")
+		editBtn.innerHTML = '<div id="delComm" onclick="delReComm('+cNum+')">삭제</div>'
 		+'<div id="updateComm" onclick="changeTag('+cNum+')">수정</div>';
 	}
 	
@@ -1020,11 +1067,10 @@ function updateComment(cNum){
 			
 //댓글 삭제 
 	function deleteComment(cNum){
-	let result = confirm("댓글을 삭제하시겠습니까?");
-	let pnode = event.target.parentNode.parentNode 		//comments-wrap
-	if(result){
-	//let area  = pnode.previousElementSibling.getElementsByTagName('div')[0];
-	
+		let result = confirm("댓글을 삭제하시겠습니까?");
+		let pnode = event.target.closest('.comments-wrap'); 		//comments-wrap
+		console.log(pnode)
+		if(result){
 				$.ajax({
 						type: "post",
 						url: "deleteComment",

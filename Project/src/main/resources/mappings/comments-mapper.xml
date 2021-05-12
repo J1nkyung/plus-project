@@ -31,11 +31,11 @@
 		DELETE FROM comments WHERE comments_num = #{commentsNum}
 	</delete>
 	
-	<select id="getComments" resultMap="commResult">
+	<select id="getComments" resultMap="commResult" parameterType="java.util.HashMap">
 		SELECT member_nickname, member_num, member_pic, comments_num, board_num, comments_content, comments_regdate
 		FROM comments 
 		JOIN member USING (member_num) WHERE board_num = #{boardNum} AND comments_class IS NULL
-		ORDER BY comments_regdate DESC
+		ORDER BY comments_regdate DESC LIMIT #{startIndex}, 10
 	</select>
 	
 	<select id="getCommentsCount" resultType="Integer">

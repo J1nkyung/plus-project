@@ -1,6 +1,7 @@
 package com.project.plus.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,8 @@ public class CommentsServiceImpl implements CommentsService {
 	}
 
 	@Override
-	public List<CommentsVO> getComments(CommentsVO comments) {
-		return mapper.getComments(comments);
+	public List<CommentsVO> getComments(Map<String,Integer> condition) {
+		return mapper.getComments(condition);
 	}
 
 	@Override

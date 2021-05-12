@@ -63,6 +63,7 @@ public class BoardController {
 				int result = commService.getCommentsCount(bNum);
 				board.setCommentsCount(result);
 				board.setClubNum(clubNum);
+				log.info("댓글 개수 : " + result);
 			}
 	    
 		//콘텐츠 전체보기 
@@ -98,6 +99,14 @@ public class BoardController {
 		  // more.put("memberNum", memberNum);
 		   
 		   List<BoardVO> newContent = boardService.getMoreContents(more);
+		   
+			for(BoardVO board : newContent) {
+				int bNum = board.getBoardNum();
+				int result = commService.getCommentsCount(bNum);
+				board.setCommentsCount(result);
+				board.setClubNum(clubNum);
+				log.info("댓글 개수 : " + result);
+			}
 		   
 		// java object -> json
 			ObjectMapper mapper = new ObjectMapper();
