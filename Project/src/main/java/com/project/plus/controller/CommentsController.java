@@ -41,17 +41,14 @@ public class CommentsController {
 		
 		int boardNum = Integer.valueOf(param.get("boardNum").toString());
 		int page = Integer.valueOf(param.get("page").toString());
-		if (page == 0) {
-			page = 1;
-		}
+		if (page == 0) page = 1;
 		
 		// 10개씩 보여주기 위해 설정 
 		int limit = 10;
+		// 전체 댓글 개수 
 		int listCount = commService.getCommentsCount(boardNum);
 		
-		log.info("글번호 " + boardNum);
-		log.info("총 댓글 수 : " + listCount);
-		log.info("현재 페이지 " + page);
+		log.info("글번호 " + boardNum + ", 총 댓글 수 : " + listCount +  ", 현재 페이지 " + page);
 
 		// sql의 limit 조건으로 보낼 개수  
 		int startIndex = ((page - 1) * limit);
@@ -60,13 +57,21 @@ public class CommentsController {
 		int maxpage = (listCount + limit - 1) / limit;
 		if(maxpage == 0) maxpage=1;
 
-		// 시작 페이지 넘버 
-		int startpage = ((page - 1) / 10) * 10 + 1;
-
-		// 마지막 페이지 넘버 
-		int endpage = startpage + 10 - 1;
-
-		if(endpage > maxpage) endpage = maxpage;
+		// 끝 페이지 번호 
+		int endpage = (int)(Math.ceil(page / (double)limit) * limit);
+		// 시작 페이지 번호 
+		int startpage = (endpage - limit) + 1;
+		
+		// ex) endpage가 20인데 maxpage는 14일 때를 대비함 
+		if (endpage > maxpage) {
+			endpage = maxpage;
+		}
+		// 이전과 다음을 표시하기 위함 
+		boolean prev = startpage == 1 ? false : true;
+		// ex) endpage=10이고 listcount가 140일 때 true값이 나온다.
+		boolean next = endpage * limit >= listCount ? false : true;
+		
+		log.info("시작페이지 " + startpage + " 끝페이지" + endpage);
 		
 		condition.put("boardNum", boardNum);
 		condition.put("startIndex", startIndex);
@@ -76,6 +81,8 @@ public class CommentsController {
 		result.put("page", page);
 		result.put("startpage", startpage);
 		result.put("endpage", endpage);
+		result.put("prev", prev);
+		result.put("next", next);
 
 		return result;
 

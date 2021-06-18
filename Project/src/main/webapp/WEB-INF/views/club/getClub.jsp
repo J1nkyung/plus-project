@@ -93,14 +93,16 @@
          </div>
          
             <div id="clubname">${club.clubName}</div>
-            <!-- 해시태그 출력부분  -->
    
          <div class="clubInfoTable">
+            <!-- 해시태그 출력부분  -->
             <div id="clubhashtag">
-            <c:forEach items="${tags}" var="tag">
-               <span class="badge badge-pill badge-info"><a href="totalList?page=1&perPageNum=20&searchType=h&keyword=${tag}"># ${tag}</a></span>
-            </c:forEach>
-</div>
+	            <c:forEach items="${tags}" var="tag">
+	               <span class="badge badge-pill badge-info">
+	               	<a href="totalList?page=1&perPageNum=20&searchType=h&keyword=${tag}"># ${tag}</a>
+	               </span>
+	            </c:forEach>
+			</div>
             <div id="location">
                <img src="${path}/resources/img/mapicon.png"></img>
                <div id="locationText">모임 위치</div>

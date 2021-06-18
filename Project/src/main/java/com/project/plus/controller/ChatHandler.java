@@ -66,7 +66,6 @@ public class ChatHandler extends TextWebSocketHandler {
 	            // 각 채팅방에 해당하는 참여인원 수 세기 
 	            int people=0;
 	            userCount.put(chatId, ++people);
-	          //  userList.put(chat.getMemberNickname(),chatId);
 	            
 	            log.info("생성#####" + chatId + " and "  + userCount.get(chatId) + "명");
 	            

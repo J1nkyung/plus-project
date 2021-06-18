@@ -46,11 +46,6 @@ public class FileUtils {
 					if(i==0) {	// 프로필 사진 = 메인사진 
 						 vo.setClubMain_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName); 
 						 log.info(vo.getClubMain_pic());
-						 
-						//썸네일 생성 
-						// String tPath = FileUtils.makeThumbnail(uploadPath, datePath, newFileName); 
-						// vo.setClubThumb_pic(File.separator + "uploadImg" + tPath);
-						 
 					} else if (i==1) {	
 						// 상세정보 사진 
 						vo.setClubContent1_pic(File.separator + "uploadImg" + datePath + File.separator + newFileName);

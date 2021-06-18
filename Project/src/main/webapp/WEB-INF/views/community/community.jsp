@@ -781,6 +781,8 @@ function getComments(bNum,page){
               var startpage = data.startpage;
               var endpage = data.endpage;
               var commList = data.commList;
+              var prev = data.prev;
+              var next = data.next;
               
               $.each(commList, function(key, value) {
             	 console.log("여기오니????");
@@ -815,7 +817,11 @@ function getComments(bNum,page){
 				});
               
               		console.log("페이지 넘버 " + page + "startpage " + startpage + " endpage" + endpage);
-              		a = '<div class="paging">'
+              		a = '<div class="paging">';
+              		console.log("불리안 " + prev, next);
+              		if (prev==true){
+              			 a += '<a href="#" onclick="getComments(' + bNum + ', ' + (startpage-1) + ');" class="page-btn">' + '<' + '</a>';
+              		} 
 				    for (var num=startpage; num<=endpage; num++) {
 				    	console.log("여기 오니???2")
 		                 if (num == page) {
@@ -823,8 +829,12 @@ function getComments(bNum,page){
 		                   console.log("here?");
 		                 } else {
 		                      a += '<a href="#" onclick="getComments(' + bNum + ', ' + num + ');" class="page-btn">' + num + '</a>';
+		                      
 		                 }
 		              }
+				    if (next==true){
+             			 a += '<a href="#" onclick="getComments(' + bNum + ', ' + (endpage+1) + ');" class="page-btn">' + '>' + '</a>';
+             		} 
               		a+="</div>";
 					inlineContent.children('.comm-parent-wrap').append(a);
 	        },
@@ -871,7 +881,6 @@ function insertComment(bNum){
 		let today = getTime();
  		let writer = "";
 			       $.ajax({
-			        
 						type: "post",
 						url: "insertComment",
 						data: {
